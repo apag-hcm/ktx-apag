@@ -5,18 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cổng Đăng Ký Xét Duyệt Ký Túc Xá Đại Học Chính Quy 2026 | APAG TP. Hồ Chí Minh</title>
   
-  <!-- CSS & LIBRARIES -->
+  <!-- CSS & FONTS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
-  <!-- SWEETALERT2, SUPABASE & SHEETJS (EXCEL) -->
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
-  <script src="config.js"></script>
+  <!-- SCRIPTS TẢI BẤT ĐỒNG BỘ (DEFER TO SPEED UP LOAD) -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <script src="config.js" defer></script>
 
   <script>
     tailwind.config = {
@@ -713,7 +712,7 @@
     </div>
   </div>
 
-  <!-- JAVASCRIPT LOGIC HỆ THỐNG -->
+  <!-- JAVASCRIPT LOGIC HỆ THỐNG CẢI TIẾN TỐC ĐỘ -->
   <script>
     let systemConfigs = {};
     let countdownInterval = null;
@@ -721,7 +720,22 @@
     let currentFilteredList = [];
     let parsedExcelRows = [];
 
-    // HÀM HỖ TRỢ ĐỊNH DẠNG NGÀY CHUẨN ISO CHO POSTGRESQL DATE
+    // HÀM LAZY LOAD THƯ VIỆN EXCEL SHEETJS (CHỈ NẠP KHI CẦN)
+    function loadXlsxScript(callback) {
+      if (window.XLSX) { callback(); return; }
+      if (window.Swal) {
+        Swal.fire({ title: 'Đang tải bộ xử lý Excel...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+      }
+      const script = document.createElement('script');
+      script.src = "https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js";
+      script.onload = () => {
+        if (window.Swal) Swal.close();
+        callback();
+      };
+      document.head.appendChild(script);
+    }
+
+    // CHUYỂN ĐỔI CHUỖI NGÀY SANG DẠNG ISO (YYYY-MM-DD)
     function parseToIsoDate(str) {
       if (!str) return null;
       str = String(str).trim();
@@ -743,24 +757,38 @@
       initEvents();
     });
 
-    // 1. TẢI CẤU HÌNH ĐỘNG VÀ KHỞI CHẠY ĐỒNG HỒ ĐẾM NGƯỢC
+    // 1. TẢI CẤU HÌNH VỚI BỘ NHỚ ĐỆM LOCALSTORAGE SIÊU TỐC
     async function loadLiveConfig() {
+      // Đọc ngay từ cache để giao diện hiển thị ngay lập tức (0.1 giây)
+      const cached = localStorage.getItem('APAG_CONFIG_CACHE');
+      if (cached) {
+        try {
+          systemConfigs = JSON.parse(cached);
+          applyConfigsToUI();
+        } catch(e) {}
+      }
+
+      // Tải ngầm dữ liệu mới nhất từ Supabase để đồng bộ
       try {
+        if (!window.db) return;
         const { data, error } = await window.db.from('cau_hinh').select('*');
         if (data && data.length > 0) {
           data.forEach(item => { systemConfigs[item.key] = item.value; });
-          
-          if (systemConfigs.DEADLINE_DANG_KY) {
-            startCountdownTimer(systemConfigs.DEADLINE_DANG_KY);
-          }
-
-          if (systemConfigs.TONG_QUY_PHONG) document.getElementById('displayTongChoKTX3').innerText = systemConfigs.TONG_QUY_PHONG + ' chỗ trống';
-          if (systemConfigs.NGAY_TIEP_SINH) document.getElementById('lblNgayTiepSinh').innerText = systemConfigs.NGAY_TIEP_SINH;
-          if (systemConfigs.GIA_KTX_3T) document.getElementById('lblGiaKTX3T').innerText = systemConfigs.GIA_KTX_3T;
-          if (systemConfigs.GIA_KTX_181) document.getElementById('lblGiaKTX181').innerText = systemConfigs.GIA_KTX_181;
-          if (systemConfigs.HOTLINE_KTX) document.getElementById('lblHotline').innerText = systemConfigs.HOTLINE_KTX;
+          localStorage.setItem('APAG_CONFIG_CACHE', JSON.stringify(systemConfigs));
+          applyConfigsToUI();
         }
       } catch (err) { console.error('Error loading config:', err); }
+    }
+
+    function applyConfigsToUI() {
+      if (systemConfigs.DEADLINE_DANG_KY) {
+        startCountdownTimer(systemConfigs.DEADLINE_DANG_KY);
+      }
+      if (systemConfigs.TONG_QUY_PHONG) document.getElementById('displayTongChoKTX3').innerText = systemConfigs.TONG_QUY_PHONG + ' chỗ trống';
+      if (systemConfigs.NGAY_TIEP_SINH) document.getElementById('lblNgayTiepSinh').innerText = systemConfigs.NGAY_TIEP_SINH;
+      if (systemConfigs.GIA_KTX_3T) document.getElementById('lblGiaKTX3T').innerText = systemConfigs.GIA_KTX_3T;
+      if (systemConfigs.GIA_KTX_181) document.getElementById('lblGiaKTX181').innerText = systemConfigs.GIA_KTX_181;
+      if (systemConfigs.HOTLINE_KTX) document.getElementById('lblHotline').innerText = systemConfigs.HOTLINE_KTX;
     }
 
     // ĐỒNG HỒ ĐẾM NGƯỢC THỜI GIAN THỰC (COUNTDOWN)
@@ -877,7 +905,7 @@
       }
     }
 
-    // 4. TIẾP NHẬN HOẶC CẬP NHẬT ĐƠN ĐĂNG KÝ (SỬ DỤNG .toISOString() CHUẨN ISO)
+    // 4. TIẾP NHẬN HOẶC CẬP NHẬT ĐƠN ĐĂNG KÝ
     let lastRegisteredData = null;
     async function handleFormSubmit(e) {
       e.preventDefault();
@@ -1138,7 +1166,7 @@
       });
     }
 
-    // 8. CHỨC NĂNG NẠP DỮ LIỆU EXCEL TỪ TỆP MẪU DSTT (ĐÃ CHUẨN HÓA ĐỊNH DẠNG ISO TIMESTAMP)
+    // 8. CHỨC NĂNG NẠP DỮ LIỆU EXCEL
     function openExcelImportModal() { document.getElementById('excelImportModal').classList.remove('hidden'); }
     function closeExcelImportModal() { document.getElementById('excelImportModal').classList.add('hidden'); }
 
@@ -1146,36 +1174,38 @@
       const file = e.target.files[0];
       if (!file) return;
 
-      document.getElementById('excelFileNameDisplay').innerText = `📄 ${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
+      loadXlsxScript(() => {
+        document.getElementById('excelFileNameDisplay').innerText = `📄 ${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
 
-      const reader = new FileReader();
-      reader.onload = function(evt) {
-        try {
-          const data = new Uint8Array(evt.target.result);
-          const workbook = XLSX.read(data, { type: 'array' });
-          const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
-          const jsonRows = XLSX.utils.sheet_to_json(firstSheet, { defval: '' });
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          try {
+            const data = new Uint8Array(evt.target.result);
+            const workbook = XLSX.read(data, { type: 'array' });
+            const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+            const jsonRows = XLSX.utils.sheet_to_json(firstSheet, { defval: '' });
 
-          if (!jsonRows || jsonRows.length === 0) {
-            Swal.fire('Lỗi Tệp', 'Tệp Excel không chứa dữ liệu!', 'error');
-            return;
+            if (!jsonRows || jsonRows.length === 0) {
+              Swal.fire('Lỗi Tệp', 'Tệp Excel không chứa dữ liệu!', 'error');
+              return;
+            }
+
+            parsedExcelRows = jsonRows;
+            document.getElementById('excelPreviewArea').classList.remove('hidden');
+            document.getElementById('excelPreviewDetails').innerHTML = `
+              • Tên Sheet: <strong>${workbook.SheetNames[0]}</strong><br>
+              • Tổng số dòng phát hiện: <strong class="text-emerald-600 text-sm">${jsonRows.length} sinh viên</strong><br>
+              • Cột phát hiện: ${Object.keys(jsonRows[0]).slice(0, 5).join(', ')}...
+            `;
+
+            document.getElementById('btnImportReplace').disabled = false;
+            document.getElementById('btnImportMerge').disabled = false;
+          } catch (err) {
+            Swal.fire('Lỗi Đọc File Excel', err.message, 'error');
           }
-
-          parsedExcelRows = jsonRows;
-          document.getElementById('excelPreviewArea').classList.remove('hidden');
-          document.getElementById('excelPreviewDetails').innerHTML = `
-            • Tên Sheet: <strong>${workbook.SheetNames[0]}</strong><br>
-            • Tổng số dòng phát hiện: <strong class="text-emerald-600 text-sm">${jsonRows.length} sinh viên</strong><br>
-            • Cột phát hiện: ${Object.keys(jsonRows[0]).slice(0, 5).join(', ')}...
-          `;
-
-          document.getElementById('btnImportReplace').disabled = false;
-          document.getElementById('btnImportMerge').disabled = false;
-        } catch (err) {
-          Swal.fire('Lỗi Đọc File Excel', err.message, 'error');
-        }
-      };
-      reader.readAsArrayBuffer(file);
+        };
+        reader.readAsArrayBuffer(file);
+      });
     }
 
     function mapExcelRowToRecord(row, idx) {
@@ -1285,40 +1315,42 @@
         return;
       }
 
-      const exportData = currentFilteredList.map((item, index) => ({
-        "STT": index + 1,
-        "Mã Hồ Sơ": item.ma_ho_so || '',
-        "Mã Sinh Viên": item.mssv || '',
-        "Họ Và Tên": item.ho_ten || '',
-        "Giới Tính": item.gioi_tinh || '',
-        "Ngày Sinh": item.ngay_sinh || '',
-        "Số CCCD / ĐĐCN": item.cccd ? String(item.cccd) : '',
-        "SĐT Cá Nhân": item.sdt || '',
-        "SĐT Gia Đình": item.sdt_gia_dinh || '',
-        "Email": item.email || '',
-        "Địa Chỉ / Hộ Khẩu": item.tinh_thanh || '',
-        "Ngành Trúng Tuyển": item.nganh_hoc || '',
-        "Điểm Xét Tuyển": item.diem || 0,
-        "Bậc Ưu Tiên": item.bac_uu_tien || '',
-        "Khu KTX Đăng Ký": item.loai_phong || '',
-        "Trạng Thái Xét Duyệt": item.trang_thai || 'Chờ duyệt',
-        "Ghi Chú": item.ghi_chu || ''
-      }));
+      loadXlsxScript(() => {
+        const exportData = currentFilteredList.map((item, index) => ({
+          "STT": index + 1,
+          "Mã Hồ Sơ": item.ma_ho_so || '',
+          "Mã Sinh Viên": item.mssv || '',
+          "Họ Và Tên": item.ho_ten || '',
+          "Giới Tính": item.gioi_tinh || '',
+          "Ngày Sinh": item.ngay_sinh || '',
+          "Số CCCD / ĐĐCN": item.cccd ? String(item.cccd) : '',
+          "SĐT Cá Nhân": item.sdt || '',
+          "SĐT Gia Đình": item.sdt_gia_dinh || '',
+          "Email": item.email || '',
+          "Địa Chỉ / Hộ Khẩu": item.tinh_thanh || '',
+          "Ngành Trúng Tuyển": item.nganh_hoc || '',
+          "Điểm Xét Tuyển": item.diem || 0,
+          "Bậc Ưu Tiên": item.bac_uu_tien || '',
+          "Khu KTX Đăng Ký": item.loai_phong || '',
+          "Trạng Thái Xét Duyệt": item.trang_thai || 'Chờ duyệt',
+          "Ghi Chú": item.ghi_chu || ''
+        }));
 
-      const worksheet = XLSX.utils.json_to_sheet(exportData);
-      worksheet['!cols'] = [
-        { wch: 6 }, { wch: 14 }, { wch: 14 }, { wch: 25 },
-        { wch: 10 }, { wch: 12 }, { wch: 16 }, { wch: 14 },
-        { wch: 14 }, { wch: 25 }, { wch: 35 }, { wch: 30 },
-        { wch: 12 }, { wch: 25 }, { wch: 28 }, { wch: 18 }, { wch: 20 }
-      ];
+        const worksheet = XLSX.utils.json_to_sheet(exportData);
+        worksheet['!cols'] = [
+          { wch: 6 }, { wch: 14 }, { wch: 14 }, { wch: 25 },
+          { wch: 10 }, { wch: 12 }, { wch: 16 }, { wch: 14 },
+          { wch: 14 }, { wch: 25 }, { wch: 35 }, { wch: 30 },
+          { wch: 12 }, { wch: 25 }, { wch: 28 }, { wch: 18 }, { wch: 20 }
+        ];
 
-      const workbook = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(workbook, worksheet, "DS_SinhVien_KTX");
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, "DS_SinhVien_KTX");
 
-      const now = new Date();
-      const timeTag = `${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}${String(now.getDate()).padStart(2,'0')}_${String(now.getHours()).padStart(2,'0')}${String(now.getMinutes()).padStart(2,'0')}`;
-      XLSX.writeFile(workbook, `DS_Dang_Ky_KTX_APAG_${timeTag}.xlsx`);
+        const now = new Date();
+        const timeTag = `${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}${String(now.getDate()).padStart(2,'0')}_${String(now.getHours()).padStart(2,'0')}${String(now.getMinutes()).padStart(2,'0')}`;
+        XLSX.writeFile(workbook, `DS_Dang_Ky_KTX_APAG_${timeTag}.xlsx`);
+      });
     }
 
     // CẤU HÌNH HỆ THỐNG
@@ -1358,6 +1390,7 @@
         await window.db.from('cau_hinh').upsert([item]);
       }
 
+      localStorage.setItem('APAG_CONFIG_CACHE', JSON.stringify(systemConfigs));
       Swal.fire('Thành công', 'Đã lưu cài đặt cấu hình!', 'success');
       loadLiveConfig();
     }
