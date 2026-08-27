@@ -590,7 +590,7 @@
     </div>
   </div>
 
-  <!-- JAVASCRIPT LOGIC 100% SUPABASE INTEGRATION -->
+  <!-- JAVASCRIPT LOGIC -->
   <script>
     let systemConfigs = {};
 
@@ -615,7 +615,7 @@
       } catch (err) { console.error('Error loading config:', err); }
     }
 
-    // 2. TỈNH/THÀNH VÀ PHƯỜNG/XÃ DỰ PHÒNG
+    // 2. TỈNH/THÀNH VÀ PHƯỜNG/XÃ
     const administrativeData = {
       "Thành phố Hồ Chí Minh": ["Phường Bến Thành", "Phường Sài Gòn", "Phường Tân Định", "Phường Hòa Hưng", "Phường Gò Vấp", "Phường Bình Thạnh", "Phường Tân Bình", "Phường Thủ Đức"],
       "Thành phố Hà Nội": ["Phường Ba Đình", "Phường Hoàn Kiếm", "Phường Đống Đa", "Phường Cầu Giấy", "Phường Hai Bà Trưng", "Phường Thanh Xuân"],
@@ -642,18 +642,26 @@
       });
     }
 
-    // 3. TỰ ĐỘNG NHẬN DIỆN CCCD VÀ NẠP DỮ LIỆU
+    // 3. TỰ ĐỘNG NHẬN DIỆN CCCD VỚI THUẬT TOÁN TÌM KIẾM THÔNG MINH ILIKE
     function initEvents() {
       const cccdInput = document.getElementById('soCCCD');
       if (cccdInput) {
         cccdInput.addEventListener('blur', async function() {
-          const cccdVal = this.value.trim();
-          if (cccdVal.length === 12) {
+          const rawVal = this.value.trim();
+          if (rawVal.length >= 9) {
             Swal.fire({ title: 'Đang kiểm tra CSDL...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
-            const { data, error } = await window.db.from('danh_sach_dang_ky').select('*').eq('cccd', cccdVal).maybeSingle();
+            
+            const searchPattern = rawVal.replace(/^0+/, ''); // Loại bỏ các số 0 ở đầu nếu có
+
+            const { data, error } = await window.db
+              .from('danh_sach_dang_ky')
+              .select('*')
+              .ilike('cccd', `%${searchPattern}%`)
+              .maybeSingle();
+
             Swal.close();
             if (data) {
-              Swal.fire({ icon: 'success', title: 'Xác thực thành công!', text: `Đã nạp thông tin sinh viên: ${data.ho_ten}`, timer: 1800, showConfirmButton: false });
+              Swal.fire({ icon: 'success', title: 'Xác thực thành công!', text: `Đã nạp sinh viên: ${data.ho_ten}`, timer: 1500, showConfirmButton: false });
               document.getElementById('displayMSSV').value = data.mssv || '';
               document.getElementById('hoTen').value = data.ho_ten || '';
               if (data.ngay_sinh) document.getElementById('ngaySinh').value = data.ngay_sinh;
@@ -683,6 +691,7 @@
       btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Đang xử lý...';
 
       const inputCCCD = document.getElementById('soCCCD').value.trim();
+      const searchPattern = inputCCCD.replace(/^0+/, '');
       const chitiet = document.getElementById('diaChiChiTiet').value.trim();
       const xa = document.getElementById('phuongXaSelect').value.trim();
       const tinh = document.getElementById('tinhThanhSelect').value.trim();
@@ -708,7 +717,12 @@
         thoi_gian: nowStr
       };
 
-      const { data, error } = await window.db.from('danh_sach_dang_ky').update(formData).eq('cccd', inputCCCD).select();
+      const { data, error } = await window.db
+        .from('danh_sach_dang_ky')
+        .update(formData)
+        .ilike('cccd', `%${searchPattern}%`)
+        .select();
+
       btn.disabled = false; btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Gửi hồ sơ đăng ký xét duyệt KTX';
 
       if (error || !data || data.length === 0) {
@@ -737,9 +751,15 @@
     let currentLookupData = null;
     async function performSearch() {
       const q = document.getElementById('lookupInput').value.trim();
-      if (!q || q.length !== 12) { Swal.fire({ icon: 'warning', text: 'Vui lòng nhập đúng 12 chữ số CCCD!' }); return; }
+      if (!q || q.length < 9) { Swal.fire({ icon: 'warning', text: 'Vui lòng nhập đủ số CCCD!' }); return; }
 
-      const { data, error } = await window.db.from('danh_sach_dang_ky').select('*').eq('cccd', q).maybeSingle();
+      const searchPattern = q.replace(/^0+/, '');
+      const { data, error } = await window.db
+        .from('danh_sach_dang_ky')
+        .select('*')
+        .ilike('cccd', `%${searchPattern}%`)
+        .maybeSingle();
+
       const resDiv = document.getElementById('lookupResult');
       resDiv.classList.remove('hidden');
 
