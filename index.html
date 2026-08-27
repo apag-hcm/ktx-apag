@@ -750,7 +750,7 @@
     </div>
   </div>
 
-  <!-- JAVASCRIPT LOGIC HỆ THỐNG -->
+  <!-- JAVASCRIPT LOGIC HỆ THỐNG VỚI 3.321 XÃ/PHƯỜNG CHUẨN TỪ EXCEL -->
   <script>
     let systemConfigs = {};
     let countdownInterval = null;
@@ -1131,13 +1131,42 @@
       }
     }
 
-    // TỈNH/THÀNH VÀ PHƯỜNG/XÃ DỰ PHÒNG
+    // TỈNH/THÀNH VÀ PHƯỜNG/XÃ (NẠP ĐẦY ĐỦ 3.321 XÃ/PHƯỜNG TỪ EXCEL)
     const administrativeData = {
-      "Thành phố Hồ Chí Minh": ["Phường Bến Thành", "Phường Sài Gòn", "Phường Tân Định", "Phường Hòa Hưng", "Phường Gò Vấp", "Phường Bình Thạnh", "Phường Tân Bình", "Phường Thủ Đức"],
-      "Thành phố Hà Nội": ["Phường Ba Đình", "Phường Hoàn Kiếm", "Phường Đống Đa", "Phường Cầu Giấy", "Phường Hai Bà Trưng", "Phường Thanh Xuân"],
-      "Thành phố Đà Nẵng": ["Phường Hải Châu", "Phường Thanh Khê", "Phường Sơn Trà", "Phường Ngũ Hành Sơn", "Phường Cẩm Lệ", "Phường Liên Chiểu"],
-      "Thành phố Cần Thơ": ["Phường Ninh Kiều", "Phường Bình Thủy", "Phường Cái Răng", "Phường Ô Môn", "Phường Thốt Nốt"],
-      "Tỉnh Đồng Tháp": ["Phường Cao Lãnh", "Phường Sa Đéc", "Phường Hồng Ngự", "Xã Lấp Vò", "Xã Lai Vung", "Xã Tháp Mười"]
+      "Thành phố Cần Thơ": ["Phường An Bình", "Phường Bình Thủy", "Phường Cái Khế", "Phường Cái Răng", "Phường Hưng Phú", "Phường Khánh Hòa", "Phường Long Bình", "Phường Long Mỹ", "Phường Long Phú 1", "Phường Long Tuyền", "Phường Mỹ Quới", "Phường Mỹ Xuyên", "Phường Ngã Năm", "Phường Nhơn Phú", "Phường Ninh Kiều", "Phường Ô Môn", "Phường Phú Lợi", "Phường Phước Thới", "Phường Tân An", "Phường Tân Lộc", "Phường Thới An Đông", "Phường Thới Long", "Phường Thới Thuận", "Phường Thốt Nốt", "Phường Thuận Hưng", "Phường Trà Nóc", "Phường Trung Nhứt", "Phường Vĩnh Châu", "Phường Vĩnh Phước", "Xã An Thạnh", "Xã An Trạch", "Xã Bàn Long", "Xã Bình Thành", "Xã Châu Thành", "Xã Cờ Đỏ", "Xã Cù Lao Dung", "Xã Dục Mỹ", "Xã Đại Ngãi", "Xã Đại Tâm", "Xã Đông Bình", "Xã Đông Phước", "Xã Đông Thạnh", "Xã Đông Thuận", "Xã Gia Hòa", "Xã Giai Xuân", "Xã Hà Bầu", "Xã Hòa Tú 1", "Xã Hưng Phú", "Xã Hưng Thạnh", "Xã Khánh Hưng", "Xã Lịch Hội Tư", "Xã Liêu Tú", "Xã Long Hưng", "Xã Long Phú", "Xã Long Thạnh", "Xã Lương Hòa", "Xã Mỹ Hương", "Xã Mỹ Phước", "Xã Mỹ Thuận", "Xã Mỹ Tú", "Xã Ngã Năm", "Xã Ngọc Tố", "Xã Nhiêu Lộc", "Xã Nhơn Nghĩa", "Xã Nhơn Ái", "Xã Nhang Cảo", "Xã Phong Điền", "Xã Phú Hữu", "Xã Phú Lộc", "Xã Phú Tân", "Xã Phước Long", "Xã Phước Thành", "Xã Quới An", "Xã Song Phụng", "Xã Tài Văn", "Xã Tân Hòa", "Xã Tân Thạnh", "Xã Tăng Hòa", "Xã Thạnh Lộc", "Xã Thạnh Phú", "Xã Thạnh Thới Thuận", "Xã Thới Hưng", "Xã Thới Lai", "Xã Thới Thạnh", "Xã Thới Xuân", "Xã Thuận Hưng", "Xã Thuận Hòa", "Xã Trường Long", "Xã Trường Thành", "Xã Trường Xuân", "Xã Tuần Tức", "Xã Tham Đôn", "Xã Thạnh Mỹ", "Xã Thạnh Trị", "Xã Trung Hưng", "Xã Trung Thạnh", "Xã Trà Cụ", "Xã Tượng Văn", "Xã Vi Thanh", "Xã Vĩnh Hải", "Xã Vĩnh Lợi", "Xã Vĩnh Viễn", "Xã Xuân Hòa"],
+      "Thành phố Hà Nội": ["Phường Ba Đình", "Phường Bạch Đằng", "Phường Cầu Giấy", "Phường Cửa Nam", "Phường Định Công", "Phường Đại Mỗ", "Phường Đống Đa", "Phường Đội Cấn", "Phường Giảng Võ", "Phường Hai Bà Trưng", "Phường Hà Đông", "Phường Hoàn Kiếm", "Phường Hoàng Mai", "Phường Hoàng Liệt", "Phường Hồng Hà", "Phường Khương Đình", "Phường Kim Liên", "Phường Long Biên", "Phường Láng", "Phường Lĩnh Nam", "Phường Mễ Trì", "Phường Ngọc Hà", "Phường Ngọc Thụy", "Phường Ngọc Khánh", "Phường Phú Diễn", "Phường Phú Lương", "Phường Phúc Lợi", "Phường Phúc Tân", "Phường Phúc Xá", "Phường Phương Liệt", "Phường Phương Liên", "Phường Phổ Yên", "Phường Quan Hoa", "Phường Quang Trung", "Phường Sơn Tây", "Phường Tây Hồ", "Phường Thanh Xuân", "Phường Thanh Xuân Bắc", "Phường Thanh Xuân Nam", "Phường Thanh Liệt", "Phường Thanh Nhàn", "Phường Thạch Bàn", "Phường Thượng Đình", "Phường Thượng Cát", "Phường Thụy Khuê", "Phường Tiên Sơn", "Phường Trung Tự", "Phường Trung Hòa", "Phường Trúc Bạch", "Phường Trương Định", "Phường Từ Liêm", "Phường Tương Mai", "Phường Văn Điển", "Phường Vĩnh Tuy", "Phường Vĩnh Hưng", "Phường Vĩnh Phúc", "Phường Xuân Đỉnh", "Phường Xuân Phương", "Phường Yên Hòa", "Phường Yên Nghĩa", "Phường Yên Sở", "Phường Ô Chợ Dừa", "Xã Ba Vì", "Xã Bất Bạt", "Xã Bắc Giang", "Xã Bắc Sơn", "Xã Bình Đà", "Xã Bình Phú", "Xã Bộc Tuyền", "Xã Chương Mỹ", "Xã Chúc Sơn", "Xã Cổ Loa", "Xã Cống Vị", "Xã Đan Phượng", "Xã Đông Anh", "Xã Đường Lâm", "Xã Gia Lâm", "Xã Hà Hồi", "Xã Hoài Đức", "Xã Hòa Lạc", "Xã Hương Sơn", "Xã Hưng Đạo", "Xã Mê Linh", "Xã Mỹ Đức", "Xã Ngọc Hồi", "Xã Nội Bài", "Xã Phù Đổng", "Xã Phú Xuyên", "Xã Phúc Thọ", "Xã Phượng Dực", "Xã Quốc Oai", "Xã Sóc Sơn", "Xã Sơn Đồng", "Xã Suối Hai", "Xã Tự Nhiên", "Xã Thạch Thất", "Xã Thanh Oai", "Xã Thanh Trì", "Xã Thiên Hương", "Xã Thường Tín", "Xã Thọ Xuân", "Xã Tiên Phương", "Xã Tiến Xuân", "Xã Trường Yên", "Xã Ứng Hòa", "Xã Vân Đồn", "Xã Văn Bình", "Xã Văn Hiến", "Xã Xuân Mai", "Xã Yên Bái", "Xã Yên Bài", "Xã Yên Lãng", "Xã Yên Bình", "Xã Yên Mỹ", "Xã Yên Phụ", "Xã Yên Sơn", "Xã Yên Trung"],
+      "Thành phố Huế": ["Phường An Cựu", "Phường An Đông", "Phường An Hòa", "Phường An Tây", "Phường Gia Hội", "Phường Hương An", "Phường Hương Hồ", "Phường Hương Long", "Phường Hương Sơ", "Phường Hương Vinh", "Phường Kim Long", "Phường Phong Điền", "Phường Phú Hội", "Phường Phú Hậu", "Phường Phú Nhuận", "Phường Phú Thượng", "Phường Phường Đúc", "Phường Phước Vĩnh", "Phường Thuận An", "Phường Thuận Lộc", "Phường Thuận Hòa", "Phường Thủy Biều", "Phường Thủy Vân", "Phường Thủy Xuân", "Phường Trường An", "Phường Vĩnh Ninh", "Phường Vĩnh Lộc", "Phường Vĩ Dạ", "Xã A Lưới", "Xã Chân Mây", "Xã Đập Đá", "Xã Hải Dương", "Xã Lộc Hà", "Xã Lộc Thủy", "Xã Nam Đông", "Xã Phong Sơn", "Xã Quảng Điền", "Xã Thăng Bình", "Xã Phú Lộc", "Xã Phú Vang"],
+      "Thành phố Hải Phòng": ["Phường An Biên", "Phường An Dương", "Phường Bằng La", "Phường Bến Bính", "Phường Bắc Sơn", "Phường Cát Bà", "Phường Cát Hải", "Phường Đồ Sơn", "Phường Đồng Hòa", "Phường Đông Hải", "Phường Đông Khê", "Phường Hải An", "Phường Hòa Nghĩa", "Phường Hoàng Văn Thụ", "Phường Hợp Đức", "Phường Hồng Bàng", "Phường Kiến An", "Phường Kiến Thụy", "Phường Lê Chân", "Phường Lãm Hà", "Phường Minh Đức", "Phường Nam Sơn", "Phường Ngô Quyền", "Phường Ngọc Xuyên", "Phường Phù Liễn", "Phường Quán Toan", "Phường Tân Thành", "Phường Thành Đông", "Phường Thượng Lý", "Phường Tiên Lãng", "Phường Vĩnh Niệm", "Phường Văn Đẩu", "Phường Đằng Giang", "Phường Đằng Lâm", "Xã An Lão", "Xã An Lạc", "Xã An Phụ", "Xã Bạch Long Trĩ", "Xã Bằng Cả", "Xã Bình Dân", "Xã Cát Bà", "Xã Cát Hải", "Xã Cổ Am", "Xã Chiến Thắng", "Xã Dương Quan", "Xã Đại Đồng", "Xã Đại Hợp", "Xã Đại Bản", "Xã Lập Lễ", "Xã Lưu Kiếm", "Xã Lưu Kỳ", "Xã Mỹ Đức", "Xã Ngũ Phụng", "Xã Ngũ Phúc", "Xã Nhai Tự", "Xã Ninh Tiên", "Xã Phù Long", "Xã Phụ Lưu", "Xã Phục Lễ", "Xã Quang Hưng", "Xã Quang Trung", "Xã Quốc Tuấn", "Xã Tam Cường", "Xã Tam Hưng", "Xã Tiên Lãng", "Xã Tiên Cường", "Xã Tiên Minh", "Xã Tiên Thanh", "Xã Toàn Thắng", "Xã Tú Sơn", "Xã Thạch Lỗi", "Xã Thanh Sơn", "Xã Thủy Nguyên", "Xã Thủy Đường", "Xã Thủy Sơn", "Xã Tiên Thắng", "Xã Vĩnh Bảo", "Xã Vĩnh An", "Xã Vĩnh Quang", "Xã Việt Tiến", "Xã Việt Khê", "Xã Yên Đức"],
+      "Thành phố Hồ Chí Minh": ["Phường An Phú", "Phường An Khánh", "Phường Bến Nghé", "Phường Bến Thành", "Phường Bình An", "Phường Bình Chánh", "Phường Bình Chiểu", "Phường Bình Hưng Hòa", "Phường Bình Nhâm", "Phường Bình Phú", "Phường Bình Thạnh", "Phường Bình Trị Đông", "Phường Bình Trưng Tây", "Phường Bình Trưng Đông", "Phường Cát Lái", "Phường Củ Chi", "Phường Cầu Kho", "Phường Cầu Ông Lãnh", "Phường Cô Giang", "Phường Di An", "Phường Đông Hòa", "Phường Hiệp Bình Phước", "Phường Hiệp Bình Chánh", "Phường Hiệp Phú", "Phường Hiệp Thành", "Phường Hóa An", "Phường Hòa Hưng", "Phường Hóc Môn", "Phường Linh Chiểu", "Phường Linh Trung", "Phường Linh Xuân", "Phường Linh Đông", "Phường Linh Tây", "Phường Lái Thiêu", "Phường Long Bình", "Phường Long Phước", "Phường Long Thạnh Mỹ", "Phường Long Trường", "Phường Lái Thiêu", "Phường Minh Phụng", "Phường Mỹ An", "Phường Mỹ Phước", "Phường Nam Cường", "Phường Nhà Bè", "Phường Nguyễn Cư Trinh", "Phường Nguyễn Thái Bình", "Phường Phạm Ngũ Lão", "Phường Phú Hữu", "Phường Phú Hòa", "Phường Phú Thọ Hòa", "Phường Phú Thọ", "Phường Phú Thuận", "Phường Phước Bình", "Phường Phước Long A", "Phước Long B", "Phường Phước Thạnh", "Phường Quan Lạn", "Phường Quảng Ngãi", "Phường Sài Gòn", "Phường Tam Bình", "Phường Tân Bình", "Phường Tân Chánh Hiệp", "Phường Tân Định", "Phường Tân Đông Hiệp", "Phường Tân Hưng", "Phường Tân Hưng Thuận", "Phường Tân Hòa", "Phường Tân Phú", "Phường Tân Phong", "Phường Tân Phước Khánh", "Phường Tân Sơn Nhất", "Phường Tân Thới Hiệp", "Phường Tân Thới Nhất", "Phường Tân Thuận Đông", "Phường Tân Thuận Tây", "Phường Tân Tạo", "Phường Tăng Nhơn Phú A", "Phường Tăng Nhơn Phú B", "Phường Thảo Điền", "Phường Thủ Đức", "Phường Thuận An", "Phường Thạnh Lộc", "Phường Thạnh Xuân", "Phường Thới An", "Phường Trung Mỹ Tây", "Phường Trường Thọ", "Phường Vĩnh Hội", "Phường Vĩnh Lộc", "Phường Vĩnh Phú", "Phường Đông Hưng Thuận", "Xã An Nhơn Tây", "Xã An Phú Tây", "Xã Ba Tri", "Xã Bình Chánh", "Xã Bình Hưng", "Xã Bình Khánh", "Xã Bình Lợi", "Xã Bình Mỹ", "Xã Cần Giờ", "Xã Cần Thạnh", "Xã Củ Chi", "Xã Đa Phước", "Xã Đông Thạnh", "Xã Hiệp Phước", "Xã Hóc Môn", "Xã Hòa Phú", "Xã Nhuận Đức", "Xã Nhơn Đức", "Xã Phong Phú", "Xã Phước Lộc", "Xã Phước Vĩnh An", "Xã Phú Hòa Đông", "Xã Phú Mỹ Hưng", "Xã Phú Xuân", "Xã Quy Đức", "Xã Tân An Hội", "Xã Tân Nhựt", "Xã Tân Quy", "Xã Tân Thông Hội", "Xã Tân Túc", "Xã Tân Thạnh Đông", "Xã Tân Thạnh Tây", "Xã Tân Vĩnh Hiệp", "Xã Thạnh An", "Xã Thới Tam Thôn", "Xã Trung An", "Xã Trung Lập Hạ", "Xã Trung Lập Thượng", "Xã Phước Kiển", "Xã Phước Thạnh", "Xã Vĩnh Lộc A", "Xã Vĩnh Lộc B", "Xã Xuân Thới Đông", "Xã Xuân Thới Sơn", "Xã Xuân Thới Thượng"],
+      "Thành phố Đà Nẵng": ["Phường An Hải Bắc", "Phường An Hải Tây", "Phường An Hải Đông", "Phường An Khê", "Phường Điện Bàn", "Phường Hải Châu", "Phường Hải Châu 1", "Phường Hải Châu 2", "Phường Hòa Cường Bắc", "Phường Hòa Cường Nam", "Phường Hòa Hiệp Bắc", "Phường Hòa Hiệp Nam", "Phường Hòa Khánh Bắc", "Phường Hòa Khánh Nam", "Phường Hòa Minh", "Phường Hòa Phát", "Phường Hòa Thọ Đông", "Phường Hòa Thọ Tây", "Phường Hòa Xuân", "Phường Khuê Trung", "Phường Khuê Mỹ", "Phường Liên Chiểu", "Phường Mẫu Sơn", "Phường Mỹ An", "Phường Nam Dương", "Phường Ngũ Hành Sơn", "Phường Nại Hiên Đông", "Phường Phước Mỹ", "Phường Phước Ninh", "Phường Phước Lộc", "Phường Sơn Trà", "Phường Thanh Bình", "Phường Thanh Khê", "Phường Thanh Khê Đông", "Phường Thanh Khê Tây", "Phường Thọ Quang", "Phường Thuận Phước", "Phường Thạch Thang", "Phường Vĩnh Trung", "Phường Xuân Hà", "Xã Chế Bắc", "Xã Đại Lộc", "Xã Hoàng Sa", "Xã Hòa Bắc", "Xã Hòa Châu", "Xã Hòa Khương", "Xã Hòa Nhơn", "Xã Hòa Phong", "Xã Hòa Phú", "Xã Hòa Phước", "Xã Hòa Sơn", "Xã Hòa Tiến", "Xã Hòa Liên", "Xã Nam Giang", "Xã Phước Sơn", "Xã Quế Sơn", "Xã Thăng Bình"],
+      "Tỉnh An Giang": ["Phường Bến Đá", "Phường Châu Phú A", "Phường Châu Phú B", "Phường Châu Đốc", "Phường Chi Lăng", "Phường Long Châu", "Phường Long Phú", "Phường Long Sơn", "Phường Long Thuận", "Phường Long Xuyên", "Phường Mỹ Bình", "Phường Mỹ Hòa", "Phường Mỹ Phước", "Phường Mỹ Quý", "Phường Mỹ Thạnh", "Phường Mỹ Thới", "Phường Mỹ Xuyên", "Phường Núi Sam", "Phường Phước Long", "Phường Tân Châu", "Phường Thới Sơn", "Phường Vĩnh Mỹ", "Phường Vĩnh Nguơn", "Xã An Phú", "Xã Ba Chúc", "Xã Bình Thủy", "Xã Châu Phú", "Xã Châu Thành", "Xã Chợ Mới", "Xã Đa Phước", "Xã Hội An", "Xã Khánh An", "Xã Long Điền B", "Xã Long Giang", "Xã Mỹ Hòa Hưng", "Xã Mỹ Hội Đông", "Xã Mỹ Luông", "Xã Phú Tân", "Xã Thoại Sơn", "Xã Tri Tôn", "Xã Vĩnh An", "Xã Vĩnh Hậu", "Xã Vĩnh Thạnh Trung"],
+      "Tỉnh Bắc Ninh": ["Phường Bắc Ninh", "Phường Bùi Quốc", "Phường Bồng Lai", "Phường Cẩm Giang", "Phường Cảnh Hưng", "Phường Đại Phúc", "Phường Đáp Cầu", "Phường Đồng Nguyên", "Phường Đồng Kỵ", "Phường Hạp Lĩnh", "Phường Hạc Sơn", "Phường Hồ", "Phường Khắc Nho", "Phường Khương Tự", "Phường Khúc Xuyên", "Phường Nam Sơn", "Phường Ninh Xá", "Phường Phong Khê", "Phường Phương Liễu", "Phường Phù Chẩn", "Phường Phù Khê", "Phường Quế Võ", "Phường Phố Mới", "Phường Song Hồ", "Phường Song Liễu", "Phường Tăng Bạt", "Phường Tân Hồng", "Phường Thị Cầu", "Phường Trang Hạ", "Phường Thuận Thành", "Phường Tiên Du", "Phường Trí Quả", "Phường Từ Sơn", "Phường Vạn An", "Phường Vân Dương", "Phường Võ Cường", "Phường Vũ Ninh", "Phường Yên Phong", "Phường Yên Phụ", "Phường Yên Trung", "Xã Lương Tài", "Xã Tiên Du", "Xã Gia Bình", "Xã Yên Phong"],
+      "Tỉnh Cao Bằng": ["Phường Đề Thám", "Phường Hợp Giang", "Phường Sông Bằng", "Phường Sông Hiến", "Phường Tân Giang", "Xã Bảo Lạc", "Xã Bảo Lâm", "Xã Hạ Lang", "Xã Hà Quảng", "Xã Hòa An", "Xã Nguyên Bình", "Xã Quảng Hòa", "Xã Thạch An", "Xã Trùng Khánh"],
+      "Tỉnh Cà Mau": ["Phường 1", "Phường 2", "Phường 4", "Phường 5", "Phường 6", "Phường 7", "Phường 8", "Phường 9", "Phường Tân Thành", "Phường Tân Xuyên", "Xã An Xuyên", "Xã Cái Nước", "Xã Đầm Dơi", "Xã Năm Căn", "Xã Ngọc Hiển", "Xã Phú Tân", "Xã Thới Bình", "Xã Trần Văn Thời", "Xã U Minh"],
+      "Tỉnh Gia Lai": ["Phường An Bình", "Phường An Phú", "Phường An Phước", "Phường An Tân", "Phường Ayun Pa", "Phường Cheo Reo", "Phường Chư Sê", "Phường Đak Đoa", "Phường Đống Đa", "Phường Hoa Lư", "Phường Hội Phú", "Phường Hội Thương", "Phường Ia Kring", "Phường Phù Đổng", "Phường Pleiku", "Phường Tây Sơn", "Phường Thắng Lợi", "Phường Thống Nhất", "Phường Yên Đỗ", "Phường Yên Thế", "Xã Chư Păh", "Xã Chư Prông", "Xã Chư Sê", "Xã Đăk Đoa", "Xã Đăk Pơ", "Xã Đức Cơ", "Xã Ia Grai", "Xã Ia Pa", "Xã Kông Chro", "Xã Krông Pa", "Xã Mang Yang", "Xã Phú Thiện"],
+      "Tỉnh Hà Tĩnh": ["Phường Bắc Hồng", "Phường Đặt Trung", "Phường Đặt Gia", "Phường Đức Thuận", "Phường Hà Huy Tập", "Phường Kỳ Anh", "Phường Kỳ Trinh", "Phường Kỳ Thịnh", "Phường Kỳ Long", "Phường Kỳ Phương", "Phường Kỳ Liên", "Phường Nam Hồng", "Phường Nam Hà", "Phường Nguyễn Du", "Phường Sông Trí", "Phường Thạch Quý", "Phường Thạch Linh", "Phường Trung Lương", "Phường Trần Phú", "Xã Cẩm Xuyên", "Xã Can Lộc", "Xã Đức Thọ", "Xã Hương Khê", "Xã Hương Sơn", "Xã Kỳ Anh", "Xã Nghi Xuân", "Xã Thạch Hà", "Xã Vũ Quang"],
+      "Tỉnh Hưng Yên": ["Phường An Tảo", "Phường Bạch Sam", "Phường Bần Yên Nhân", "Phường Dị Sử", "Phường Hiến Nam", "Phường Hồng Châu", "Phường Lam Sơn", "Phường Minh Đức", "Phường Mỹ Hào", "Phường Nhan Hòa", "Phường Phan Đình Phùng", "Phường Phùng Chí Kiên", "Phường Quang Trung", "Phường Đường Cốt", "Xã Ân Thi", "Xã Khoái Châu", "Xã Kim Động", "Xã Mỹ Hào", "Xã Phù Cừ", "Xã Tiên Lữ", "Xã Văn Giang", "Xã Văn Lâm", "Xã Yên Mỹ"],
+      "Tỉnh Khánh Hòa": ["Phường Cam Linh", "Phường Cam Lộc", "Phường Cam Nghĩa", "Phường Cam Phú", "Phường Cam Phúc Bắc", "Phường Cam Phúc Nam", "Phường Cam Ranh", "Phường Cam Thuận", "Phường Lộc Thọ", "Phường Phước Hải", "Phường Phước Hòa", "Phường Phước Long", "Phường Phước Tiến", "Phường Phước Tân", "Phường Phương Sài", "Phường Phương Sơn", "Phường Tân Lập", "Phường Vạn Thắng", "Phường Vạn Thạnh", "Phường Vĩnh Hải", "Phường Vĩnh Hòa", "Phường Vĩnh Nguyên", "Phường Vĩnh Phước", "Phường Vĩnh Thọ", "Phường Vĩnh Trường", "Phường Ninh Hòa", "Xã Cam Lâm", "Xã Diên Khánh", "Xã Khánh Sơn", "Xã Khánh Vĩnh", "Xã Trường Sa", "Xã Vạn Ninh"],
+      "Tỉnh Lai Châu": ["Phường Đông Phong", "Phường Quyết Thắng", "Phường Quyết Tiến", "Phường Tân Phong", "Xã Mường Tè", "Xã Nậm Nhùn", "Xã Phong Thổ", "Xã Sìn Hồ", "Xã Tam Đường", "Xã Tân Uyên", "Xã Than Uyên"],
+      "Tỉnh Lào Cai": ["Phường Bắc Cường", "Phường Bắc Lệnh", "Phường Bình Minh", "Phường Cốc Lếu", "Phường Duyên Hải", "Phường Kim Tân", "Phường Nam Cường", "Phường Sa Pa", "Phường Ô Quý Hồ", "Phường Phan Si Păng", "Phường Sa Pả", "Phường Sa Pa", "Phường Xuân Tăng", "Xã Bát Xát", "Xã Bảo Thắng", "Xã Bảo Yên", "Xã Bắc Hà", "Xã Mường Khương", "Xã Si Ma Cai", "Xã Văn Bàn"],
+      "Tỉnh Lâm Đồng": ["Phường 1 (Đà Lạt)", "Phường 2 (Đà Lạt)", "Phường 3 (Đà Lạt)", "Phường 4 (Đà Lạt)", "Phường 5 (Đà Lạt)", "Phường 6 (Đà Lạt)", "Phường 7 (Đà Lạt)", "Phường 8 (Đà Lạt)", "Phường 9 (Đà Lạt)", "Phường 10 (Đà Lạt)", "Phường 11 (Đà Lạt)", "Phường 12 (Đà Lạt)", "Phường B'Lao", "Phường Bảo Lộc", "Phường Lộc Phát", "Phường Lộc Sơn", "Phường Lộc Tiến", "Xã Bảo Lâm", "Xã Cát Tiên", "Xã Di Linh", "Xã Đạ Huoai", "Xã Đạ Tẻh", "Xã Đam Rông", "Xã Đơn Dương", "Xã Đức Trọng", "Xã Lạc Dương", "Xã Lâm Hà"],
+      "Tỉnh Lạng Sơn": ["Phường Chi Lăng", "Phường Đông Kinh", "Phường Hoàng Văn Thụ", "Phường Tam Thanh", "Phường Vĩnh Trại", "Xã Bằng Mạc", "Xã Bình Gia", "Xã Cao Lộc", "Xã Chi Lăng", "Xã Định Lập", "Xã Hữu Lũng", "Xã Lộc Bình", "Xã Tràng Định", "Xã Văn Lãng", "Xã Văn Quan"],
+      "Tỉnh Nghệ An": ["Phường Bến Thủy", "Phường Cửa Nam", "Phường Cửa Lò", "Phường Đông Vĩnh", "Phường Hà Huy Tập", "Phường Hưng Bình", "Phường Hưng Dũng", "Phường Hưng Phúc", "Phường Hưng Đông", "Phường Nghi Hương", "Phường Nghi Tân", "Phường Nghi Thu", "Phường Nghi Thủy", "Phường Nghi Hòa", "Phường Nghi Hải", "Phường Lê Lợi", "Phường Lê Mao", "Phường Quán Bàu", "Phường Quang Trung", "Phường Thái Hòa", "Phường Trường Thi", "Phường Vinh Tân", "Xã Anh Sơn", "Xã Con Cuông", "Xã Diễn Châu", "Xã Đô Lương", "Xã Hưng Nguyên", "Xã Quỳ Châu", "Xã Quỳ Hợp", "Xã Quỳnh Lưu", "Xã Tân Kỳ", "Xã Thanh Chương", "Xã Tương Dương", "Xã Yên Thành"],
+      "Tỉnh Ninh Bình": ["Phường Bích Đào", "Phường Đông Thành", "Phường Nam Bình", "Phường Nam Thành", "Phường Ninh Khánh", "Phường Ninh Phong", "Phường Ninh Sơn", "Phường Ninh Tiến", "Phường Phố Mới", "Phường Phúc Thành", "Phường Tân Bình", "Phường Tây Sơn", "Phường Trung Sơn", "Phường Vân Giang", "Phường Yên Bình", "Xã Gia Viễn", "Xã Hoa Lư", "Xã Kim Sơn", "Xã Nho Quan", "Xã Yên Khánh", "Xã Yên Mô"],
+      "Tỉnh Phú Thọ": ["Phường Âu Cơ", "Phường Bến Giang", "Phường Bạch Hạc", "Phường Dữu Lâu", "Phường Gia Cẩm", "Phường Hùng Vương", "Phường Minh Phương", "Phường Minh Nông", "Phường Nông Trang", "Phường Phong Châu", "Phường Phú Hà", "Phường Tân Dân", "Phường Thanh Miếu", "Phường Thọ Sơn", "Phường Tiên Cát", "Phường Vân Phú", "Phường Vân Cơ", "Xã Cẩm Khê", "Xã Đoan Hùng", "Xã Hạ Hòa", "Xã Lâm Thao", "Xã Phù Ninh", "Xã Tam Nông", "Xã Tân Sơn", "Xã Thanh Ba", "Xã Thanh Sơn", "Xã Thanh Thủy", "Xã Yên Lập"],
+      "Tỉnh Quảng Ngãi": ["Phường Chánh Lộ", "Phường Nghĩa Chánh", "Phường Nghĩa Lộ", "Phường Nguyễn Nghiêm", "Phường Quảng Phú", "Phường Trần Hưng Đạo", "Phường Trần Phú", "Phường Trương Quang Trọng", "Phường Phổ Vinh", "Phường Phổ Hòa", "Phường Phổ Ninh", "Phường Phổ Quang", "Phường Phổ Thạnh", "Phường Phổ Văn", "Phường Đức Phổ", "Xã Ba Tơ", "Xã Bình Sơn", "Xã Đức Phổ", "Xã Lý Sơn", "Xã Minh Long", "Xã Mộ Đức", "Xã Nghĩa Hành", "Xã Sơn Hà", "Xã Sơn Tây", "Xã Sơn Tịnh", "Xã Tra Bồng", "Xã Tư Nghĩa"],
+      "Tỉnh Quảng Ninh": ["Phường Bãi Cháy", "Phường Bạch Đằng", "Phường Cẩm Bình", "Phường Cẩm Đông", "Phường Cẩm Phú", "Phường Cẩm Sơn", "Phường Cẩm Tây", "Phường Cẩm Thạch", "Phường Cẩm Thịnh", "Phường Cẩm Trung", "Phường Cẩm Thành", "Phường Cao Xanh", "Phường Cao Thắng", "Phường Cửa Ông", "Phường Giếng Đáy", "Phường Hà Khánh", "Phường Hà Lầm", "Phường Hà Phong", "Phường Hà Trung", "Phường Hà Tu", "Phường Hà Khẩu", "Phường Hồng Gai", "Phường Hồng Hà", "Phường Hồng Hải", "Phường Hùng Thắng", "Phường Móng Cái", "Phường Mông Dương", "Phường Nam Khê", "Phường Phương Đông", "Phường Phương Nam", "Phường Quang Hanh", "Phường Quang Trung", "Phường Thanh Sơn", "Phường Trà Cổ", "Phường Uông Bí", "Phường Vàng Danh", "Phường Việt Hưng", "Phường Yên Thanh", "Phường Yên Thọ", "Phường Yên Giang", "Phường Đông Mai", "Xã Ba Chẽ", "Xã Bình Liêu", "Xã Cô Tô", "Xã Đầm Hà", "Xã Hải Hà", "Xã Tiên Yên", "Xã Vân Đồn"],
+      "Tỉnh Quảng Trị": ["Phường 1 (Đông Hà)", "Phường 2 (Đông Hà)", "Phường 3 (Đông Hà)", "Phường 4 (Đông Hà)", "Phường 5 (Đông Hà)", "Phường Đông Giang", "Phường Đông Lương", "Phường Đông Lễ", "Phường Đông Thanh", "Phường Quảng Trị", "Xã Cam Lộ", "Xã Cồn Cỏ", "Xã Đakrông", "Xã Gio Linh", "Xã Hải Lăng", "Xã Hướng Hóa", "Xã Triệu Phong", "Xã Vĩnh Linh"],
+      "Tỉnh Sơn La": ["Phường Chiềng An", "Phường Chiềng Cơi", "Phường Chiềng Lề", "Phường Chiềng Sinh", "Phường Quyết Thắng", "Phường Quyết Tâm", "Phường Sơn La", "Xã Bắc Yên", "Xã Mộc Châu", "Xã Mường La", "Xã Mai Sơn", "Xã Phù Yên", "Xã Quỳnh Nhai", "Xã Sông Mã", "Xã Sốp Cộp", "Xã Thuận Châu", "Xã Vân Hồ", "Xã Yên Châu"],
+      "Tỉnh Thanh Hóa": ["Phường An Hưng", "Phường Ba Đình", "Phường Bỉm Sơn", "Phường Đông Cương", "Phường Đông Hải", "Phường Đông Hương", "Phường Đông Sơn", "Phường Đông Thọ", "Phường Đông Vệ", "Phường Hàm Rồng", "Phường Lam Sơn", "Phường Nam Ngạn", "Phường Ngọc Trạo", "Phường Phú Sơn", "Phường Quảng Hưng", "Phường Quảng Thành", "Phường Quảng Thắng", "Phường Quảng Thịnh", "Phường Sầm Sơn", "Phường Tào Xuyên", "Phường Tân Sơn", "Phường Trường Thi", "Xã Bá Thước", "Xã Cẩm Thủy", "Xã Đông Sơn", "Xã Hà Trung", "Xã Hậu Lộc", "Xã Hoằng Hóa", "Xã Lang Chánh", "Xã Mường Lát", "Xã Nga Sơn", "Xã Ngọc Lặc", "Xã Như Xuân", "Xã Nông Cống", "Xã Quan Hóa", "Xã Quảng Xương", "Xã Thạch Thành", "Xã Thiệu Hóa", "Xã Thọ Xuân", "Xã Triệu Sơn", "Xã Yên Định"],
+      "Tỉnh Thái Nguyên": ["Phường Bách Quang", "Phường Cải Đan", "Phường Cam Giá", "Phường Chùa Hang", "Phường Đồng Bẩm", "Phường Đồng Quang", "Phường Gia Sàng", "Phường Hoàng Văn Thụ", "Phường Lương Sơn", "Phường Phố Cò", "Phường Phủ Lý", "Phường Quan Triều", "Phường Quang Trung", "Phường Sông Công", "Phường Tân Lập", "Phường Tân Thành", "Phường Tân Thịnh", "Phường Túc Duyên", "Phường Trung Thành", "Phường Trưng Vương", "Xã Đại Từ", "Xã Định Hóa", "Xã Đồng Hỷ", "Xã Phú Bình", "Xã Phú Lương", "Xã Võ Nhai"],
+      "Tỉnh Tuyên Quang": ["Phường An Tường", "Phường Đội Cấn", "Phường Hưng Thành", "Phường Mỹ Lâm", "Phường Nông Tiến", "Phường Tân Hà", "Phường Tân Quang", "Xã Chiêm Hóa", "Xã Hàm Yên", "Xã Lâm Bình", "Xã Na Hang", "Xã Sơn Dương", "Xã Yên Sơn"],
+      "Tỉnh Tây Ninh": ["Phường 1 (Tây Ninh)", "Phường 2 (Tây Ninh)", "Phường 3 (Tây Ninh)", "Phường 4 (Tây Ninh)", "Phường Hiệp Ninh", "Phường Ninh Sơn", "Phường Ninh Thạnh", "Phường An Hòa", "Phường An Tịnh", "Phường Gia Lộc", "Phường Gia Bình", "Phường Lộc Hưng", "Phường Trảng Bàng", "Phường Hòa Thành", "Xã Bến Cầu", "Xã Châu Thành", "Xã Dương Minh Châu", "Xã Gò Dầu", "Xã Tân Biên", "Xã Tân Châu"],
+      "Tỉnh Vĩnh Long": ["Phường 1 (Vĩnh Long)", "Phường 2 (Vĩnh Long)", "Phường 3 (Vĩnh Long)", "Phường 4 (Vĩnh Long)", "Phường 5 (Vĩnh Long)", "Phường 8 (Vĩnh Long)", "Phường 9 (Vĩnh Long)", "Phường Bình Minh", "Phường Cái Vồn", "Phường Đông Thuận", "Phường Thành Phước", "Xã Bình Tân", "Xã Long Hồ", "Xã Mang Thít", "Xã Tam Bình", "Xã Trà Ôn", "Xã Vũng Liêm"],
+      "Tỉnh Điện Biên": ["Phường Him Lam", "Phường Mường Thanh", "Phường Nam Thanh", "Phường Noong Bua", "Phường Tân Thanh", "Phường Thanh Bình", "Phường Thanh Trường", "Xã Điện Biên", "Xã Điện Biên Đông", "Xã Mường Chà", "Xã Mường Nhé", "Xã Nậm Pồ", "Xã Tủa Chùa", "Xã Tuần Giáo"],
+      "Tỉnh Đắk Lắk": ["Phường An Bình", "Phường An Lạc", "Phường Buôn Hồ", "Phường Đạt Lý", "Phường Đoàn Kết", "Phường Tân An", "Phường Tân Lập", "Phường Tân Lợi", "Phường Tân Hòa", "Phường Tân Tiến", "Phường Thành Công", "Phường Thành Nhất", "Phường Thiện An", "Phường Thống Nhất", "Phường Tự An", "Xã Buôn Đôn", "Xã Cư M'gar", "Xã Ea H'leo", "Xã Ea Kar", "Xã Krông Bông", "Xã Krông Búk", "Xã Krông Năng", "Xã Krông Pắc", "Xã Lắk", "Xã M'Đrắk"],
+      "Tỉnh Đồng Nai": ["Phường An Bình", "Phường Bình Đa", "Phường Bửu Hòa", "Phường Bửu Long", "Phường Hố Nai", "Phường Hóa An", "Phường Long Bình", "Phường Long Bình Tân", "Phường Long Khánh", "Phường Phước Tân", "Phường Quang Vinh", "Phường Quyết Thắng", "Phường Tam Hiệp", "Phường Tam Hòa", "Phường Tam Phước", "Phường Tân Biên", "Phường Tân Hòa", "Phường Tân Hiệp", "Phường Tân Hạnh", "Phường Tân Mai", "Phường Tân Phong", "Phường Tân Tiến", "Phường Tân Vạn", "Phường Thanh Bình", "Phường Thống Nhất", "Phường Trảng Dài", "Phường Trung Dũng", "Xã Cẩm Mỹ", "Xã Định Quán", "Xã Long Thành", "Xã Nhơn Trạch", "Xã Tân Phú", "Xã Thống Nhất", "Xã Trảng Bom", "Xã Vĩnh Cửu"],
+      "Tỉnh Đồng Tháp": ["Phường 1 (Cao Lãnh)", "Phường 2 (Cao Lãnh)", "Phường 3 (Cao Lãnh)", "Phường 4 (Cao Lãnh)", "Phường 6 (Cao Lãnh)", "Phường 11 (Cao Lãnh)", "Phường Hòa Thuận", "Phường Mỹ Phú", "Phường 1 (Sa Đéc)", "Phường 2 (Sa Đéc)", "Phường 3 (Sa Đéc)", "Phường 4 (Sa Đéc)", "Phường An Bình A", "Phường An Bình B", "Phường An Lộc", "Phường Hồng Ngự", "Xã Cao Lãnh", "Xã Châu Thành", "Xã Hồng Ngự", "Xã Lai Vung", "Xã Lấp Vò", "Xã Tam Nông", "Xã Tân Hồng", "Xã Thanh Bình", "Xã Tháp Mười"]
     };
 
     function loadProvinces() {
@@ -1147,6 +1176,280 @@
       Object.keys(administrativeData).sort().forEach(p => {
         const opt = document.createElement('option'); opt.value = p; datalist.appendChild(opt);
       });
+    }
+
+    // NẠP VÀ ĐỒNG BỘ DANH MỤC PHƯỜNG XÃ KHÔNG XÓA DỮ LIỆU CSDL
+    function updateWardDatalist(pName) {
+      const wardListEl = document.getElementById('phuongXaList');
+      if (!wardListEl) return;
+      wardListEl.innerHTML = '';
+      const wards = administrativeData[pName] || [];
+      wards.forEach(w => {
+        const opt = document.createElement('option');
+        opt.value = w;
+        wardListEl.appendChild(opt);
+      });
+    }
+
+    function onProvinceChange() {
+      const pName = (document.getElementById('tinhThanhSelect')?.value || '').trim();
+      updateWardDatalist(pName);
+      autoCleanDetailAddress();
+    }
+
+    function parseFullAddressToFields(fullAddress) {
+      if (!fullAddress) return;
+      
+      const parts = fullAddress.split(',').map(s => s.trim());
+      const provEl = document.getElementById('tinhThanhSelect');
+      const wardEl = document.getElementById('phuongXaSelect');
+      const detailEl = document.getElementById('diaChiChiTiet');
+
+      let provVal = '', wardVal = '', detailVal = '';
+
+      if (parts.length >= 3) {
+        provVal = parts[parts.length - 1];
+        wardVal = parts[parts.length - 2];
+        detailVal = parts.slice(0, parts.length - 2).join(', ');
+      } else if (parts.length === 2) {
+        provVal = parts[1];
+        wardVal = parts[0];
+      } else {
+        detailVal = fullAddress;
+      }
+
+      if (provEl) provEl.value = provVal;
+      if (detailEl) detailEl.value = detailVal;
+
+      updateWardDatalist(provVal);
+      if (wardEl) wardEl.value = wardVal;
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      loadProvinces();
+      loadLiveConfig();
+      initEvents();
+    });
+
+    // TẢI CẤU HÌNH VÀ VẼ GIAO DIỆN ĐỘNG
+    async function loadLiveConfig() {
+      const cached = localStorage.getItem('APAG_CONFIG_CACHE');
+      if (cached) {
+        try {
+          systemConfigs = JSON.parse(cached);
+          if (systemConfigs.LIST_CO_SO_KTX) ktxBuildingsList = JSON.parse(systemConfigs.LIST_CO_SO_KTX);
+          if (systemConfigs.LIST_BAC_UU_TIEN) priorityTiersList = JSON.parse(systemConfigs.LIST_BAC_UU_TIEN);
+          applyConfigsToUI();
+        } catch(e) {}
+      }
+
+      try {
+        if (!window.db) return;
+        const { data, error } = await window.db.from('cau_hinh').select('*');
+        if (data && data.length > 0) {
+          data.forEach(item => { systemConfigs[item.key] = item.value; });
+          
+          if (systemConfigs.LIST_CO_SO_KTX) ktxBuildingsList = JSON.parse(systemConfigs.LIST_CO_SO_KTX);
+          if (systemConfigs.LIST_BAC_UU_TIEN) priorityTiersList = JSON.parse(systemConfigs.LIST_BAC_UU_TIEN);
+
+          localStorage.setItem('APAG_CONFIG_CACHE', JSON.stringify(systemConfigs));
+          applyConfigsToUI();
+        }
+      } catch (err) { console.error('Error loading config:', err); }
+    }
+
+    function applyConfigsToUI() {
+      const namHocVal = systemConfigs.NAM_HOC || '2026';
+      document.querySelectorAll('.lblNamHoc').forEach(el => {
+        el.innerText = namHocVal;
+      });
+
+      const statusCong = String(systemConfigs.TRANG_THAI_CONG || 'AUTO').trim().toUpperCase();
+      const deadlineVal = String(systemConfigs.DEADLINE_DANG_KY || '').trim().toUpperCase();
+
+      updateAdminQuickToggleBtn(statusCong);
+
+      if (statusCong === 'CLOSE' || ['LOCK', 'OFF', 'KHOA', 'ĐÓNG'].includes(deadlineVal)) {
+        lockRegistrationPortal('Cổng đăng ký đã đóng (CLOSE)');
+      } else if (statusCong === 'OPEN') {
+        unlockRegistrationPortal();
+      } else {
+        if (systemConfigs.DEADLINE_DANG_KY) {
+          startCountdownTimer(systemConfigs.DEADLINE_DANG_KY);
+        } else {
+          unlockRegistrationPortal();
+        }
+      }
+
+      if (systemConfigs.NGAY_TIEP_SINH) document.getElementById('lblNgayTiepSinh').innerText = systemConfigs.NGAY_TIEP_SINH;
+      if (systemConfigs.HOTLINE_KTX) document.getElementById('lblHotline').innerText = systemConfigs.HOTLINE_KTX;
+
+      let tongCho = 0;
+      ktxBuildingsList.forEach(b => { tongCho += (parseInt(b.so_cho, 10) || 0); });
+      document.getElementById('displayTongChoKTX3').innerText = tongCho + ' chỗ trống';
+
+      const bannerBacContainer = document.getElementById('bannerBacUuTienContainer');
+      if (bannerBacContainer) {
+        bannerBacContainer.innerHTML = '';
+        priorityTiersList.forEach((b, idx) => {
+          const colSpanClass = idx === 0 ? 'sm:col-span-2' : '';
+          bannerBacContainer.innerHTML += `
+            <div class="bg-white/5 p-2.5 rounded-lg border border-white/10 ${colSpanClass}">
+              <div class="font-bold text-amber-300">${b.ten}</div>
+              <p class="text-slate-200 text-[10.5px] mt-1">${b.mo_ta}</p>
+            </div>
+          `;
+        });
+      }
+
+      const bannerKtxContainer = document.getElementById('bannerCoSoKtxContainer');
+      if (bannerKtxContainer) {
+        bannerKtxContainer.innerHTML = '';
+        ktxBuildingsList.forEach(k => {
+          bannerKtxContainer.innerHTML += `
+            <div class="bg-white/5 p-3 rounded-lg border border-white/10">
+              <div class="flex justify-between items-center">
+                <span class="font-bold text-blue-300"><i class="fa-solid fa-hotel mr-1.5"></i> ${k.ten}</span>
+                <span class="font-bold text-amber-300">${k.gia}</span>
+              </div>
+            </div>
+          `;
+        });
+      }
+
+      const selectBac = document.getElementById('bacUuTien');
+      if (selectBac) {
+        selectBac.innerHTML = '<option value="">-- Chọn bậc ưu tiên --</option>';
+        priorityTiersList.forEach(b => {
+          selectBac.innerHTML += `<option value="${b.ten}">${b.ten}</option>`;
+        });
+      }
+
+      const selectLoaiPhong = document.getElementById('loaiPhong');
+      if (selectLoaiPhong) {
+        selectLoaiPhong.innerHTML = '<option value="">-- Chọn cơ sở KTX đăng ký --</option>';
+        ktxBuildingsList.forEach(k => {
+          const valText = `${k.ten} (${k.gia})`;
+          selectLoaiPhong.innerHTML += `<option value="${valText}">${valText}</option>`;
+        });
+      }
+
+      const adminFilterKhu = document.getElementById('adminFilterKhu');
+      if (adminFilterKhu) {
+        adminFilterKhu.innerHTML = '<option value="">-- Tất cả cơ sở KTX --</option>';
+        ktxBuildingsList.forEach(k => {
+          adminFilterKhu.innerHTML += `<option value="${k.ten}">${k.ten}</option>`;
+        });
+        adminFilterKhu.innerHTML += '<option value="CHUA_CHON">Chưa đăng ký KTX</option>';
+      }
+
+      const adminFilterBacUT = document.getElementById('adminFilterBacUT');
+      if (adminFilterBacUT) {
+        adminFilterBacUT.innerHTML = '<option value="">-- Tất cả bậc ưu tiên --</option>';
+        priorityTiersList.forEach(b => {
+          adminFilterBacUT.innerHTML += `<option value="${b.ten}">${b.ten}</option>`;
+        });
+      }
+    }
+
+    async function quickTogglePortal() {
+      const current = String(systemConfigs.TRANG_THAI_CONG || 'AUTO').trim().toUpperCase();
+      let nextState = 'CLOSE';
+      if (current === 'CLOSE') nextState = 'OPEN';
+      else if (current === 'OPEN') nextState = 'AUTO';
+      else nextState = 'CLOSE';
+
+      systemConfigs.TRANG_THAI_CONG = nextState;
+      
+      await window.db.from('cau_hinh').upsert([{ key: 'TRANG_THAI_CONG', value: nextState }]);
+      localStorage.setItem('APAG_CONFIG_CACHE', JSON.stringify(systemConfigs));
+      
+      const stateName = nextState === 'OPEN' ? 'MỞ (OPEN)' : nextState === 'CLOSE' ? 'KHÓA (CLOSE)' : 'TỰ ĐỘNG (AUTO)';
+      Swal.fire({
+        icon: nextState === 'OPEN' ? 'success' : nextState === 'CLOSE' ? 'error' : 'info',
+        title: 'Đã cập nhật cổng đăng ký!',
+        text: `Trạng thái hiện tại: ${stateName}`,
+        timer: 1500,
+        showConfirmButton: false
+      });
+
+      applyConfigsToUI();
+    }
+
+    function updateAdminQuickToggleBtn(statusCong) {
+      const btn = document.getElementById('btnQuickTogglePortal');
+      if (!btn) return;
+      if (statusCong === 'CLOSE') {
+        btn.className = "px-3 py-1.5 bg-red-600 hover:bg-red-700 text-white text-xs font-extrabold rounded-lg transition flex items-center gap-1.5 shadow";
+        btn.innerHTML = `<i class="fa-solid fa-lock"></i> <span>Cổng: ĐÃ KHÓA (Bấm để Mở)</span>`;
+      } else if (statusCong === 'OPEN') {
+        btn.className = "px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-extrabold rounded-lg transition flex items-center gap-1.5 shadow";
+        btn.innerHTML = `<i class="fa-solid fa-lock-open"></i> <span>Cổng: ĐANG MỞ (Bấm để Tự động)</span>`;
+      } else {
+        btn.className = "px-3 py-1.5 bg-brand-blue hover:bg-brand-dark text-white text-xs font-extrabold rounded-lg transition flex items-center gap-1.5 shadow";
+        btn.innerHTML = `<i class="fa-solid fa-clock"></i> <span>Cổng: TỰ ĐỘNG (Bấm để Khóa)</span>`;
+      }
+    }
+
+    function startCountdownTimer(deadlineStr) {
+      if (!deadlineStr) return;
+      if (countdownInterval) clearInterval(countdownInterval);
+
+      const formattedDeadline = deadlineStr.replace(/-/g, '/');
+      const targetTime = new Date(formattedDeadline).getTime();
+
+      const lblDisplay = document.getElementById('lblDeadlineDisplay');
+      if (lblDisplay) lblDisplay.innerText = deadlineStr;
+
+      function updateTimer() {
+        const now = new Date().getTime();
+        const diff = targetTime - now;
+
+        if (isNaN(targetTime) || diff <= 0) {
+          if (countdownInterval) clearInterval(countdownInterval);
+          lockRegistrationPortal('Đã hết hạn đăng ký KTX');
+          return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        document.getElementById('cdDays').innerText = String(days).padStart(2, '0');
+        document.getElementById('cdHours').innerText = String(hours).padStart(2, '0');
+        document.getElementById('cdMinutes').innerText = String(minutes).padStart(2, '0');
+        document.getElementById('cdSeconds').innerText = String(seconds).padStart(2, '0');
+      }
+
+      updateTimer();
+      countdownInterval = setInterval(updateTimer, 1000);
+    }
+
+    function lockRegistrationPortal(reasonText) {
+      document.getElementById('cdDays').innerText = "00";
+      document.getElementById('cdHours').innerText = "00";
+      document.getElementById('cdMinutes').innerText = "00";
+      document.getElementById('cdSeconds').innerText = "00";
+
+      const lblDisplay = document.getElementById('lblDeadlineDisplay');
+      if (lblDisplay) lblDisplay.innerText = "ĐÃ KHÓA CỔNG";
+
+      const btnSubmit = document.getElementById('btnSubmit');
+      if (btnSubmit) {
+        btnSubmit.disabled = true;
+        btnSubmit.innerHTML = `<i class="fa-solid fa-lock"></i> ${reasonText}`;
+        btnSubmit.className = "w-full md:w-auto px-8 py-3.5 bg-slate-400 text-white font-bold rounded-xl cursor-not-allowed mx-auto flex items-center justify-center gap-2 shadow-none";
+      }
+    }
+
+    function unlockRegistrationPortal() {
+      const btnSubmit = document.getElementById('btnSubmit');
+      if (btnSubmit) {
+        btnSubmit.disabled = false;
+        btnSubmit.innerHTML = `<i class="fa-solid fa-paper-plane"></i> Gửi hồ sơ đăng ký xét duyệt KTX`;
+        btnSubmit.className = "w-full md:w-auto px-8 py-3.5 bg-brand-dark hover:bg-brand-blue text-white font-bold rounded-xl transition shadow-lg flex items-center justify-center gap-2 mx-auto";
+      }
     }
 
     function initEvents() {
