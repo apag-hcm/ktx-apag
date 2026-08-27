@@ -721,6 +721,22 @@
     let currentFilteredList = [];
     let parsedExcelRows = [];
 
+    // HÀM HỖ TRỢ ĐỊNH DẠNG NGÀY CHUẨN ISO CHO POSTGRESQL DATE
+    function parseToIsoDate(str) {
+      if (!str) return null;
+      str = String(str).trim();
+      if (!str) return null;
+      const parts = str.split('/');
+      if (parts.length === 3) {
+        const day = parts[0].padStart(2, '0');
+        const month = parts[1].padStart(2, '0');
+        const year = parts[2];
+        return `${year}-${month}-${day}`;
+      }
+      if (str.match(/^\d{4}-\d{2}-\d{2}$/)) return str;
+      return null;
+    }
+
     window.addEventListener('DOMContentLoaded', () => {
       loadProvinces();
       loadLiveConfig();
@@ -842,9 +858,9 @@
               Swal.fire({ icon: 'success', title: 'Xác thực thành công!', text: `Đã nạp sinh viên: ${data.ho_ten}`, timer: 1500, showConfirmButton: false });
               document.getElementById('displayMSSV').value = data.mssv || '';
               document.getElementById('hoTen').value = data.ho_ten || '';
-              if (data.ngay_sinh) document.getElementById('ngaySinh').value = data.ngay_sinh;
+              if (data.ngay_sinh) document.getElementById('ngaySinh').value = parseToIsoDate(data.ngay_sinh) || '';
               if (data.gioi_tinh) document.getElementById('gioiTinh').value = data.gioi_tinh;
-              if (data.ngay_cap_cccd) document.getElementById('ngayCapCCCD').value = data.ngay_cap_cccd;
+              if (data.ngay_cap_cccd) document.getElementById('ngayCapCCCD').value = parseToIsoDate(data.ngay_cap_cccd) || '';
               if (data.noi_cap_cccd) document.getElementById('noiCapCCCD').value = data.noi_cap_cccd;
               if (data.sdt) document.getElementById('soDienThoai').value = data.sdt;
               if (data.sdt_gia_dinh) document.getElementById('soDienThoaiGD').value = data.sdt_gia_dinh;
@@ -861,7 +877,7 @@
       }
     }
 
-    // 4. TIẾP NHẬN HOẶC CẬP NHẬT ĐƠN ĐĂNG KÝ
+    // 4. TIẾP NHẬN HOẶC CẬP NHẬT ĐƠN ĐĂNG KÝ (SỬ DỤNG .toISOString() CHUẨN ISO)
     let lastRegisteredData = null;
     async function handleFormSubmit(e) {
       e.preventDefault();
@@ -874,13 +890,12 @@
       const xa = document.getElementById('phuongXaSelect').value.trim();
       const tinh = document.getElementById('tinhThanhSelect').value.trim();
       const fullAddress = (chitiet ? chitiet + ", " : "") + (xa ? xa + ", " : "") + tinh;
-      const nowStr = new Date().toLocaleString('vi-VN');
 
       const formData = {
         ho_ten: document.getElementById('hoTen').value.trim().toUpperCase(),
         gioi_tinh: document.getElementById('gioiTinh').value,
-        ngay_sinh: document.getElementById('ngaySinh').value,
-        ngay_cap_cccd: document.getElementById('ngayCapCCCD').value,
+        ngay_sinh: document.getElementById('ngaySinh').value || null,
+        ngay_cap_cccd: document.getElementById('ngayCapCCCD').value || null,
         noi_cap_cccd: document.getElementById('noiCapCCCD').value,
         sdt: document.getElementById('soDienThoai').value,
         sdt_gia_dinh: document.getElementById('soDienThoaiGD').value,
@@ -892,7 +907,7 @@
         loai_phong: document.getElementById('loaiPhong').value,
         minh_chung: 'Xác nhận bản cứng tại trường',
         trang_thai: 'Chờ duyệt',
-        thoi_gian: nowStr
+        thoi_gian: new Date().toISOString()
       };
 
       const { data, error } = await window.db
@@ -1016,7 +1031,7 @@
         const bacUT = r.bac_uu_tien || '';
 
         if (loaiPhong !== '') registeredCount++;
-        if (status === 'Đã duyệt tiếp nhận' || status === 'Đã duyệt') {
+        if (status === 'Đã duyệt tiếp nhận' || status === 'Đã duyệt' || status === 'Đã tiếp nhận') {
           countApproved++;
           if (bacUT.includes('Bậc 1')) countBac1++;
           else if (bacUT.includes('Bậc 2')) countBac2++;
@@ -1123,7 +1138,7 @@
       });
     }
 
-    // 8. CHỨC NĂNG NẠP DỮ LIỆU EXCEL TỪ TỆP MẪU DSTT
+    // 8. CHỨC NĂNG NẠP DỮ LIỆU EXCEL TỪ TỆP MẪU DSTT (ĐÃ CHUẨN HÓA ĐỊNH DẠNG ISO TIMESTAMP)
     function openExcelImportModal() { document.getElementById('excelImportModal').classList.remove('hidden'); }
     function closeExcelImportModal() { document.getElementById('excelImportModal').classList.add('hidden'); }
 
@@ -1163,7 +1178,6 @@
       reader.readAsArrayBuffer(file);
     }
 
-    // BÁO TÍNH NĂNG MÁY ÁNH XẠ CỘT TỰ ĐỘNG CỦA FILE DSTT
     function mapExcelRowToRecord(row, idx) {
       const getVal = (keys) => {
         for (const k of Object.keys(row)) {
@@ -1185,7 +1199,7 @@
 
       const hoTen = getVal(['họ và tên', 'họ tên', 'ho_ten']);
       const mssv = getVal(['ma sinh vien', 'mã sinh viên', 'mssv']);
-      const ngaySinh = getVal(['ngày sinh', 'ngay_sinh']);
+      const ngaySinhRaw = getVal(['ngày sinh', 'ngay_sinh']);
       const gioiTinh = getVal(['giới tính', 'gioi_tinh']);
       const nganhHoc = getVal(['tên mã xét tuyển trúng tuyển', 'ngành', 'nganh_hoc']);
       const diemVal = getVal(['điểm trúng tuyển', 'điểm', 'diem']);
@@ -1195,12 +1209,12 @@
         cccd: cccdRaw,
         ho_ten: hoTen.toUpperCase(),
         mssv: mssv,
-        ngay_sinh: ngaySinh,
+        ngay_sinh: parseToIsoDate(ngaySinhRaw),
         gioi_tinh: gioiTinh,
         nganh_hoc: nganhHoc,
         diem: parseFloat(diemVal) || 0,
         trang_thai: 'Chờ duyệt',
-        thoi_gian: new Date().toLocaleString('vi-VN'),
+        thoi_gian: new Date().toISOString(),
         ghi_chu: 'Nạp từ Excel'
       };
     }
@@ -1233,13 +1247,11 @@
 
       try {
         if (isReplaceAll) {
-          // Xóa toàn bộ dòng trong danh_sach_dang_ky
           await window.db.from('danh_sach_dang_ky').delete().neq('ma_ho_so', 'KEY_NEVER_MATCH_999');
         }
 
         const formattedList = parsedExcelRows.map((r, i) => mapExcelRowToRecord(r, i));
 
-        // Nạp theo từng lô (Chunking 200 dòng)
         const CHUNK_SIZE = 200;
         for (let i = 0; i < formattedList.length; i += CHUNK_SIZE) {
           const chunk = formattedList.slice(i, i + CHUNK_SIZE);
