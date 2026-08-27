@@ -434,7 +434,7 @@
         <button onclick="handleAdminLogin()" class="w-full py-2.5 bg-brand-dark text-white text-sm font-semibold rounded-lg shadow">Đăng nhập</button>
       </div>
 
-      <div id="adminDashView" class="hidden flex flex-col h-full space-y-3 overflow-hidden pb-4">
+      <div id="adminDashView" class="hidden flex flex-col h-full space-y-3 overflow-hidden pb-2">
         <div class="flex flex-wrap justify-between items-center pb-2 border-b gap-2 flex-shrink-0">
           <div class="flex items-center space-x-2">
             <button onclick="switchAdminTab('dashboard')" id="adminTabBtnDash" class="px-3 py-1.5 rounded-lg font-bold text-xs bg-brand-dark text-white transition">Quản lý & Duyệt đơn</button>
@@ -473,13 +473,13 @@
             </div>
           </div>
 
-          <div class="bg-slate-50 border rounded-xl p-3 flex flex-wrap gap-2.5 items-center flex-shrink-0 text-xs">
+          <div class="bg-slate-50 border rounded-xl p-2.5 flex flex-wrap gap-2 items-center flex-shrink-0 text-xs">
             <div class="font-bold text-slate-700 flex items-center gap-1">
-              <i class="fa-solid fa-filter text-brand-blue"></i> Bộ lọc danh sách:
+              <i class="fa-solid fa-filter text-brand-blue"></i> Bộ lọc:
             </div>
-            <input type="text" id="adminSearchInput" onkeyup="applyAdminFilters()" placeholder="Tìm Tên, CCCD, MSSV, Mã HS..." class="px-3 py-1.5 border rounded-lg font-medium text-xs w-48 bg-white focus:outline-none focus:ring-1 focus:ring-brand-blue">
+            <input type="text" id="adminSearchInput" onkeyup="applyAdminFilters()" placeholder="Tìm Tên, CCCD, MSSV, Mã HS..." class="px-2.5 py-1.5 border rounded-lg font-medium text-xs w-48 bg-white focus:outline-none focus:ring-1 focus:ring-brand-blue">
             
-            <select id="adminFilterNganh" onchange="applyAdminFilters()" class="px-2.5 py-1.5 border rounded-lg bg-white font-medium">
+            <select id="adminFilterNganh" onchange="applyAdminFilters()" class="px-2 py-1.5 border rounded-lg bg-white font-medium">
               <option value="">-- Tất cả ngành --</option>
               <option value="Quản lý nhà nước">Quản lý nhà nước</option>
               <option value="Quản trị văn phòng">Quản trị văn phòng</option>
@@ -492,14 +492,14 @@
               <option value="Xây dựng Đảng và chính quyền Nhà nước">Xây dựng Đảng</option>
             </select>
 
-            <select id="adminFilterKhu" onchange="applyAdminFilters()" class="px-2.5 py-1.5 border rounded-lg bg-white font-medium">
+            <select id="adminFilterKhu" onchange="applyAdminFilters()" class="px-2 py-1.5 border rounded-lg bg-white font-medium">
               <option value="">-- Tất cả cơ sở KTX --</option>
               <option value="KTX 3 tầng">KTX 3 tầng (Số 10 đường 3/2)</option>
               <option value="KTX 181">KTX 181 Lê Đức Thọ</option>
               <option value="CHUA_CHON">Chưa đăng ký KTX</option>
             </select>
 
-            <select id="adminFilterBacUT" onchange="applyAdminFilters()" class="px-2.5 py-1.5 border rounded-lg bg-white font-medium">
+            <select id="adminFilterBacUT" onchange="applyAdminFilters()" class="px-2 py-1.5 border rounded-lg bg-white font-medium">
               <option value="">-- Tất cả bậc ưu tiên --</option>
               <option value="Bậc 1">Bậc 1: Chính sách XH</option>
               <option value="Bậc 2">Bậc 2: Điểm cao / Tuyển thẳng</option>
@@ -507,7 +507,7 @@
               <option value="Bậc 4">Bậc 4: Tự túc</option>
             </select>
 
-            <select id="adminFilterTrangThai" onchange="applyAdminFilters()" class="px-2.5 py-1.5 border rounded-lg bg-white font-medium">
+            <select id="adminFilterTrangThai" onchange="applyAdminFilters()" class="px-2 py-1.5 border rounded-lg bg-white font-medium">
               <option value="">-- Tất cả trạng thái --</option>
               <option value="Đã tiếp nhận">Đã duyệt tiếp nhận</option>
               <option value="Chờ duyệt">Chờ duyệt</option>
@@ -516,26 +516,32 @@
             </select>
 
             <div class="ml-auto text-slate-500 font-medium">
-              Hiển thị: <strong class="text-brand-dark" id="lblFilteredCount">0 / 0</strong> sinh viên
+              Kết quả: <strong class="text-brand-dark" id="lblFilteredCount">0 / 0</strong>
             </div>
           </div>
 
-          <div class="flex-1 border rounded-xl bg-white overflow-y-auto">
+          <div class="flex-1 border rounded-xl bg-white overflow-y-auto min-h-0">
             <table class="w-full text-left text-xs border-collapse">
               <thead class="bg-slate-100 uppercase font-bold sticky top-0 border-b z-10 text-slate-700">
                 <tr>
-                  <th class="p-3">Mã HS</th>
-                  <th class="p-3">Họ Tên / MSSV</th>
-                  <th class="p-3">Ngành</th>
-                  <th class="p-3">Điểm</th>
-                  <th class="p-3">Ưu Tiên</th>
-                  <th class="p-3">Khu KTX</th>
-                  <th class="p-3">Trạng Thái</th>
-                  <th class="p-3 text-center">Thao Tác</th>
+                  <th class="p-2.5">Mã HS</th>
+                  <th class="p-2.5">Họ Tên / MSSV</th>
+                  <th class="p-2.5">Ngành</th>
+                  <th class="p-2.5">Điểm</th>
+                  <th class="p-2.5">Ưu Tiên</th>
+                  <th class="p-2.5">Khu KTX</th>
+                  <th class="p-2.5">Trạng Thái</th>
+                  <th class="p-2.5 text-center">Thao Tác</th>
                 </tr>
               </thead>
               <tbody id="adminTableBody" class="divide-y bg-white"></tbody>
             </table>
+          </div>
+
+          <div class="flex flex-wrap justify-between items-center bg-slate-50 border rounded-xl px-3 py-2 flex-shrink-0 text-xs">
+            <div class="text-slate-600 font-medium" id="adminPaginationInfo">Hiển thị 1 - 20 trong số 0 sinh viên</div>
+            <div class="flex items-center space-x-1.5" id="adminPaginationButtons">
+              </div>
           </div>
         </div>
 
@@ -694,6 +700,10 @@
     let currentFilteredList = [];
     let parsedExcelRows = [];
 
+    // BIẾN QUẢN LÝ PHÂN TRANG (PAGINATION)
+    let adminCurrentPage = 1;
+    const ADMIN_PAGE_SIZE = 20;
+
     // HÀM LAZY LOAD THƯ VIỆN EXCEL SHEETJS (CHỈ NẠP KHI CẦN)
     function loadXlsxScript(callback) {
       if (window.XLSX) { callback(); return; }
@@ -725,7 +735,7 @@
       return null;
     }
 
-    // HÀM TỰ ĐỘNG LÀM SẠCH ĐỊA CHỈ CHI TIẾT (CHỐNG LẶP LẠI PHƯỜNG/XÃ, TỈNH/THÀNH)
+    // HÀM TỰ ĐỘNG LÀM SẠCH ĐỊA CHỈ CHI TIẾT
     function autoCleanDetailAddress() {
       const inputEl = document.getElementById('diaChiChiTiet');
       const wardVal = (document.getElementById('phuongXaSelect')?.value || '').trim();
@@ -735,22 +745,17 @@
 
       let cleaned = inputEl.value.trim();
 
-      // 1. Tự động xóa tên Phường/Xã đã chọn ở ô bên cạnh nếu bị gõ trùng
       if (wardVal) {
         const wardRegex = new RegExp(wardVal.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
         cleaned = cleaned.replace(wardRegex, '');
       }
 
-      // 2. Tự động xóa tên Tỉnh/Thành phố đã chọn ở ô bên cạnh nếu bị gõ trùng
       if (provVal) {
         const provRegex = new RegExp(provVal.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
         cleaned = cleaned.replace(provRegex, '');
       }
 
-      // 3. Tự động cắt các cụm từ hành chính thừa ở đuôi
       cleaned = cleaned.replace(/(,\s*|\s+)(phường|xã|thị trấn|quận|huyện|thị xã|thành phố|tỉnh|tp)\b.*$/gi, '');
-
-      // 4. Xóa các dấu phẩy, dấu chấm, khoảng trắng dư thừa
       cleaned = cleaned.replace(/[\s,.-]+$/, '').trim();
 
       inputEl.value = cleaned;
@@ -1067,7 +1072,7 @@
     function printA4FormFromLookup() { if (currentLookupData) fillAndPrintA4(currentLookupData); }
     function printA4FormDirect() { if (lastRegisteredData) fillAndPrintA4(lastRegisteredData); }
 
-    // 7. CÁN BỘ QUẢN TRỊ & DASHBOARD METRICS
+    // 7. CÁN BỘ QUẢN TRỊ & DASHBOARD SIÊU TỐC BẰNG PHÂN TRANG (PAGINATION)
     let currentAdmin = null;
 
     async function handleAdminLogin() {
@@ -1119,7 +1124,7 @@
       loadSystemConfigEditor();
     }
 
-    // ÁP DỤNG BỘ LỌC DỮ LIỆU ĐA CHIỀU
+    // LỌC DỮ LIỆU VÀ ĐẶT LẠI TRANG 1
     function applyAdminFilters() {
       const q = (document.getElementById('adminSearchInput')?.value || '').trim().toLowerCase();
       const fNganh = document.getElementById('adminFilterNganh')?.value || '';
@@ -1159,8 +1164,68 @@
         return true;
       });
 
-      document.getElementById('lblFilteredCount').innerText = `${currentFilteredList.length} / ${currentAllAdminRecords.length}`;
-      renderAdminTable(currentFilteredList);
+      adminCurrentPage = 1;
+      renderAdminTableWithPagination();
+    }
+
+    // THUẬT TOÁN PHÂN TRANG VẼ BẢNG SIÊU TỐC (<10ms)
+    function renderAdminTableWithPagination() {
+      const totalRecords = currentFilteredList.length;
+      const totalPages = Math.ceil(totalRecords / ADMIN_PAGE_SIZE) || 1;
+
+      if (adminCurrentPage > totalPages) adminCurrentPage = totalPages;
+      if (adminCurrentPage < 1) adminCurrentPage = 1;
+
+      const start = (adminCurrentPage - 1) * ADMIN_PAGE_SIZE;
+      const pageRecords = currentFilteredList.slice(start, start + ADMIN_PAGE_SIZE);
+
+      document.getElementById('lblFilteredCount').innerText = `${totalRecords} / ${currentAllAdminRecords.length}`;
+      
+      const endRecord = Math.min(start + ADMIN_PAGE_SIZE, totalRecords);
+      document.getElementById('adminPaginationInfo').innerText = totalRecords > 0 
+        ? `Hiển thị ${start + 1} - ${endRecord} trong số ${totalRecords} sinh viên`
+        : `Hiển thị 0 sinh viên`;
+
+      renderAdminTable(pageRecords);
+      renderPaginationControls(totalPages);
+    }
+
+    function renderPaginationControls(totalPages) {
+      const container = document.getElementById('adminPaginationButtons');
+      container.innerHTML = '';
+
+      if (totalPages <= 1) return;
+
+      // Nút Trang trước
+      const prevBtn = document.createElement('button');
+      prevBtn.className = `px-2.5 py-1 rounded border font-semibold ${adminCurrentPage === 1 ? 'opacity-40 cursor-not-allowed bg-slate-100' : 'bg-white hover:bg-slate-100 text-brand-dark'}`;
+      prevBtn.innerHTML = `<i class="fa-solid fa-chevron-left"></i> Trước`;
+      prevBtn.disabled = adminCurrentPage === 1;
+      prevBtn.onclick = () => { if (adminCurrentPage > 1) { adminCurrentPage--; renderAdminTableWithPagination(); } };
+      container.appendChild(prevBtn);
+
+      // Hiển thị các nút số trang
+      let startPage = Math.max(1, adminCurrentPage - 2);
+      let endPage = Math.min(totalPages, startPage + 4);
+      if (endPage - startPage < 4) {
+        startPage = Math.max(1, endPage - 4);
+      }
+
+      for (let p = startPage; p <= endPage; p++) {
+        const pageBtn = document.createElement('button');
+        pageBtn.className = `px-2.5 py-1 rounded font-bold border ${p === adminCurrentPage ? 'bg-brand-dark text-white border-brand-dark' : 'bg-white text-slate-700 hover:bg-slate-100'}`;
+        pageBtn.innerText = p;
+        pageBtn.onclick = () => { adminCurrentPage = p; renderAdminTableWithPagination(); };
+        container.appendChild(pageBtn);
+      }
+
+      // Nút Trang sau
+      const nextBtn = document.createElement('button');
+      nextBtn.className = `px-2.5 py-1 rounded border font-semibold ${adminCurrentPage === totalPages ? 'opacity-40 cursor-not-allowed bg-slate-100' : 'bg-white hover:bg-slate-100 text-brand-dark'}`;
+      nextBtn.innerHTML = `Sau <i class="fa-solid fa-chevron-right"></i>`;
+      nextBtn.disabled = adminCurrentPage === totalPages;
+      nextBtn.onclick = () => { if (adminCurrentPage < totalPages) { adminCurrentPage++; renderAdminTableWithPagination(); } };
+      container.appendChild(nextBtn);
     }
 
     function renderAdminTable(records) {
@@ -1176,17 +1241,17 @@
 
         tbody.innerHTML += `
           <tr class="hover:bg-slate-50 transition">
-            <td class="p-3 font-bold text-red-600">${r.ma_ho_so}</td>
-            <td class="p-3">
+            <td class="p-2.5 font-bold text-red-600">${r.ma_ho_so}</td>
+            <td class="p-2.5">
               <strong class="text-slate-800">${r.ho_ten}</strong>
               <div class="text-[10px] text-slate-500">MSSV: ${r.mssv || 'N/A'} • CCCD: ${r.cccd}</div>
             </td>
-            <td class="p-3">${r.nganh_hoc || 'Chưa nạp'}</td>
-            <td class="p-3 font-bold text-brand-blue">${r.diem || 0}</td>
-            <td class="p-3">${r.bac_uu_tien || 'Chưa đăng ký'}</td>
-            <td class="p-3 font-medium">${r.loai_phong || '<span class="text-slate-400">Chưa đăng ký</span>'}</td>
-            <td class="p-3"><span class="px-2 py-1 ${badgeColor} rounded font-bold text-[10px]">${r.trang_thai || 'Chờ duyệt'}</span></td>
-            <td class="p-3 text-center space-x-1">
+            <td class="p-2.5">${r.nganh_hoc || 'Chưa nạp'}</td>
+            <td class="p-2.5 font-bold text-brand-blue">${r.diem || 0}</td>
+            <td class="p-2.5">${r.bac_uu_tien || 'Chưa đăng ký'}</td>
+            <td class="p-2.5 font-medium">${r.loai_phong || '<span class="text-slate-400">Chưa đăng ký</span>'}</td>
+            <td class="p-2.5"><span class="px-2 py-0.5 ${badgeColor} rounded font-bold text-[10px]">${r.trang_thai || 'Chờ duyệt'}</span></td>
+            <td class="p-2.5 text-center space-x-1">
               <button onclick="approveRecord('${r.ma_ho_so}', 'Đã tiếp nhận')" class="px-2 py-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded font-bold text-[11px]" title="Duyệt">Duyệt</button>
               <button onclick="approveRecord('${r.ma_ho_so}', 'Từ chối')" class="px-2 py-1 bg-red-600 hover:bg-red-700 text-white rounded font-bold text-[11px]" title="Từ chối">Từ chối</button>
             </td>
