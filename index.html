@@ -5,14 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cổng Đăng Ký Xét Duyệt Ký Túc Xá Đại Học Chính Quy 2026 | APAG TP. Hồ Chí Minh</title>
   
-  <!-- CSS & FONTS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
-  <!-- SCRIPTS TẢI BẤT ĐỒNG BỘ (DEFER TO SPEED UP LOAD) -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
   <script src="config.js" defer></script>
@@ -67,7 +65,6 @@
 </head>
 <body class="bg-[#f1f5f9] text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between">
 
-  <!-- TOP BAR -->
   <div class="bg-brand-dark text-white text-xs py-2 px-4 border-b border-white/10">
     <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
       <div class="flex items-center space-x-2">
@@ -86,7 +83,6 @@
     </div>
   </div>
 
-  <!-- HEADER -->
   <header class="bg-white shadow-sm sticky top-0 z-40">
     <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
       <div class="flex items-center space-x-3">
@@ -108,7 +104,6 @@
     </div>
   </header>
 
-  <!-- HERO BANNER VỚI ĐỒNG HỒ ĐẾM NGƯỢC -->
   <section class="hero-gradient text-white py-8 md:py-10 px-4">
     <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
       <div class="lg:col-span-7 space-y-4">
@@ -134,7 +129,6 @@
       </div>
 
       <div class="lg:col-span-5 space-y-4 w-full">
-        <!-- ĐỒNG HỒ ĐẾM NGƯỢC HẠN ĐĂNG KÝ -->
         <div class="bg-white/10 backdrop-blur-md rounded-2xl p-4 md:p-5 border border-amber-400/40 shadow-2xl text-white space-y-3">
           <div class="flex items-center justify-between border-b border-white/15 pb-2.5">
             <span class="text-xs md:text-sm font-bold uppercase tracking-wider text-amber-300 flex items-center gap-2">
@@ -213,7 +207,6 @@
     </div>
   </section>
 
-  <!-- LỊCH TIẾP SINH -->
   <section class="max-w-7xl mx-auto px-4 -mt-5">
     <div class="bg-white rounded-2xl p-6 custom-shadow border border-slate-100 space-y-4">
       <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 flex items-start gap-3">
@@ -242,7 +235,6 @@
     </div>
   </section>
 
-  <!-- FORM ĐĂNG KÝ -->
   <main class="max-w-4xl mx-auto px-4 py-8 w-full">
     <div class="bg-white rounded-2xl p-6 md:p-8 custom-shadow border border-slate-100">
       <div class="border-b border-slate-200 pb-4 mb-6">
@@ -254,7 +246,6 @@
 
       <form id="regForm" onsubmit="handleFormSubmit(event)" class="space-y-6">
         <div>
-          <!-- NHẬP CCCD LÊN ĐẦU ĐỂ TỰ ĐỘNG NẠP THÔNG TIN -->
           <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-5">
             <label class="block text-xs font-bold text-brand-dark mb-1 uppercase tracking-wider">
               <i class="fa-solid fa-id-card text-brand-blue mr-1"></i> Nhập Số CCCD / Định danh (Đăng nhập hệ thống) <span class="text-red-500">*</span>
@@ -323,7 +314,6 @@
             </div>
           </div>
           
-          <!-- KHU VỰC ĐỊA CHỈ - TÍCH HỢP TỰ ĐỘNG LỌC TRÙNG -->
           <div class="mt-4 space-y-3">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
@@ -335,12 +325,12 @@
               </div>
               <div>
                 <label class="block text-xs font-semibold text-slate-700 mb-1">Tỉnh / Thành phố <span class="text-red-500">*</span></label>
-                <input list="tinhThanhList" id="tinhThanhSelect" required onchange="onProvinceChange()" placeholder="Gõ tìm Tỉnh/Thành..." class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none bg-white font-medium">
+                <input list="tinhThanhList" id="tinhThanhSelect" required oninput="onProvinceChange()" placeholder="Gõ tìm Tỉnh/Thành..." class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none bg-white font-medium">
                 <datalist id="tinhThanhList"></datalist>
               </div>
               <div>
                 <label class="block text-xs font-semibold text-slate-700 mb-1">Phường / Xã <span class="text-red-500">*</span></label>
-                <input list="phuongXaList" id="phuongXaSelect" required placeholder="Gõ tìm Phường/Xã..." class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none bg-white font-medium">
+                <input list="phuongXaList" id="phuongXaSelect" required oninput="autoCleanDetailAddress()" placeholder="Gõ tìm Phường/Xã..." class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none bg-white font-medium">
                 <datalist id="phuongXaList"></datalist>
               </div>
             </div>
@@ -405,7 +395,6 @@
     </div>
   </main>
 
-  <!-- FOOTER -->
   <footer class="bg-slate-900 text-slate-400 text-xs py-10 px-4 border-t border-slate-800">
     <div class="max-w-7xl mx-auto text-center space-y-2">
       <div class="text-white font-bold">PHÂN HIỆU HỌC VIỆN HÀNH CHÍNH VÀ QUẢN TRỊ CÔNG TẠI THÀNH PHỐ HỒ CHÍ MINH</div>
@@ -414,7 +403,6 @@
     </div>
   </footer>
 
-  <!-- MODAL TRA CỨU & IN ĐƠN -->
   <div id="lookupModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl relative">
       <button onclick="closeLookupModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-lg"><i class="fa-solid fa-xmark"></i></button>
@@ -431,12 +419,10 @@
     </div>
   </div>
 
-  <!-- MODAL QUẢN TRỊ ADMIN -->
   <div id="adminModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-2 md:p-6">
     <div class="bg-white rounded-2xl max-w-7xl w-full h-[96vh] md:h-[94vh] flex flex-col p-3 md:p-5 shadow-2xl relative overflow-hidden">
       <button onclick="closeAdminModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-lg z-10"><i class="fa-solid fa-xmark"></i></button>
 
-      <!-- ĐĂNG NHẬP ADMIN -->
       <div id="adminLoginView" class="max-w-sm mx-auto my-auto text-center space-y-4 py-8">
         <div class="w-14 h-14 rounded-full bg-brand-dark text-amber-400 mx-auto flex items-center justify-center text-2xl shadow"><i class="fa-solid fa-shield-halved"></i></div>
         <div>
@@ -448,16 +434,13 @@
         <button onclick="handleAdminLogin()" class="w-full py-2.5 bg-brand-dark text-white text-sm font-semibold rounded-lg shadow">Đăng nhập</button>
       </div>
 
-      <!-- GIAO DIỆN QUẢN TRỊ VIÊN -->
       <div id="adminDashView" class="hidden flex flex-col h-full space-y-3 overflow-hidden pb-4">
-        <!-- BAR CÔNG CỤ TẬP TRUNG -->
         <div class="flex flex-wrap justify-between items-center pb-2 border-b gap-2 flex-shrink-0">
           <div class="flex items-center space-x-2">
             <button onclick="switchAdminTab('dashboard')" id="adminTabBtnDash" class="px-3 py-1.5 rounded-lg font-bold text-xs bg-brand-dark text-white transition">Quản lý & Duyệt đơn</button>
             <button onclick="switchAdminTab('settings')" id="adminTabBtnSettings" class="px-3 py-1.5 rounded-lg font-bold text-xs bg-slate-200 text-slate-700 hover:bg-slate-300 transition"><i class="fa-solid fa-sliders mr-1"></i> Cài đặt & Cấu hình</button>
           </div>
           
-          <!-- NÚT CHỨC NĂNG EXCEL -->
           <div class="flex items-center gap-2">
             <button onclick="openExcelImportModal()" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-lg transition flex items-center gap-1.5 shadow">
               <i class="fa-solid fa-file-excel"></i> Nạp Excel Trúng Tuyển
@@ -474,9 +457,7 @@
           </div>
         </div>
 
-        <!-- TAB DASHBOARD QUẢN LÝ -->
         <div id="adminTabContentDash" class="flex flex-col h-full space-y-3 overflow-hidden">
-          <!-- KPI BANNER -->
           <div class="grid grid-cols-1 md:grid-cols-3 gap-3 flex-shrink-0">
             <div class="bg-gradient-to-br from-blue-900 to-indigo-950 p-3 rounded-xl text-white shadow-sm space-y-1">
               <div class="text-xs">Quỹ chỗ KTX: <strong class="text-amber-300" id="kpiOccupancyPct">0%</strong></div>
@@ -492,7 +473,6 @@
             </div>
           </div>
 
-          <!-- BỘ LỌC DỮ LIỆU ĐA CHIỀU CẦN IN / XUẤT EXCEL -->
           <div class="bg-slate-50 border rounded-xl p-3 flex flex-wrap gap-2.5 items-center flex-shrink-0 text-xs">
             <div class="font-bold text-slate-700 flex items-center gap-1">
               <i class="fa-solid fa-filter text-brand-blue"></i> Bộ lọc danh sách:
@@ -540,7 +520,6 @@
             </div>
           </div>
 
-          <!-- BẢNG DỮ LIỆU CHÍNH -->
           <div class="flex-1 border rounded-xl bg-white overflow-y-auto">
             <table class="w-full text-left text-xs border-collapse">
               <thead class="bg-slate-100 uppercase font-bold sticky top-0 border-b z-10 text-slate-700">
@@ -560,7 +539,6 @@
           </div>
         </div>
 
-        <!-- TAB SETTINGS CẤU HÌNH -->
         <div id="adminTabContentSettings" class="hidden flex flex-col h-full space-y-4 overflow-y-auto p-2 text-xs">
           <div class="bg-slate-50 border rounded-xl p-4 space-y-3">
             <div class="font-bold text-sm text-brand-dark"><i class="fa-solid fa-sliders mr-1"></i> Cấu hình thông tin hệ thống & Thời gian đếm ngược</div>
@@ -572,7 +550,6 @@
     </div>
   </div>
 
-  <!-- MODAL NHẬP DỮ LIỆU EXCEL TỪ MẪU DSTT -->
   <div id="excelImportModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white rounded-2xl max-w-xl w-full p-6 shadow-2xl relative space-y-4">
       <button onclick="closeExcelImportModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-lg"><i class="fa-solid fa-xmark"></i></button>
@@ -605,11 +582,9 @@
     </div>
   </div>
 
-  <!-- TEMPLATE IN ĐƠN A4 PHÁP LÝ CHUẨN -->
   <div id="printA4Template">
     <div style="font-family: 'Times New Roman', Times, serif; color: black; line-height: 1.45; font-size: 13pt; box-sizing: border-box;">
       
-      <!-- 1. TIÊU NGỮ & ĐƠN VỊ BAN HÀNH -->
       <table style="width: 100%; border-collapse: collapse; margin-left: -10mm; width: calc(100% + 10mm); margin-bottom: 6px;">
         <tr>
           <td style="width: 48%; text-align: center; vertical-align: top; padding-right: 5px;">
@@ -633,13 +608,11 @@
         </tr>
       </table>
 
-      <!-- 2. TIÊU ĐỀ ĐƠN -->
       <div style="text-align: center; margin: 6px 0 8px 0;">
         <h2 style="font-size: 14.5pt; font-weight: bold; text-transform: uppercase; margin: 0;">ĐƠN ĐĂNG KÝ Ở KÝ TÚC XÁ</h2>
         <div style="font-size: 10.5pt; font-style: italic; margin-top: 2px;">(Mã tiếp nhận trực tuyến: <strong id="printMaHoSo" style="font-size: 11.5pt; color: black;">KTX26-XXXX</strong>)</div>
       </div>
 
-      <!-- 3. KÍNH GỬI -->
       <div style="font-size: 12pt; margin-bottom: 6px; line-height: 1.35;">
         <table style="width: 100%; border-collapse: collapse;">
           <tr>
@@ -652,7 +625,6 @@
         </table>
       </div>
 
-      <!-- 4. THÔNG TIN CÁ NHÂN SINH VIÊN -->
       <div style="font-size: 12pt; line-height: 1.55; text-align: justify;">
         <div>Tôi tên: <strong id="printHoTen" style="text-transform: uppercase;">NGUYỄN VĂN A</strong></div>
         
@@ -693,7 +665,6 @@
         <div style="text-align: left; margin-top: 2px;">Trân trọng.</div>
       </div>
 
-      <!-- Chữ ký xác nhận -->
       <table style="width: 100%; border-collapse: collapse; margin-top: 12px;">
         <tr>
           <td style="width: 50%; text-align: center; vertical-align: top; font-size: 11.5pt;">
@@ -716,7 +687,6 @@
     </div>
   </div>
 
-  <!-- JAVASCRIPT LOGIC HỆ THỐNG CẢI TIẾN TỐC ĐỘ -->
   <script>
     let systemConfigs = {};
     let countdownInterval = null;
@@ -784,6 +754,29 @@
       cleaned = cleaned.replace(/[\s,.-]+$/, '').trim();
 
       inputEl.value = cleaned;
+    }
+
+    // TỰ ĐỘNG PHÂN TÁCH CHUỖI ĐỊA CHỈ CSDL VÀO 3 Ô & ĐỒNG BỘ DANH MỤC CHỌN
+    function parseFullAddressToFields(fullAddress) {
+      if (!fullAddress) return;
+      
+      const parts = fullAddress.split(',').map(s => s.trim());
+      const provEl = document.getElementById('tinhThanhSelect');
+      const wardEl = document.getElementById('phuongXaSelect');
+      const detailEl = document.getElementById('diaChiChiTiet');
+
+      if (parts.length >= 3) {
+        if (provEl) provEl.value = parts[parts.length - 1];
+        if (wardEl) wardEl.value = parts[parts.length - 2];
+        if (detailEl) detailEl.value = parts.slice(0, parts.length - 2).join(', ');
+      } else if (parts.length === 2) {
+        if (provEl) provEl.value = parts[1];
+        if (wardEl) wardEl.value = parts[0];
+      } else {
+        if (detailEl) detailEl.value = fullAddress;
+      }
+
+      onProvinceChange();
     }
 
     window.addEventListener('DOMContentLoaded', () => {
@@ -870,7 +863,7 @@
       countdownInterval = setInterval(updateTimer, 1000);
     }
 
-    // 2. TỈNH/THÀNH VÀ PHƯỜNG/XÃ
+    // 2. TỈNH/THÀNH VÀ PHƯỜNG/XÃ DỰ PHÒNG
     const administrativeData = {
       "Thành phố Hồ Chí Minh": ["Phường Bến Thành", "Phường Sài Gòn", "Phường Tân Định", "Phường Hòa Hưng", "Phường Gò Vấp", "Phường Bình Thạnh", "Phường Tân Bình", "Phường Thủ Đức"],
       "Thành phố Hà Nội": ["Phường Ba Đình", "Phường Hoàn Kiếm", "Phường Đống Đa", "Phường Cầu Giấy", "Phường Hai Bà Trưng", "Phường Thanh Xuân"],
@@ -888,13 +881,24 @@
       });
     }
 
+    // HÀM ĐỒNG BỘ NẠP PHƯỜNG/XÃ THEO TỈNH/THÀNH VỪA CHỌN
     function onProvinceChange() {
-      const pName = document.getElementById('tinhThanhSelect').value;
+      const pName = (document.getElementById('tinhThanhSelect')?.value || '').trim();
+      const wardSelectEl = document.getElementById('phuongXaSelect');
       const wardListEl = document.getElementById('phuongXaList');
+      
+      if (!wardListEl) return;
+
       wardListEl.innerHTML = '';
-      (administrativeData[pName] || []).forEach(w => {
+      const wards = administrativeData[pName] || [];
+      wards.forEach(w => {
         const opt = document.createElement('option'); opt.value = w; wardListEl.appendChild(opt);
       });
+
+      if (wardSelectEl && !wards.includes(wardSelectEl.value)) {
+        wardSelectEl.value = '';
+      }
+
       autoCleanDetailAddress();
     }
 
@@ -927,6 +931,7 @@
               if (data.sdt) document.getElementById('soDienThoai').value = data.sdt;
               if (data.sdt_gia_dinh) document.getElementById('soDienThoaiGD').value = data.sdt_gia_dinh;
               if (data.email) document.getElementById('email').value = data.email;
+              if (data.tinh_thanh) parseFullAddressToFields(data.tinh_thanh);
               if (data.nganh_hoc) document.getElementById('nganhHoc').value = data.nganh_hoc;
               if (data.diem) document.getElementById('diemXetTuyen').value = data.diem;
               if (data.bac_uu_tien) document.getElementById('bacUuTien').value = data.bac_uu_tien;
@@ -939,12 +944,11 @@
       }
     }
 
-    // 4. TIẾP NHẬN HOẶC CẬP NHẬT ĐƠN ĐĂNG KÝ (CÓ TỰ ĐỘNG NỐI ĐỊA CHỈ KHÔNG TRÙNG LẶP)
+    // 4. TIẾP NHẬN HOẶC CẬP NHẬT ĐƠN ĐĂNG KÝ
     let lastRegisteredData = null;
     async function handleFormSubmit(e) {
       e.preventDefault();
       
-      // Làm sạch ô Địa chỉ chi tiết trước khi gửi
       autoCleanDetailAddress();
 
       const btn = document.getElementById('btnSubmit');
@@ -956,7 +960,6 @@
       const xa = document.getElementById('phuongXaSelect').value.trim();
       const tinh = document.getElementById('tinhThanhSelect').value.trim();
       
-      // Ghép nối địa chỉ chuẩn, hoàn toàn không bị lặp lại
       const fullAddress = [chitiet, xa, tinh].filter(Boolean).join(', ');
 
       const formData = {
