@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cổng Đăng Ký Xét Duyệt Ký Túc Xá 2026 | APAG TP. Hồ Chí Minh</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <style>
+    @media print {
+      body * { visibility: hidden; }
+      #printA4Template, #printA4Template * { visibility: visible; }
+      #printA4Template { position: absolute; left: 0; top: 0; width: 100%; }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen flex flex-col justify-between">
+
+  <!-- TOP BAR -->
+  <div class="bg-blue-950 text-white text-xs py-2 px-4 border-b border-white/10">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <span>Hệ thống tiếp nhận hồ sơ KTX 2026 - Phân hiệu TP. Hồ Chí Minh</span>
+      <div class="space-x-4">
+        <button onclick="openLookupModal()" class="text-amber-400 font-semibold"><i class="fa-solid fa-search"></i> Tra cứu & In đơn</button>
+        <button onclick="openAdminModal()" class="text-slate-300 font-semibold"><i class="fa-solid fa-lock"></i> Cổng Quản trị</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="bg-white shadow-sm sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+      <div>
+        <h2 class="text-xs font-bold text-blue-950 uppercase">HỌC VIỆN HÀNH CHÍNH VÀ QUẢN TRỊ CÔNG</h2>
+        <h1 class="text-sm font-extrabold text-blue-900 uppercase">PHÂN HIỆU TẠI THÀNH PHỐ HỒ CHÍ MINH</h1>
+      </div>
+      <div class="flex gap-2">
+        <button onclick="openLookupModal()" class="px-3 py-2 text-xs font-semibold text-blue-900 bg-blue-50 border rounded-lg"><i class="fa-solid fa-search"></i> Tra cứu</button>
+        <button onclick="openAdminModal()" class="px-3 py-2 text-xs font-semibold text-white bg-blue-950 rounded-lg"><i class="fa-solid fa-shield-halved text-amber-400"></i> Quản trị</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- FORM ĐĂNG KÝ -->
+  <main class="max-w-4xl mx-auto px-4 py-8 w-full">
+    <div class="bg-white rounded-2xl p-6 md:p-8 shadow-xl border border-slate-100">
+      <h2 class="text-xl font-bold text-blue-950 mb-6 flex items-center gap-2">
+        <i class="fa-solid fa-file-signature text-amber-500"></i> Phiếu Đăng Ký Xét Duyệt Ký Túc Xá 2026
+      </h2>
+
+      <form id="regForm" onsubmit="handleFormSubmit(event)" class="space-y-6">
+        <div class="bg-blue-50 border border-blue-200 rounded-xl p-4">
+          <label class="block text-xs font-bold text-blue-950 mb-1">Nhập Số CCCD / Định danh (12 số) <span class="text-red-500">*</span></label>
+          <input type="text" id="soCCCD" required pattern="[0-9]{12}" maxlength="12" placeholder="Nhập 12 số CCCD..." class="w-full md:w-1/2 px-3 py-2 text-sm border rounded-lg font-bold bg-white">
+          <p class="text-[11px] text-blue-900 mt-1">💡 Tự động tìm kiếm và nạp thông tin trúng tuyển của tân sinh viên.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-4">
+          <div>
+            <label class="block text-xs font-semibold mb-1">Mã Sinh Viên (MSSV)</label>
+            <input type="text" id="displayMSSV" readonly placeholder="Tự động nạp..." class="w-full px-3 py-2 text-sm border bg-slate-100 font-bold text-blue-900 rounded-lg">
+          </div>
+          <div class="md:col-span-2">
+            <label class="block text-xs font-semibold mb-1">Họ và tên <span class="text-red-500">*</span></label>
+            <input type="text" id="hoTen" required placeholder="NGUYỄN VĂN A" class="w-full px-3 py-2 text-sm border rounded-lg uppercase font-semibold">
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-4">
+          <div>
+            <label class="block text-xs font-semibold mb-1">Ngày sinh <span class="text-red-500">*</span></label>
+            <input type="date" id="ngaySinh" required class="w-full px-3 py-2 text-sm border rounded-lg">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold mb-1">Giới tính <span class="text-red-500">*</span></label>
+            <select id="gioiTinh" required class="w-full px-3 py-2 text-sm border rounded-lg bg-white">
+              <option value="">-- Chọn --</option>
+              <option value="Nam">Nam</option>
+              <option value="Nữ">Nữ</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold mb-1">SĐT cá nhân <span class="text-red-500">*</span></label>
+            <input type="tel" id="soDienThoai" required pattern="[0-9]{10}" placeholder="0905xxxxxx" class="w-full px-3 py-2 text-sm border rounded-lg">
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-semibold mb-1">Ngành trúng tuyển <span class="text-red-500">*</span></label>
+            <input type="text" id="nganhHoc" required placeholder="Quản lý nhà nước, Luật..." class="w-full px-3 py-2 text-sm border rounded-lg">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold mb-1">Khu Ký túc xá đăng ký <span class="text-red-500">*</span></label>
+            <select id="loaiPhong" required class="w-full px-3 py-2 text-sm border rounded-lg bg-white font-medium">
+              <option value="">-- Chọn cơ sở --</option>
+              <option value="KTX 3 tầng (600.000đ/SV/tháng)">KTX 3 tầng (600.000đ/SV/tháng)</option>
+              <option value="KTX 181 Lê Đức Thọ (400.000đ/SV/tháng)">KTX 181 Lê Đức Thọ (400.000đ/SV/tháng)</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" id="btnSubmit" class="w-full py-3.5 bg-blue-950 text-white font-bold rounded-xl shadow-lg hover:bg-blue-900 transition">
+          <i class="fa-solid fa-paper-plane"></i> Gửi hồ sơ đăng ký xét duyệt KTX
+        </button>
+      </form>
+    </div>
+  </main>
+
+  <!-- MODAL TRA CỨU -->
+  <div id="lookupModal" class="fixed inset-0 bg-black/60 hidden flex items-center justify-center p-4 z-50">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 space-y-4">
+      <div class="flex justify-between items-center">
+        <h3 class="font-bold text-blue-950">Tra cứu hồ sơ KTX</h3>
+        <button onclick="closeLookupModal()" class="text-slate-400 text-lg">&times;</button>
+      </div>
+      <input type="text" id="lookupInput" maxlength="12" placeholder="Nhập 12 số CCCD..." class="w-full px-3 py-2 border rounded-lg font-semibold">
+      <button onclick="performSearch()" class="w-full py-2 bg-blue-900 text-white font-semibold rounded-lg"><i class="fa-solid fa-search"></i> Tra cứu</button>
+      <div id="lookupResult" class="hidden border-t pt-3 text-xs space-y-2"></div>
+    </div>
+  </div>
+
+  <!-- MODAL ADMIN -->
+  <div id="adminModal" class="fixed inset-0 bg-black/60 hidden flex items-center justify-center p-4 z-50">
+    <div class="bg-white rounded-2xl max-w-4xl w-full p-6 space-y-4 max-h-[90vh] overflow-y-auto">
+      <div class="flex justify-between items-center border-b pb-2">
+        <h3 class="font-bold text-blue-950">Quản trị duyệt đơn KTX</h3>
+        <button onclick="closeAdminModal()" class="text-slate-400 text-lg">&times;</button>
+      </div>
+      <div id="adminLoginView" class="max-w-xs mx-auto space-y-3 py-4 text-center">
+        <input type="text" id="adminUser" placeholder="Tên đăng nhập" class="w-full px-3 py-2 border rounded-lg text-sm">
+        <input type="password" id="adminPass" placeholder="Mật khẩu" class="w-full px-3 py-2 border rounded-lg text-sm">
+        <button onclick="handleAdminLogin()" class="w-full py-2 bg-blue-950 text-white text-sm font-semibold rounded-lg">Đăng nhập</button>
+      </div>
+      <div id="adminDashView" class="hidden space-y-4">
+        <table class="w-full text-left text-xs border-collapse">
+          <thead class="bg-slate-100 border-b">
+            <tr><th class="p-2">Mã HS</th><th class="p-2">Họ Tên</th><th class="p-2">Ngành</th><th class="p-2">Cơ sở</th><th class="p-2">Trạng thái</th><th class="p-2 text-center">Thao tác</th></tr>
+          </thead>
+          <tbody id="adminTableBody" class="divide-y"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openLookupModal() { document.getElementById('lookupModal').classList.remove('hidden'); }
+    function closeLookupModal() { document.getElementById('lookupModal').classList.add('hidden'); }
+    function openAdminModal() { document.getElementById('adminModal').classList.remove('hidden'); }
+    function closeAdminModal() { document.getElementById('adminModal').classList.add('hidden'); }
+
+    // Kiểm tra CCCD tự động nạp thông tin từ Supabase
+    document.getElementById('soCCCD').addEventListener('blur', async function() {
+      const cccdVal = this.value.trim();
+      if (cccdVal.length === 12) {
+        Swal.fire({ title: 'Đang kiểm tra CSDL...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+        const { data } = await window.db.from('danh_sach_dang_ky').select('*').eq('cccd', cccdVal).maybeSingle();
+        Swal.close();
+        if (data) {
+          Swal.fire({ icon: 'success', title: 'Xác thực thành công!', text: `Đã nạp: ${data.ho_ten}`, timer: 1500, showConfirmButton: false });
+          document.getElementById('displayMSSV').value = data.mssv || '';
+          document.getElementById('hoTen').value = data.ho_ten || '';
+          if (data.ngay_sinh) document.getElementById('ngaySinh').value = data.ngay_sinh;
+          if (data.gioi_tinh) document.getElementById('gioiTinh').value = data.gioi_tinh;
+          if (data.sdt) document.getElementById('soDienThoai').value = data.sdt;
+          if (data.nganh_hoc) document.getElementById('nganhHoc').value = data.nganh_hoc;
+        }
+      }
+    });
+
+    // Gửi đơn đăng ký
+    async function handleFormSubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById('btnSubmit');
+      btn.disabled = true; btn.innerText = 'Đang lưu CSDL...';
+
+      const inputCCCD = document.getElementById('soCCCD').value.trim();
+      const payload = {
+        ho_ten: document.getElementById('hoTen').value.trim().toUpperCase(),
+        ngay_sinh: document.getElementById('ngaySinh').value,
+        gioi_tinh: document.getElementById('gioiTinh').value,
+        sdt: document.getElementById('soDienThoai').value,
+        nganh_hoc: document.getElementById('nganhHoc').value,
+        loai_phong: document.getElementById('loaiPhong').value,
+        trang_thai: 'Chờ duyệt',
+        thoi_gian: new Date().toISOString()
+      };
+
+      const { data, error } = await window.db.from('danh_sach_dang_ky').update(payload).eq('cccd', inputCCCD).select();
+      btn.disabled = false; btn.innerText = 'Gửi hồ sơ đăng ký xét duyệt KTX';
+
+      if (error || !data || data.length === 0) {
+        Swal.fire({ icon: 'error', title: 'Lỗi', text: 'Số CCCD chưa có trong danh sách trúng tuyển!' });
+      } else {
+        Swal.fire({ icon: 'success', title: 'ĐĂNG KÝ THÀNH CÔNG!', text: 'Mã hồ sơ: ' + data[0].ma_ho_so });
+        document.getElementById('regForm').reset();
+      }
+    }
+
+    // Tra cứu
+    async function performSearch() {
+      const q = document.getElementById('lookupInput').value.trim();
+      if (q.length !== 12) return;
+      const { data } = await window.db.from('danh_sach_dang_ky').select('*').eq('cccd', q).maybeSingle();
+      const resDiv = document.getElementById('lookupResult');
+      resDiv.classList.remove('hidden');
+      if (data) {
+        resDiv.innerHTML = `
+          <div class="p-3 bg-slate-50 rounded-lg text-left">
+            <div>Mã HS: <strong class="text-red-600">${data.ma_ho_so}</strong></div>
+            <div>Họ tên: <strong>${data.ho_ten}</strong></div>
+            <div>Trạng thái: <span class="text-emerald-600 font-bold">${data.trang_thai}</span></div>
+          </div>`;
+      } else {
+        resDiv.innerHTML = `<div class="p-2 text-red-600">Không tìm thấy hồ sơ!</div>`;
+      }
+    }
+
+    // Admin login
+    async function handleAdminLogin() {
+      const u = document.getElementById('adminUser').value.trim();
+      const p = document.getElementById('adminPass').value.trim();
+      const { data } = await window.db.from('tai_khoan_admin').select('*').eq('username', u).eq('password', p).maybeSingle();
+      if (data) {
+        document.getElementById('adminLoginView').classList.add('hidden');
+        document.getElementById('adminDashView').classList.remove('hidden');
+        loadAdminTable();
+      } else {
+        Swal.fire({ icon: 'error', text: 'Sai tên đăng nhập hoặc mật khẩu!' });
+      }
+    }
+
+    async function loadAdminTable() {
+      const { data: records } = await window.db.from('danh_sach_dang_ky').select('*').not('loai_phong', 'is', null);
+      const tbody = document.getElementById('adminTableBody');
+      tbody.innerHTML = '';
+      (records || []).forEach(r => {
+        tbody.innerHTML += `
+          <tr class="hover:bg-slate-50">
+            <td class="p-2 font-bold text-red-600">${r.ma_ho_so}</td>
+            <td class="p-2"><strong>${r.ho_ten}</strong></td>
+            <td class="p-2">${r.nganh_hoc || ''}</td>
+            <td class="p-2">${r.loai_phong || ''}</td>
+            <td class="p-2"><span class="px-2 py-0.5 bg-amber-100 text-amber-800 rounded font-bold">${r.trang_thai}</span></td>
+            <td class="p-2 text-center space-x-1">
+              <button onclick="approveRecord('${r.ma_ho_so}', 'Đã duyệt')" class="px-2 py-1 bg-emerald-600 text-white rounded font-bold text-[10px]">Duyệt</button>
+              <button onclick="approveRecord('${r.ma_ho_so}', 'Từ chối')" class="px-2 py-1 bg-red-600 text-white rounded font-bold text-[10px]">Từ chối</button>
+            </td>
+          </tr>`;
+      });
+    }
+
+    async function approveRecord(maHoSo, status) {
+      await window.db.from('danh_sach_dang_ky').update({ trang_thai: status }).eq('ma_ho_so', maHoSo);
+      Swal.fire('Thành công', `Đã cập nhật: ${status}`, 'success');
+      loadAdminTable();
+    }
+  </script>
+</body>
+</html>
