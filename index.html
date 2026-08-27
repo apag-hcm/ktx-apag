@@ -3,29 +3,82 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cổng Đăng Ký Xét Duyệt Ký Túc Xá 2026 | APAG TP. Hồ Chí Minh</title>
+  <title>Cổng Đăng Ký Xét Duyệt Ký Túc Xá Đại Học Chính Quy 2026 | APAG TP. Hồ Chí Minh</title>
+  
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="config.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              dark: '#0c2556',
+              blue: '#1e3a8a',
+              gold: '#d97706',
+              goldLight: '#f59e0b',
+              accent: '#2563eb'
+            }
+          },
+          fontFamily: { sans: ['Inter', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+
   <style>
+    .hero-gradient { background: linear-gradient(135deg, #0c2556 0%, #1e3a8a 100%); }
+    .custom-shadow { box-shadow: 0 10px 25px -5px rgba(12, 37, 86, 0.1), 0 8px 10px -6px rgba(12, 37, 86, 0.1); }
+    #printA4Template { display: none; }
+
+    @page { size: A4 portrait; margin: 0 !important; }
     @media print {
-      body * { visibility: hidden; }
-      #printA4Template, #printA4Template * { visibility: visible; }
-      #printA4Template { position: absolute; left: 0; top: 0; width: 100%; }
+      html, body {
+        background: white !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 210mm !important;
+        height: 297mm !important;
+      }
+      body > *:not(#printA4Template) { display: none !important; }
+      #printA4Template {
+        display: block !important;
+        width: 210mm !important;
+        height: 297mm !important;
+        margin: 0 !important;
+        padding: 20mm 15mm 20mm 25mm !important;
+        background: white !important;
+        color: black !important;
+        font-family: 'Times New Roman', Times, serif !important;
+        box-sizing: border-box !important;
+      }
     }
   </style>
 </head>
-<body class="bg-slate-100 text-slate-800 font-sans min-h-screen flex flex-col justify-between">
+<body class="bg-[#f1f5f9] text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between">
 
   <!-- TOP BAR -->
-  <div class="bg-blue-950 text-white text-xs py-2 px-4 border-b border-white/10">
-    <div class="max-w-7xl mx-auto flex justify-between items-center">
-      <span>Hệ thống tiếp nhận hồ sơ KTX 2026 - Phân hiệu TP. Hồ Chí Minh</span>
-      <div class="space-x-4">
-        <button onclick="openLookupModal()" class="text-amber-400 font-semibold"><i class="fa-solid fa-search"></i> Tra cứu & In đơn</button>
-        <button onclick="openAdminModal()" class="text-slate-300 font-semibold"><i class="fa-solid fa-lock"></i> Cổng Quản trị</button>
+  <div class="bg-brand-dark text-white text-xs py-2 px-4 border-b border-white/10">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+      <div class="flex items-center space-x-2">
+        <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span class="font-medium tracking-wide">Hệ thống tiếp nhận hồ sơ KTX 2026 - Phân hiệu TP. Hồ Chí Minh</span>
+      </div>
+      <div class="flex items-center space-x-4">
+        <button onclick="openLookupModal()" class="hover:text-amber-300 transition flex items-center gap-1 font-semibold text-amber-400">
+          <i class="fa-solid fa-magnifying-glass"></i> Tra cứu kết quả & In đơn
+        </button>
+        <span class="text-white/30">|</span>
+        <button onclick="openAdminModal()" class="hover:text-amber-300 transition flex items-center gap-1 font-semibold text-slate-300">
+          <i class="fa-solid fa-lock"></i> Cổng Quản trị / Duyệt đơn
+        </button>
       </div>
     </div>
   </div>
@@ -33,231 +86,865 @@
   <!-- HEADER -->
   <header class="bg-white shadow-sm sticky top-0 z-40">
     <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-      <div>
-        <h2 class="text-xs font-bold text-blue-950 uppercase">HỌC VIỆN HÀNH CHÍNH VÀ QUẢN TRỊ CÔNG</h2>
-        <h1 class="text-sm font-extrabold text-blue-900 uppercase">PHÂN HIỆU TẠI THÀNH PHỐ HỒ CHÍ MINH</h1>
+      <div class="flex items-center space-x-3">
+        <img src="https://lh3.googleusercontent.com/d/1dEflBL-GkyaMNltl4Bv8IKVELD74DSRB" alt="Logo APAG" class="h-12 w-12 object-contain rounded-full bg-white p-0.5 border border-slate-200 shadow-sm" referrerpolicy="no-referrer">
+        <div>
+          <h2 class="text-xs md:text-sm font-bold text-brand-dark uppercase tracking-wider leading-tight">HỌC VIỆN HÀNH CHÍNH VÀ QUẢN TRỊ CÔNG</h2>
+          <h1 class="text-sm md:text-base font-extrabold text-brand-blue uppercase leading-tight">PHÂN HIỆU TẠI THÀNH PHỐ HỒ CHÍ MINH</h1>
+          <p class="text-[11px] text-amber-600 font-semibold uppercase tracking-wider">Cổng đăng ký xét duyệt ký túc xá đại học chính quy 2026</p>
+        </div>
       </div>
-      <div class="flex gap-2">
-        <button onclick="openLookupModal()" class="px-3 py-2 text-xs font-semibold text-blue-900 bg-blue-50 border rounded-lg"><i class="fa-solid fa-search"></i> Tra cứu</button>
-        <button onclick="openAdminModal()" class="px-3 py-2 text-xs font-semibold text-white bg-blue-950 rounded-lg"><i class="fa-solid fa-shield-halved text-amber-400"></i> Quản trị</button>
+      <div class="flex items-center space-x-2">
+        <button onclick="openLookupModal()" class="px-3 py-2 text-xs md:text-sm font-semibold text-brand-blue bg-blue-50 hover:bg-blue-100 rounded-lg transition border border-blue-200 flex items-center gap-1.5 shadow-sm">
+          <i class="fa-solid fa-search"></i> Tra cứu & In đơn
+        </button>
+        <button onclick="openAdminModal()" class="px-3 py-2 text-xs md:text-sm font-semibold text-white bg-brand-dark hover:bg-brand-blue rounded-lg transition flex items-center gap-1.5 shadow-sm">
+          <i class="fa-solid fa-shield-halved text-amber-400"></i> Hội đồng duyệt
+        </button>
       </div>
     </div>
   </header>
 
+  <!-- HERO BANNER -->
+  <section class="hero-gradient text-white py-8 md:py-10 px-4">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+      <div class="lg:col-span-7 space-y-4">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-amber-300 text-xs font-semibold">
+          <i class="fa-solid fa-graduation-cap"></i> Khóa tuyển sinh 2026 • Đại học chính quy
+        </div>
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight">
+          Đăng ký xét duyệt <br><span class="text-amber-400 underline decoration-amber-400/40">Ký túc xá</span> trực tuyến
+        </h1>
+        <p class="text-slate-200 text-sm md:text-base max-w-xl leading-relaxed">
+          Học viện hỗ trợ không gian lưu trú an toàn, tiện nghi, chi phí ưu đãi cho tân sinh viên trúng tuyển tại các cơ sở Ký túc xá thuộc Phân hiệu TP. Hồ Chí Minh.
+        </p>
+        <div class="flex flex-wrap gap-3 pt-2">
+          <div class="flex items-center gap-2 bg-white/10 px-3 py-2 rounded-lg border border-white/15 text-xs font-medium">
+            <i class="fa-solid fa-bed text-amber-400 text-base"></i>
+            <span>KTX 3 tầng: <strong class="text-white" id="displayTongChoKTX3">310 chỗ trống</strong></span>
+          </div>
+          <div class="flex items-center gap-2 bg-white/10 px-3 py-2 rounded-lg border border-white/15 text-xs font-medium">
+            <i class="fa-solid fa-calendar-check text-amber-400 text-base"></i>
+            <span>Tiếp sinh: <strong class="text-white" id="lblNgayTiepSinh">25 - 26/8/2026</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-5 space-y-4 w-full">
+        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-4 md:p-5 border border-white/20 shadow-2xl text-white space-y-3">
+          <div class="flex items-center justify-between border-b border-white/15 pb-2.5">
+            <span class="text-xs md:text-sm font-bold uppercase tracking-wider text-amber-300 flex items-center gap-2">
+              <i class="fa-solid fa-layer-group"></i> Bậc ưu tiên xét duyệt KTX 2026
+            </span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px]">
+            <div class="bg-white/5 p-2.5 rounded-lg border border-white/10 sm:col-span-2">
+              <div class="font-bold text-amber-300">Bậc 1: Chính sách xã hội</div>
+              <p class="text-slate-200 text-[10.5px] mt-1">Khuyết tật; con Liệt sĩ, thương binh; hộ khẩu KV1; dân tộc thiểu số; mồ côi; hộ nghèo.</p>
+            </div>
+            <div class="bg-white/5 p-2.5 rounded-lg border border-white/10">
+              <div class="font-bold text-blue-300">Bậc 2: Điểm cao</div>
+              <p class="text-slate-300 text-[10px] mt-1">Điểm xét tuyển ≥ 26.0 hoặc tuyển thẳng.</p>
+            </div>
+            <div class="bg-white/5 p-2.5 rounded-lg border border-white/10">
+              <div class="font-bold text-emerald-300">Bậc 3: Tỉnh xa</div>
+              <p class="text-slate-300 text-[10px] mt-1">Khoảng cách đến trường ≥ 300km.</p>
+            </div>
+            <div class="bg-white/5 p-2.5 rounded-lg border border-white/10 sm:col-span-2">
+              <div class="font-bold text-purple-300">Bậc 4: Tự túc kinh phí</div>
+              <p class="text-slate-300 text-[10px] mt-1">Tân sinh viên có nguyện vọng lưu trú tự nguyện.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-4 md:p-5 border border-white/20 shadow-2xl text-white space-y-3">
+          <div class="flex items-center justify-between border-b border-white/15 pb-2.5">
+            <span class="text-xs md:text-sm font-bold uppercase tracking-wider text-amber-300 flex items-center gap-2">
+              <i class="fa-solid fa-coins"></i> Định mức kinh phí Ký túc xá 2026
+            </span>
+          </div>
+          <div class="space-y-2.5 text-xs">
+            <div class="bg-white/5 p-3 rounded-lg border border-white/10">
+              <div class="flex justify-between items-center">
+                <span class="font-bold text-blue-300"><i class="fa-solid fa-hotel mr-1.5"></i> KTX 3 tầng (Số 10 đường 3/2)</span>
+                <span class="font-bold text-amber-300" id="lblGiaKTX3T">600.000đ / SV / tháng</span>
+              </div>
+            </div>
+            <div class="bg-white/5 p-3 rounded-lg border border-white/10">
+              <div class="flex justify-between items-center">
+                <span class="font-bold text-emerald-300"><i class="fa-solid fa-map-location-dot mr-1.5"></i> KTX 181 (181 Lê Đức Thọ)</span>
+                <span class="font-bold text-amber-300" id="lblGiaKTX181">400.000đ / SV / tháng</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LỊCH TIẾP SINH -->
+  <section class="max-w-7xl mx-auto px-4 -mt-5">
+    <div class="bg-white rounded-2xl p-6 custom-shadow border border-slate-100 space-y-4">
+      <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 flex items-start gap-3">
+        <i class="fa-solid fa-triangle-exclamation text-amber-600 text-lg mt-0.5"></i>
+        <div class="text-xs text-amber-900 leading-relaxed">
+          <strong class="font-bold block text-sm mb-0.5">LƯU Ý QUAN TRỌNG VỀ GIẤY TỜ MINH CHỨNG:</strong>
+          Hệ thống trực tuyến không yêu cầu tải tệp lên mạng. Sau khi đăng ký thành công, sinh viên vui lòng bấm <strong>In đơn A4</strong>, ký tên và mang theo <strong>bản chính hoặc bản sao công chứng giấy tờ ưu tiên</strong> để nộp trực tiếp tại bàn tiếp nhận KTX khi đến làm thủ tục nhập học tại trường!
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between border-b pb-3">
+        <h3 class="text-sm font-bold text-brand-dark uppercase tracking-wider flex items-center gap-2">
+          <i class="fa-solid fa-calendar-days text-amber-500"></i> Lịch nhập học trực tiếp tại số 10 đường 3/2, Phường Hòa Hưng, TP.HCM
+        </h3>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4 text-xs">
+        <div class="p-3.5 rounded-xl bg-blue-50/70 border border-blue-200">
+          <div class="font-bold text-brand-blue text-sm mb-1"><i class="fa-solid fa-clock mr-1"></i> Ngày 25/8/2026</div>
+          <p class="text-slate-700 leading-relaxed font-medium">Ngành: Quản lý nhà nước, Quản trị văn phòng, Quản trị nhân lực, Lưu trữ học, Văn thư Lưu trữ.</p>
+        </div>
+        <div class="p-3.5 rounded-xl bg-amber-50/70 border border-amber-200">
+          <div class="font-bold text-amber-900 text-sm mb-1"><i class="fa-solid fa-clock mr-1"></i> Ngày 26/8/2026</div>
+          <p class="text-slate-700 leading-relaxed font-medium">Ngành: Luật, Kinh tế, Xây dựng Đảng và chính quyền Nhà nước, Thanh tra.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- FORM ĐĂNG KÝ -->
   <main class="max-w-4xl mx-auto px-4 py-8 w-full">
-    <div class="bg-white rounded-2xl p-6 md:p-8 shadow-xl border border-slate-100">
-      <h2 class="text-xl font-bold text-blue-950 mb-6 flex items-center gap-2">
-        <i class="fa-solid fa-file-signature text-amber-500"></i> Phiếu Đăng Ký Xét Duyệt Ký Túc Xá 2026
-      </h2>
+    <div class="bg-white rounded-2xl p-6 md:p-8 custom-shadow border border-slate-100">
+      <div class="border-b border-slate-200 pb-4 mb-6">
+        <h2 class="text-xl md:text-2xl font-bold text-brand-dark flex items-center gap-2">
+          <i class="fa-solid fa-file-signature text-brand-gold"></i> Phiếu Đăng Ký Xét Duyệt Ký Túc Xá Năm Học 2026
+        </h2>
+        <p class="text-xs text-slate-500 mt-1">Phân hiệu Học viện Hành chính và Quản trị công tại Thành phố Hồ Chí Minh</p>
+      </div>
 
       <form id="regForm" onsubmit="handleFormSubmit(event)" class="space-y-6">
-        <div class="bg-blue-50 border border-blue-200 rounded-xl p-4">
-          <label class="block text-xs font-bold text-blue-950 mb-1">Nhập Số CCCD / Định danh (12 số) <span class="text-red-500">*</span></label>
-          <input type="text" id="soCCCD" required pattern="[0-9]{12}" maxlength="12" placeholder="Nhập 12 số CCCD..." class="w-full md:w-1/2 px-3 py-2 text-sm border rounded-lg font-bold bg-white">
-          <p class="text-[11px] text-blue-900 mt-1">💡 Tự động tìm kiếm và nạp thông tin trúng tuyển của tân sinh viên.</p>
+        <div>
+          <!-- NHẬP CCCD LÊN ĐẦU ĐỂ TỰ ĐỘNG NẠP THÔNG TIN -->
+          <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-5">
+            <label class="block text-xs font-bold text-brand-dark mb-1 uppercase tracking-wider">
+              <i class="fa-solid fa-id-card text-brand-blue mr-1"></i> Nhập Số CCCD / Định danh (Đăng nhập hệ thống) <span class="text-red-500">*</span>
+            </label>
+            <input type="text" id="soCCCD" required pattern="[0-9]{12}" maxlength="12" placeholder="Nhập đúng 12 số CCCD..." class="w-full md:w-1/2 px-3 py-2.5 text-sm border border-brand-blue rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none font-bold bg-white">
+            <p class="text-[11px] text-brand-blue mt-1 font-medium">💡 Nhập số CCCD của bạn để hệ thống tự động nhận diện và nạp thông tin trúng tuyển.</p>
+          </div>
+
+          <h3 class="text-xs font-bold text-brand-blue uppercase tracking-wider mb-3 flex items-center gap-2">
+            <span class="w-5 h-5 rounded-full bg-blue-100 text-brand-blue inline-flex items-center justify-center text-xs">1</span>
+            Thông tin cá nhân tân sinh viên
+          </h3>
+          <div class="grid md:grid-cols-3 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Mã Sinh Viên (MSSV)</label>
+              <input type="text" id="displayMSSV" readonly placeholder="Tự động hiển thị..." class="w-full px-3 py-2.5 text-sm border border-slate-200 rounded-lg bg-slate-100 font-bold text-brand-blue">
+            </div>
+            <div class="md:col-span-2">
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Họ và tên <span class="text-red-500">*</span></label>
+              <input type="text" id="hoTen" required placeholder="NGUYỄN VĂN A" class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none uppercase font-semibold">
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-4 mt-3">
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Ngày sinh <span class="text-red-500">*</span></label>
+              <input type="date" id="ngaySinh" required class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Giới tính <span class="text-red-500">*</span></label>
+              <select id="gioiTinh" required class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none bg-white">
+                <option value="">-- Chọn giới tính --</option>
+                <option value="Nam">Nam</option>
+                <option value="Nữ">Nữ</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-4 mt-3">
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Ngày cấp CCCD <span class="text-red-500">*</span></label>
+              <input type="date" id="ngayCapCCCD" required class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Nơi cấp CCCD <span class="text-red-500">*</span></label>
+              <input list="noiCapList" id="noiCapCCCD" required placeholder="Chọn hoặc nhập..." class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none">
+              <datalist id="noiCapList">
+                <option value="Bộ Công an"></option>
+                <option value="Cục Cảnh sát quản lý hành chính về trật tự xã hội"></option>
+              </datalist>
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-4 mt-3">
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">SĐT cá nhân <span class="text-red-500">*</span></label>
+              <input type="tel" id="soDienThoai" required pattern="[0-9]{10}" placeholder="0905xxxxxx" class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none font-semibold">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">SĐT gia đình <span class="text-red-500">*</span></label>
+              <input type="tel" id="soDienThoaiGD" required pattern="[0-9]{10}" placeholder="0913xxxxxx" class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Email liên hệ <span class="text-red-500">*</span></label>
+              <input type="email" id="email" required placeholder="sinhvien@gmail.com" class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none">
+            </div>
+          </div>
+          
+          <div class="mt-4 space-y-3">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Địa chỉ chi tiết (Thôn/Xóm/Số nhà)</label>
+                <input type="text" id="diaChiChiTiet" placeholder="Số 123 đường ABC..." class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none bg-white">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Tỉnh / Thành phố <span class="text-red-500">*</span></label>
+                <input list="tinhThanhList" id="tinhThanhSelect" required onchange="onProvinceChange()" placeholder="Gõ tìm Tỉnh/Thành..." class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none bg-white font-medium">
+                <datalist id="tinhThanhList"></datalist>
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Phường / Xã <span class="text-red-500">*</span></label>
+                <input list="phuongXaList" id="phuongXaSelect" required placeholder="Gõ tìm Phường/Xã..." class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none bg-white font-medium">
+                <datalist id="phuongXaList"></datalist>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-4">
-          <div>
-            <label class="block text-xs font-semibold mb-1">Mã Sinh Viên (MSSV)</label>
-            <input type="text" id="displayMSSV" readonly placeholder="Tự động nạp..." class="w-full px-3 py-2 text-sm border bg-slate-100 font-bold text-blue-900 rounded-lg">
+        <div class="pt-4 border-t border-slate-200">
+          <h3 class="text-xs font-bold text-brand-blue uppercase tracking-wider mb-3 flex items-center gap-2">
+            <span class="w-5 h-5 rounded-full bg-blue-100 text-brand-blue inline-flex items-center justify-center text-xs">2</span>
+            Thông tin trúng tuyển & Nguyện vọng KTX
+          </h3>
+          <div class="grid md:grid-cols-3 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Ngành trúng tuyển <span class="text-red-500">*</span></label>
+              <select id="nganhHoc" required class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none bg-white">
+                <option value="">-- Chọn ngành học --</option>
+                <option value="Quản lý nhà nước">Quản lý nhà nước</option>
+                <option value="Quản trị văn phòng">Quản trị văn phòng</option>
+                <option value="Quản trị nhân lực">Quản trị nhân lực</option>
+                <option value="Lưu trữ học">Lưu trữ học</option>
+                <option value="Chuyên ngành Văn thư Lưu trữ">Chuyên ngành Văn thư Lưu trữ</option>
+                <option value="Luật">Luật</option>
+                <option value="Chuyên ngành Thanh tra">Chuyên ngành Thanh tra</option>
+                <option value="Kinh tế">Kinh tế</option>
+                <option value="Xây dựng Đảng và chính quyền Nhà nước">Xây dựng Đảng và chính quyền Nhà nước</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Điểm xét tuyển <span class="text-red-500">*</span></label>
+              <input type="number" step="0.01" min="0" max="40" id="diemXetTuyen" required placeholder="Ví dụ: 25.5" class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Bậc ưu tiên <span class="text-red-500">*</span></label>
+              <select id="bacUuTien" required class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none bg-white">
+                <option value="">-- Chọn bậc ưu tiên --</option>
+                <option value="Bậc 1: Chính sách xã hội">Bậc 1: Chính sách xã hội</option>
+                <option value="Bậc 2: Điểm cao hoặc Tuyển thẳng">Bậc 2: Điểm cao / Tuyển thẳng</option>
+                <option value="Bậc 3: Tỉnh xa (≥ 300km)">Bậc 3: Tỉnh xa (≥ 300km)</option>
+                <option value="Bậc 4: Tự túc kinh phí">Bậc 4: Tự túc kinh phí</option>
+              </select>
+            </div>
           </div>
-          <div class="md:col-span-2">
-            <label class="block text-xs font-semibold mb-1">Họ và tên <span class="text-red-500">*</span></label>
-            <input type="text" id="hoTen" required placeholder="NGUYỄN VĂN A" class="w-full px-3 py-2 text-sm border rounded-lg uppercase font-semibold">
+
+          <div class="grid md:grid-cols-1 gap-4 mt-3">
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Khu Ký túc xá đăng ký <span class="text-red-500">*</span></label>
+              <select id="loaiPhong" required class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none bg-white font-medium">
+                <option value="">-- Chọn cơ sở KTX đăng ký --</option>
+                <option value="KTX 3 tầng (600.000đ/SV/tháng)">KTX 3 tầng (600.000đ/SV/tháng)</option>
+                <option value="KTX 181 Lê Đức Thọ (400.000đ/SV/tháng)">KTX 181 Lê Đức Thọ (400.000đ/SV/tháng)</option>
+              </select>
+            </div>
           </div>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-4">
-          <div>
-            <label class="block text-xs font-semibold mb-1">Ngày sinh <span class="text-red-500">*</span></label>
-            <input type="date" id="ngaySinh" required class="w-full px-3 py-2 text-sm border rounded-lg">
-          </div>
-          <div>
-            <label class="block text-xs font-semibold mb-1">Giới tính <span class="text-red-500">*</span></label>
-            <select id="gioiTinh" required class="w-full px-3 py-2 text-sm border rounded-lg bg-white">
-              <option value="">-- Chọn --</option>
-              <option value="Nam">Nam</option>
-              <option value="Nữ">Nữ</option>
-            </select>
-          </div>
-          <div>
-            <label class="block text-xs font-semibold mb-1">SĐT cá nhân <span class="text-red-500">*</span></label>
-            <input type="tel" id="soDienThoai" required pattern="[0-9]{10}" placeholder="0905xxxxxx" class="w-full px-3 py-2 text-sm border rounded-lg">
-          </div>
+        <div class="text-center pt-2">
+          <button type="submit" id="btnSubmit" class="w-full md:w-auto px-8 py-3.5 bg-brand-dark hover:bg-brand-blue text-white font-bold rounded-xl transition shadow-lg flex items-center justify-center gap-2 mx-auto">
+            <i class="fa-solid fa-paper-plane"></i> Gửi hồ sơ đăng ký xét duyệt KTX
+          </button>
         </div>
-
-        <div class="grid md:grid-cols-2 gap-4">
-          <div>
-            <label class="block text-xs font-semibold mb-1">Ngành trúng tuyển <span class="text-red-500">*</span></label>
-            <input type="text" id="nganhHoc" required placeholder="Quản lý nhà nước, Luật..." class="w-full px-3 py-2 text-sm border rounded-lg">
-          </div>
-          <div>
-            <label class="block text-xs font-semibold mb-1">Khu Ký túc xá đăng ký <span class="text-red-500">*</span></label>
-            <select id="loaiPhong" required class="w-full px-3 py-2 text-sm border rounded-lg bg-white font-medium">
-              <option value="">-- Chọn cơ sở --</option>
-              <option value="KTX 3 tầng (600.000đ/SV/tháng)">KTX 3 tầng (600.000đ/SV/tháng)</option>
-              <option value="KTX 181 Lê Đức Thọ (400.000đ/SV/tháng)">KTX 181 Lê Đức Thọ (400.000đ/SV/tháng)</option>
-            </select>
-          </div>
-        </div>
-
-        <button type="submit" id="btnSubmit" class="w-full py-3.5 bg-blue-950 text-white font-bold rounded-xl shadow-lg hover:bg-blue-900 transition">
-          <i class="fa-solid fa-paper-plane"></i> Gửi hồ sơ đăng ký xét duyệt KTX
-        </button>
       </form>
     </div>
   </main>
 
-  <!-- MODAL TRA CỨU -->
-  <div id="lookupModal" class="fixed inset-0 bg-black/60 hidden flex items-center justify-center p-4 z-50">
-    <div class="bg-white rounded-2xl max-w-md w-full p-6 space-y-4">
-      <div class="flex justify-between items-center">
-        <h3 class="font-bold text-blue-950">Tra cứu hồ sơ KTX</h3>
-        <button onclick="closeLookupModal()" class="text-slate-400 text-lg">&times;</button>
+  <!-- FOOTER -->
+  <footer class="bg-slate-900 text-slate-400 text-xs py-10 px-4 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto text-center space-y-2">
+      <div class="text-white font-bold">PHÂN HIỆU HỌC VIỆN HÀNH CHÍNH VÀ QUẢN TRỊ CÔNG TẠI THÀNH PHỐ HỒ CHÍ MINH</div>
+      <p>Cơ sở chính: Số 10, đường 3/2, Phường Hòa Hưng, TP. Hồ Chí Minh • Hotline KTX: <span id="lblHotline">0905.865.919</span></p>
+      <div class="text-slate-500 pt-2">© 2026 APAG Phân hiệu TP. Hồ Chí Minh. All Rights Reserved.</div>
+    </div>
+  </footer>
+
+  <!-- MODAL TRA CỨU & IN ĐƠN -->
+  <div id="lookupModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl relative">
+      <button onclick="closeLookupModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-lg"><i class="fa-solid fa-xmark"></i></button>
+      <div class="text-center mb-5">
+        <div class="w-12 h-12 rounded-full bg-blue-50 text-brand-blue mx-auto flex items-center justify-center text-xl mb-2"><i class="fa-solid fa-id-card"></i></div>
+        <h3 class="text-lg font-bold text-brand-dark">Tra cứu hồ sơ & In đơn KTX</h3>
+        <p class="text-xs text-slate-500">Nhập <strong>Số CCCD (12 số)</strong> để tra cứu bảo mật</p>
       </div>
-      <input type="text" id="lookupInput" maxlength="12" placeholder="Nhập 12 số CCCD..." class="w-full px-3 py-2 border rounded-lg font-semibold">
-      <button onclick="performSearch()" class="w-full py-2 bg-blue-900 text-white font-semibold rounded-lg"><i class="fa-solid fa-search"></i> Tra cứu</button>
-      <div id="lookupResult" class="hidden border-t pt-3 text-xs space-y-2"></div>
+      <div class="space-y-3">
+        <input type="text" id="lookupInput" maxlength="12" pattern="[0-9]{12}" placeholder="Nhập 12 số CCCD..." class="w-full px-3 py-2.5 text-sm border rounded-lg font-semibold">
+        <button onclick="performSearch()" id="btnSearch" class="w-full py-2.5 bg-brand-blue text-white font-semibold rounded-lg transition"><i class="fa-solid fa-search"></i> Tra cứu bảo mật</button>
+      </div>
+      <div id="lookupResult" class="mt-5 hidden border-t pt-4 text-xs space-y-2"></div>
     </div>
   </div>
 
-  <!-- MODAL ADMIN -->
-  <div id="adminModal" class="fixed inset-0 bg-black/60 hidden flex items-center justify-center p-4 z-50">
-    <div class="bg-white rounded-2xl max-w-4xl w-full p-6 space-y-4 max-h-[90vh] overflow-y-auto">
-      <div class="flex justify-between items-center border-b pb-2">
-        <h3 class="font-bold text-blue-950">Quản trị duyệt đơn KTX</h3>
-        <button onclick="closeAdminModal()" class="text-slate-400 text-lg">&times;</button>
+  <!-- MODAL QUẢN TRỊ ADMIN -->
+  <div id="adminModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-2 md:p-6">
+    <div class="bg-white rounded-2xl max-w-6xl w-full h-[96vh] md:h-[92vh] flex flex-col p-3 md:p-5 shadow-2xl relative overflow-hidden">
+      <button onclick="closeAdminModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-lg z-10"><i class="fa-solid fa-xmark"></i></button>
+
+      <div id="adminLoginView" class="max-w-sm mx-auto my-auto text-center space-y-4 py-8">
+        <div class="w-14 h-14 rounded-full bg-brand-dark text-amber-400 mx-auto flex items-center justify-center text-2xl shadow"><i class="fa-solid fa-shield-halved"></i></div>
+        <div>
+          <h3 class="text-lg font-bold text-brand-dark">Hội Đồng Xét Duyệt KTX 2026</h3>
+          <p class="text-xs text-slate-500">Đăng nhập tài khoản cán bộ</p>
+        </div>
+        <input type="text" id="adminUser" placeholder="Tên đăng nhập..." class="w-full px-3 py-2.5 text-sm border rounded-lg">
+        <input type="password" id="adminPass" placeholder="Mật khẩu" class="w-full px-3 py-2.5 text-sm border rounded-lg">
+        <button onclick="handleAdminLogin()" class="w-full py-2.5 bg-brand-dark text-white text-sm font-semibold rounded-lg shadow">Đăng nhập</button>
       </div>
-      <div id="adminLoginView" class="max-w-xs mx-auto space-y-3 py-4 text-center">
-        <input type="text" id="adminUser" placeholder="Tên đăng nhập" class="w-full px-3 py-2 border rounded-lg text-sm">
-        <input type="password" id="adminPass" placeholder="Mật khẩu" class="w-full px-3 py-2 border rounded-lg text-sm">
-        <button onclick="handleAdminLogin()" class="w-full py-2 bg-blue-950 text-white text-sm font-semibold rounded-lg">Đăng nhập</button>
+
+      <div id="adminDashView" class="hidden flex flex-col h-full space-y-3 overflow-y-auto md:overflow-hidden pb-10">
+        <div class="flex flex-wrap justify-between items-center pb-2 border-b gap-2 flex-shrink-0">
+          <div class="flex items-center space-x-2">
+            <button onclick="switchAdminTab('dashboard')" id="adminTabBtnDash" class="px-3 py-1.5 rounded-lg font-bold text-xs bg-brand-dark text-white transition">Quản lý & Duyệt đơn</button>
+            <button onclick="switchAdminTab('settings')" id="adminTabBtnSettings" class="px-3 py-1.5 rounded-lg font-bold text-xs bg-slate-200 text-slate-700 hover:bg-slate-300 transition"><i class="fa-solid fa-sliders mr-1"></i> Cài đặt & Cấu hình</button>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="loadAdminData()" class="px-3 py-1.5 bg-slate-100 text-slate-700 text-xs font-semibold rounded-lg"><i class="fa-solid fa-rotate-right"></i> Làm mới</button>
+            <button onclick="logoutAdmin()" class="px-3 py-1.5 bg-red-50 text-red-600 text-xs font-semibold rounded-lg">Đăng xuất</button>
+          </div>
+        </div>
+
+        <!-- TAB DASHBOARD -->
+        <div id="adminTabContentDash" class="flex flex-col h-full space-y-3 overflow-y-auto">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 flex-shrink-0">
+            <div class="bg-gradient-to-br from-blue-900 to-indigo-950 p-3 rounded-xl text-white shadow-sm space-y-1">
+              <div class="text-xs">Quỹ chỗ KTX: <strong class="text-amber-300" id="kpiOccupancyPct">0%</strong></div>
+              <div class="text-xl font-extrabold" id="kpiApprovedSlots">0 / 310 chỗ</div>
+            </div>
+            <div class="bg-gradient-to-br from-slate-900 to-slate-950 p-3 rounded-xl text-white shadow-sm space-y-1">
+              <div class="text-xs">SV đã thực tế đăng ký KTX</div>
+              <div class="text-xl font-extrabold text-amber-400" id="kpiRegisteredCount">0 sinh viên</div>
+            </div>
+            <div class="bg-gradient-to-br from-emerald-950 to-slate-950 p-3 rounded-xl text-white shadow-sm space-y-1">
+              <div class="text-xs">Diện ưu tiên (Bậc 1 + 2)</div>
+              <div class="text-xl font-extrabold text-emerald-400" id="kpiPolicyCount">0 suất</div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 flex-shrink-0 text-xs">
+            <div class="bg-slate-50 p-3 rounded-xl border space-y-1">
+              <div class="font-bold pb-1 border-b">Hồ sơ theo Bậc ưu tiên</div>
+              <div class="grid grid-cols-2 gap-2 pt-1">
+                <div class="bg-white p-2 rounded border flex justify-between"><span>Bậc 1:</span><strong id="statTotalBac1">0</strong></div>
+                <div class="bg-white p-2 rounded border flex justify-between"><span>Bậc 2:</span><strong id="statTotalBac2">0</strong></div>
+                <div class="bg-white p-2 rounded border flex justify-between"><span>Bậc 3:</span><strong id="statTotalBac3">0</strong></div>
+                <div class="bg-white p-2 rounded border flex justify-between"><span>Bậc 4:</span><strong id="statTotalBac4">0</strong></div>
+              </div>
+            </div>
+            <div class="bg-slate-50 p-3 rounded-xl border space-y-1">
+              <div class="font-bold pb-1 border-b">Hồ sơ theo Ngành trúng tuyển</div>
+              <div id="statNganhContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-1.5 pt-1 text-[11px]"></div>
+            </div>
+          </div>
+
+          <div class="flex-1 min-h-[250px] border rounded-xl bg-white overflow-y-auto">
+            <table class="w-full text-left text-xs border-collapse">
+              <thead class="bg-slate-100 uppercase font-bold sticky top-0 border-b z-10">
+                <tr><th class="p-3">Mã HS</th><th class="p-3">Họ Tên / MSSV</th><th class="p-3">Ngành</th><th class="p-3">Ưu Tiên</th><th class="p-3">Phòng</th><th class="p-3">Trạng Thái</th><th class="p-3 text-center">Thao Tác</th></tr>
+              </thead>
+              <tbody id="adminTableBody" class="divide-y bg-white"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- TAB SETTINGS -->
+        <div id="adminTabContentSettings" class="hidden flex flex-col h-full space-y-4 overflow-y-auto p-2 text-xs">
+          <div class="bg-slate-50 border rounded-xl p-4 space-y-3">
+            <div class="font-bold text-sm text-brand-dark"><i class="fa-solid fa-sliders mr-1"></i> Cấu hình thông tin hệ thống</div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3" id="configEditorContainer"></div>
+            <button onclick="saveSystemConfigs()" class="px-5 py-2 bg-brand-dark hover:bg-brand-blue text-white font-bold rounded-lg shadow">Lưu thay đổi cấu hình</button>
+          </div>
+        </div>
       </div>
-      <div id="adminDashView" class="hidden space-y-4">
-        <table class="w-full text-left text-xs border-collapse">
-          <thead class="bg-slate-100 border-b">
-            <tr><th class="p-2">Mã HS</th><th class="p-2">Họ Tên</th><th class="p-2">Ngành</th><th class="p-2">Cơ sở</th><th class="p-2">Trạng thái</th><th class="p-2 text-center">Thao tác</th></tr>
-          </thead>
-          <tbody id="adminTableBody" class="divide-y"></tbody>
+    </div>
+  </div>
+
+  <!-- TEMPLATE IN ĐƠN A4 PHÁP LÝ CHUẨN -->
+  <div id="printA4Template">
+    <div style="font-family: 'Times New Roman', Times, serif; color: black; line-height: 1.45; font-size: 13pt; box-sizing: border-box;">
+      
+      <!-- 1. TIÊU NGỮ & ĐƠN VỊ BAN HÀNH -->
+      <table style="width: 100%; border-collapse: collapse; margin-left: -10mm; width: calc(100% + 10mm); margin-bottom: 6px;">
+        <tr>
+          <td style="width: 48%; text-align: center; vertical-align: top; padding-right: 5px;">
+            <div style="font-size: 13pt; font-family: 'Times New Roman', Times, serif; line-height: 1.25; color: black;">
+              HỌC VIỆN HÀNH CHÍNH<br>VÀ QUẢN TRỊ CÔNG
+            </div>
+            <div style="font-size: 13pt; font-weight: bold; font-family: 'Times New Roman', Times, serif; line-height: 1.25; margin-top: 2px; color: black;">
+              PHÂN HIỆU HỌC VIỆN<br>HÀNH CHÍNH VÀ QUẢN TRỊ CÔNG<br>TẠI THÀNH PHỐ HỒ CHÍ MINH
+            </div>
+            <div style="font-size: 12pt; font-weight: bold; margin-top: 1px; color: black;">*</div>
+          </td>
+          <td style="width: 52%; text-align: center; vertical-align: top; padding-left: 5px;">
+            <div style="font-size: 14pt; font-weight: bold; font-family: 'Times New Roman', Times, serif; color: black; line-height: 1.2;">
+              ĐẢNG CỘNG SẢN VIỆT NAM
+            </div>
+            <div style="width: 250px; border-bottom: 1.5px solid black; margin: 3px auto 5px auto;"></div>
+            <div style="font-size: 13pt; font-style: italic; font-family: 'Times New Roman', Times, serif; color: black;">
+              TP. Hồ Chí Minh, ngày <span id="printNgayHienTai">25</span> tháng <span id="printThangHienTai">08</span> năm <span id="printNamHienTai">2026</span>
+            </div>
+          </td>
+        </tr>
+      </table>
+
+      <!-- 2. TIÊU ĐỀ ĐƠN -->
+      <div style="text-align: center; margin: 6px 0 8px 0;">
+        <h2 style="font-size: 14.5pt; font-weight: bold; text-transform: uppercase; margin: 0;">ĐƠN ĐĂNG KÝ Ở KÝ TÚC XÁ</h2>
+        <div style="font-size: 10.5pt; font-style: italic; margin-top: 2px;">(Mã tiếp nhận trực tuyến: <strong id="printMaHoSo" style="font-size: 11.5pt; color: black;">KTX26-XXXX</strong>)</div>
+      </div>
+
+      <!-- 3. KÍNH GỬI -->
+      <div style="font-size: 12pt; margin-bottom: 6px; line-height: 1.35;">
+        <table style="width: 100%; border-collapse: collapse;">
+          <tr>
+            <td style="width: 80px; vertical-align: top; font-weight: bold;">Kính gửi:</td>
+            <td style="vertical-align: top;">
+              - Ban Giám đốc Phân hiệu Học viện Hành chính và Quản trị công tại Thành phố Hồ Chí Minh;<br>
+              - Phòng Quản trị;
+            </td>
+          </tr>
         </table>
       </div>
+
+      <!-- 4. THÔNG TIN CÁ NHÂN SINH VIÊN -->
+      <div style="font-size: 12pt; line-height: 1.55; text-align: justify;">
+        <div>Tôi tên: <strong id="printHoTen" style="text-transform: uppercase;">NGUYỄN VĂN A</strong></div>
+        
+        <table style="width: 100%; border-collapse: collapse;">
+          <tr>
+            <td style="width: 50%;">Mã sinh viên (MSSV): <strong id="printMSSV"></strong></td>
+            <td style="width: 50%;">Giới tính: <span id="printGioiTinh">Nam</span></td>
+          </tr>
+        </table>
+
+        <div>Ngày sinh: <span id="printNgaySinh">15/08/2008</span></div>
+        <div>Ngành học: <strong id="printNganh">Quản lý nhà nước</strong></div>
+
+        <table style="width: 100%; border-collapse: collapse;">
+          <tr>
+            <td style="width: 45%;">Số CCCD: <strong id="printCCCD">048204xxxxxx</strong></td>
+            <td style="width: 30%;">Ngày cấp: <span id="printNgayCap">10/05/2023</span></td>
+            <td style="width: 25%;">Nơi cấp: <span id="printNoiCap">C06 BCA</span></td>
+          </tr>
+        </table>
+
+        <div>Hộ khẩu thường trú: <span id="printDiaChi">Xã Trà Mai, Tỉnh Quảng Nam</span></div>
+
+        <table style="width: 100%; border-collapse: collapse;">
+          <tr>
+            <td style="width: 50%;">Số điện thoại cá nhân: <strong id="printSDT">0905xxxxxx</strong></td>
+            <td style="width: 50%;">Số điện thoại gia đình: <span id="printSDTGD">0913xxxxxx</span></td>
+          </tr>
+        </table>
+
+        <div>Khu Ký túc xá đăng ký: <strong id="printLoaiPhong">KTX 3 tầng (Số 10 đường 3/2)</strong></div>
+        <div style="margin-top: 2px;">Bậc ưu tiên xét duyệt KTX: <span id="printBacUT" style="font-style: italic;">Bậc 1: Chính sách xã hội</span></div>
+        
+        <p style="margin-top: 6px; text-indent: 25px; text-align: justify; line-height: 1.4;">
+          Tôi làm đơn này được đăng ký ở tại Ký túc xá để tiện sinh hoạt và học tập. Tôi xin cam kết ở đúng số phòng - số giường đã được xếp, thực hiện nghiêm túc nội quy Ký túc xá, thanh toán đầy đủ các khoản phí và trả phòng đúng thời gian quy định. Em xin mang theo giấy tờ minh chứng diện ưu tiên bản chính/bản sao công chứng để nộp trực tiếp khi làm thủ tục nhập học.
+        </p>
+        
+        <div style="text-align: left; margin-top: 2px;">Trân trọng.</div>
+      </div>
+
+      <!-- Chữ ký xác nhận -->
+      <table style="width: 100%; border-collapse: collapse; margin-top: 12px;">
+        <tr>
+          <td style="width: 50%; text-align: center; vertical-align: top; font-size: 11.5pt;">
+            <div style="font-weight: bold; text-transform: uppercase;">XÁC NHẬN CỦA HỘI ĐỒNG KTX</div>
+            <div style="font-style: italic; font-size: 10pt;">(Ký, ghi rõ họ tên)</div>
+            <div style="height: 85px;"></div>
+          </td>
+          <td style="width: 50%; text-align: center; vertical-align: top; font-size: 11.5pt;">
+            <div style="font-weight: bold; text-transform: uppercase;">Người làm đơn</div>
+            <div style="font-style: italic; font-size: 10pt;">(Ký, ghi rõ họ tên)</div>
+            <div style="height: 85px;"></div>
+            <div style="font-weight: bold; text-transform: uppercase;" id="printSignHoTen">NGUYỄN VĂN A</div>
+          </td>
+        </tr>
+      </table>
+
+      <div style="margin-top: 12px; border-top: 1px dashed #777; padding-top: 3px; font-size: 8.5pt; font-style: italic; color: #444;">
+        * Thí sinh in đơn này khổ A4 và nộp kèm bản cứng giấy tờ minh chứng diện ưu tiên khi làm thủ tục nhập học trực tiếp tại số 10 đường 3/2 vào ngày 25 - 26/8/2026.
+      </div>
     </div>
   </div>
 
+  <!-- JAVASCRIPT LOGIC 100% SUPABASE INTEGRATION -->
   <script>
+    let systemConfigs = {};
+
+    window.addEventListener('DOMContentLoaded', () => {
+      loadProvinces();
+      loadLiveConfig();
+      initEvents();
+    });
+
+    // 1. TẢI CẤU HÌNH ĐỘNG TỪ SUPABASE
+    async function loadLiveConfig() {
+      try {
+        const { data, error } = await window.db.from('cau_hinh').select('*');
+        if (data && data.length > 0) {
+          data.forEach(item => { systemConfigs[item.key] = item.value; });
+          if (systemConfigs.TONG_QUY_PHONG) document.getElementById('displayTongChoKTX3').innerText = systemConfigs.TONG_QUY_PHONG + ' chỗ trống';
+          if (systemConfigs.NGAY_TIEP_SINH) document.getElementById('lblNgayTiepSinh').innerText = systemConfigs.NGAY_TIEP_SINH;
+          if (systemConfigs.GIA_KTX_3T) document.getElementById('lblGiaKTX3T').innerText = systemConfigs.GIA_KTX_3T;
+          if (systemConfigs.GIA_KTX_181) document.getElementById('lblGiaKTX181').innerText = systemConfigs.GIA_KTX_181;
+          if (systemConfigs.HOTLINE_KTX) document.getElementById('lblHotline').innerText = systemConfigs.HOTLINE_KTX;
+        }
+      } catch (err) { console.error('Error loading config:', err); }
+    }
+
+    // 2. TỈNH/THÀNH VÀ PHƯỜNG/XÃ DỰ PHÒNG
+    const administrativeData = {
+      "Thành phố Hồ Chí Minh": ["Phường Bến Thành", "Phường Sài Gòn", "Phường Tân Định", "Phường Hòa Hưng", "Phường Gò Vấp", "Phường Bình Thạnh", "Phường Tân Bình", "Phường Thủ Đức"],
+      "Thành phố Hà Nội": ["Phường Ba Đình", "Phường Hoàn Kiếm", "Phường Đống Đa", "Phường Cầu Giấy", "Phường Hai Bà Trưng", "Phường Thanh Xuân"],
+      "Thành phố Đà Nẵng": ["Phường Hải Châu", "Phường Thanh Khê", "Phường Sơn Trà", "Phường Ngũ Hành Sơn", "Phường Cẩm Lệ", "Phường Liên Chiểu"],
+      "Thành phố Cần Thơ": ["Phường Ninh Kiều", "Phường Bình Thủy", "Phường Cái Răng", "Phường Ô Môn", "Phường Thốt Nốt"],
+      "Tỉnh Đồng Tháp": ["Phường Cao Lãnh", "Phường Sa Đéc", "Phường Hồng Ngự", "Xã Lấp Vò", "Xã Lai Vung", "Xã Tháp Mười"]
+    };
+
+    function loadProvinces() {
+      const datalist = document.getElementById('tinhThanhList');
+      if (!datalist) return;
+      datalist.innerHTML = '';
+      Object.keys(administrativeData).sort().forEach(p => {
+        const opt = document.createElement('option'); opt.value = p; datalist.appendChild(opt);
+      });
+    }
+
+    function onProvinceChange() {
+      const pName = document.getElementById('tinhThanhSelect').value;
+      const wardListEl = document.getElementById('phuongXaList');
+      wardListEl.innerHTML = '';
+      (administrativeData[pName] || []).forEach(w => {
+        const opt = document.createElement('option'); opt.value = w; wardListEl.appendChild(opt);
+      });
+    }
+
+    // 3. TỰ ĐỘNG NHẬN DIỆN CCCD VÀ NẠP DỮ LIỆU
+    function initEvents() {
+      const cccdInput = document.getElementById('soCCCD');
+      if (cccdInput) {
+        cccdInput.addEventListener('blur', async function() {
+          const cccdVal = this.value.trim();
+          if (cccdVal.length === 12) {
+            Swal.fire({ title: 'Đang kiểm tra CSDL...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+            const { data, error } = await window.db.from('danh_sach_dang_ky').select('*').eq('cccd', cccdVal).maybeSingle();
+            Swal.close();
+            if (data) {
+              Swal.fire({ icon: 'success', title: 'Xác thực thành công!', text: `Đã nạp thông tin sinh viên: ${data.ho_ten}`, timer: 1800, showConfirmButton: false });
+              document.getElementById('displayMSSV').value = data.mssv || '';
+              document.getElementById('hoTen').value = data.ho_ten || '';
+              if (data.ngay_sinh) document.getElementById('ngaySinh').value = data.ngay_sinh;
+              if (data.gioi_tinh) document.getElementById('gioiTinh').value = data.gioi_tinh;
+              if (data.ngay_cap_cccd) document.getElementById('ngayCapCCCD').value = data.ngay_cap_cccd;
+              if (data.noi_cap_cccd) document.getElementById('noiCapCCCD').value = data.noi_cap_cccd;
+              if (data.sdt) document.getElementById('soDienThoai').value = data.sdt;
+              if (data.sdt_gia_dinh) document.getElementById('soDienThoaiGD').value = data.sdt_gia_dinh;
+              if (data.email) document.getElementById('email').value = data.email;
+              if (data.nganh_hoc) document.getElementById('nganhHoc').value = data.nganh_hoc;
+              if (data.diem) document.getElementById('diemXetTuyen').value = data.diem;
+              if (data.bac_uu_tien) document.getElementById('bacUuTien').value = data.bac_uu_tien;
+              if (data.loai_phong) document.getElementById('loaiPhong').value = data.loai_phong;
+            } else {
+              Swal.fire({ icon: 'error', title: 'Không tìm thấy!', text: 'Số CCCD này chưa có trong danh sách trúng tuyển.' });
+            }
+          }
+        });
+      }
+    }
+
+    // 4. TIẾP NHẬN HOẶC CẬP NHẬT ĐƠN ĐĂNG KÝ
+    let lastRegisteredData = null;
+    async function handleFormSubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById('btnSubmit');
+      btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Đang xử lý...';
+
+      const inputCCCD = document.getElementById('soCCCD').value.trim();
+      const chitiet = document.getElementById('diaChiChiTiet').value.trim();
+      const xa = document.getElementById('phuongXaSelect').value.trim();
+      const tinh = document.getElementById('tinhThanhSelect').value.trim();
+      const fullAddress = (chitiet ? chitiet + ", " : "") + (xa ? xa + ", " : "") + tinh;
+      const nowStr = new Date().toLocaleString('vi-VN');
+
+      const formData = {
+        ho_ten: document.getElementById('hoTen').value.trim().toUpperCase(),
+        gioi_tinh: document.getElementById('gioiTinh').value,
+        ngay_sinh: document.getElementById('ngaySinh').value,
+        ngay_cap_cccd: document.getElementById('ngayCapCCCD').value,
+        noi_cap_cccd: document.getElementById('noiCapCCCD').value,
+        sdt: document.getElementById('soDienThoai').value,
+        sdt_gia_dinh: document.getElementById('soDienThoaiGD').value,
+        email: document.getElementById('email').value,
+        tinh_thanh: fullAddress,
+        nganh_hoc: document.getElementById('nganhHoc').value,
+        diem: parseFloat(document.getElementById('diemXetTuyen').value) || 0,
+        bac_uu_tien: document.getElementById('bacUuTien').value,
+        loai_phong: document.getElementById('loaiPhong').value,
+        minh_chung: 'Xác nhận bản cứng tại trường',
+        trang_thai: 'Chờ duyệt',
+        thoi_gian: nowStr
+      };
+
+      const { data, error } = await window.db.from('danh_sach_dang_ky').update(formData).eq('cccd', inputCCCD).select();
+      btn.disabled = false; btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Gửi hồ sơ đăng ký xét duyệt KTX';
+
+      if (error || !data || data.length === 0) {
+        Swal.fire({ icon: 'error', title: 'Không tìm thấy!', text: `Số CCCD [${inputCCCD}] không tồn tại trong danh sách trúng tuyển!` });
+      } else {
+        const record = data[0];
+        lastRegisteredData = record;
+        Swal.fire({
+          icon: 'success',
+          title: 'ĐĂNG KÝ KTX THÀNH CÔNG!',
+          html: `
+            <div class="text-sm space-y-2">
+              <p>Mã KTX của bạn: <strong class="text-red-600 text-base">${record.ma_ho_so}</strong></p>
+              <p class="text-amber-800 bg-amber-50 p-2 rounded text-xs">⚠️ Vui lòng in đơn đăng ký A4 và mang theo bản cứng minh chứng ưu tiên khi đến nhập học!</p>
+              <button onclick="printA4FormDirect()" class="w-full py-2.5 bg-brand-dark text-white rounded font-bold text-xs mt-2"><i class="fa-solid fa-print"></i> In Đơn Đăng Ký (A4)</button>
+            </div>
+          `,
+          showConfirmButton: false
+        });
+        document.getElementById('regForm').reset();
+        document.getElementById('displayMSSV').value = '';
+      }
+    }
+
+    // 5. TRA CỨU HỒ SƠ
+    let currentLookupData = null;
+    async function performSearch() {
+      const q = document.getElementById('lookupInput').value.trim();
+      if (!q || q.length !== 12) { Swal.fire({ icon: 'warning', text: 'Vui lòng nhập đúng 12 chữ số CCCD!' }); return; }
+
+      const { data, error } = await window.db.from('danh_sach_dang_ky').select('*').eq('cccd', q).maybeSingle();
+      const resDiv = document.getElementById('lookupResult');
+      resDiv.classList.remove('hidden');
+
+      if (data) {
+        currentLookupData = data;
+        resDiv.innerHTML = `
+          <div class="p-3 bg-slate-50 rounded-lg space-y-1 text-left">
+            <div>Mã HS: <strong class="text-red-600">${data.ma_ho_so}</strong></div>
+            <div>Họ tên: <strong>${data.ho_ten}</strong></div>
+            <div>MSSV: <strong>${data.mssv || 'N/A'}</strong></div>
+            <div>Trạng thái: <span class="text-emerald-600 font-bold">${data.trang_thai}</span></div>
+            <button onclick="printA4FormFromLookup()" class="w-full mt-2 py-2 bg-brand-dark text-white rounded font-bold text-xs"><i class="fa-solid fa-print"></i> In Đơn Đăng Ký (A4)</button>
+          </div>
+        `;
+      } else {
+        resDiv.innerHTML = `<div class="p-2 text-red-600">Số CCCD "${q}" không có trong danh sách trúng tuyển!</div>`;
+      }
+    }
+
+    // 6. IN ĐƠN A4
+    function fillAndPrintA4(data) {
+      if (!data) return;
+      document.getElementById('printMaHoSo').innerText = data.ma_ho_so || 'KTX26-XXXX';
+      document.getElementById('printHoTen').innerText = data.ho_ten || '';
+      document.getElementById('printSignHoTen').innerText = data.ho_ten || '';
+      document.getElementById('printMSSV').innerText = data.mssv || '';
+      document.getElementById('printGioiTinh').innerText = data.gioi_tinh || '';
+      document.getElementById('printNgaySinh').innerText = data.ngay_sinh || '';
+      document.getElementById('printCCCD').innerText = data.cccd || '';
+      document.getElementById('printNgayCap').innerText = data.ngay_cap_cccd || '';
+      document.getElementById('printNoiCap').innerText = data.noi_cap_cccd || '';
+      document.getElementById('printSDT').innerText = data.sdt || '';
+      document.getElementById('printSDTGD').innerText = data.sdt_gia_dinh || '';
+      document.getElementById('printDiaChi').innerText = data.tinh_thanh || '';
+      document.getElementById('printNganh').innerText = data.nganh_hoc || '';
+      document.getElementById('printBacUT').innerText = data.bac_uu_tien || '';
+      document.getElementById('printLoaiPhong').innerText = data.loai_phong || '';
+      window.print();
+    }
+
+    function printA4FormFromLookup() { if (currentLookupData) fillAndPrintA4(currentLookupData); }
+    function printA4FormDirect() { if (lastRegisteredData) fillAndPrintA4(lastRegisteredData); }
+
+    // 7. CÁN BỘ QUẢN TRỊ & KPI DASHBOARD
+    let currentAdmin = null;
+
+    async function handleAdminLogin() {
+      const u = document.getElementById('adminUser').value.trim();
+      const p = document.getElementById('adminPass').value.trim();
+      if (!u || !p) return;
+
+      const { data, error } = await window.db.from('tai_khoan_admin').select('*').eq('username', u).eq('password', p).maybeSingle();
+      if (data) {
+        currentAdmin = data;
+        document.getElementById('adminLoginView').classList.add('hidden');
+        document.getElementById('adminDashView').classList.remove('hidden');
+        loadAdminData();
+      } else {
+        Swal.fire({ icon: 'error', title: 'Thất bại', text: 'Sai tên đăng nhập hoặc mật khẩu!' });
+      }
+    }
+
+    async function loadAdminData() {
+      if (!currentAdmin) return;
+      
+      const { data: records, error } = await window.db.from('danh_sach_dang_ky').select('*');
+      let tongQuyCho = parseInt(systemConfigs.TONG_QUY_PHONG || "310", 10);
+      
+      let countApproved = 0, registeredCount = 0;
+      let countBac1 = 0, countBac2 = 0, countBac3 = 0, countBac4 = 0;
+      let totalBac1 = 0, totalBac2 = 0, totalBac3 = 0, totalBac4 = 0;
+      const nganhStats = {};
+      const validList = [];
+
+      (records || []).forEach(r => {
+        const loaiPhong = (r.loai_phong || '').trim();
+        const status = r.trang_thai || 'Chờ duyệt';
+        const bacUT = r.bac_uu_tien || '';
+        const nganh = r.nganh_hoc || 'Khác';
+
+        if (loaiPhong !== '') {
+          registeredCount++;
+          nganhStats[nganh] = (nganhStats[nganh] || 0) + 1;
+          if (bacUT.includes('Bậc 1')) totalBac1++;
+          else if (bacUT.includes('Bậc 2')) totalBac2++;
+          else if (bacUT.includes('Bậc 3')) totalBac3++;
+          else if (bacUT.includes('Bậc 4')) totalBac4++;
+          validList.push(r);
+        }
+
+        if (status === 'Đã duyệt tiếp nhận' || status === 'Đã duyệt') {
+          countApproved++;
+          if (bacUT.includes('Bậc 1')) countBac1++;
+          else if (bacUT.includes('Bậc 2')) countBac2++;
+          else if (bacUT.includes('Bậc 3')) countBac3++;
+          else countBac4++;
+        }
+      });
+
+      const occupancyRate = tongQuyCho > 0 ? ((countApproved / tongQuyCho) * 100).toFixed(1) : 0;
+
+      document.getElementById('kpiOccupancyPct').innerText = occupancyRate + '%';
+      document.getElementById('kpiApprovedSlots').innerText = `${countApproved} / ${tongQuyCho} chỗ`;
+      document.getElementById('kpiRegisteredCount').innerText = `${registeredCount} sinh viên`;
+      document.getElementById('kpiPolicyCount').innerText = `${countBac1 + countBac2} suất`;
+
+      document.getElementById('statTotalBac1').innerText = totalBac1;
+      document.getElementById('statTotalBac2').innerText = totalBac2;
+      document.getElementById('statTotalBac3').innerText = totalBac3;
+      document.getElementById('statTotalBac4').innerText = totalBac4;
+
+      const nContainer = document.getElementById('statNganhContainer');
+      nContainer.innerHTML = '';
+      Object.keys(nganhStats).forEach(n => {
+        nContainer.innerHTML += `<div class="bg-white p-1.5 rounded border flex justify-between"><span>${n}:</span><strong>${nganhStats[n]}</strong></div>`;
+      });
+
+      renderAdminTable(validList);
+      loadSystemConfigEditor();
+    }
+
+    function renderAdminTable(records) {
+      const tbody = document.getElementById('adminTableBody');
+      tbody.innerHTML = '';
+      if (!records || records.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" class="p-6 text-center text-slate-400">Chưa có sinh viên nào đăng ký KTX</td></tr>`;
+        return;
+      }
+      records.forEach(r => {
+        tbody.innerHTML += `
+          <tr class="hover:bg-slate-50">
+            <td class="p-3 font-bold text-red-600">${r.ma_ho_so}</td>
+            <td class="p-3"><strong>${r.ho_ten}</strong><br><span class="text-[10px] text-slate-500">MSSV: ${r.mssv || 'N/A'} - CCCD: ${r.cccd}</span></td>
+            <td class="p-3">${r.nganh_hoc || ''}</td>
+            <td class="p-3">${r.bac_uu_tien || 'Chưa chọn'}</td>
+            <td class="p-3">${r.loai_phong || 'Chưa chọn'}</td>
+            <td class="p-3"><span class="px-2 py-1 bg-amber-100 text-amber-800 rounded font-bold">${r.trang_thai}</span></td>
+            <td class="p-3 text-center space-x-1">
+              <button onclick="approveRecord('${r.ma_ho_so}', 'Đã duyệt tiếp nhận')" class="px-2 py-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded font-bold">Duyệt</button>
+              <button onclick="approveRecord('${r.ma_ho_so}', 'Từ chối')" class="px-2 py-1 bg-red-600 hover:bg-red-700 text-white rounded font-bold">Từ chối</button>
+            </td>
+          </tr>
+        `;
+      });
+    }
+
+    async function approveRecord(maHoSo, newStatus) {
+      Swal.fire({ title: `Xác nhận ${newStatus}?`, input: 'text', inputValue: 'Đã tiếp nhận vào KTX.', showCancelButton: true }).then(async res => {
+        if (res.isConfirmed) {
+          const { error } = await window.db.from('danh_sach_dang_ky').update({ trang_thai: newStatus, ghi_chu: res.value }).eq('ma_ho_so', maHoSo);
+          if (!error) {
+            Swal.fire('Thành công', 'Đã cập nhật trạng thái hồ sơ ' + maHoSo, 'success');
+            loadAdminData();
+          } else {
+            Swal.fire('Lỗi', error.message, 'error');
+          }
+        }
+      });
+    }
+
+    function switchAdminTab(tabName) {
+      if (tabName === 'dashboard') {
+        document.getElementById('adminTabContentDash').classList.remove('hidden');
+        document.getElementById('adminTabContentSettings').classList.add('hidden');
+      } else {
+        document.getElementById('adminTabContentDash').classList.add('hidden');
+        document.getElementById('adminTabContentSettings').classList.remove('hidden');
+      }
+    }
+
+    function loadSystemConfigEditor() {
+      const container = document.getElementById('configEditorContainer');
+      container.innerHTML = '';
+      Object.keys(systemConfigs).forEach(key => {
+        container.innerHTML += `
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">${key}:</label>
+            <input type="text" id="cfg_${key}" value="${systemConfigs[key]}" class="w-full px-3 py-2 border rounded-lg font-semibold bg-white">
+          </div>
+        `;
+      });
+    }
+
+    async function saveSystemConfigs() {
+      const updates = [];
+      Object.keys(systemConfigs).forEach(key => {
+        const val = document.getElementById(`cfg_${key}`)?.value.trim();
+        if (val !== undefined) {
+          updates.push({ key: key, value: val });
+        }
+      });
+
+      for (let item of updates) {
+        await window.db.from('cau_hinh').upsert([item]);
+      }
+
+      Swal.fire('Thành công', 'Đã lưu cài đặt cấu hình hệ thống!', 'success');
+      loadLiveConfig();
+    }
+
     function openLookupModal() { document.getElementById('lookupModal').classList.remove('hidden'); }
     function closeLookupModal() { document.getElementById('lookupModal').classList.add('hidden'); }
     function openAdminModal() { document.getElementById('adminModal').classList.remove('hidden'); }
     function closeAdminModal() { document.getElementById('adminModal').classList.add('hidden'); }
-
-    // Kiểm tra CCCD tự động nạp thông tin từ Supabase
-    document.getElementById('soCCCD').addEventListener('blur', async function() {
-      const cccdVal = this.value.trim();
-      if (cccdVal.length === 12) {
-        Swal.fire({ title: 'Đang kiểm tra CSDL...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
-        const { data } = await window.db.from('danh_sach_dang_ky').select('*').eq('cccd', cccdVal).maybeSingle();
-        Swal.close();
-        if (data) {
-          Swal.fire({ icon: 'success', title: 'Xác thực thành công!', text: `Đã nạp: ${data.ho_ten}`, timer: 1500, showConfirmButton: false });
-          document.getElementById('displayMSSV').value = data.mssv || '';
-          document.getElementById('hoTen').value = data.ho_ten || '';
-          if (data.ngay_sinh) document.getElementById('ngaySinh').value = data.ngay_sinh;
-          if (data.gioi_tinh) document.getElementById('gioiTinh').value = data.gioi_tinh;
-          if (data.sdt) document.getElementById('soDienThoai').value = data.sdt;
-          if (data.nganh_hoc) document.getElementById('nganhHoc').value = data.nganh_hoc;
-        }
-      }
-    });
-
-    // Gửi đơn đăng ký
-    async function handleFormSubmit(e) {
-      e.preventDefault();
-      const btn = document.getElementById('btnSubmit');
-      btn.disabled = true; btn.innerText = 'Đang lưu CSDL...';
-
-      const inputCCCD = document.getElementById('soCCCD').value.trim();
-      const payload = {
-        ho_ten: document.getElementById('hoTen').value.trim().toUpperCase(),
-        ngay_sinh: document.getElementById('ngaySinh').value,
-        gioi_tinh: document.getElementById('gioiTinh').value,
-        sdt: document.getElementById('soDienThoai').value,
-        nganh_hoc: document.getElementById('nganhHoc').value,
-        loai_phong: document.getElementById('loaiPhong').value,
-        trang_thai: 'Chờ duyệt',
-        thoi_gian: new Date().toISOString()
-      };
-
-      const { data, error } = await window.db.from('danh_sach_dang_ky').update(payload).eq('cccd', inputCCCD).select();
-      btn.disabled = false; btn.innerText = 'Gửi hồ sơ đăng ký xét duyệt KTX';
-
-      if (error || !data || data.length === 0) {
-        Swal.fire({ icon: 'error', title: 'Lỗi', text: 'Số CCCD chưa có trong danh sách trúng tuyển!' });
-      } else {
-        Swal.fire({ icon: 'success', title: 'ĐĂNG KÝ THÀNH CÔNG!', text: 'Mã hồ sơ: ' + data[0].ma_ho_so });
-        document.getElementById('regForm').reset();
-      }
-    }
-
-    // Tra cứu
-    async function performSearch() {
-      const q = document.getElementById('lookupInput').value.trim();
-      if (q.length !== 12) return;
-      const { data } = await window.db.from('danh_sach_dang_ky').select('*').eq('cccd', q).maybeSingle();
-      const resDiv = document.getElementById('lookupResult');
-      resDiv.classList.remove('hidden');
-      if (data) {
-        resDiv.innerHTML = `
-          <div class="p-3 bg-slate-50 rounded-lg text-left">
-            <div>Mã HS: <strong class="text-red-600">${data.ma_ho_so}</strong></div>
-            <div>Họ tên: <strong>${data.ho_ten}</strong></div>
-            <div>Trạng thái: <span class="text-emerald-600 font-bold">${data.trang_thai}</span></div>
-          </div>`;
-      } else {
-        resDiv.innerHTML = `<div class="p-2 text-red-600">Không tìm thấy hồ sơ!</div>`;
-      }
-    }
-
-    // Admin login
-    async function handleAdminLogin() {
-      const u = document.getElementById('adminUser').value.trim();
-      const p = document.getElementById('adminPass').value.trim();
-      const { data } = await window.db.from('tai_khoan_admin').select('*').eq('username', u).eq('password', p).maybeSingle();
-      if (data) {
-        document.getElementById('adminLoginView').classList.add('hidden');
-        document.getElementById('adminDashView').classList.remove('hidden');
-        loadAdminTable();
-      } else {
-        Swal.fire({ icon: 'error', text: 'Sai tên đăng nhập hoặc mật khẩu!' });
-      }
-    }
-
-    async function loadAdminTable() {
-      const { data: records } = await window.db.from('danh_sach_dang_ky').select('*').not('loai_phong', 'is', null);
-      const tbody = document.getElementById('adminTableBody');
-      tbody.innerHTML = '';
-      (records || []).forEach(r => {
-        tbody.innerHTML += `
-          <tr class="hover:bg-slate-50">
-            <td class="p-2 font-bold text-red-600">${r.ma_ho_so}</td>
-            <td class="p-2"><strong>${r.ho_ten}</strong></td>
-            <td class="p-2">${r.nganh_hoc || ''}</td>
-            <td class="p-2">${r.loai_phong || ''}</td>
-            <td class="p-2"><span class="px-2 py-0.5 bg-amber-100 text-amber-800 rounded font-bold">${r.trang_thai}</span></td>
-            <td class="p-2 text-center space-x-1">
-              <button onclick="approveRecord('${r.ma_ho_so}', 'Đã duyệt')" class="px-2 py-1 bg-emerald-600 text-white rounded font-bold text-[10px]">Duyệt</button>
-              <button onclick="approveRecord('${r.ma_ho_so}', 'Từ chối')" class="px-2 py-1 bg-red-600 text-white rounded font-bold text-[10px]">Từ chối</button>
-            </td>
-          </tr>`;
-      });
-    }
-
-    async function approveRecord(maHoSo, status) {
-      await window.db.from('danh_sach_dang_ky').update({ trang_thai: status }).eq('ma_ho_so', maHoSo);
-      Swal.fire('Thành công', `Đã cập nhật: ${status}`, 'success');
-      loadAdminTable();
-    }
+    function logoutAdmin() { currentAdmin = null; document.getElementById('adminDashView').classList.add('hidden'); document.getElementById('adminLoginView').classList.remove('hidden'); }
   </script>
 </body>
 </html>
