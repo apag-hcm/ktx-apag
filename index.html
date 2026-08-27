@@ -5,12 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cổng Đăng Ký Xét Duyệt Ký Túc Xá Đại Học Chính Quy 2026 | APAG TP. Hồ Chí Minh</title>
   
+  <!-- CSS & FONTS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
+  <!-- SCRIPTS TẢI BẤT ĐỒNG BỘ -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
   <script src="config.js" defer></script>
@@ -65,6 +67,7 @@
 </head>
 <body class="bg-[#f1f5f9] text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between">
 
+  <!-- TOP BAR -->
   <div class="bg-brand-dark text-white text-xs py-2 px-4 border-b border-white/10">
     <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
       <div class="flex items-center space-x-2">
@@ -83,6 +86,7 @@
     </div>
   </div>
 
+  <!-- HEADER -->
   <header class="bg-white shadow-sm sticky top-0 z-40">
     <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
       <div class="flex items-center space-x-3">
@@ -104,6 +108,7 @@
     </div>
   </header>
 
+  <!-- HERO BANNER VỚI ĐỒNG HỒ ĐẾM NGƯỢC -->
   <section class="hero-gradient text-white py-8 md:py-10 px-4">
     <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
       <div class="lg:col-span-7 space-y-4">
@@ -129,6 +134,7 @@
       </div>
 
       <div class="lg:col-span-5 space-y-4 w-full">
+        <!-- ĐỒNG HỒ ĐẾM NGƯỢC HẠN ĐĂNG KÝ -->
         <div class="bg-white/10 backdrop-blur-md rounded-2xl p-4 md:p-5 border border-amber-400/40 shadow-2xl text-white space-y-3">
           <div class="flex items-center justify-between border-b border-white/15 pb-2.5">
             <span class="text-xs md:text-sm font-bold uppercase tracking-wider text-amber-300 flex items-center gap-2">
@@ -207,6 +213,7 @@
     </div>
   </section>
 
+  <!-- LỊCH TIẾP SINH -->
   <section class="max-w-7xl mx-auto px-4 -mt-5">
     <div class="bg-white rounded-2xl p-6 custom-shadow border border-slate-100 space-y-4">
       <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 flex items-start gap-3">
@@ -235,6 +242,7 @@
     </div>
   </section>
 
+  <!-- FORM ĐĂNG KÝ -->
   <main class="max-w-4xl mx-auto px-4 py-8 w-full">
     <div class="bg-white rounded-2xl p-6 md:p-8 custom-shadow border border-slate-100">
       <div class="border-b border-slate-200 pb-4 mb-6">
@@ -246,6 +254,7 @@
 
       <form id="regForm" onsubmit="handleFormSubmit(event)" class="space-y-6">
         <div>
+          <!-- NHẬP CCCD LÊN ĐẦU ĐỂ TỰ ĐỘNG NẠP THÔNG TIN -->
           <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-5">
             <label class="block text-xs font-bold text-brand-dark mb-1 uppercase tracking-wider">
               <i class="fa-solid fa-id-card text-brand-blue mr-1"></i> Nhập Số CCCD / Định danh (Đăng nhập hệ thống) <span class="text-red-500">*</span>
@@ -314,6 +323,7 @@
             </div>
           </div>
           
+          <!-- KHU VỰC ĐỊA CHỈ - ĐỒNG BỘ DANH MỤC & LỌC TRÙNG -->
           <div class="mt-4 space-y-3">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
@@ -374,13 +384,14 @@
             </div>
           </div>
 
+          <!-- ĐỒNG BỘ DANH MỤC TỰ ĐỘNG THEO GIÁ CSDL SUPABASE -->
           <div class="grid md:grid-cols-1 gap-4 mt-3">
             <div>
               <label class="block text-xs font-semibold text-slate-700 mb-1">Khu Ký túc xá đăng ký <span class="text-red-500">*</span></label>
               <select id="loaiPhong" required class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none bg-white font-medium">
                 <option value="">-- Chọn cơ sở KTX đăng ký --</option>
-                <option value="KTX 3 tầng (600.000đ/SV/tháng)">KTX 3 tầng (600.000đ/SV/tháng)</option>
-                <option value="KTX 181 Lê Đức Thọ (400.000đ/SV/tháng)">KTX 181 Lê Đức Thọ (400.000đ/SV/tháng)</option>
+                <option id="optKTX3T" value="KTX 3 tầng">KTX 3 tầng</option>
+                <option id="optKTX181" value="KTX 181 Lê Đức Thọ">KTX 181 Lê Đức Thọ</option>
               </select>
             </div>
           </div>
@@ -395,6 +406,7 @@
     </div>
   </main>
 
+  <!-- FOOTER -->
   <footer class="bg-slate-900 text-slate-400 text-xs py-10 px-4 border-t border-slate-800">
     <div class="max-w-7xl mx-auto text-center space-y-2">
       <div class="text-white font-bold">PHÂN HIỆU HỌC VIỆN HÀNH CHÍNH VÀ QUẢN TRỊ CÔNG TẠI THÀNH PHỐ HỒ CHÍ MINH</div>
@@ -403,6 +415,7 @@
     </div>
   </footer>
 
+  <!-- MODAL TRA CỨU & IN ĐƠN -->
   <div id="lookupModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl relative">
       <button onclick="closeLookupModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-lg"><i class="fa-solid fa-xmark"></i></button>
@@ -419,10 +432,12 @@
     </div>
   </div>
 
+  <!-- MODAL QUẢN TRỊ ADMIN -->
   <div id="adminModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-2 md:p-6">
     <div class="bg-white rounded-2xl max-w-7xl w-full h-[96vh] md:h-[94vh] flex flex-col p-3 md:p-5 shadow-2xl relative overflow-hidden">
       <button onclick="closeAdminModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-lg z-10"><i class="fa-solid fa-xmark"></i></button>
 
+      <!-- ĐĂNG NHẬP ADMIN -->
       <div id="adminLoginView" class="max-w-sm mx-auto my-auto text-center space-y-4 py-8">
         <div class="w-14 h-14 rounded-full bg-brand-dark text-amber-400 mx-auto flex items-center justify-center text-2xl shadow"><i class="fa-solid fa-shield-halved"></i></div>
         <div>
@@ -434,13 +449,16 @@
         <button onclick="handleAdminLogin()" class="w-full py-2.5 bg-brand-dark text-white text-sm font-semibold rounded-lg shadow">Đăng nhập</button>
       </div>
 
+      <!-- GIAO DIỆN QUẢN TRỊ VIÊN -->
       <div id="adminDashView" class="hidden flex flex-col h-full space-y-3 overflow-hidden pb-2">
+        <!-- BAR CÔNG CỤ TẬP TRUNG -->
         <div class="flex flex-wrap justify-between items-center pb-2 border-b gap-2 flex-shrink-0">
           <div class="flex items-center space-x-2">
             <button onclick="switchAdminTab('dashboard')" id="adminTabBtnDash" class="px-3 py-1.5 rounded-lg font-bold text-xs bg-brand-dark text-white transition">Quản lý & Duyệt đơn</button>
             <button onclick="switchAdminTab('settings')" id="adminTabBtnSettings" class="px-3 py-1.5 rounded-lg font-bold text-xs bg-slate-200 text-slate-700 hover:bg-slate-300 transition"><i class="fa-solid fa-sliders mr-1"></i> Cài đặt & Cấu hình</button>
           </div>
           
+          <!-- NÚT CHỨC NĂNG EXCEL -->
           <div class="flex items-center gap-2">
             <button onclick="openExcelImportModal()" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-lg transition flex items-center gap-1.5 shadow">
               <i class="fa-solid fa-file-excel"></i> Nạp Excel Trúng Tuyển
@@ -457,7 +475,9 @@
           </div>
         </div>
 
+        <!-- TAB DASHBOARD QUẢN LÝ -->
         <div id="adminTabContentDash" class="flex flex-col h-full space-y-3 overflow-hidden">
+          <!-- KPI BANNER -->
           <div class="grid grid-cols-1 md:grid-cols-3 gap-3 flex-shrink-0">
             <div class="bg-gradient-to-br from-blue-900 to-indigo-950 p-3 rounded-xl text-white shadow-sm space-y-1">
               <div class="text-xs">Quỹ chỗ KTX: <strong class="text-amber-300" id="kpiOccupancyPct">0%</strong></div>
@@ -473,6 +493,7 @@
             </div>
           </div>
 
+          <!-- BỘ LỌC DỮ LIỆU ĐA CHIỀU -->
           <div class="bg-slate-50 border rounded-xl p-2.5 flex flex-wrap gap-2 items-center flex-shrink-0 text-xs">
             <div class="font-bold text-slate-700 flex items-center gap-1">
               <i class="fa-solid fa-filter text-brand-blue"></i> Bộ lọc:
@@ -520,6 +541,7 @@
             </div>
           </div>
 
+          <!-- BẢNG DỮ LIỆU TỐI ƯU HIỆU NĂNG -->
           <div class="flex-1 border rounded-xl bg-white overflow-y-auto min-h-0">
             <table class="w-full text-left text-xs border-collapse">
               <thead class="bg-slate-100 uppercase font-bold sticky top-0 border-b z-10 text-slate-700">
@@ -538,13 +560,14 @@
             </table>
           </div>
 
+          <!-- THANH PHÂN TRANG (PAGINATION BAR) SIÊU TỐC -->
           <div class="flex flex-wrap justify-between items-center bg-slate-50 border rounded-xl px-3 py-2 flex-shrink-0 text-xs">
             <div class="text-slate-600 font-medium" id="adminPaginationInfo">Hiển thị 1 - 20 trong số 0 sinh viên</div>
-            <div class="flex items-center space-x-1.5" id="adminPaginationButtons">
-              </div>
+            <div class="flex items-center space-x-1.5" id="adminPaginationButtons"></div>
           </div>
         </div>
 
+        <!-- TAB SETTINGS CẤU HÌNH -->
         <div id="adminTabContentSettings" class="hidden flex flex-col h-full space-y-4 overflow-y-auto p-2 text-xs">
           <div class="bg-slate-50 border rounded-xl p-4 space-y-3">
             <div class="font-bold text-sm text-brand-dark"><i class="fa-solid fa-sliders mr-1"></i> Cấu hình thông tin hệ thống & Thời gian đếm ngược</div>
@@ -556,6 +579,7 @@
     </div>
   </div>
 
+  <!-- MODAL NHẬP DỮ LIỆU EXCEL TỪ MẪU DSTT -->
   <div id="excelImportModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white rounded-2xl max-w-xl w-full p-6 shadow-2xl relative space-y-4">
       <button onclick="closeExcelImportModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-lg"><i class="fa-solid fa-xmark"></i></button>
@@ -588,9 +612,11 @@
     </div>
   </div>
 
+  <!-- TEMPLATE IN ĐƠN A4 PHÁP LÝ CHUẨN -->
   <div id="printA4Template">
     <div style="font-family: 'Times New Roman', Times, serif; color: black; line-height: 1.45; font-size: 13pt; box-sizing: border-box;">
       
+      <!-- 1. TIÊU NGỮ & ĐƠN VỊ BAN HÀNH -->
       <table style="width: 100%; border-collapse: collapse; margin-left: -10mm; width: calc(100% + 10mm); margin-bottom: 6px;">
         <tr>
           <td style="width: 48%; text-align: center; vertical-align: top; padding-right: 5px;">
@@ -614,11 +640,13 @@
         </tr>
       </table>
 
+      <!-- 2. TIÊU ĐỀ ĐƠN -->
       <div style="text-align: center; margin: 6px 0 8px 0;">
         <h2 style="font-size: 14.5pt; font-weight: bold; text-transform: uppercase; margin: 0;">ĐƠN ĐĂNG KÝ Ở KÝ TÚC XÁ</h2>
         <div style="font-size: 10.5pt; font-style: italic; margin-top: 2px;">(Mã tiếp nhận trực tuyến: <strong id="printMaHoSo" style="font-size: 11.5pt; color: black;">KTX26-XXXX</strong>)</div>
       </div>
 
+      <!-- 3. KÍNH GỬI -->
       <div style="font-size: 12pt; margin-bottom: 6px; line-height: 1.35;">
         <table style="width: 100%; border-collapse: collapse;">
           <tr>
@@ -631,6 +659,7 @@
         </table>
       </div>
 
+      <!-- 4. THÔNG TIN CÁ NHÂN SINH VIÊN -->
       <div style="font-size: 12pt; line-height: 1.55; text-align: justify;">
         <div>Tôi tên: <strong id="printHoTen" style="text-transform: uppercase;">NGUYỄN VĂN A</strong></div>
         
@@ -671,6 +700,7 @@
         <div style="text-align: left; margin-top: 2px;">Trân trọng.</div>
       </div>
 
+      <!-- Chữ ký xác nhận -->
       <table style="width: 100%; border-collapse: collapse; margin-top: 12px;">
         <tr>
           <td style="width: 50%; text-align: center; vertical-align: top; font-size: 11.5pt;">
@@ -693,6 +723,7 @@
     </div>
   </div>
 
+  <!-- JAVASCRIPT LOGIC HỆ THỐNG CẢI TIẾN TỐC ĐỘ BAN QUẢN TRỊ -->
   <script>
     let systemConfigs = {};
     let countdownInterval = null;
@@ -811,15 +842,33 @@
       } catch (err) { console.error('Error loading config:', err); }
     }
 
+    // TỰ ĐỘNG ĐỒNG BỘ GIÁ VÀ DANH MỤC CHỌN VỚI CSDL
     function applyConfigsToUI() {
+      const gia3T = systemConfigs.GIA_KTX_3T || '600.000đ / SV / tháng';
+      const gia181 = systemConfigs.GIA_KTX_181 || '400.000đ / SV / tháng';
+
       if (systemConfigs.DEADLINE_DANG_KY) {
         startCountdownTimer(systemConfigs.DEADLINE_DANG_KY);
       }
       if (systemConfigs.TONG_QUY_PHONG) document.getElementById('displayTongChoKTX3').innerText = systemConfigs.TONG_QUY_PHONG + ' chỗ trống';
       if (systemConfigs.NGAY_TIEP_SINH) document.getElementById('lblNgayTiepSinh').innerText = systemConfigs.NGAY_TIEP_SINH;
-      if (systemConfigs.GIA_KTX_3T) document.getElementById('lblGiaKTX3T').innerText = systemConfigs.GIA_KTX_3T;
-      if (systemConfigs.GIA_KTX_181) document.getElementById('lblGiaKTX181').innerText = systemConfigs.GIA_KTX_181;
+      if (systemConfigs.GIA_KTX_3T) document.getElementById('lblGiaKTX3T').innerText = gia3T;
+      if (systemConfigs.GIA_KTX_181) document.getElementById('lblGiaKTX181').innerText = gia181;
       if (systemConfigs.HOTLINE_KTX) document.getElementById('lblHotline').innerText = systemConfigs.HOTLINE_KTX;
+
+      // Đồng bộ giá tự động vào thẻ <option> danh mục chọn KTX
+      const opt3T = document.getElementById('optKTX3T');
+      const opt181 = document.getElementById('optKTX181');
+      if (opt3T) {
+        const text3T = `KTX 3 tầng (${gia3T})`;
+        opt3T.value = text3T;
+        opt3T.innerText = text3T;
+      }
+      if (opt181) {
+        const text181 = `KTX 181 Lê Đức Thọ (${gia181})`;
+        opt181.value = text181;
+        opt181.innerText = text181;
+      }
     }
 
     // ĐỒNG HỒ ĐẾM NGƯỢC THỜI GIAN THỰC (COUNTDOWN)
@@ -1196,7 +1245,6 @@
 
       if (totalPages <= 1) return;
 
-      // Nút Trang trước
       const prevBtn = document.createElement('button');
       prevBtn.className = `px-2.5 py-1 rounded border font-semibold ${adminCurrentPage === 1 ? 'opacity-40 cursor-not-allowed bg-slate-100' : 'bg-white hover:bg-slate-100 text-brand-dark'}`;
       prevBtn.innerHTML = `<i class="fa-solid fa-chevron-left"></i> Trước`;
@@ -1204,7 +1252,6 @@
       prevBtn.onclick = () => { if (adminCurrentPage > 1) { adminCurrentPage--; renderAdminTableWithPagination(); } };
       container.appendChild(prevBtn);
 
-      // Hiển thị các nút số trang
       let startPage = Math.max(1, adminCurrentPage - 2);
       let endPage = Math.min(totalPages, startPage + 4);
       if (endPage - startPage < 4) {
@@ -1219,7 +1266,6 @@
         container.appendChild(pageBtn);
       }
 
-      // Nút Trang sau
       const nextBtn = document.createElement('button');
       nextBtn.className = `px-2.5 py-1 rounded border font-semibold ${adminCurrentPage === totalPages ? 'opacity-40 cursor-not-allowed bg-slate-100' : 'bg-white hover:bg-slate-100 text-brand-dark'}`;
       nextBtn.innerHTML = `Sau <i class="fa-solid fa-chevron-right"></i>`;
