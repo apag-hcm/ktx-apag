@@ -5,14 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cổng Đăng Ký Xét Duyệt Ký Túc Xá Đại Học Chính Quy 2026 | APAG TP. Hồ Chí Minh</title>
   
-  <!-- CSS & FONTS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
-  <!-- SCRIPTS TẢI BẤT ĐỒNG BỘ -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
   <script src="config.js" defer></script>
@@ -67,7 +65,6 @@
 </head>
 <body class="bg-[#f1f5f9] text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between">
 
-  <!-- TOP BAR -->
   <div class="bg-brand-dark text-white text-xs py-2 px-4 border-b border-white/10">
     <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
       <div class="flex items-center space-x-2">
@@ -86,7 +83,6 @@
     </div>
   </div>
 
-  <!-- HEADER -->
   <header class="bg-white shadow-sm sticky top-0 z-40">
     <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
       <div class="flex items-center space-x-3">
@@ -108,7 +104,6 @@
     </div>
   </header>
 
-  <!-- HERO BANNER VỚI ĐỒNG HỒ ĐẾM NGƯỢC -->
   <section class="hero-gradient text-white py-8 md:py-10 px-4">
     <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
       <div class="lg:col-span-7 space-y-4">
@@ -124,7 +119,7 @@
         <div class="flex flex-wrap gap-3 pt-2">
           <div class="flex items-center gap-2 bg-white/10 px-3 py-2 rounded-lg border border-white/15 text-xs font-medium">
             <i class="fa-solid fa-bed text-amber-400 text-base"></i>
-            <span>KTX 3 tầng: <strong class="text-white" id="displayTongChoKTX3">310 chỗ trống</strong></span>
+            <span>Tổng chỉ tiêu KTX: <strong class="text-white" id="displayTongChoKTX3">0 chỗ trống</strong></span>
           </div>
           <div class="flex items-center gap-2 bg-white/10 px-3 py-2 rounded-lg border border-white/15 text-xs font-medium">
             <i class="fa-solid fa-calendar-check text-amber-400 text-base"></i>
@@ -134,7 +129,6 @@
       </div>
 
       <div class="lg:col-span-5 space-y-4 w-full">
-        <!-- ĐỒNG HỒ ĐẾM NGƯỢC HẠN ĐĂNG KÝ -->
         <div class="bg-white/10 backdrop-blur-md rounded-2xl p-4 md:p-5 border border-amber-400/40 shadow-2xl text-white space-y-3">
           <div class="flex items-center justify-between border-b border-white/15 pb-2.5">
             <span class="text-xs md:text-sm font-bold uppercase tracking-wider text-amber-300 flex items-center gap-2">
@@ -168,24 +162,8 @@
               <i class="fa-solid fa-layer-group"></i> Bậc ưu tiên xét duyệt KTX 2026
             </span>
           </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px]">
-            <div class="bg-white/5 p-2.5 rounded-lg border border-white/10 sm:col-span-2">
-              <div class="font-bold text-amber-300">Bậc 1: Chính sách xã hội</div>
-              <p class="text-slate-200 text-[10.5px] mt-1">Khuyết tật; con Liệt sĩ, thương binh; hộ khẩu KV1; dân tộc thiểu số; mồ côi; hộ nghèo.</p>
+          <div id="bannerBacUuTienContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px]">
             </div>
-            <div class="bg-white/5 p-2.5 rounded-lg border border-white/10">
-              <div class="font-bold text-blue-300">Bậc 2: Điểm cao</div>
-              <p class="text-slate-300 text-[10px] mt-1">Điểm xét tuyển ≥ 26.0 hoặc tuyển thẳng.</p>
-            </div>
-            <div class="bg-white/5 p-2.5 rounded-lg border border-white/10">
-              <div class="font-bold text-emerald-300">Bậc 3: Tỉnh xa</div>
-              <p class="text-slate-300 text-[10px] mt-1">Khoảng cách đến trường ≥ 300km.</p>
-            </div>
-            <div class="bg-white/5 p-2.5 rounded-lg border border-white/10 sm:col-span-2">
-              <div class="font-bold text-purple-300">Bậc 4: Tự túc kinh phí</div>
-              <p class="text-slate-300 text-[10px] mt-1">Tân sinh viên có nguyện vọng lưu trú tự nguyện.</p>
-            </div>
-          </div>
         </div>
 
         <div class="bg-white/10 backdrop-blur-md rounded-2xl p-4 md:p-5 border border-white/20 shadow-2xl text-white space-y-3">
@@ -194,26 +172,13 @@
               <i class="fa-solid fa-coins"></i> Định mức kinh phí Ký túc xá 2026
             </span>
           </div>
-          <div class="space-y-2.5 text-xs">
-            <div class="bg-white/5 p-3 rounded-lg border border-white/10">
-              <div class="flex justify-between items-center">
-                <span class="font-bold text-blue-300"><i class="fa-solid fa-hotel mr-1.5"></i> KTX 3 tầng (Số 10 đường 3/2)</span>
-                <span class="font-bold text-amber-300" id="lblGiaKTX3T">600.000đ / SV / tháng</span>
-              </div>
+          <div id="bannerCoSoKtxContainer" class="space-y-2.5 text-xs">
             </div>
-            <div class="bg-white/5 p-3 rounded-lg border border-white/10">
-              <div class="flex justify-between items-center">
-                <span class="font-bold text-emerald-300"><i class="fa-solid fa-map-location-dot mr-1.5"></i> KTX 181 (181 Lê Đức Thọ)</span>
-                <span class="font-bold text-amber-300" id="lblGiaKTX181">400.000đ / SV / tháng</span>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- LỊCH TIẾP SINH -->
   <section class="max-w-7xl mx-auto px-4 -mt-5">
     <div class="bg-white rounded-2xl p-6 custom-shadow border border-slate-100 space-y-4">
       <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 flex items-start gap-3">
@@ -242,7 +207,6 @@
     </div>
   </section>
 
-  <!-- FORM ĐĂNG KÝ -->
   <main class="max-w-4xl mx-auto px-4 py-8 w-full">
     <div class="bg-white rounded-2xl p-6 md:p-8 custom-shadow border border-slate-100">
       <div class="border-b border-slate-200 pb-4 mb-6">
@@ -254,7 +218,6 @@
 
       <form id="regForm" onsubmit="handleFormSubmit(event)" class="space-y-6">
         <div>
-          <!-- NHẬP CCCD LÊN ĐẦU ĐỂ TỰ ĐỘNG NẠP THÔNG TIN -->
           <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-5">
             <label class="block text-xs font-bold text-brand-dark mb-1 uppercase tracking-wider">
               <i class="fa-solid fa-id-card text-brand-blue mr-1"></i> Nhập Số CCCD / Định danh (Đăng nhập hệ thống) <span class="text-red-500">*</span>
@@ -323,7 +286,6 @@
             </div>
           </div>
           
-          <!-- KHU VỰC ĐỊA CHỈ - ĐỒNG BỘ DANH MỤC & LỌC TRÙNG -->
           <div class="mt-4 space-y-3">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
@@ -375,24 +337,15 @@
             <div>
               <label class="block text-xs font-semibold text-slate-700 mb-1">Bậc ưu tiên <span class="text-red-500">*</span></label>
               <select id="bacUuTien" required class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none bg-white">
-                <option value="">-- Chọn bậc ưu tiên --</option>
-                <option value="Bậc 1: Chính sách xã hội">Bậc 1: Chính sách xã hội</option>
-                <option value="Bậc 2: Điểm cao hoặc Tuyển thẳng">Bậc 2: Điểm cao / Tuyển thẳng</option>
-                <option value="Bậc 3: Tỉnh xa (≥ 300km)">Bậc 3: Tỉnh xa (≥ 300km)</option>
-                <option value="Bậc 4: Tự túc kinh phí">Bậc 4: Tự túc kinh phí</option>
-              </select>
+                </select>
             </div>
           </div>
 
-          <!-- ĐỒNG BỘ DANH MỤC TỰ ĐỘNG THEO GIÁ CSDL SUPABASE -->
           <div class="grid md:grid-cols-1 gap-4 mt-3">
             <div>
               <label class="block text-xs font-semibold text-slate-700 mb-1">Khu Ký túc xá đăng ký <span class="text-red-500">*</span></label>
               <select id="loaiPhong" required class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none bg-white font-medium">
-                <option value="">-- Chọn cơ sở KTX đăng ký --</option>
-                <option id="optKTX3T" value="KTX 3 tầng">KTX 3 tầng</option>
-                <option id="optKTX181" value="KTX 181 Lê Đức Thọ">KTX 181 Lê Đức Thọ</option>
-              </select>
+                </select>
             </div>
           </div>
         </div>
@@ -406,7 +359,6 @@
     </div>
   </main>
 
-  <!-- FOOTER -->
   <footer class="bg-slate-900 text-slate-400 text-xs py-10 px-4 border-t border-slate-800">
     <div class="max-w-7xl mx-auto text-center space-y-2">
       <div class="text-white font-bold">PHÂN HIỆU HỌC VIỆN HÀNH CHÍNH VÀ QUẢN TRỊ CÔNG TẠI THÀNH PHỐ HỒ CHÍ MINH</div>
@@ -415,7 +367,6 @@
     </div>
   </footer>
 
-  <!-- MODAL TRA CỨU & IN ĐƠN -->
   <div id="lookupModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl relative">
       <button onclick="closeLookupModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-lg"><i class="fa-solid fa-xmark"></i></button>
@@ -432,12 +383,10 @@
     </div>
   </div>
 
-  <!-- MODAL QUẢN TRỊ ADMIN -->
   <div id="adminModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-2 md:p-6">
     <div class="bg-white rounded-2xl max-w-7xl w-full h-[96vh] md:h-[94vh] flex flex-col p-3 md:p-5 shadow-2xl relative overflow-hidden">
       <button onclick="closeAdminModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-lg z-10"><i class="fa-solid fa-xmark"></i></button>
 
-      <!-- ĐĂNG NHẬP ADMIN -->
       <div id="adminLoginView" class="max-w-sm mx-auto my-auto text-center space-y-4 py-8">
         <div class="w-14 h-14 rounded-full bg-brand-dark text-amber-400 mx-auto flex items-center justify-center text-2xl shadow"><i class="fa-solid fa-shield-halved"></i></div>
         <div>
@@ -449,16 +398,13 @@
         <button onclick="handleAdminLogin()" class="w-full py-2.5 bg-brand-dark text-white text-sm font-semibold rounded-lg shadow">Đăng nhập</button>
       </div>
 
-      <!-- GIAO DIỆN QUẢN TRỊ VIÊN -->
       <div id="adminDashView" class="hidden flex flex-col h-full space-y-3 overflow-hidden pb-2">
-        <!-- BAR CÔNG CỤ TẬP TRUNG -->
         <div class="flex flex-wrap justify-between items-center pb-2 border-b gap-2 flex-shrink-0">
           <div class="flex items-center space-x-2">
             <button onclick="switchAdminTab('dashboard')" id="adminTabBtnDash" class="px-3 py-1.5 rounded-lg font-bold text-xs bg-brand-dark text-white transition">Quản lý & Duyệt đơn</button>
             <button onclick="switchAdminTab('settings')" id="adminTabBtnSettings" class="px-3 py-1.5 rounded-lg font-bold text-xs bg-slate-200 text-slate-700 hover:bg-slate-300 transition"><i class="fa-solid fa-sliders mr-1"></i> Cài đặt & Cấu hình</button>
           </div>
           
-          <!-- NÚT CHỨC NĂNG EXCEL -->
           <div class="flex items-center gap-2">
             <button onclick="openExcelImportModal()" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-lg transition flex items-center gap-1.5 shadow">
               <i class="fa-solid fa-file-excel"></i> Nạp Excel Trúng Tuyển
@@ -475,13 +421,11 @@
           </div>
         </div>
 
-        <!-- TAB DASHBOARD QUẢN LÝ -->
         <div id="adminTabContentDash" class="flex flex-col h-full space-y-3 overflow-hidden">
-          <!-- KPI BANNER -->
           <div class="grid grid-cols-1 md:grid-cols-3 gap-3 flex-shrink-0">
             <div class="bg-gradient-to-br from-blue-900 to-indigo-950 p-3 rounded-xl text-white shadow-sm space-y-1">
               <div class="text-xs">Quỹ chỗ KTX: <strong class="text-amber-300" id="kpiOccupancyPct">0%</strong></div>
-              <div class="text-xl font-extrabold" id="kpiApprovedSlots">0 / 310 chỗ</div>
+              <div class="text-xl font-extrabold" id="kpiApprovedSlots">0 / 0 chỗ</div>
             </div>
             <div class="bg-gradient-to-br from-slate-900 to-slate-950 p-3 rounded-xl text-white shadow-sm space-y-1">
               <div class="text-xs">SV thực tế đăng ký KTX</div>
@@ -493,7 +437,6 @@
             </div>
           </div>
 
-          <!-- BỘ LỌC DỮ LIỆU ĐA CHIỀU -->
           <div class="bg-slate-50 border rounded-xl p-2.5 flex flex-wrap gap-2 items-center flex-shrink-0 text-xs">
             <div class="font-bold text-slate-700 flex items-center gap-1">
               <i class="fa-solid fa-filter text-brand-blue"></i> Bộ lọc:
@@ -514,19 +457,10 @@
             </select>
 
             <select id="adminFilterKhu" onchange="applyAdminFilters()" class="px-2 py-1.5 border rounded-lg bg-white font-medium">
-              <option value="">-- Tất cả cơ sở KTX --</option>
-              <option value="KTX 3 tầng">KTX 3 tầng (Số 10 đường 3/2)</option>
-              <option value="KTX 181">KTX 181 Lê Đức Thọ</option>
-              <option value="CHUA_CHON">Chưa đăng ký KTX</option>
-            </select>
+              </select>
 
             <select id="adminFilterBacUT" onchange="applyAdminFilters()" class="px-2 py-1.5 border rounded-lg bg-white font-medium">
-              <option value="">-- Tất cả bậc ưu tiên --</option>
-              <option value="Bậc 1">Bậc 1: Chính sách XH</option>
-              <option value="Bậc 2">Bậc 2: Điểm cao / Tuyển thẳng</option>
-              <option value="Bậc 3">Bậc 3: Tỉnh xa (≥300km)</option>
-              <option value="Bậc 4">Bậc 4: Tự túc</option>
-            </select>
+              </select>
 
             <select id="adminFilterTrangThai" onchange="applyAdminFilters()" class="px-2 py-1.5 border rounded-lg bg-white font-medium">
               <option value="">-- Tất cả trạng thái --</option>
@@ -541,7 +475,6 @@
             </div>
           </div>
 
-          <!-- BẢNG DỮ LIỆU TỐI ƯU HIỆU NĂNG -->
           <div class="flex-1 border rounded-xl bg-white overflow-y-auto min-h-0">
             <table class="w-full text-left text-xs border-collapse">
               <thead class="bg-slate-100 uppercase font-bold sticky top-0 border-b z-10 text-slate-700">
@@ -560,26 +493,72 @@
             </table>
           </div>
 
-          <!-- THANH PHÂN TRANG (PAGINATION BAR) SIÊU TỐC -->
           <div class="flex flex-wrap justify-between items-center bg-slate-50 border rounded-xl px-3 py-2 flex-shrink-0 text-xs">
             <div class="text-slate-600 font-medium" id="adminPaginationInfo">Hiển thị 1 - 20 trong số 0 sinh viên</div>
             <div class="flex items-center space-x-1.5" id="adminPaginationButtons"></div>
           </div>
         </div>
 
-        <!-- TAB SETTINGS CẤU HÌNH -->
         <div id="adminTabContentSettings" class="hidden flex flex-col h-full space-y-4 overflow-y-auto p-2 text-xs">
+          
           <div class="bg-slate-50 border rounded-xl p-4 space-y-3">
-            <div class="font-bold text-sm text-brand-dark"><i class="fa-solid fa-sliders mr-1"></i> Cấu hình thông tin hệ thống & Thời gian đếm ngược</div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-3" id="configEditorContainer"></div>
-            <button onclick="saveSystemConfigs()" class="px-5 py-2 bg-brand-dark hover:bg-brand-blue text-white font-bold rounded-lg shadow">Lưu thay đổi cấu hình</button>
+            <div class="flex justify-between items-center pb-2 border-b">
+              <span class="font-bold text-sm text-brand-dark flex items-center gap-1.5">
+                <i class="fa-solid fa-building text-amber-600"></i> Quản lý Tòa nhà & Cơ sở Ký túc xá
+              </span>
+              <button onclick="openAddKtxBuildingModal()" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg text-xs flex items-center gap-1 shadow">
+                <i class="fa-solid fa-plus"></i> Thêm Cơ Sở / Tòa Nhà KTX
+              </button>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse bg-white rounded-lg overflow-hidden border">
+                <thead class="bg-slate-100 font-bold text-slate-700">
+                  <tr>
+                    <th class="p-2 border-b">Tên Cơ Sở KTX</th>
+                    <th class="p-2 border-b">Định Mức Giá</th>
+                    <th class="p-2 border-b text-center">Tổng Số Chỗ</th>
+                    <th class="p-2 border-b text-center">Thao Tác</th>
+                  </tr>
+                </thead>
+                <tbody id="adminKtxListTableBody" class="divide-y"></tbody>
+              </table>
+            </div>
           </div>
+
+          <div class="bg-slate-50 border rounded-xl p-4 space-y-3">
+            <div class="flex justify-between items-center pb-2 border-b">
+              <span class="font-bold text-sm text-brand-dark flex items-center gap-1.5">
+                <i class="fa-solid fa-layer-group text-blue-600"></i> Quản lý Bậc Ưu Tiên Xét Duyệt
+              </span>
+              <button onclick="openAddPriorityTierModal()" class="px-3 py-1.5 bg-brand-blue hover:bg-brand-dark text-white font-bold rounded-lg text-xs flex items-center gap-1 shadow">
+                <i class="fa-solid fa-plus"></i> Thêm Bậc Ưu Tiên Mới
+              </button>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse bg-white rounded-lg overflow-hidden border">
+                <thead class="bg-slate-100 font-bold text-slate-700">
+                  <tr>
+                    <th class="p-2 border-b">Tên Bậc Ưu Tiên</th>
+                    <th class="p-2 border-b">Mô Tả Tiêu Chí Xét Duyệt</th>
+                    <th class="p-2 border-b text-center">Thao Tác</th>
+                  </tr>
+                </thead>
+                <tbody id="adminPriorityTierTableBody" class="divide-y"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="bg-slate-50 border rounded-xl p-4 space-y-3">
+            <div class="font-bold text-sm text-brand-dark"><i class="fa-solid fa-sliders mr-1"></i> Cấu hình Thời gian & Hotline</div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3" id="configEditorContainer"></div>
+            <button onclick="saveSystemConfigs()" class="px-5 py-2 bg-brand-dark hover:bg-brand-blue text-white font-bold rounded-lg shadow">Lưu thay đổi hệ thống</button>
+          </div>
+
         </div>
       </div>
     </div>
   </div>
 
-  <!-- MODAL NHẬP DỮ LIỆU EXCEL TỪ MẪU DSTT -->
   <div id="excelImportModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white rounded-2xl max-w-xl w-full p-6 shadow-2xl relative space-y-4">
       <button onclick="closeExcelImportModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-lg"><i class="fa-solid fa-xmark"></i></button>
@@ -612,11 +591,9 @@
     </div>
   </div>
 
-  <!-- TEMPLATE IN ĐƠN A4 PHÁP LÝ CHUẨN -->
   <div id="printA4Template">
     <div style="font-family: 'Times New Roman', Times, serif; color: black; line-height: 1.45; font-size: 13pt; box-sizing: border-box;">
       
-      <!-- 1. TIÊU NGỮ & ĐƠN VỊ BAN HÀNH -->
       <table style="width: 100%; border-collapse: collapse; margin-left: -10mm; width: calc(100% + 10mm); margin-bottom: 6px;">
         <tr>
           <td style="width: 48%; text-align: center; vertical-align: top; padding-right: 5px;">
@@ -640,13 +617,11 @@
         </tr>
       </table>
 
-      <!-- 2. TIÊU ĐỀ ĐƠN -->
       <div style="text-align: center; margin: 6px 0 8px 0;">
         <h2 style="font-size: 14.5pt; font-weight: bold; text-transform: uppercase; margin: 0;">ĐƠN ĐĂNG KÝ Ở KÝ TÚC XÁ</h2>
         <div style="font-size: 10.5pt; font-style: italic; margin-top: 2px;">(Mã tiếp nhận trực tuyến: <strong id="printMaHoSo" style="font-size: 11.5pt; color: black;">KTX26-XXXX</strong>)</div>
       </div>
 
-      <!-- 3. KÍNH GỬI -->
       <div style="font-size: 12pt; margin-bottom: 6px; line-height: 1.35;">
         <table style="width: 100%; border-collapse: collapse;">
           <tr>
@@ -659,7 +634,6 @@
         </table>
       </div>
 
-      <!-- 4. THÔNG TIN CÁ NHÂN SINH VIÊN -->
       <div style="font-size: 12pt; line-height: 1.55; text-align: justify;">
         <div>Tôi tên: <strong id="printHoTen" style="text-transform: uppercase;">NGUYỄN VĂN A</strong></div>
         
@@ -700,7 +674,6 @@
         <div style="text-align: left; margin-top: 2px;">Trân trọng.</div>
       </div>
 
-      <!-- Chữ ký xác nhận -->
       <table style="width: 100%; border-collapse: collapse; margin-top: 12px;">
         <tr>
           <td style="width: 50%; text-align: center; vertical-align: top; font-size: 11.5pt;">
@@ -723,7 +696,6 @@
     </div>
   </div>
 
-  <!-- JAVASCRIPT LOGIC HỆ THỐNG CẢI TIẾN TỐC ĐỘ BAN QUẢN TRỊ -->
   <script>
     let systemConfigs = {};
     let countdownInterval = null;
@@ -731,11 +703,22 @@
     let currentFilteredList = [];
     let parsedExcelRows = [];
 
-    // BIẾN QUẢN LÝ PHÂN TRANG (PAGINATION)
     let adminCurrentPage = 1;
     const ADMIN_PAGE_SIZE = 20;
 
-    // HÀM LAZY LOAD THƯ VIỆN EXCEL SHEETJS (CHỈ NẠP KHI CẦN)
+    // CẤU CÚC DỮ LIỆU ĐỘNG MẶC ĐỊNH
+    let ktxBuildingsList = [
+      { id: "ktx3t", ten: "KTX 3 tầng (Số 10 đường 3/2)", gia: "900.000đ / SV / tháng", so_cho: 290 },
+      { id: "ktx181", ten: "KTX 181 Lê Đức Thọ", gia: "400.000đ / SV / tháng", so_cho: 150 }
+    ];
+
+    let priorityTiersList = [
+      { id: "bac1", ten: "Bậc 1: Chính sách xã hội", mo_ta: "Khuyết tật; con Liệt sĩ, thương binh; hộ khẩu KV1; dân tộc thiểu số; mồ côi; hộ nghèo." },
+      { id: "bac2", ten: "Bậc 2: Điểm cao hoặc Tuyển thẳng", mo_ta: "Điểm xét tuyển ≥ 26.0 hoặc tuyển thẳng." },
+      { id: "bac3", ten: "Bậc 3: Tỉnh xa (≥ 300km)", mo_ta: "Khoảng cách đến trường ≥ 300km." },
+      { id: "bac4", ten: "Bậc 4: Tự túc kinh phí", mo_ta: "Tân sinh viên có nguyện vọng lưu trú tự nguyện." }
+    ];
+
     function loadXlsxScript(callback) {
       if (window.XLSX) { callback(); return; }
       if (window.Swal) {
@@ -750,7 +733,6 @@
       document.head.appendChild(script);
     }
 
-    // CHUYỂN ĐỔI CHUỖI NGÀY SANG DẠNG ISO (YYYY-MM-DD)
     function parseToIsoDate(str) {
       if (!str) return null;
       str = String(str).trim();
@@ -766,7 +748,6 @@
       return null;
     }
 
-    // HÀM TỰ ĐỘNG LÀM SẠCH ĐỊA CHỈ CHI TIẾT
     function autoCleanDetailAddress() {
       const inputEl = document.getElementById('diaChiChiTiet');
       const wardVal = (document.getElementById('phuongXaSelect')?.value || '').trim();
@@ -792,7 +773,6 @@
       inputEl.value = cleaned;
     }
 
-    // TỰ ĐỘNG PHÂN TÁCH CHUỖI ĐỊA CHỈ CSDL VÀO 3 Ô & ĐỒNG BỘ DANH MỤC CHỌN
     function parseFullAddressToFields(fullAddress) {
       if (!fullAddress) return;
       
@@ -821,12 +801,14 @@
       initEvents();
     });
 
-    // 1. TẢI CẤU HÌNH VỚI BỘ NHỚ ĐỆM LOCALSTORAGE SIÊU TỐC
+    // 1. TẢI CẤU HÌNH VÀ VẼ GIAO DIỆN ĐỘNG
     async function loadLiveConfig() {
       const cached = localStorage.getItem('APAG_CONFIG_CACHE');
       if (cached) {
         try {
           systemConfigs = JSON.parse(cached);
+          if (systemConfigs.LIST_CO_SO_KTX) ktxBuildingsList = JSON.parse(systemConfigs.LIST_CO_SO_KTX);
+          if (systemConfigs.LIST_BAC_UU_TIEN) priorityTiersList = JSON.parse(systemConfigs.LIST_BAC_UU_TIEN);
           applyConfigsToUI();
         } catch(e) {}
       }
@@ -836,38 +818,94 @@
         const { data, error } = await window.db.from('cau_hinh').select('*');
         if (data && data.length > 0) {
           data.forEach(item => { systemConfigs[item.key] = item.value; });
+          
+          if (systemConfigs.LIST_CO_SO_KTX) ktxBuildingsList = JSON.parse(systemConfigs.LIST_CO_SO_KTX);
+          if (systemConfigs.LIST_BAC_UU_TIEN) priorityTiersList = JSON.parse(systemConfigs.LIST_BAC_UU_TIEN);
+
           localStorage.setItem('APAG_CONFIG_CACHE', JSON.stringify(systemConfigs));
           applyConfigsToUI();
         }
       } catch (err) { console.error('Error loading config:', err); }
     }
 
-    // TỰ ĐỘNG ĐỒNG BỘ GIÁ VÀ DANH MỤC CHỌN VỚI CSDL
+    // TỰ ĐỘNG RENDERING GIAO DIỆN TỪ DỮ LIỆU ĐỘNG
     function applyConfigsToUI() {
-      const gia3T = systemConfigs.GIA_KTX_3T || '600.000đ / SV / tháng';
-      const gia181 = systemConfigs.GIA_KTX_181 || '400.000đ / SV / tháng';
-
       if (systemConfigs.DEADLINE_DANG_KY) {
         startCountdownTimer(systemConfigs.DEADLINE_DANG_KY);
       }
-      if (systemConfigs.TONG_QUY_PHONG) document.getElementById('displayTongChoKTX3').innerText = systemConfigs.TONG_QUY_PHONG + ' chỗ trống';
       if (systemConfigs.NGAY_TIEP_SINH) document.getElementById('lblNgayTiepSinh').innerText = systemConfigs.NGAY_TIEP_SINH;
-      if (systemConfigs.GIA_KTX_3T) document.getElementById('lblGiaKTX3T').innerText = gia3T;
-      if (systemConfigs.GIA_KTX_181) document.getElementById('lblGiaKTX181').innerText = gia181;
       if (systemConfigs.HOTLINE_KTX) document.getElementById('lblHotline').innerText = systemConfigs.HOTLINE_KTX;
 
-      // Đồng bộ giá tự động vào thẻ <option> danh mục chọn KTX
-      const opt3T = document.getElementById('optKTX3T');
-      const opt181 = document.getElementById('optKTX181');
-      if (opt3T) {
-        const text3T = `KTX 3 tầng (${gia3T})`;
-        opt3T.value = text3T;
-        opt3T.innerText = text3T;
+      // 1. TÍNH TỔNG CHỈ TIÊU KTX TỪ DÂN SỐ CÁC CƠ SỞ
+      let tongCho = 0;
+      ktxBuildingsList.forEach(b => { tongCho += (parseInt(b.so_cho, 10) || 0); });
+      document.getElementById('displayTongChoKTX3').innerText = tongCho + ' chỗ trống';
+
+      // 2. VẼ DANH SÁCH BẬC ƯU TIÊN LÊN HERO BANNER
+      const bannerBacContainer = document.getElementById('bannerBacUuTienContainer');
+      if (bannerBacContainer) {
+        bannerBacContainer.innerHTML = '';
+        priorityTiersList.forEach((b, idx) => {
+          const colSpanClass = idx === 0 ? 'sm:col-span-2' : '';
+          bannerBacContainer.innerHTML += `
+            <div class="bg-white/5 p-2.5 rounded-lg border border-white/10 ${colSpanClass}">
+              <div class="font-bold text-amber-300">${b.ten}</div>
+              <p class="text-slate-200 text-[10.5px] mt-1">${b.mo_ta}</p>
+            </div>
+          `;
+        });
       }
-      if (opt181) {
-        const text181 = `KTX 181 Lê Đức Thọ (${gia181})`;
-        opt181.value = text181;
-        opt181.innerText = text181;
+
+      // 3. VẼ ĐỊNH MỨC KINH PHÍ KTX LÊN HERO BANNER
+      const bannerKtxContainer = document.getElementById('bannerCoSoKtxContainer');
+      if (bannerKtxContainer) {
+        bannerKtxContainer.innerHTML = '';
+        ktxBuildingsList.forEach(k => {
+          bannerKtxContainer.innerHTML += `
+            <div class="bg-white/5 p-3 rounded-lg border border-white/10">
+              <div class="flex justify-between items-center">
+                <span class="font-bold text-blue-300"><i class="fa-solid fa-hotel mr-1.5"></i> ${k.ten}</span>
+                <span class="font-bold text-amber-300">${k.gia}</span>
+              </div>
+            </div>
+          `;
+        });
+      }
+
+      // 4. VẼ OPTION CHO THẺ SELECT BẬC ƯU TIÊN VÀ CƠ SỞ KTX
+      const selectBac = document.getElementById('bacUuTien');
+      if (selectBac) {
+        selectBac.innerHTML = '<option value="">-- Chọn bậc ưu tiên --</option>';
+        priorityTiersList.forEach(b => {
+          selectBac.innerHTML += `<option value="${b.ten}">${b.ten}</option>`;
+        });
+      }
+
+      const selectLoaiPhong = document.getElementById('loaiPhong');
+      if (selectLoaiPhong) {
+        selectLoaiPhong.innerHTML = '<option value="">-- Chọn cơ sở KTX đăng ký --</option>';
+        ktxBuildingsList.forEach(k => {
+          const valText = `${k.ten} (${k.gia})`;
+          selectLoaiPhong.innerHTML += `<option value="${valText}">${valText}</option>`;
+        });
+      }
+
+      // 5. RENDERING BỘ LỌC CỦA ADMIN
+      const adminFilterKhu = document.getElementById('adminFilterKhu');
+      if (adminFilterKhu) {
+        adminFilterKhu.innerHTML = '<option value="">-- Tất cả cơ sở KTX --</option>';
+        ktxBuildingsList.forEach(k => {
+          adminFilterKhu.innerHTML += `<option value="${k.ten}">${k.ten}</option>`;
+        });
+        adminFilterKhu.innerHTML += '<option value="CHUA_CHON">Chưa đăng ký KTX</option>';
+      }
+
+      const adminFilterBacUT = document.getElementById('adminFilterBacUT');
+      if (adminFilterBacUT) {
+        adminFilterBacUT.innerHTML = '<option value="">-- Tất cả bậc ưu tiên --</option>';
+        priorityTiersList.forEach(b => {
+          adminFilterBacUT.innerHTML += `<option value="${b.ten}">${b.ten}</option>`;
+        });
       }
     }
 
@@ -917,7 +955,7 @@
       countdownInterval = setInterval(updateTimer, 1000);
     }
 
-    // 2. TỈNH/THÀNH VÀ PHƯỜNG/XÃ DỰ PHÒNG
+    // TỈNH/THÀNH VÀ PHƯỜNG/XÃ DỰ PHÒNG
     const administrativeData = {
       "Thành phố Hồ Chí Minh": ["Phường Bến Thành", "Phường Sài Gòn", "Phường Tân Định", "Phường Hòa Hưng", "Phường Gò Vấp", "Phường Bình Thạnh", "Phường Tân Bình", "Phường Thủ Đức"],
       "Thành phố Hà Nội": ["Phường Ba Đình", "Phường Hoàn Kiếm", "Phường Đống Đa", "Phường Cầu Giấy", "Phường Hai Bà Trưng", "Phường Thanh Xuân"],
@@ -935,7 +973,6 @@
       });
     }
 
-    // HÀM ĐỒNG BỘ NẠP PHƯỜNG/XÃ THEO TỈNH/THÀNH VỪA CHỌN
     function onProvinceChange() {
       const pName = (document.getElementById('tinhThanhSelect')?.value || '').trim();
       const wardSelectEl = document.getElementById('phuongXaSelect');
@@ -956,7 +993,7 @@
       autoCleanDetailAddress();
     }
 
-    // 3. TỰ ĐỘNG NHẬN DIỆN CCCD VỚI THUẬT TOÁN THÔNG MINH ILIKE
+    // TỰ ĐỘNG NHẬN DIỆN CCCD VỚI THUẬT TOÁN THÔNG MINH ILIKE
     function initEvents() {
       const cccdInput = document.getElementById('soCCCD');
       if (cccdInput) {
@@ -998,7 +1035,7 @@
       }
     }
 
-    // 4. TIẾP NHẬN HOẶC CẬP NHẬT ĐƠN ĐĂNG KÝ
+    // TIẾP NHẬN HOẶC CẬP NHẬT ĐƠN ĐĂNG KÝ
     let lastRegisteredData = null;
     async function handleFormSubmit(e) {
       e.preventDefault();
@@ -1065,7 +1102,7 @@
       }
     }
 
-    // 5. TRA CỨU HỒ SƠ
+    // TRA CỨU HỒ SƠ
     let currentLookupData = null;
     async function performSearch() {
       const q = document.getElementById('lookupInput').value.trim();
@@ -1097,7 +1134,7 @@
       }
     }
 
-    // 6. IN ĐƠN A4
+    // IN ĐƠN A4
     function fillAndPrintA4(data) {
       if (!data) return;
       document.getElementById('printMaHoSo').innerText = data.ma_ho_so || 'KTX26-XXXX';
@@ -1121,7 +1158,7 @@
     function printA4FormFromLookup() { if (currentLookupData) fillAndPrintA4(currentLookupData); }
     function printA4FormDirect() { if (lastRegisteredData) fillAndPrintA4(lastRegisteredData); }
 
-    // 7. CÁN BỘ QUẢN TRỊ & DASHBOARD SIÊU TỐC BẰNG PHÂN TRANG (PAGINATION)
+    // CÁN BỘ QUẢN TRỊ & DASHBOARD SIÊU TỐC BẰNG PHÂN TRANG
     let currentAdmin = null;
 
     async function handleAdminLogin() {
@@ -1145,8 +1182,10 @@
       
       const { data: records, error } = await window.db.from('danh_sach_dang_ky').select('*').order('id', { ascending: true });
       currentAllAdminRecords = records || [];
-      
-      let tongQuyCho = parseInt(systemConfigs.TONG_QUY_PHONG || "310", 10);
+
+      let tongCho = 0;
+      ktxBuildingsList.forEach(b => { tongCho += (parseInt(b.so_cho, 10) || 0); });
+
       let countApproved = 0, registeredCount = 0;
       let countBac1 = 0, countBac2 = 0;
 
@@ -1163,17 +1202,139 @@
         }
       });
 
-      const occupancyRate = tongQuyCho > 0 ? ((countApproved / tongQuyCho) * 100).toFixed(1) : 0;
+      const occupancyRate = tongCho > 0 ? ((countApproved / tongCho) * 100).toFixed(1) : 0;
       document.getElementById('kpiOccupancyPct').innerText = occupancyRate + '%';
-      document.getElementById('kpiApprovedSlots').innerText = `${countApproved} / ${tongQuyCho} chỗ`;
+      document.getElementById('kpiApprovedSlots').innerText = `${countApproved} / ${tongCho} chỗ`;
       document.getElementById('kpiRegisteredCount').innerText = `${registeredCount} sinh viên`;
       document.getElementById('kpiPolicyCount').innerText = `${countBac1 + countBac2} suất`;
 
       applyAdminFilters();
+      renderAdminBuildingManagement();
+      renderAdminPriorityTierManagement();
       loadSystemConfigEditor();
     }
 
-    // LỌC DỮ LIỆU VÀ ĐẶT LẠI TRANG 1
+    // QUẢN LÝ TÒA NHÀ & BẬC ƯU TIÊN TRONG ADMIN
+    function renderAdminBuildingManagement() {
+      const tbody = document.getElementById('adminKtxListTableBody');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+      ktxBuildingsList.forEach((b, i) => {
+        tbody.innerHTML += `
+          <tr>
+            <td class="p-2 font-semibold text-slate-800">${b.ten}</td>
+            <td class="p-2 font-bold text-amber-600">${b.gia}</td>
+            <td class="p-2 text-center font-bold text-brand-blue">${b.so_cho} chỗ</td>
+            <td class="p-2 text-center">
+              <button onclick="deleteKtxBuilding(${i})" class="px-2 py-1 bg-red-100 hover:bg-red-200 text-red-700 font-bold rounded text-[11px]"><i class="fa-solid fa-trash"></i> Xóa</button>
+            </td>
+          </tr>
+        `;
+      });
+    }
+
+    function renderAdminPriorityTierManagement() {
+      const tbody = document.getElementById('adminPriorityTierTableBody');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+      priorityTiersList.forEach((t, i) => {
+        tbody.innerHTML += `
+          <tr>
+            <td class="p-2 font-bold text-brand-blue">${t.ten}</td>
+            <td class="p-2 text-slate-600">${t.mo_ta}</td>
+            <td class="p-2 text-center">
+              <button onclick="deletePriorityTier(${i})" class="px-2 py-1 bg-red-100 hover:bg-red-200 text-red-700 font-bold rounded text-[11px]"><i class="fa-solid fa-trash"></i> Xóa</button>
+            </td>
+          </tr>
+        `;
+      });
+    }
+
+    async function openAddKtxBuildingModal() {
+      const { value: formValues } = await Swal.fire({
+        title: 'Thêm Cơ Sở / Tòa Nhà KTX Mới',
+        html: `
+          <input id="swalTenKtx" class="swal2-input" placeholder="Tên KTX (ví dụ: KTX Khu C 5 tầng)">
+          <input id="swalGiaKtx" class="swal2-input" placeholder="Định mức giá (ví dụ: 500.000đ / SV / tháng)">
+          <input id="swalSoChoKtx" type="number" class="swal2-input" placeholder="Tổng số chỗ phòng (ví dụ: 200)">
+        `,
+        focusConfirm: false,
+        showCancelButton: true,
+        confirmButtonText: 'Lưu Tòa Nhà',
+        cancelButtonText: 'Hủy',
+        preConfirm: () => {
+          return {
+            ten: document.getElementById('swalTenKtx').value.trim(),
+            gia: document.getElementById('swalGiaKtx').value.trim(),
+            so_cho: parseInt(document.getElementById('swalSoChoKtx').value, 10) || 0
+          }
+        }
+      });
+
+      if (formValues && formValues.ten) {
+        formValues.id = 'ktx_' + Date.now();
+        ktxBuildingsList.push(formValues);
+        await saveDynamicCategoryToDb();
+      }
+    }
+
+    async function deleteKtxBuilding(index) {
+      if (confirm(`Xác nhận xóa cơ sở "${ktxBuildingsList[index].ten}"?`)) {
+        ktxBuildingsList.splice(index, 1);
+        await saveDynamicCategoryToDb();
+      }
+    }
+
+    async function openAddPriorityTierModal() {
+      const { value: formValues } = await Swal.fire({
+        title: 'Thêm Bậc Ưu Tiên Mới',
+        html: `
+          <input id="swalTenBac" class="swal2-input" placeholder="Tên Bậc (ví dụ: Bậc 5: SV đạt giải Quốc gia)">
+          <textarea id="swalMoTaBac" class="swal2-textarea" placeholder="Mô tả đối tượng điều kiện xét duyệt..."></textarea>
+        `,
+        focusConfirm: false,
+        showCancelButton: true,
+        confirmButtonText: 'Lưu Bậc Ưu Tiên',
+        cancelButtonText: 'Hủy',
+        preConfirm: () => {
+          return {
+            ten: document.getElementById('swalTenBac').value.trim(),
+            mo_ta: document.getElementById('swalMoTaBac').value.trim()
+          }
+        }
+      });
+
+      if (formValues && formValues.ten) {
+        formValues.id = 'bac_' + Date.now();
+        priorityTiersList.push(formValues);
+        await saveDynamicCategoryToDb();
+      }
+    }
+
+    async function deletePriorityTier(index) {
+      if (confirm(`Xác nhận xóa bậc "${priorityTiersList[index].ten}"?`)) {
+        priorityTiersList.splice(index, 1);
+        await saveDynamicCategoryToDb();
+      }
+    }
+
+    async function saveDynamicCategoryToDb() {
+      systemConfigs.LIST_CO_SO_KTX = JSON.stringify(ktxBuildingsList);
+      systemConfigs.LIST_BAC_UU_TIEN = JSON.stringify(priorityTiersList);
+
+      await window.db.from('cau_hinh').upsert([
+        { key: 'LIST_CO_SO_KTX', value: systemConfigs.LIST_CO_SO_KTX },
+        { key: 'LIST_BAC_UU_TIEN', value: systemConfigs.LIST_BAC_UU_TIEN }
+      ]);
+
+      localStorage.setItem('APAG_CONFIG_CACHE', JSON.stringify(systemConfigs));
+      Swal.fire('Thành công', 'Đã cập nhật danh mục hệ thống!', 'success');
+      applyConfigsToUI();
+      renderAdminBuildingManagement();
+      renderAdminPriorityTierManagement();
+    }
+
+    // BỘ LỌC DỮ LIỆU CỤ THỂ
     function applyAdminFilters() {
       const q = (document.getElementById('adminSearchInput')?.value || '').trim().toLowerCase();
       const fNganh = document.getElementById('adminFilterNganh')?.value || '';
@@ -1217,7 +1378,6 @@
       renderAdminTableWithPagination();
     }
 
-    // THUẬT TOÁN PHÂN TRANG VẼ BẢNG SIÊU TỐC (<10ms)
     function renderAdminTableWithPagination() {
       const totalRecords = currentFilteredList.length;
       const totalPages = Math.ceil(totalRecords / ADMIN_PAGE_SIZE) || 1;
@@ -1320,7 +1480,7 @@
       });
     }
 
-    // 8. CHỨC NĂNG NẠP DỮ LIỆU EXCEL
+    // CHỨC NĂNG NẠP DỮ LIỆU EXCEL
     function openExcelImportModal() { document.getElementById('excelImportModal').classList.remove('hidden'); }
     function closeExcelImportModal() { document.getElementById('excelImportModal').classList.add('hidden'); }
 
@@ -1462,7 +1622,7 @@
       }
     }
 
-    // 9. CHỨC NĂNG XUẤT EXCEL THEO BỘ LỌC
+    // CHỨC NĂNG XUẤT EXCEL THEO BỘ LỌC
     function exportFilteredToExcel() {
       if (!currentFilteredList || currentFilteredList.length === 0) {
         Swal.fire('Thông Báo', 'Không có dữ liệu sinh viên nào phù hợp với bộ lọc hiện tại!', 'info');
@@ -1522,21 +1682,25 @@
       const container = document.getElementById('configEditorContainer');
       container.innerHTML = '';
       Object.keys(systemConfigs).forEach(key => {
-        container.innerHTML += `
-          <div>
-            <label class="block font-bold text-slate-700 mb-1">${key}:</label>
-            <input type="text" id="cfg_${key}" value="${systemConfigs[key]}" class="w-full px-3 py-2 border rounded-lg font-semibold bg-white">
-          </div>
-        `;
+        if (key !== 'LIST_CO_SO_KTX' && key !== 'LIST_BAC_UU_TIEN') {
+          container.innerHTML += `
+            <div>
+              <label class="block font-bold text-slate-700 mb-1">${key}:</label>
+              <input type="text" id="cfg_${key}" value="${systemConfigs[key]}" class="w-full px-3 py-2 border rounded-lg font-semibold bg-white">
+            </div>
+          `;
+        }
       });
     }
 
     async function saveSystemConfigs() {
       const updates = [];
       Object.keys(systemConfigs).forEach(key => {
-        const val = document.getElementById(`cfg_${key}`)?.value.trim();
-        if (val !== undefined) {
-          updates.push({ key: key, value: val });
+        if (key !== 'LIST_CO_SO_KTX' && key !== 'LIST_BAC_UU_TIEN') {
+          const val = document.getElementById(`cfg_${key}`)?.value.trim();
+          if (val !== undefined) {
+            updates.push({ key: key, value: val });
+          }
         }
       });
 
