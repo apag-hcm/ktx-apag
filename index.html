@@ -131,6 +131,34 @@
       </div>
 
       <div class="lg:col-span-5 space-y-4 w-full">
+        <!-- ĐỒNG HỒ ĐẾM NGƯỢC HẠN ĐĂNG KÝ -->
+        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-4 md:p-5 border border-amber-400/40 shadow-2xl text-white space-y-3">
+          <div class="flex items-center justify-between border-b border-white/15 pb-2.5">
+            <span class="text-xs md:text-sm font-bold uppercase tracking-wider text-amber-300 flex items-center gap-2">
+              <i class="fa-solid fa-clock text-amber-400 animate-pulse"></i> Hạn chót nhận đơn trực tuyến
+            </span>
+            <span id="lblDeadlineDisplay" class="text-[11px] text-slate-200 font-semibold">24/08/2026 17:00</span>
+          </div>
+          <div class="grid grid-cols-4 gap-2 text-center pt-1">
+            <div class="bg-black/30 p-2 rounded-xl border border-white/10">
+              <div id="cdDays" class="text-xl md:text-2xl font-extrabold text-amber-400">00</div>
+              <div class="text-[10px] text-slate-300 uppercase font-semibold">Ngày</div>
+            </div>
+            <div class="bg-black/30 p-2 rounded-xl border border-white/10">
+              <div id="cdHours" class="text-xl md:text-2xl font-extrabold text-white">00</div>
+              <div class="text-[10px] text-slate-300 uppercase font-semibold">Giờ</div>
+            </div>
+            <div class="bg-black/30 p-2 rounded-xl border border-white/10">
+              <div id="cdMinutes" class="text-xl md:text-2xl font-extrabold text-white">00</div>
+              <div class="text-[10px] text-slate-300 uppercase font-semibold">Phút</div>
+            </div>
+            <div class="bg-black/30 p-2 rounded-xl border border-white/10">
+              <div id="cdSeconds" class="text-xl md:text-2xl font-extrabold text-amber-400">00</div>
+              <div class="text-[10px] text-slate-300 uppercase font-semibold">Giây</div>
+            </div>
+          </div>
+        </div>
+
         <div class="bg-white/10 backdrop-blur-md rounded-2xl p-4 md:p-5 border border-white/20 shadow-2xl text-white space-y-3">
           <div class="flex items-center justify-between border-b border-white/15 pb-2.5">
             <span class="text-xs md:text-sm font-bold uppercase tracking-wider text-amber-300 flex items-center gap-2">
@@ -593,6 +621,7 @@
   <!-- JAVASCRIPT LOGIC -->
   <script>
     let systemConfigs = {};
+    let countdownInterval = null;
 
     window.addEventListener('DOMContentLoaded', () => {
       loadProvinces();
@@ -600,12 +629,17 @@
       initEvents();
     });
 
-    // 1. TẢI CẤU HÌNH ĐỘNG TỪ SUPABASE
+    // 1. TẢI CẤU HÌNH ĐỘNG VÀ KHỞI CHẠY ĐỒNG HỒ ĐẾM NGƯỢC
     async function loadLiveConfig() {
       try {
         const { data, error } = await window.db.from('cau_hinh').select('*');
         if (data && data.length > 0) {
           data.forEach(item => { systemConfigs[item.key] = item.value; });
+          
+          if (systemConfigs.DEADLINE_DANG_KY) {
+            startCountdownTimer(systemConfigs.DEADLINE_DANG_KY);
+          }
+
           if (systemConfigs.TONG_QUY_PHONG) document.getElementById('displayTongChoKTX3').innerText = systemConfigs.TONG_QUY_PHONG + ' chỗ trống';
           if (systemConfigs.NGAY_TIEP_SINH) document.getElementById('lblNgayTiepSinh').innerText = systemConfigs.NGAY_TIEP_SINH;
           if (systemConfigs.GIA_KTX_3T) document.getElementById('lblGiaKTX3T').innerText = systemConfigs.GIA_KTX_3T;
@@ -613,6 +647,52 @@
           if (systemConfigs.HOTLINE_KTX) document.getElementById('lblHotline').innerText = systemConfigs.HOTLINE_KTX;
         }
       } catch (err) { console.error('Error loading config:', err); }
+    }
+
+    // TÍNH NĂNG ĐẾM NGƯỢC THỜI GIAN THỰC (COUNTDOWN)
+    function startCountdownTimer(deadlineStr) {
+      if (!deadlineStr) return;
+      if (countdownInterval) clearInterval(countdownInterval);
+
+      const formattedDeadline = deadlineStr.replace(/-/g, '/');
+      const targetTime = new Date(formattedDeadline).getTime();
+
+      const lblDisplay = document.getElementById('lblDeadlineDisplay');
+      if (lblDisplay) lblDisplay.innerText = deadlineStr;
+
+      function updateTimer() {
+        const now = new Date().getTime();
+        const diff = targetTime - now;
+
+        if (isNaN(targetTime) || diff <= 0) {
+          if (countdownInterval) clearInterval(countdownInterval);
+          document.getElementById('cdDays').innerText = "00";
+          document.getElementById('cdHours').innerText = "00";
+          document.getElementById('cdMinutes').innerText = "00";
+          document.getElementById('cdSeconds').innerText = "00";
+
+          const btnSubmit = document.getElementById('btnSubmit');
+          if (btnSubmit) {
+            btnSubmit.disabled = true;
+            btnSubmit.innerHTML = '<i class="fa-solid fa-lock"></i> Đã hết hạn đăng ký KTX';
+            btnSubmit.className = "w-full md:w-auto px-8 py-3.5 bg-slate-400 text-white font-bold rounded-xl cursor-not-allowed mx-auto flex items-center justify-center gap-2";
+          }
+          return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        document.getElementById('cdDays').innerText = String(days).padStart(2, '0');
+        document.getElementById('cdHours').innerText = String(hours).padStart(2, '0');
+        document.getElementById('cdMinutes').innerText = String(minutes).padStart(2, '0');
+        document.getElementById('cdSeconds').innerText = String(seconds).padStart(2, '0');
+      }
+
+      updateTimer();
+      countdownInterval = setInterval(updateTimer, 1000);
     }
 
     // 2. TỈNH/THÀNH VÀ PHƯỜNG/XÃ
@@ -642,7 +722,7 @@
       });
     }
 
-    // 3. TỰ ĐỘNG NHẬN DIỆN CCCD VỚI THUẬT TOÁN TÌM KIẾM THÔNG MINH ILIKE
+    // 3. TỰ ĐỘNG NHẬN DIỆN CCCD
     function initEvents() {
       const cccdInput = document.getElementById('soCCCD');
       if (cccdInput) {
@@ -651,7 +731,7 @@
           if (rawVal.length >= 9) {
             Swal.fire({ title: 'Đang kiểm tra CSDL...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
             
-            const searchPattern = rawVal.replace(/^0+/, ''); // Loại bỏ các số 0 ở đầu nếu có
+            const searchPattern = rawVal.replace(/^0+/, '');
 
             const { data, error } = await window.db
               .from('danh_sach_dang_ky')
