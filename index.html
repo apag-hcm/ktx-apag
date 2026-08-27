@@ -162,8 +162,7 @@
               <i class="fa-solid fa-layer-group"></i> Bậc ưu tiên xét duyệt KTX 2026
             </span>
           </div>
-          <div id="bannerBacUuTienContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px]">
-            </div>
+          <div id="bannerBacUuTienContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px]"></div>
         </div>
 
         <div class="bg-white/10 backdrop-blur-md rounded-2xl p-4 md:p-5 border border-white/20 shadow-2xl text-white space-y-3">
@@ -172,8 +171,7 @@
               <i class="fa-solid fa-coins"></i> Định mức kinh phí Ký túc xá 2026
             </span>
           </div>
-          <div id="bannerCoSoKtxContainer" class="space-y-2.5 text-xs">
-            </div>
+          <div id="bannerCoSoKtxContainer" class="space-y-2.5 text-xs"></div>
         </div>
       </div>
     </div>
@@ -336,16 +334,14 @@
             </div>
             <div>
               <label class="block text-xs font-semibold text-slate-700 mb-1">Bậc ưu tiên <span class="text-red-500">*</span></label>
-              <select id="bacUuTien" required class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none bg-white">
-                </select>
+              <select id="bacUuTien" required class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none bg-white"></select>
             </div>
           </div>
 
           <div class="grid md:grid-cols-1 gap-4 mt-3">
             <div>
               <label class="block text-xs font-semibold text-slate-700 mb-1">Khu Ký túc xá đăng ký <span class="text-red-500">*</span></label>
-              <select id="loaiPhong" required class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none bg-white font-medium">
-                </select>
+              <select id="loaiPhong" required class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none bg-white font-medium"></select>
             </div>
           </div>
         </div>
@@ -456,11 +452,9 @@
               <option value="Xây dựng Đảng và chính quyền Nhà nước">Xây dựng Đảng</option>
             </select>
 
-            <select id="adminFilterKhu" onchange="applyAdminFilters()" class="px-2 py-1.5 border rounded-lg bg-white font-medium">
-              </select>
+            <select id="adminFilterKhu" onchange="applyAdminFilters()" class="px-2 py-1.5 border rounded-lg bg-white font-medium"></select>
 
-            <select id="adminFilterBacUT" onchange="applyAdminFilters()" class="px-2 py-1.5 border rounded-lg bg-white font-medium">
-              </select>
+            <select id="adminFilterBacUT" onchange="applyAdminFilters()" class="px-2 py-1.5 border rounded-lg bg-white font-medium"></select>
 
             <select id="adminFilterTrangThai" onchange="applyAdminFilters()" class="px-2 py-1.5 border rounded-lg bg-white font-medium">
               <option value="">-- Tất cả trạng thái --</option>
@@ -706,7 +700,6 @@
     let adminCurrentPage = 1;
     const ADMIN_PAGE_SIZE = 20;
 
-    // CẤU CÚC DỮ LIỆU ĐỘNG MẶC ĐỊNH
     let ktxBuildingsList = [
       { id: "ktx3t", ten: "KTX 3 tầng (Số 10 đường 3/2)", gia: "900.000đ / SV / tháng", so_cho: 290 },
       { id: "ktx181", ten: "KTX 181 Lê Đức Thọ", gia: "400.000đ / SV / tháng", so_cho: 150 }
@@ -801,7 +794,7 @@
       initEvents();
     });
 
-    // 1. TẢI CẤU HÌNH VÀ VẼ GIAO DIỆN ĐỘNG
+    // TẢI CẤU HÌNH VÀ VẼ GIAO DIỆN ĐỘNG
     async function loadLiveConfig() {
       const cached = localStorage.getItem('APAG_CONFIG_CACHE');
       if (cached) {
@@ -828,7 +821,6 @@
       } catch (err) { console.error('Error loading config:', err); }
     }
 
-    // TỰ ĐỘNG RENDERING GIAO DIỆN TỪ DỮ LIỆU ĐỘNG
     function applyConfigsToUI() {
       if (systemConfigs.DEADLINE_DANG_KY) {
         startCountdownTimer(systemConfigs.DEADLINE_DANG_KY);
@@ -836,12 +828,10 @@
       if (systemConfigs.NGAY_TIEP_SINH) document.getElementById('lblNgayTiepSinh').innerText = systemConfigs.NGAY_TIEP_SINH;
       if (systemConfigs.HOTLINE_KTX) document.getElementById('lblHotline').innerText = systemConfigs.HOTLINE_KTX;
 
-      // 1. TÍNH TỔNG CHỈ TIÊU KTX TỪ DÂN SỐ CÁC CƠ SỞ
       let tongCho = 0;
       ktxBuildingsList.forEach(b => { tongCho += (parseInt(b.so_cho, 10) || 0); });
       document.getElementById('displayTongChoKTX3').innerText = tongCho + ' chỗ trống';
 
-      // 2. VẼ DANH SÁCH BẬC ƯU TIÊN LÊN HERO BANNER
       const bannerBacContainer = document.getElementById('bannerBacUuTienContainer');
       if (bannerBacContainer) {
         bannerBacContainer.innerHTML = '';
@@ -856,7 +846,6 @@
         });
       }
 
-      // 3. VẼ ĐỊNH MỨC KINH PHÍ KTX LÊN HERO BANNER
       const bannerKtxContainer = document.getElementById('bannerCoSoKtxContainer');
       if (bannerKtxContainer) {
         bannerKtxContainer.innerHTML = '';
@@ -872,7 +861,6 @@
         });
       }
 
-      // 4. VẼ OPTION CHO THẺ SELECT BẬC ƯU TIÊN VÀ CƠ SỞ KTX
       const selectBac = document.getElementById('bacUuTien');
       if (selectBac) {
         selectBac.innerHTML = '<option value="">-- Chọn bậc ưu tiên --</option>';
@@ -890,7 +878,6 @@
         });
       }
 
-      // 5. RENDERING BỘ LỌC CỦA ADMIN
       const adminFilterKhu = document.getElementById('adminFilterKhu');
       if (adminFilterKhu) {
         adminFilterKhu.innerHTML = '<option value="">-- Tất cả cơ sở KTX --</option>';
@@ -909,10 +896,18 @@
       }
     }
 
-    // ĐỒNG HỒ ĐẾM NGƯỢC THỜI GIAN THỰC (COUNTDOWN)
+    // ĐỒNG HỒ ĐẾM NGƯỢC XỬ LÝ KHÓA CỔNG TỪ KHÓA CLOSE VÀ HẾT HẠN
     function startCountdownTimer(deadlineStr) {
       if (!deadlineStr) return;
       if (countdownInterval) clearInterval(countdownInterval);
+
+      const cleanStr = String(deadlineStr).trim().toUpperCase();
+
+      // KIỂM TRA NẾU CẤU HÌNH ĐẶT LÀ CLOSE / LOCK / OFF / KHOA
+      if (['CLOSE', 'LOCK', 'OFF', 'KHOA', 'ĐÓNG'].includes(cleanStr)) {
+        lockRegistrationPortal('Cổng đăng ký đã đóng (CLOSE)');
+        return;
+      }
 
       const formattedDeadline = deadlineStr.replace(/-/g, '/');
       const targetTime = new Date(formattedDeadline).getTime();
@@ -926,17 +921,7 @@
 
         if (isNaN(targetTime) || diff <= 0) {
           if (countdownInterval) clearInterval(countdownInterval);
-          document.getElementById('cdDays').innerText = "00";
-          document.getElementById('cdHours').innerText = "00";
-          document.getElementById('cdMinutes').innerText = "00";
-          document.getElementById('cdSeconds').innerText = "00";
-
-          const btnSubmit = document.getElementById('btnSubmit');
-          if (btnSubmit) {
-            btnSubmit.disabled = true;
-            btnSubmit.innerHTML = '<i class="fa-solid fa-lock"></i> Đã hết hạn đăng ký KTX';
-            btnSubmit.className = "w-full md:w-auto px-8 py-3.5 bg-slate-400 text-white font-bold rounded-xl cursor-not-allowed mx-auto flex items-center justify-center gap-2";
-          }
+          lockRegistrationPortal('Đã hết hạn đăng ký KTX');
           return;
         }
 
@@ -953,6 +938,23 @@
 
       updateTimer();
       countdownInterval = setInterval(updateTimer, 1000);
+    }
+
+    function lockRegistrationPortal(reasonText) {
+      document.getElementById('cdDays').innerText = "00";
+      document.getElementById('cdHours').innerText = "00";
+      document.getElementById('cdMinutes').innerText = "00";
+      document.getElementById('cdSeconds').innerText = "00";
+
+      const lblDisplay = document.getElementById('lblDeadlineDisplay');
+      if (lblDisplay) lblDisplay.innerText = "ĐÃ KHÓA CỔNG";
+
+      const btnSubmit = document.getElementById('btnSubmit');
+      if (btnSubmit) {
+        btnSubmit.disabled = true;
+        btnSubmit.innerHTML = `<i class="fa-solid fa-lock"></i> ${reasonText}`;
+        btnSubmit.className = "w-full md:w-auto px-8 py-3.5 bg-slate-400 text-white font-bold rounded-xl cursor-not-allowed mx-auto flex items-center justify-center gap-2 shadow-none";
+      }
     }
 
     // TỈNH/THÀNH VÀ PHƯỜNG/XÃ DỰ PHÒNG
@@ -1040,6 +1042,13 @@
     async function handleFormSubmit(e) {
       e.preventDefault();
       
+      // BẢO VỆ GỬI ĐƠN KHI TRẠNG THÁI KHÓA
+      const deadlineVal = String(systemConfigs.DEADLINE_DANG_KY || '').trim().toUpperCase();
+      if (['CLOSE', 'LOCK', 'OFF', 'KHOA', 'ĐÓNG'].includes(deadlineVal)) {
+        Swal.fire({ icon: 'error', title: 'Cổng đã khóa!', text: 'Hệ thống hiện đang tạm đóng tiếp nhận đăng ký.' });
+        return;
+      }
+
       autoCleanDetailAddress();
 
       const btn = document.getElementById('btnSubmit');
@@ -1158,7 +1167,7 @@
     function printA4FormFromLookup() { if (currentLookupData) fillAndPrintA4(currentLookupData); }
     function printA4FormDirect() { if (lastRegisteredData) fillAndPrintA4(lastRegisteredData); }
 
-    // CÁN BỘ QUẢN TRỊ & DASHBOARD SIÊU TỐC BẰNG PHÂN TRANG
+    // CÁN BỘ QUẢN TRỊ & DASHBOARD
     let currentAdmin = null;
 
     async function handleAdminLogin() {
