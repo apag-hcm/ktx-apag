@@ -412,7 +412,7 @@
 
       <!-- GIAO DIỆN QUẢN TRỊ VIÊN -->
       <div id="adminDashView" class="hidden flex flex-col h-full space-y-3 overflow-hidden pb-2">
-        <!-- BAR CÔNG CỤ TẬP TRUNG (CÓ NÚT BẤM BẬT/TẮT CỔNG NHANH) -->
+        <!-- BAR CÔNG CỤ TẬP TRUNG -->
         <div class="flex flex-wrap justify-between items-center pb-2 border-b gap-2 flex-shrink-0">
           <div class="flex items-center space-x-2">
             <button onclick="switchAdminTab('dashboard')" id="adminTabBtnDash" class="px-3 py-1.5 rounded-lg font-bold text-xs bg-brand-dark text-white transition">Quản lý & Duyệt đơn</button>
@@ -420,7 +420,6 @@
           </div>
           
           <div class="flex items-center gap-2">
-            <!-- NÚT BẤM BẬT / TẮT KHÓA CỔNG NHANH -->
             <button id="btnQuickTogglePortal" onclick="quickTogglePortal()" class="px-3 py-1.5 bg-slate-800 text-white text-xs font-extrabold rounded-lg transition flex items-center gap-1.5 shadow">
               <i class="fa-solid fa-power-off"></i> <span>Trạng thái Cổng</span>
             </button>
@@ -521,7 +520,7 @@
           </div>
         </div>
 
-        <!-- TAB SETTINGS CẤU HÌNH -->
+        <!-- TAB SETTINGS CẤU HÌNH ĐƯỢC LÀM GỌN TỐI ĐA -->
         <div id="adminTabContentSettings" class="hidden flex flex-col h-full space-y-4 overflow-y-auto p-2 text-xs">
           
           <div class="bg-slate-50 border rounded-xl p-4 space-y-3">
@@ -571,39 +570,39 @@
             </div>
           </div>
 
-          <!-- CẤU HÌNH HỆ THỐNG GỌN GÀNG VÀ CÓ Ô NĂM HỌC -->
+          <!-- CẤU HÌNH THÔNG TIN HỆ THỐNG TINH GỌN VÀ NĂM HỌC ĐỘNG -->
           <div class="bg-slate-50 border rounded-xl p-4 space-y-3">
             <div class="font-bold text-sm text-brand-dark flex items-center gap-1.5 pb-2 border-b">
-              <i class="fa-solid fa-sliders text-brand-blue"></i> Cấu hình Thông tin Hệ thống & Thời gian
+              <i class="fa-solid fa-sliders text-brand-blue"></i> Cấu hình Năm Học, Trạng Thái Cổng & Hotline
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label class="block font-bold text-slate-700 mb-1">Năm học tuyển sinh (NAM_HOC):</label>
-                <input type="text" id="cfg_NAM_HOC" placeholder="2026" class="w-full px-3 py-2 border rounded-lg font-semibold bg-white">
+                <input type="text" id="cfg_NAM_HOC" placeholder="2026" class="w-full px-3 py-2 border rounded-lg font-semibold bg-white focus:outline-none focus:ring-2 focus:ring-brand-blue">
               </div>
               <div>
                 <label class="block font-bold text-slate-700 mb-1">Trạng thái Cổng (TRANG_THAI_CONG):</label>
-                <select id="cfg_TRANG_THAI_CONG" class="w-full px-3 py-2 border rounded-lg font-semibold bg-white">
-                  <option value="AUTO">AUTO (Theo đếm ngược)</option>
-                  <option value="OPEN">OPEN (Mở đăng ký)</option>
-                  <option value="CLOSE">CLOSE (Khóa cổng)</option>
+                <select id="cfg_TRANG_THAI_CONG" class="w-full px-3 py-2 border rounded-lg font-semibold bg-white focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                  <option value="AUTO">AUTO (Tự động theo đếm ngược)</option>
+                  <option value="OPEN">OPEN (Ép mở cổng đăng ký)</option>
+                  <option value="CLOSE">CLOSE (Ép khóa cổng đăng ký)</option>
                 </select>
               </div>
               <div>
-                <label class="block font-bold text-slate-700 mb-1">Hạn chót đăng ký (DEADLINE_DANG_KY):</label>
-                <input type="text" id="cfg_DEADLINE_DANG_KY" placeholder="2026-08-30 17:00:00" class="w-full px-3 py-2 border rounded-lg font-semibold bg-white">
+                <label class="block font-bold text-slate-700 mb-1">Thời hạn đếm ngược (DEADLINE_DANG_KY):</label>
+                <input type="text" id="cfg_DEADLINE_DANG_KY" placeholder="2026-08-30 17:00:00" class="w-full px-3 py-2 border rounded-lg font-semibold bg-white focus:outline-none focus:ring-2 focus:ring-brand-blue">
               </div>
               <div>
                 <label class="block font-bold text-slate-700 mb-1">Lịch tiếp sinh nhập học (NGAY_TIEP_SINH):</label>
-                <input type="text" id="cfg_NGAY_TIEP_SINH" placeholder="25 - 26/8/2026" class="w-full px-3 py-2 border rounded-lg font-semibold bg-white">
+                <input type="text" id="cfg_NGAY_TIEP_SINH" placeholder="25 - 26/8/2026" class="w-full px-3 py-2 border rounded-lg font-semibold bg-white focus:outline-none focus:ring-2 focus:ring-brand-blue">
               </div>
               <div class="md:col-span-2">
                 <label class="block font-bold text-slate-700 mb-1">Hotline tư vấn KTX (HOTLINE_KTX):</label>
-                <input type="text" id="cfg_HOTLINE_KTX" placeholder="0905.865.919" class="w-full px-3 py-2 border rounded-lg font-semibold bg-white">
+                <input type="text" id="cfg_HOTLINE_KTX" placeholder="0905.865.919" class="w-full px-3 py-2 border rounded-lg font-semibold bg-white focus:outline-none focus:ring-2 focus:ring-brand-blue">
               </div>
             </div>
             <button onclick="saveSystemConfigs()" class="px-5 py-2.5 bg-brand-dark hover:bg-brand-blue text-white font-bold rounded-lg shadow transition flex items-center gap-2">
-              <i class="fa-solid fa-floppy-disk"></i> Lưu cài đặt hệ thống
+              <i class="fa-solid fa-floppy-disk"></i> Lưu thay đổi hệ thống
             </button>
           </div>
 
@@ -858,6 +857,25 @@
       inputEl.value = cleaned;
     }
 
+    // NẠP VÀ ĐỒNG BỘ DANH MỤC PHƯỜNG XÃ KHÔNG XÓA DỮ LIỆU CSDL
+    function updateWardDatalist(pName) {
+      const wardListEl = document.getElementById('phuongXaList');
+      if (!wardListEl) return;
+      wardListEl.innerHTML = '';
+      const wards = administrativeData[pName] || [];
+      wards.forEach(w => {
+        const opt = document.createElement('option');
+        opt.value = w;
+        wardListEl.appendChild(opt);
+      });
+    }
+
+    function onProvinceChange() {
+      const pName = (document.getElementById('tinhThanhSelect')?.value || '').trim();
+      updateWardDatalist(pName);
+      autoCleanDetailAddress();
+    }
+
     function parseFullAddressToFields(fullAddress) {
       if (!fullAddress) return;
       
@@ -866,18 +884,24 @@
       const wardEl = document.getElementById('phuongXaSelect');
       const detailEl = document.getElementById('diaChiChiTiet');
 
+      let provVal = '', wardVal = '', detailVal = '';
+
       if (parts.length >= 3) {
-        if (provEl) provEl.value = parts[parts.length - 1];
-        if (wardEl) wardEl.value = parts[parts.length - 2];
-        if (detailEl) detailEl.value = parts.slice(0, parts.length - 2).join(', ');
+        provVal = parts[parts.length - 1];
+        wardVal = parts[parts.length - 2];
+        detailVal = parts.slice(0, parts.length - 2).join(', ');
       } else if (parts.length === 2) {
-        if (provEl) provEl.value = parts[1];
-        if (wardEl) wardEl.value = parts[0];
+        provVal = parts[1];
+        wardVal = parts[0];
       } else {
-        if (detailEl) detailEl.value = fullAddress;
+        detailVal = fullAddress;
       }
 
-      onProvinceChange();
+      if (provEl) provEl.value = provVal;
+      if (detailEl) detailEl.value = detailVal;
+
+      updateWardDatalist(provVal);
+      if (wardEl) wardEl.value = wardVal;
     }
 
     window.addEventListener('DOMContentLoaded', () => {
@@ -886,7 +910,7 @@
       initEvents();
     });
 
-    // 1. TẢI CẤU HÌNH VÀ VẼ GIAO DIỆN ĐỘNG
+    // TẢI CẤU HÌNH VÀ VẼ GIAO DIỆN ĐỘNG
     async function loadLiveConfig() {
       const cached = localStorage.getItem('APAG_CONFIG_CACHE');
       if (cached) {
@@ -1107,7 +1131,7 @@
       }
     }
 
-    // TỈNH/THÀNH VÀ PHƯỜNG/XÃ
+    // TỈNH/THÀNH VÀ PHƯỜNG/XÃ DỰ PHÒNG
     const administrativeData = {
       "Thành phố Hồ Chí Minh": ["Phường Bến Thành", "Phường Sài Gòn", "Phường Tân Định", "Phường Hòa Hưng", "Phường Gò Vấp", "Phường Bình Thạnh", "Phường Tân Bình", "Phường Thủ Đức"],
       "Thành phố Hà Nội": ["Phường Ba Đình", "Phường Hoàn Kiếm", "Phường Đống Đa", "Phường Cầu Giấy", "Phường Hai Bà Trưng", "Phường Thanh Xuân"],
@@ -1123,26 +1147,6 @@
       Object.keys(administrativeData).sort().forEach(p => {
         const opt = document.createElement('option'); opt.value = p; datalist.appendChild(opt);
       });
-    }
-
-    function onProvinceChange() {
-      const pName = (document.getElementById('tinhThanhSelect')?.value || '').trim();
-      const wardSelectEl = document.getElementById('phuongXaSelect');
-      const wardListEl = document.getElementById('phuongXaList');
-      
-      if (!wardListEl) return;
-
-      wardListEl.innerHTML = '';
-      const wards = administrativeData[pName] || [];
-      wards.forEach(w => {
-        const opt = document.createElement('option'); opt.value = w; wardListEl.appendChild(opt);
-      });
-
-      if (wardSelectEl && !wards.includes(wardSelectEl.value)) {
-        wardSelectEl.value = '';
-      }
-
-      autoCleanDetailAddress();
     }
 
     function initEvents() {
@@ -1867,7 +1871,7 @@
       });
     }
 
-    // CẤU HÌNH HỆ THỐNG
+    // CẤU HÌNH HỆ THỐNG TINH GỌN
     function switchAdminTab(tabName) {
       if (tabName === 'dashboard') {
         document.getElementById('adminTabContentDash').classList.remove('hidden');
