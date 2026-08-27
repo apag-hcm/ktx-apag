@@ -5,12 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cổng Đăng Ký Xét Duyệt Ký Túc Xá Đại Học Chính Quy 2026 | APAG TP. Hồ Chí Minh</title>
   
+  <!-- CSS & FONTS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
+  <!-- SCRIPTS TẢI BẤT ĐỒNG BỘ -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
   <script src="config.js" defer></script>
@@ -65,6 +67,7 @@
 </head>
 <body class="bg-[#f1f5f9] text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between">
 
+  <!-- TOP BAR -->
   <div class="bg-brand-dark text-white text-xs py-2 px-4 border-b border-white/10">
     <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
       <div class="flex items-center space-x-2">
@@ -83,6 +86,7 @@
     </div>
   </div>
 
+  <!-- HEADER -->
   <header class="bg-white shadow-sm sticky top-0 z-40">
     <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
       <div class="flex items-center space-x-3">
@@ -104,6 +108,7 @@
     </div>
   </header>
 
+  <!-- HERO BANNER VỚI ĐỒNG HỒ ĐẾM NGƯỢC -->
   <section class="hero-gradient text-white py-8 md:py-10 px-4">
     <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
       <div class="lg:col-span-7 space-y-4">
@@ -129,6 +134,7 @@
       </div>
 
       <div class="lg:col-span-5 space-y-4 w-full">
+        <!-- ĐỒNG HỒ ĐẾM NGƯỢC HẠN ĐĂNG KÝ -->
         <div class="bg-white/10 backdrop-blur-md rounded-2xl p-4 md:p-5 border border-amber-400/40 shadow-2xl text-white space-y-3">
           <div class="flex items-center justify-between border-b border-white/15 pb-2.5">
             <span class="text-xs md:text-sm font-bold uppercase tracking-wider text-amber-300 flex items-center gap-2">
@@ -156,6 +162,7 @@
           </div>
         </div>
 
+        <!-- THẺ HIỂN THỊ BẬC ƯU TIÊN ĐỘNG -->
         <div class="bg-white/10 backdrop-blur-md rounded-2xl p-4 md:p-5 border border-white/20 shadow-2xl text-white space-y-3">
           <div class="flex items-center justify-between border-b border-white/15 pb-2.5">
             <span class="text-xs md:text-sm font-bold uppercase tracking-wider text-amber-300 flex items-center gap-2">
@@ -165,6 +172,7 @@
           <div id="bannerBacUuTienContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px]"></div>
         </div>
 
+        <!-- THẺ HIỂN THỊ CƠ SỞ KTX ĐỘNG -->
         <div class="bg-white/10 backdrop-blur-md rounded-2xl p-4 md:p-5 border border-white/20 shadow-2xl text-white space-y-3">
           <div class="flex items-center justify-between border-b border-white/15 pb-2.5">
             <span class="text-xs md:text-sm font-bold uppercase tracking-wider text-amber-300 flex items-center gap-2">
@@ -177,6 +185,7 @@
     </div>
   </section>
 
+  <!-- LỊCH TIẾP SINH -->
   <section class="max-w-7xl mx-auto px-4 -mt-5">
     <div class="bg-white rounded-2xl p-6 custom-shadow border border-slate-100 space-y-4">
       <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 flex items-start gap-3">
@@ -205,6 +214,7 @@
     </div>
   </section>
 
+  <!-- FORM ĐĂNG KÝ -->
   <main class="max-w-4xl mx-auto px-4 py-8 w-full">
     <div class="bg-white rounded-2xl p-6 md:p-8 custom-shadow border border-slate-100">
       <div class="border-b border-slate-200 pb-4 mb-6">
@@ -216,6 +226,7 @@
 
       <form id="regForm" onsubmit="handleFormSubmit(event)" class="space-y-6">
         <div>
+          <!-- NHẬP CCCD LÊN ĐẦU ĐỂ TỰ ĐỘNG NẠP THÔNG TIN -->
           <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-5">
             <label class="block text-xs font-bold text-brand-dark mb-1 uppercase tracking-wider">
               <i class="fa-solid fa-id-card text-brand-blue mr-1"></i> Nhập Số CCCD / Định danh (Đăng nhập hệ thống) <span class="text-red-500">*</span>
@@ -284,6 +295,7 @@
             </div>
           </div>
           
+          <!-- KHU VỰC ĐỊA CHỈ -->
           <div class="mt-4 space-y-3">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
@@ -355,6 +367,7 @@
     </div>
   </main>
 
+  <!-- FOOTER -->
   <footer class="bg-slate-900 text-slate-400 text-xs py-10 px-4 border-t border-slate-800">
     <div class="max-w-7xl mx-auto text-center space-y-2">
       <div class="text-white font-bold">PHÂN HIỆU HỌC VIỆN HÀNH CHÍNH VÀ QUẢN TRỊ CÔNG TẠI THÀNH PHỐ HỒ CHÍ MINH</div>
@@ -363,6 +376,7 @@
     </div>
   </footer>
 
+  <!-- MODAL TRA CỨU & IN ĐƠN -->
   <div id="lookupModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl relative">
       <button onclick="closeLookupModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-lg"><i class="fa-solid fa-xmark"></i></button>
@@ -379,10 +393,12 @@
     </div>
   </div>
 
+  <!-- MODAL QUẢN TRỊ ADMIN -->
   <div id="adminModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-2 md:p-6">
     <div class="bg-white rounded-2xl max-w-7xl w-full h-[96vh] md:h-[94vh] flex flex-col p-3 md:p-5 shadow-2xl relative overflow-hidden">
       <button onclick="closeAdminModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-lg z-10"><i class="fa-solid fa-xmark"></i></button>
 
+      <!-- ĐĂNG NHẬP ADMIN -->
       <div id="adminLoginView" class="max-w-sm mx-auto my-auto text-center space-y-4 py-8">
         <div class="w-14 h-14 rounded-full bg-brand-dark text-amber-400 mx-auto flex items-center justify-center text-2xl shadow"><i class="fa-solid fa-shield-halved"></i></div>
         <div>
@@ -394,7 +410,9 @@
         <button onclick="handleAdminLogin()" class="w-full py-2.5 bg-brand-dark text-white text-sm font-semibold rounded-lg shadow">Đăng nhập</button>
       </div>
 
+      <!-- GIAO DIỆN QUẢN TRỊ VIÊN -->
       <div id="adminDashView" class="hidden flex flex-col h-full space-y-3 overflow-hidden pb-2">
+        <!-- BAR CÔNG CỤ TẬP TRUNG -->
         <div class="flex flex-wrap justify-between items-center pb-2 border-b gap-2 flex-shrink-0">
           <div class="flex items-center space-x-2">
             <button onclick="switchAdminTab('dashboard')" id="adminTabBtnDash" class="px-3 py-1.5 rounded-lg font-bold text-xs bg-brand-dark text-white transition">Quản lý & Duyệt đơn</button>
@@ -417,7 +435,9 @@
           </div>
         </div>
 
+        <!-- TAB DASHBOARD QUẢN LÝ -->
         <div id="adminTabContentDash" class="flex flex-col h-full space-y-3 overflow-hidden">
+          <!-- KPI BANNER -->
           <div class="grid grid-cols-1 md:grid-cols-3 gap-3 flex-shrink-0">
             <div class="bg-gradient-to-br from-blue-900 to-indigo-950 p-3 rounded-xl text-white shadow-sm space-y-1">
               <div class="text-xs">Quỹ chỗ KTX: <strong class="text-amber-300" id="kpiOccupancyPct">0%</strong></div>
@@ -433,6 +453,7 @@
             </div>
           </div>
 
+          <!-- BỘ LỌC DỮ LIỆU ĐA CHIỀU -->
           <div class="bg-slate-50 border rounded-xl p-2.5 flex flex-wrap gap-2 items-center flex-shrink-0 text-xs">
             <div class="font-bold text-slate-700 flex items-center gap-1">
               <i class="fa-solid fa-filter text-brand-blue"></i> Bộ lọc:
@@ -469,6 +490,7 @@
             </div>
           </div>
 
+          <!-- BẢNG DỮ LIỆU -->
           <div class="flex-1 border rounded-xl bg-white overflow-y-auto min-h-0">
             <table class="w-full text-left text-xs border-collapse">
               <thead class="bg-slate-100 uppercase font-bold sticky top-0 border-b z-10 text-slate-700">
@@ -487,12 +509,14 @@
             </table>
           </div>
 
+          <!-- THANH PHÂN TRANG -->
           <div class="flex flex-wrap justify-between items-center bg-slate-50 border rounded-xl px-3 py-2 flex-shrink-0 text-xs">
             <div class="text-slate-600 font-medium" id="adminPaginationInfo">Hiển thị 1 - 20 trong số 0 sinh viên</div>
             <div class="flex items-center space-x-1.5" id="adminPaginationButtons"></div>
           </div>
         </div>
 
+        <!-- TAB SETTINGS CẤU HÌNH -->
         <div id="adminTabContentSettings" class="hidden flex flex-col h-full space-y-4 overflow-y-auto p-2 text-xs">
           
           <div class="bg-slate-50 border rounded-xl p-4 space-y-3">
@@ -553,6 +577,7 @@
     </div>
   </div>
 
+  <!-- MODAL NHẬP DỮ LIỆU EXCEL TỪ MẪU DSTT -->
   <div id="excelImportModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white rounded-2xl max-w-xl w-full p-6 shadow-2xl relative space-y-4">
       <button onclick="closeExcelImportModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-lg"><i class="fa-solid fa-xmark"></i></button>
@@ -585,6 +610,7 @@
     </div>
   </div>
 
+  <!-- TEMPLATE IN ĐƠN A4 PHÁP LÝ CHUẨN -->
   <div id="printA4Template">
     <div style="font-family: 'Times New Roman', Times, serif; color: black; line-height: 1.45; font-size: 13pt; box-sizing: border-box;">
       
@@ -690,6 +716,7 @@
     </div>
   </div>
 
+  <!-- JAVASCRIPT LOGIC HỆ THỐNG -->
   <script>
     let systemConfigs = {};
     let countdownInterval = null;
@@ -739,6 +766,38 @@
       }
       if (str.match(/^\d{4}-\d{2}-\d{2}$/)) return str;
       return null;
+    }
+
+    // THUẬT TOÁN BÓC TÁCH VÀ KHÔI PHỤC ĐIỂM SỐ TRÁNH TRÀN TRƯỜNG NUMERIC(4,2)
+    function parseExcelScore(rawVal) {
+      if (rawVal === undefined || rawVal === null || rawVal === '') return 0.0;
+      const s = String(rawVal).trim();
+      if (!s) return 0.0;
+
+      // Khôi phục giá trị nếu Excel tự đổi điểm số thành chuỗi Ngày Tháng (VD: 2026-05-25)
+      const dateMatch = s.match(/2026-(\d{2})-(\d{2})/);
+      if (dateMatch) {
+        const month = parseInt(dateMatch[1], 10);
+        const day = parseInt(dateMatch[2], 10);
+        const calcScore = parseFloat(`${day}.${month}`);
+        if (!isNaN(calcScore) && calcScore >= 0 && calcScore <= 30) {
+          return calcScore;
+        }
+      }
+
+      const sClean = s.replace(/,/g, '.');
+      const matches = sClean.match(/\d+(?:\.\d+)?/g);
+      if (matches && matches.length > 0) {
+        const validNums = matches
+          .map(m => parseFloat(m))
+          .filter(n => !isNaN(n) && n >= 0.0 && n <= 30.0);
+
+        if (validNums.length > 0) {
+          return Math.max(...validNums);
+        }
+      }
+
+      return 0.0;
     }
 
     function autoCleanDetailAddress() {
@@ -794,7 +853,7 @@
       initEvents();
     });
 
-    // TẢI CẤU HÌNH VÀ VẼ GIAO DIỆN ĐỘNG
+    // 1. TẢI CẤU HÌNH VÀ VẼ GIAO DIỆN ĐỘNG
     async function loadLiveConfig() {
       const cached = localStorage.getItem('APAG_CONFIG_CACHE');
       if (cached) {
@@ -822,9 +881,16 @@
     }
 
     function applyConfigsToUI() {
-      if (systemConfigs.DEADLINE_DANG_KY) {
+      // ĐỒNG BỘ TRẠNG THÁI KHÓA CỔNG
+      const deadlineVal = String(systemConfigs.DEADLINE_DANG_KY || '').trim();
+      const statusCong = String(systemConfigs.TRANG_THAI_CONG || '').trim().toUpperCase();
+
+      if (['CLOSE', 'LOCK', 'OFF', 'KHOA', 'ĐÓNG'].includes(statusCong) || ['CLOSE', 'LOCK', 'OFF', 'KHOA', 'ĐÓNG'].includes(deadlineVal.toUpperCase())) {
+        lockRegistrationPortal('Cổng đăng ký đã đóng (CLOSE)');
+      } else if (systemConfigs.DEADLINE_DANG_KY) {
         startCountdownTimer(systemConfigs.DEADLINE_DANG_KY);
       }
+
       if (systemConfigs.NGAY_TIEP_SINH) document.getElementById('lblNgayTiepSinh').innerText = systemConfigs.NGAY_TIEP_SINH;
       if (systemConfigs.HOTLINE_KTX) document.getElementById('lblHotline').innerText = systemConfigs.HOTLINE_KTX;
 
@@ -896,14 +962,12 @@
       }
     }
 
-    // ĐỒNG HỒ ĐẾM NGƯỢC XỬ LÝ KHÓA CỔNG TỪ KHÓA CLOSE VÀ HẾT HẠN
+    // ĐỒNG HỒ ĐẾM NGƯỢC THỜI GIAN THỰC
     function startCountdownTimer(deadlineStr) {
       if (!deadlineStr) return;
       if (countdownInterval) clearInterval(countdownInterval);
 
       const cleanStr = String(deadlineStr).trim().toUpperCase();
-
-      // KIỂM TRA NẾU CẤU HÌNH ĐẶT LÀ CLOSE / LOCK / OFF / KHOA
       if (['CLOSE', 'LOCK', 'OFF', 'KHOA', 'ĐÓNG'].includes(cleanStr)) {
         lockRegistrationPortal('Cổng đăng ký đã đóng (CLOSE)');
         return;
@@ -957,7 +1021,7 @@
       }
     }
 
-    // TỈNH/THÀNH VÀ PHƯỜNG/XÃ DỰ PHÒNG
+    // TỈNH/THÀNH VÀ PHƯỜNG/XÃ
     const administrativeData = {
       "Thành phố Hồ Chí Minh": ["Phường Bến Thành", "Phường Sài Gòn", "Phường Tân Định", "Phường Hòa Hưng", "Phường Gò Vấp", "Phường Bình Thạnh", "Phường Tân Bình", "Phường Thủ Đức"],
       "Thành phố Hà Nội": ["Phường Ba Đình", "Phường Hoàn Kiếm", "Phường Đống Đa", "Phường Cầu Giấy", "Phường Hai Bà Trưng", "Phường Thanh Xuân"],
@@ -1042,9 +1106,9 @@
     async function handleFormSubmit(e) {
       e.preventDefault();
       
-      // BẢO VỆ GỬI ĐƠN KHI TRẠNG THÁI KHÓA
       const deadlineVal = String(systemConfigs.DEADLINE_DANG_KY || '').trim().toUpperCase();
-      if (['CLOSE', 'LOCK', 'OFF', 'KHOA', 'ĐÓNG'].includes(deadlineVal)) {
+      const statusCong = String(systemConfigs.TRANG_THAI_CONG || '').trim().toUpperCase();
+      if (['CLOSE', 'LOCK', 'OFF', 'KHOA', 'ĐÓNG'].includes(statusCong) || ['CLOSE', 'LOCK', 'OFF', 'KHOA', 'ĐÓNG'].includes(deadlineVal)) {
         Swal.fire({ icon: 'error', title: 'Cổng đã khóa!', text: 'Hệ thống hiện đang tạm đóng tiếp nhận đăng ký.' });
         return;
       }
@@ -1531,6 +1595,7 @@
       });
     }
 
+    // MAPPER DỮ LIỆU BẢO VỆ CHỐNG TRÀN SỐ NUMERIC
     function mapExcelRowToRecord(row, idx) {
       const getVal = (keys) => {
         for (const k of Object.keys(row)) {
@@ -1544,31 +1609,68 @@
         return '';
       };
 
-      let cccdRaw = getVal(['số đdcn', 'đdcn', 'cccd', 'định danh']);
+      let cccdRaw = getVal(['số cccd', 'cccd', 'số đdcn', 'đdcn', 'định danh']);
       cccdRaw = cccdRaw.replace(/[^0-9]/g, '');
       if (cccdRaw.length > 0 && cccdRaw.length < 12) {
         cccdRaw = cccdRaw.padStart(12, '0');
       }
 
-      const hoTen = getVal(['họ và tên', 'họ tên', 'ho_ten']);
-      const mssv = getVal(['ma sinh vien', 'mã sinh viên', 'mssv']);
+      let sdtRaw = getVal(['số điện thoại', 'sđt cá nhân', 'sđt', 'sdt']);
+      sdtRaw = sdtRaw.replace(/[^0-9]/g, '');
+      if (sdtRaw.length === 9) sdtRaw = '0' + sdtRaw;
+
+      let sdtGdRaw = getVal(['sđt gia đình', 'sdt_gia_dinh']);
+      sdtGdRaw = sdtGdRaw.replace(/[^0-9]/g, '');
+      if (sdtGdRaw.length === 9) sdtGdRaw = '0' + sdtGdRaw;
+
+      const diemRaw = getVal(['điểm xét tuyển', 'điểm trúng tuyển', 'điểm', 'diem']);
+      const diemVal = parseExcelScore(diemRaw);
+
+      let maHoSo = getVal(['mã hồ sơ', 'ma_ho_so']);
+      if (!maHoSo) {
+        maHoSo = 'KTX26-' + String(idx + 1).padStart(4, '0');
+      }
+
       const ngaySinhRaw = getVal(['ngày sinh', 'ngay_sinh']);
-      const gioiTinh = getVal(['giới tính', 'gioi_tinh']);
-      const nganhHoc = getVal(['tên mã xét tuyển trúng tuyển', 'ngành', 'nganh_hoc']);
-      const diemVal = getVal(['điểm trúng tuyển', 'điểm', 'diem']);
+      const ngayCapRaw = getVal(['ngày cấp', 'ngay_cap']);
+
+      let thoiGian = getVal(['thời gian đăng ký', 'thời gian', 'thoi_gian']);
+      if (thoiGian) {
+        try {
+          const d = new Date(thoiGian);
+          if (!isNaN(d.getTime())) thoiGian = d.toISOString();
+          else thoiGian = new Date().toISOString();
+        } catch(e) {
+          thoiGian = new Date().toISOString();
+        }
+      } else {
+        thoiGian = new Date().toISOString();
+      }
+
+      let trangThai = getVal(['trạng thái xét duyệt', 'trạng thái', 'trang_thai']);
+      if (!trangThai) trangThai = 'Chờ duyệt';
+
+      let ghiChu = getVal(['ghi chú', 'lý do', 'ghi_chu']);
+      if (!ghiChu) ghiChu = 'Nạp từ Excel';
 
       return {
-        ma_ho_so: 'KTX26-' + String(idx + 1).padStart(4, '0'),
+        ma_ho_so: maHoSo,
         cccd: cccdRaw,
-        ho_ten: hoTen.toUpperCase(),
-        mssv: mssv,
+        ho_ten: getVal(['họ và tên', 'họ tên', 'ho_ten']).toUpperCase(),
+        mssv: getVal(['ma sinh vien', 'mã sinh viên', 'mssv']),
         ngay_sinh: parseToIsoDate(ngaySinhRaw),
-        gioi_tinh: gioiTinh,
-        nganh_hoc: nganhHoc,
-        diem: parseFloat(diemVal) || 0,
-        trang_thai: 'Chờ duyệt',
-        thoi_gian: new Date().toISOString(),
-        ghi_chu: 'Nạp từ Excel'
+        gioi_tinh: getVal(['giới tính', 'gioi_tinh']),
+        sdt: sdtRaw,
+        sdt_gia_dinh: sdtGdRaw,
+        email: getVal(['email', 'hộp thư']),
+        tinh_thanh: getVal(['tỉnh/thành thường trú', 'tỉnh/thành', 'địa chỉ', 'hộ khẩu', 'tinh_thanh']),
+        nganh_hoc: getVal(['ngành trúng tuyển', 'tên mã xét tuyển', 'ngành', 'nganh_hoc']),
+        diem: diemVal,
+        bac_uu_tien: getVal(['bậc ưu tiên', 'bac_uu_tien', 'ưu tiên']),
+        loai_phong: getVal(['loại phòng nguyện vọng', 'loại phòng', 'khu ký túc xá', 'loai_phong']),
+        trang_thai: trangThai,
+        thoi_gian: thoiGian,
+        ghi_chu: ghiChu
       };
     }
 
