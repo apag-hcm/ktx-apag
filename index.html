@@ -5,13 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cổng Đăng Ký Xét Duyệt Ký Túc Xá Đại Học Chính Quy 2026 | APAG TP. Hồ Chí Minh</title>
   
+  <!-- CSS & LIBRARIES -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- SWEETALERT2, SUPABASE & SHEETJS (EXCEL) -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   <script src="config.js"></script>
 
   <script>
@@ -105,7 +109,7 @@
     </div>
   </header>
 
-  <!-- HERO BANNER -->
+  <!-- HERO BANNER VỚI ĐỒNG HỒ ĐẾM NGƯỢC -->
   <section class="hero-gradient text-white py-8 md:py-10 px-4">
     <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
       <div class="lg:col-span-7 space-y-4">
@@ -426,41 +430,57 @@
 
   <!-- MODAL QUẢN TRỊ ADMIN -->
   <div id="adminModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-2 md:p-6">
-    <div class="bg-white rounded-2xl max-w-6xl w-full h-[96vh] md:h-[92vh] flex flex-col p-3 md:p-5 shadow-2xl relative overflow-hidden">
+    <div class="bg-white rounded-2xl max-w-7xl w-full h-[96vh] md:h-[94vh] flex flex-col p-3 md:p-5 shadow-2xl relative overflow-hidden">
       <button onclick="closeAdminModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-lg z-10"><i class="fa-solid fa-xmark"></i></button>
 
+      <!-- ĐĂNG NHẬP ADMIN -->
       <div id="adminLoginView" class="max-w-sm mx-auto my-auto text-center space-y-4 py-8">
         <div class="w-14 h-14 rounded-full bg-brand-dark text-amber-400 mx-auto flex items-center justify-center text-2xl shadow"><i class="fa-solid fa-shield-halved"></i></div>
         <div>
           <h3 class="text-lg font-bold text-brand-dark">Hội Đồng Xét Duyệt KTX 2026</h3>
-          <p class="text-xs text-slate-500">Đăng nhập tài khoản cán bộ</p>
+          <p class="text-xs text-slate-500">Đăng nhập tài khoản cán bộ quản trị</p>
         </div>
         <input type="text" id="adminUser" placeholder="Tên đăng nhập..." class="w-full px-3 py-2.5 text-sm border rounded-lg">
         <input type="password" id="adminPass" placeholder="Mật khẩu" class="w-full px-3 py-2.5 text-sm border rounded-lg">
         <button onclick="handleAdminLogin()" class="w-full py-2.5 bg-brand-dark text-white text-sm font-semibold rounded-lg shadow">Đăng nhập</button>
       </div>
 
-      <div id="adminDashView" class="hidden flex flex-col h-full space-y-3 overflow-y-auto md:overflow-hidden pb-10">
+      <!-- GIAO DIỆN QUẢN TRỊ VIÊN -->
+      <div id="adminDashView" class="hidden flex flex-col h-full space-y-3 overflow-hidden pb-4">
+        <!-- BAR CÔNG CỤ TẬP TRUNG -->
         <div class="flex flex-wrap justify-between items-center pb-2 border-b gap-2 flex-shrink-0">
           <div class="flex items-center space-x-2">
             <button onclick="switchAdminTab('dashboard')" id="adminTabBtnDash" class="px-3 py-1.5 rounded-lg font-bold text-xs bg-brand-dark text-white transition">Quản lý & Duyệt đơn</button>
             <button onclick="switchAdminTab('settings')" id="adminTabBtnSettings" class="px-3 py-1.5 rounded-lg font-bold text-xs bg-slate-200 text-slate-700 hover:bg-slate-300 transition"><i class="fa-solid fa-sliders mr-1"></i> Cài đặt & Cấu hình</button>
           </div>
+          
+          <!-- NÚT CHỨC NĂNG EXCEL -->
           <div class="flex items-center gap-2">
-            <button onclick="loadAdminData()" class="px-3 py-1.5 bg-slate-100 text-slate-700 text-xs font-semibold rounded-lg"><i class="fa-solid fa-rotate-right"></i> Làm mới</button>
-            <button onclick="logoutAdmin()" class="px-3 py-1.5 bg-red-50 text-red-600 text-xs font-semibold rounded-lg">Đăng xuất</button>
+            <button onclick="openExcelImportModal()" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-lg transition flex items-center gap-1.5 shadow">
+              <i class="fa-solid fa-file-excel"></i> Nạp Excel Trúng Tuyển
+            </button>
+            <button onclick="exportFilteredToExcel()" class="px-3 py-1.5 bg-brand-blue hover:bg-brand-dark text-white text-xs font-bold rounded-lg transition flex items-center gap-1.5 shadow">
+              <i class="fa-solid fa-file-export"></i> Xuất Excel (Bộ lọc)
+            </button>
+            <button onclick="loadAdminData()" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-lg">
+              <i class="fa-solid fa-rotate-right"></i> Làm mới
+            </button>
+            <button onclick="logoutAdmin()" class="px-3 py-1.5 bg-red-50 text-red-600 hover:bg-red-100 text-xs font-semibold rounded-lg">
+              Đăng xuất
+            </button>
           </div>
         </div>
 
-        <!-- TAB DASHBOARD -->
-        <div id="adminTabContentDash" class="flex flex-col h-full space-y-3 overflow-y-auto">
+        <!-- TAB DASHBOARD QUẢN LÝ -->
+        <div id="adminTabContentDash" class="flex flex-col h-full space-y-3 overflow-hidden">
+          <!-- KPI BANNER -->
           <div class="grid grid-cols-1 md:grid-cols-3 gap-3 flex-shrink-0">
             <div class="bg-gradient-to-br from-blue-900 to-indigo-950 p-3 rounded-xl text-white shadow-sm space-y-1">
               <div class="text-xs">Quỹ chỗ KTX: <strong class="text-amber-300" id="kpiOccupancyPct">0%</strong></div>
               <div class="text-xl font-extrabold" id="kpiApprovedSlots">0 / 310 chỗ</div>
             </div>
             <div class="bg-gradient-to-br from-slate-900 to-slate-950 p-3 rounded-xl text-white shadow-sm space-y-1">
-              <div class="text-xs">SV đã thực tế đăng ký KTX</div>
+              <div class="text-xs">SV thực tế đăng ký KTX</div>
               <div class="text-xl font-extrabold text-amber-400" id="kpiRegisteredCount">0 sinh viên</div>
             </div>
             <div class="bg-gradient-to-br from-emerald-950 to-slate-950 p-3 rounded-xl text-white shadow-sm space-y-1">
@@ -469,40 +489,115 @@
             </div>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 flex-shrink-0 text-xs">
-            <div class="bg-slate-50 p-3 rounded-xl border space-y-1">
-              <div class="font-bold pb-1 border-b">Hồ sơ theo Bậc ưu tiên</div>
-              <div class="grid grid-cols-2 gap-2 pt-1">
-                <div class="bg-white p-2 rounded border flex justify-between"><span>Bậc 1:</span><strong id="statTotalBac1">0</strong></div>
-                <div class="bg-white p-2 rounded border flex justify-between"><span>Bậc 2:</span><strong id="statTotalBac2">0</strong></div>
-                <div class="bg-white p-2 rounded border flex justify-between"><span>Bậc 3:</span><strong id="statTotalBac3">0</strong></div>
-                <div class="bg-white p-2 rounded border flex justify-between"><span>Bậc 4:</span><strong id="statTotalBac4">0</strong></div>
-              </div>
+          <!-- BỘ LỌC DỮ LIỆU ĐA CHIỀU CẦN IN / XUẤT EXCEL -->
+          <div class="bg-slate-50 border rounded-xl p-3 flex flex-wrap gap-2.5 items-center flex-shrink-0 text-xs">
+            <div class="font-bold text-slate-700 flex items-center gap-1">
+              <i class="fa-solid fa-filter text-brand-blue"></i> Bộ lọc danh sách:
             </div>
-            <div class="bg-slate-50 p-3 rounded-xl border space-y-1">
-              <div class="font-bold pb-1 border-b">Hồ sơ theo Ngành trúng tuyển</div>
-              <div id="statNganhContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-1.5 pt-1 text-[11px]"></div>
+            <input type="text" id="adminSearchInput" onkeyup="applyAdminFilters()" placeholder="Tìm Tên, CCCD, MSSV, Mã HS..." class="px-3 py-1.5 border rounded-lg font-medium text-xs w-48 bg-white focus:outline-none focus:ring-1 focus:ring-brand-blue">
+            
+            <select id="adminFilterNganh" onchange="applyAdminFilters()" class="px-2.5 py-1.5 border rounded-lg bg-white font-medium">
+              <option value="">-- Tất cả ngành --</option>
+              <option value="Quản lý nhà nước">Quản lý nhà nước</option>
+              <option value="Quản trị văn phòng">Quản trị văn phòng</option>
+              <option value="Quản trị nhân lực">Quản trị nhân lực</option>
+              <option value="Lưu trữ học">Lưu trữ học</option>
+              <option value="Chuyên ngành Văn thư Lưu trữ">Văn thư Lưu trữ</option>
+              <option value="Luật">Luật</option>
+              <option value="Chuyên ngành Thanh tra">Thanh tra</option>
+              <option value="Kinh tế">Kinh tế</option>
+              <option value="Xây dựng Đảng và chính quyền Nhà nước">Xây dựng Đảng</option>
+            </select>
+
+            <select id="adminFilterKhu" onchange="applyAdminFilters()" class="px-2.5 py-1.5 border rounded-lg bg-white font-medium">
+              <option value="">-- Tất cả cơ sở KTX --</option>
+              <option value="KTX 3 tầng">KTX 3 tầng (Số 10 đường 3/2)</option>
+              <option value="KTX 181">KTX 181 Lê Đức Thọ</option>
+              <option value="CHUA_CHON">Chưa đăng ký KTX</option>
+            </select>
+
+            <select id="adminFilterBacUT" onchange="applyAdminFilters()" class="px-2.5 py-1.5 border rounded-lg bg-white font-medium">
+              <option value="">-- Tất cả bậc ưu tiên --</option>
+              <option value="Bậc 1">Bậc 1: Chính sách XH</option>
+              <option value="Bậc 2">Bậc 2: Điểm cao / Tuyển thẳng</option>
+              <option value="Bậc 3">Bậc 3: Tỉnh xa (≥300km)</option>
+              <option value="Bậc 4">Bậc 4: Tự túc</option>
+            </select>
+
+            <select id="adminFilterTrangThai" onchange="applyAdminFilters()" class="px-2.5 py-1.5 border rounded-lg bg-white font-medium">
+              <option value="">-- Tất cả trạng thái --</option>
+              <option value="Đã tiếp nhận">Đã duyệt tiếp nhận</option>
+              <option value="Chờ duyệt">Chờ duyệt</option>
+              <option value="Từ chối">Từ chối</option>
+              <option value="DA_DANG_KY">Đã đăng ký KTX</option>
+            </select>
+
+            <div class="ml-auto text-slate-500 font-medium">
+              Hiển thị: <strong class="text-brand-dark" id="lblFilteredCount">0 / 0</strong> sinh viên
             </div>
           </div>
 
-          <div class="flex-1 min-h-[250px] border rounded-xl bg-white overflow-y-auto">
+          <!-- BẢNG DỮ LIỆU CHÍNH -->
+          <div class="flex-1 border rounded-xl bg-white overflow-y-auto">
             <table class="w-full text-left text-xs border-collapse">
-              <thead class="bg-slate-100 uppercase font-bold sticky top-0 border-b z-10">
-                <tr><th class="p-3">Mã HS</th><th class="p-3">Họ Tên / MSSV</th><th class="p-3">Ngành</th><th class="p-3">Ưu Tiên</th><th class="p-3">Phòng</th><th class="p-3">Trạng Thái</th><th class="p-3 text-center">Thao Tác</th></tr>
+              <thead class="bg-slate-100 uppercase font-bold sticky top-0 border-b z-10 text-slate-700">
+                <tr>
+                  <th class="p-3">Mã HS</th>
+                  <th class="p-3">Họ Tên / MSSV</th>
+                  <th class="p-3">Ngành</th>
+                  <th class="p-3">Điểm</th>
+                  <th class="p-3">Ưu Tiên</th>
+                  <th class="p-3">Khu KTX</th>
+                  <th class="p-3">Trạng Thái</th>
+                  <th class="p-3 text-center">Thao Tác</th>
+                </tr>
               </thead>
               <tbody id="adminTableBody" class="divide-y bg-white"></tbody>
             </table>
           </div>
         </div>
 
-        <!-- TAB SETTINGS -->
+        <!-- TAB SETTINGS CẤU HÌNH -->
         <div id="adminTabContentSettings" class="hidden flex flex-col h-full space-y-4 overflow-y-auto p-2 text-xs">
           <div class="bg-slate-50 border rounded-xl p-4 space-y-3">
-            <div class="font-bold text-sm text-brand-dark"><i class="fa-solid fa-sliders mr-1"></i> Cấu hình thông tin hệ thống</div>
+            <div class="font-bold text-sm text-brand-dark"><i class="fa-solid fa-sliders mr-1"></i> Cấu hình thông tin hệ thống & Thời gian đếm ngược</div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-3" id="configEditorContainer"></div>
             <button onclick="saveSystemConfigs()" class="px-5 py-2 bg-brand-dark hover:bg-brand-blue text-white font-bold rounded-lg shadow">Lưu thay đổi cấu hình</button>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL NHẬP DỮ LIỆU EXCEL TỪ MẪU DSTT -->
+  <div id="excelImportModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-xl w-full p-6 shadow-2xl relative space-y-4">
+      <button onclick="closeExcelImportModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-lg"><i class="fa-solid fa-xmark"></i></button>
+      <div class="text-center">
+        <div class="w-12 h-12 rounded-full bg-emerald-50 text-emerald-600 mx-auto flex items-center justify-center text-xl mb-2"><i class="fa-solid fa-file-excel"></i></div>
+        <h3 class="text-lg font-bold text-brand-dark">Nạp Dữ Liệu Từ File Excel DSTT Mẫu</h3>
+        <p class="text-xs text-slate-500">Tải lên tệp Excel danh sách trúng tuyển để nạp vào hệ thống Supabase</p>
+      </div>
+
+      <div class="border-2 border-dashed border-slate-300 rounded-xl p-5 text-center bg-slate-50 hover:bg-slate-100 transition cursor-pointer" onclick="document.getElementById('excelFileInput').click()">
+        <i class="fa-solid fa-cloud-arrow-up text-3xl text-brand-blue mb-2"></i>
+        <div class="text-xs font-bold text-slate-700">Bấm vào đây để chọn tệp .xlsx / .xls mẫu</div>
+        <div class="text-[11px] text-slate-400 mt-1" id="excelFileNameDisplay">Chấp nhận file Excel DSTT DHCQ HCM APAG</div>
+        <input type="file" id="excelFileInput" accept=".xlsx, .xls" class="hidden" onchange="handleExcelFileSelect(event)">
+      </div>
+
+      <div id="excelPreviewArea" class="hidden text-xs bg-slate-100 p-3 rounded-lg border space-y-1">
+        <div class="font-bold text-slate-700">Thông tin tệp phát hiện:</div>
+        <div class="text-slate-600" id="excelPreviewDetails"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2">
+        <button onclick="processExcelImport(true)" id="btnImportReplace" disabled class="py-3 bg-red-600 hover:bg-red-700 disabled:bg-slate-300 text-white font-bold text-xs rounded-xl transition flex items-center justify-center gap-1.5 shadow">
+          <i class="fa-solid fa-trash-can"></i> Xóa dữ liệu cũ & Import mới
+        </button>
+        <button onclick="processExcelImport(false)" id="btnImportMerge" disabled class="py-3 bg-brand-blue hover:bg-brand-dark disabled:bg-slate-300 text-white font-bold text-xs rounded-xl transition flex items-center justify-center gap-1.5 shadow">
+          <i class="fa-solid fa-file-circle-plus"></i> Cập nhật / Nạp bổ sung
+        </button>
       </div>
     </div>
   </div>
@@ -618,10 +713,13 @@
     </div>
   </div>
 
-  <!-- JAVASCRIPT LOGIC -->
+  <!-- JAVASCRIPT LOGIC HỆ THỐNG -->
   <script>
     let systemConfigs = {};
     let countdownInterval = null;
+    let currentAllAdminRecords = [];
+    let currentFilteredList = [];
+    let parsedExcelRows = [];
 
     window.addEventListener('DOMContentLoaded', () => {
       loadProvinces();
@@ -649,7 +747,7 @@
       } catch (err) { console.error('Error loading config:', err); }
     }
 
-    // TÍNH NĂNG ĐẾM NGƯỢC THỜI GIAN THỰC (COUNTDOWN)
+    // ĐỒNG HỒ ĐẾM NGƯỢC THỜI GIAN THỰC (COUNTDOWN)
     function startCountdownTimer(deadlineStr) {
       if (!deadlineStr) return;
       if (countdownInterval) clearInterval(countdownInterval);
@@ -722,7 +820,7 @@
       });
     }
 
-    // 3. TỰ ĐỘNG NHẬN DIỆN CCCD
+    // 3. TỰ ĐỘNG NHẬN DIỆN CCCD VỚI THUẬT TOÁN THÔNG MINH ILIKE
     function initEvents() {
       const cccdInput = document.getElementById('soCCCD');
       if (cccdInput) {
@@ -883,7 +981,7 @@
     function printA4FormFromLookup() { if (currentLookupData) fillAndPrintA4(currentLookupData); }
     function printA4FormDirect() { if (lastRegisteredData) fillAndPrintA4(lastRegisteredData); }
 
-    // 7. CÁN BỘ QUẢN TRỊ & KPI DASHBOARD
+    // 7. CÁN BỘ QUẢN TRỊ & DASHBOARD METRICS
     let currentAdmin = null;
 
     async function handleAdminLogin() {
@@ -905,81 +1003,106 @@
     async function loadAdminData() {
       if (!currentAdmin) return;
       
-      const { data: records, error } = await window.db.from('danh_sach_dang_ky').select('*');
-      let tongQuyCho = parseInt(systemConfigs.TONG_QUY_PHONG || "310", 10);
+      const { data: records, error } = await window.db.from('danh_sach_dang_ky').select('*').order('id', { ascending: true });
+      currentAllAdminRecords = records || [];
       
+      let tongQuyCho = parseInt(systemConfigs.TONG_QUY_PHONG || "310", 10);
       let countApproved = 0, registeredCount = 0;
-      let countBac1 = 0, countBac2 = 0, countBac3 = 0, countBac4 = 0;
-      let totalBac1 = 0, totalBac2 = 0, totalBac3 = 0, totalBac4 = 0;
-      const nganhStats = {};
-      const validList = [];
+      let countBac1 = 0, countBac2 = 0;
 
-      (records || []).forEach(r => {
+      currentAllAdminRecords.forEach(r => {
         const loaiPhong = (r.loai_phong || '').trim();
         const status = r.trang_thai || 'Chờ duyệt';
         const bacUT = r.bac_uu_tien || '';
-        const nganh = r.nganh_hoc || 'Khác';
 
-        if (loaiPhong !== '') {
-          registeredCount++;
-          nganhStats[nganh] = (nganhStats[nganh] || 0) + 1;
-          if (bacUT.includes('Bậc 1')) totalBac1++;
-          else if (bacUT.includes('Bậc 2')) totalBac2++;
-          else if (bacUT.includes('Bậc 3')) totalBac3++;
-          else if (bacUT.includes('Bậc 4')) totalBac4++;
-          validList.push(r);
-        }
-
+        if (loaiPhong !== '') registeredCount++;
         if (status === 'Đã duyệt tiếp nhận' || status === 'Đã duyệt') {
           countApproved++;
           if (bacUT.includes('Bậc 1')) countBac1++;
           else if (bacUT.includes('Bậc 2')) countBac2++;
-          else if (bacUT.includes('Bậc 3')) countBac3++;
-          else countBac4++;
         }
       });
 
       const occupancyRate = tongQuyCho > 0 ? ((countApproved / tongQuyCho) * 100).toFixed(1) : 0;
-
       document.getElementById('kpiOccupancyPct').innerText = occupancyRate + '%';
       document.getElementById('kpiApprovedSlots').innerText = `${countApproved} / ${tongQuyCho} chỗ`;
       document.getElementById('kpiRegisteredCount').innerText = `${registeredCount} sinh viên`;
       document.getElementById('kpiPolicyCount').innerText = `${countBac1 + countBac2} suất`;
 
-      document.getElementById('statTotalBac1').innerText = totalBac1;
-      document.getElementById('statTotalBac2').innerText = totalBac2;
-      document.getElementById('statTotalBac3').innerText = totalBac3;
-      document.getElementById('statTotalBac4').innerText = totalBac4;
+      applyAdminFilters();
+      loadSystemConfigEditor();
+    }
 
-      const nContainer = document.getElementById('statNganhContainer');
-      nContainer.innerHTML = '';
-      Object.keys(nganhStats).forEach(n => {
-        nContainer.innerHTML += `<div class="bg-white p-1.5 rounded border flex justify-between"><span>${n}:</span><strong>${nganhStats[n]}</strong></div>`;
+    // ÁP DỤNG BỘ LỌC DỮ LIỆU ĐA CHIỀU
+    function applyAdminFilters() {
+      const q = (document.getElementById('adminSearchInput')?.value || '').trim().toLowerCase();
+      const fNganh = document.getElementById('adminFilterNganh')?.value || '';
+      const fKhu = document.getElementById('adminFilterKhu')?.value || '';
+      const fBacUT = document.getElementById('adminFilterBacUT')?.value || '';
+      const fTrangThai = document.getElementById('adminFilterTrangThai')?.value || '';
+
+      currentFilteredList = currentAllAdminRecords.filter(r => {
+        if (q) {
+          const matchName = (r.ho_ten || '').toLowerCase().includes(q);
+          const matchCCCD = (r.cccd || '').toLowerCase().includes(q);
+          const matchMSSV = (r.mssv || '').toLowerCase().includes(q);
+          const matchMaHS = (r.ma_ho_so || '').toLowerCase().includes(q);
+          if (!matchName && !matchCCCD && !matchMSSV && !matchMaHS) return false;
+        }
+
+        if (fNganh && r.nganh_hoc !== fNganh) return false;
+
+        if (fKhu) {
+          if (fKhu === 'CHUA_CHON') {
+            if (r.loai_phong && r.loai_phong.trim() !== '') return false;
+          } else {
+            if (!r.loai_phong || !r.loai_phong.includes(fKhu)) return false;
+          }
+        }
+
+        if (fBacUT && (!r.bac_uu_tien || !r.bac_uu_tien.includes(fBacUT))) return false;
+
+        if (fTrangThai) {
+          if (fTrangThai === 'DA_DANG_KY') {
+            if (!r.loai_phong || r.loai_phong.trim() === '') return false;
+          } else {
+            if (r.trang_thai !== fTrangThai) return false;
+          }
+        }
+
+        return true;
       });
 
-      renderAdminTable(validList);
-      loadSystemConfigEditor();
+      document.getElementById('lblFilteredCount').innerText = `${currentFilteredList.length} / ${currentAllAdminRecords.length}`;
+      renderAdminTable(currentFilteredList);
     }
 
     function renderAdminTable(records) {
       const tbody = document.getElementById('adminTableBody');
       tbody.innerHTML = '';
       if (!records || records.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="7" class="p-6 text-center text-slate-400">Chưa có sinh viên nào đăng ký KTX</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="8" class="p-6 text-center text-slate-400">Không tìm thấy sinh viên nào theo bộ lọc hiện tại</td></tr>`;
         return;
       }
       records.forEach(r => {
+        const badgeColor = r.trang_thai === 'Đã tiếp nhận' ? 'bg-emerald-100 text-emerald-800' :
+                           r.trang_thai === 'Từ chối' ? 'bg-red-100 text-red-800' : 'bg-amber-100 text-amber-800';
+
         tbody.innerHTML += `
-          <tr class="hover:bg-slate-50">
+          <tr class="hover:bg-slate-50 transition">
             <td class="p-3 font-bold text-red-600">${r.ma_ho_so}</td>
-            <td class="p-3"><strong>${r.ho_ten}</strong><br><span class="text-[10px] text-slate-500">MSSV: ${r.mssv || 'N/A'} - CCCD: ${r.cccd}</span></td>
-            <td class="p-3">${r.nganh_hoc || ''}</td>
-            <td class="p-3">${r.bac_uu_tien || 'Chưa chọn'}</td>
-            <td class="p-3">${r.loai_phong || 'Chưa chọn'}</td>
-            <td class="p-3"><span class="px-2 py-1 bg-amber-100 text-amber-800 rounded font-bold">${r.trang_thai}</span></td>
+            <td class="p-3">
+              <strong class="text-slate-800">${r.ho_ten}</strong>
+              <div class="text-[10px] text-slate-500">MSSV: ${r.mssv || 'N/A'} • CCCD: ${r.cccd}</div>
+            </td>
+            <td class="p-3">${r.nganh_hoc || 'Chưa nạp'}</td>
+            <td class="p-3 font-bold text-brand-blue">${r.diem || 0}</td>
+            <td class="p-3">${r.bac_uu_tien || 'Chưa đăng ký'}</td>
+            <td class="p-3 font-medium">${r.loai_phong || '<span class="text-slate-400">Chưa đăng ký</span>'}</td>
+            <td class="p-3"><span class="px-2 py-1 ${badgeColor} rounded font-bold text-[10px]">${r.trang_thai || 'Chờ duyệt'}</span></td>
             <td class="p-3 text-center space-x-1">
-              <button onclick="approveRecord('${r.ma_ho_so}', 'Đã duyệt tiếp nhận')" class="px-2 py-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded font-bold">Duyệt</button>
-              <button onclick="approveRecord('${r.ma_ho_so}', 'Từ chối')" class="px-2 py-1 bg-red-600 hover:bg-red-700 text-white rounded font-bold">Từ chối</button>
+              <button onclick="approveRecord('${r.ma_ho_so}', 'Đã tiếp nhận')" class="px-2 py-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded font-bold text-[11px]" title="Duyệt">Duyệt</button>
+              <button onclick="approveRecord('${r.ma_ho_so}', 'Từ chối')" class="px-2 py-1 bg-red-600 hover:bg-red-700 text-white rounded font-bold text-[11px]" title="Từ chối">Từ chối</button>
             </td>
           </tr>
         `;
@@ -987,11 +1110,11 @@
     }
 
     async function approveRecord(maHoSo, newStatus) {
-      Swal.fire({ title: `Xác nhận ${newStatus}?`, input: 'text', inputValue: 'Đã tiếp nhận vào KTX.', showCancelButton: true }).then(async res => {
+      Swal.fire({ title: `Xác nhận ${newStatus}?`, input: 'text', inputValue: 'Đã tiếp nhận KTX.', showCancelButton: true }).then(async res => {
         if (res.isConfirmed) {
           const { error } = await window.db.from('danh_sach_dang_ky').update({ trang_thai: newStatus, ghi_chu: res.value }).eq('ma_ho_so', maHoSo);
           if (!error) {
-            Swal.fire('Thành công', 'Đã cập nhật trạng thái hồ sơ ' + maHoSo, 'success');
+            Swal.fire('Thành công', 'Đã cập nhật hồ sơ ' + maHoSo, 'success');
             loadAdminData();
           } else {
             Swal.fire('Lỗi', error.message, 'error');
@@ -1000,6 +1123,193 @@
       });
     }
 
+    // 8. CHỨC NĂNG NẠP DỮ LIỆU EXCEL TỪ TỆP MẪU DSTT
+    function openExcelImportModal() { document.getElementById('excelImportModal').classList.remove('hidden'); }
+    function closeExcelImportModal() { document.getElementById('excelImportModal').classList.add('hidden'); }
+
+    function handleExcelFileSelect(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      document.getElementById('excelFileNameDisplay').innerText = `📄 ${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
+
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        try {
+          const data = new Uint8Array(evt.target.result);
+          const workbook = XLSX.read(data, { type: 'array' });
+          const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+          const jsonRows = XLSX.utils.sheet_to_json(firstSheet, { defval: '' });
+
+          if (!jsonRows || jsonRows.length === 0) {
+            Swal.fire('Lỗi Tệp', 'Tệp Excel không chứa dữ liệu!', 'error');
+            return;
+          }
+
+          parsedExcelRows = jsonRows;
+          document.getElementById('excelPreviewArea').classList.remove('hidden');
+          document.getElementById('excelPreviewDetails').innerHTML = `
+            • Tên Sheet: <strong>${workbook.SheetNames[0]}</strong><br>
+            • Tổng số dòng phát hiện: <strong class="text-emerald-600 text-sm">${jsonRows.length} sinh viên</strong><br>
+            • Cột phát hiện: ${Object.keys(jsonRows[0]).slice(0, 5).join(', ')}...
+          `;
+
+          document.getElementById('btnImportReplace').disabled = false;
+          document.getElementById('btnImportMerge').disabled = false;
+        } catch (err) {
+          Swal.fire('Lỗi Đọc File Excel', err.message, 'error');
+        }
+      };
+      reader.readAsArrayBuffer(file);
+    }
+
+    // BÁO TÍNH NĂNG MÁY ÁNH XẠ CỘT TỰ ĐỘNG CỦA FILE DSTT
+    function mapExcelRowToRecord(row, idx) {
+      const getVal = (keys) => {
+        for (const k of Object.keys(row)) {
+          const cleanK = k.toString().trim().toLowerCase();
+          for (const target of keys) {
+            if (cleanK.includes(target.toLowerCase())) {
+              return row[k] !== undefined && row[k] !== null ? String(row[k]).trim() : '';
+            }
+          }
+        }
+        return '';
+      };
+
+      let cccdRaw = getVal(['số đdcn', 'đdcn', 'cccd', 'định danh']);
+      cccdRaw = cccdRaw.replace(/[^0-9]/g, '');
+      if (cccdRaw.length > 0 && cccdRaw.length < 12) {
+        cccdRaw = cccdRaw.padStart(12, '0');
+      }
+
+      const hoTen = getVal(['họ và tên', 'họ tên', 'ho_ten']);
+      const mssv = getVal(['ma sinh vien', 'mã sinh viên', 'mssv']);
+      const ngaySinh = getVal(['ngày sinh', 'ngay_sinh']);
+      const gioiTinh = getVal(['giới tính', 'gioi_tinh']);
+      const nganhHoc = getVal(['tên mã xét tuyển trúng tuyển', 'ngành', 'nganh_hoc']);
+      const diemVal = getVal(['điểm trúng tuyển', 'điểm', 'diem']);
+
+      return {
+        ma_ho_so: 'KTX26-' + String(idx + 1).padStart(4, '0'),
+        cccd: cccdRaw,
+        ho_ten: hoTen.toUpperCase(),
+        mssv: mssv,
+        ngay_sinh: ngaySinh,
+        gioi_tinh: gioiTinh,
+        nganh_hoc: nganhHoc,
+        diem: parseFloat(diemVal) || 0,
+        trang_thai: 'Chờ duyệt',
+        thoi_gian: new Date().toLocaleString('vi-VN'),
+        ghi_chu: 'Nạp từ Excel'
+      };
+    }
+
+    async function processExcelImport(isReplaceAll) {
+      if (!parsedExcelRows || parsedExcelRows.length === 0) return;
+
+      const confirmText = isReplaceAll 
+        ? `CẢNH BÁO: Hệ thống sẽ XÓA SẠCH toàn bộ dữ liệu cũ và NẠP MỚI ${parsedExcelRows.length} sinh viên từ file Excel. Bạn có chắc chắn không?`
+        : `Hệ thống sẽ CẬP NHẬT / NẠP BỔ SUNG ${parsedExcelRows.length} sinh viên từ file Excel vào CSDL.`;
+
+      const res = await Swal.fire({
+        title: isReplaceAll ? 'Xác nhận Xóa & Import Mới' : 'Xác nhận Nạp Bổ Sung',
+        text: confirmText,
+        icon: isReplaceAll ? 'warning' : 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Đồng Ý Thực Hiện',
+        cancelButtonText: 'Hủy Bỏ',
+        confirmButtonColor: isReplaceAll ? '#dc2626' : '#1e3a8a'
+      });
+
+      if (!res.isConfirmed) return;
+
+      Swal.fire({
+        title: 'Đang xử lý CSDL Supabase...',
+        html: 'Vui lòng giữ kết nối Internet và không đóng trình duyệt.',
+        allowOutsideClick: false,
+        didOpen: () => Swal.showLoading()
+      });
+
+      try {
+        if (isReplaceAll) {
+          // Xóa toàn bộ dòng trong danh_sach_dang_ky
+          await window.db.from('danh_sach_dang_ky').delete().neq('ma_ho_so', 'KEY_NEVER_MATCH_999');
+        }
+
+        const formattedList = parsedExcelRows.map((r, i) => mapExcelRowToRecord(r, i));
+
+        // Nạp theo từng lô (Chunking 200 dòng)
+        const CHUNK_SIZE = 200;
+        for (let i = 0; i < formattedList.length; i += CHUNK_SIZE) {
+          const chunk = formattedList.slice(i, i + CHUNK_SIZE);
+          if (isReplaceAll) {
+            const { error: insErr } = await window.db.from('danh_sach_dang_ky').insert(chunk);
+            if (insErr) throw insErr;
+          } else {
+            const { error: upsErr } = await window.db.from('danh_sach_dang_ky').upsert(chunk, { onConflict: 'cccd' });
+            if (upsErr) throw upsErr;
+          }
+        }
+
+        Swal.fire({
+          icon: 'success',
+          title: 'NẠP DỮ LIỆU THÀNH CÔNG!',
+          text: `Đã xử lý xong ${formattedList.length} sinh viên từ file Excel vào CSDL.`,
+          confirmButtonText: 'Đóng'
+        });
+
+        closeExcelImportModal();
+        loadAdminData();
+      } catch (err) {
+        Swal.fire('Lỗi Nạp Dữ Liệu', err.message, 'error');
+      }
+    }
+
+    // 9. CHỨC NĂNG XUẤT EXCEL THEO BỘ LỌC
+    function exportFilteredToExcel() {
+      if (!currentFilteredList || currentFilteredList.length === 0) {
+        Swal.fire('Thông Báo', 'Không có dữ liệu sinh viên nào phù hợp với bộ lọc hiện tại!', 'info');
+        return;
+      }
+
+      const exportData = currentFilteredList.map((item, index) => ({
+        "STT": index + 1,
+        "Mã Hồ Sơ": item.ma_ho_so || '',
+        "Mã Sinh Viên": item.mssv || '',
+        "Họ Và Tên": item.ho_ten || '',
+        "Giới Tính": item.gioi_tinh || '',
+        "Ngày Sinh": item.ngay_sinh || '',
+        "Số CCCD / ĐĐCN": item.cccd ? String(item.cccd) : '',
+        "SĐT Cá Nhân": item.sdt || '',
+        "SĐT Gia Đình": item.sdt_gia_dinh || '',
+        "Email": item.email || '',
+        "Địa Chỉ / Hộ Khẩu": item.tinh_thanh || '',
+        "Ngành Trúng Tuyển": item.nganh_hoc || '',
+        "Điểm Xét Tuyển": item.diem || 0,
+        "Bậc Ưu Tiên": item.bac_uu_tien || '',
+        "Khu KTX Đăng Ký": item.loai_phong || '',
+        "Trạng Thái Xét Duyệt": item.trang_thai || 'Chờ duyệt',
+        "Ghi Chú": item.ghi_chu || ''
+      }));
+
+      const worksheet = XLSX.utils.json_to_sheet(exportData);
+      worksheet['!cols'] = [
+        { wch: 6 }, { wch: 14 }, { wch: 14 }, { wch: 25 },
+        { wch: 10 }, { wch: 12 }, { wch: 16 }, { wch: 14 },
+        { wch: 14 }, { wch: 25 }, { wch: 35 }, { wch: 30 },
+        { wch: 12 }, { wch: 25 }, { wch: 28 }, { wch: 18 }, { wch: 20 }
+      ];
+
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, "DS_SinhVien_KTX");
+
+      const now = new Date();
+      const timeTag = `${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}${String(now.getDate()).padStart(2,'0')}_${String(now.getHours()).padStart(2,'0')}${String(now.getMinutes()).padStart(2,'0')}`;
+      XLSX.writeFile(workbook, `DS_Dang_Ky_KTX_APAG_${timeTag}.xlsx`);
+    }
+
+    // CẤU HÌNH HỆ THỐNG
     function switchAdminTab(tabName) {
       if (tabName === 'dashboard') {
         document.getElementById('adminTabContentDash').classList.remove('hidden');
@@ -1036,7 +1346,7 @@
         await window.db.from('cau_hinh').upsert([item]);
       }
 
-      Swal.fire('Thành công', 'Đã lưu cài đặt cấu hình hệ thống!', 'success');
+      Swal.fire('Thành công', 'Đã lưu cài đặt cấu hình!', 'success');
       loadLiveConfig();
     }
 
