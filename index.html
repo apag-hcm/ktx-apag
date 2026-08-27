@@ -323,11 +323,15 @@
             </div>
           </div>
           
+          <!-- KHU VỰC ĐỊA CHỈ - TÍCH HỢP TỰ ĐỘNG LỌC TRÙNG -->
           <div class="mt-4 space-y-3">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
-                <label class="block text-xs font-semibold text-slate-700 mb-1">Địa chỉ chi tiết (Thôn/Xóm/Số nhà)</label>
-                <input type="text" id="diaChiChiTiet" placeholder="Số 123 đường ABC..." class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none bg-white">
+                <label class="block text-xs font-semibold text-slate-700 mb-1">
+                  Địa chỉ chi tiết (Thôn/Xóm/Số nhà/Tên đường) <span class="text-red-500">*</span>
+                </label>
+                <input type="text" id="diaChiChiTiet" required onblur="autoCleanDetailAddress()" placeholder="Ví dụ: Số 123 đường ABC" class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none bg-white">
+                <p class="text-[11px] text-amber-600 mt-1 font-medium">⚠️ <strong>Lưu ý:</strong> Không nhập tên Phường/Xã hay Tỉnh/Thành vào ô này.</p>
               </div>
               <div>
                 <label class="block text-xs font-semibold text-slate-700 mb-1">Tỉnh / Thành phố <span class="text-red-500">*</span></label>
@@ -751,6 +755,37 @@
       return null;
     }
 
+    // HÀM TỰ ĐỘNG LÀM SẠCH ĐỊA CHỈ CHI TIẾT (CHỐNG LẶP LẠI PHƯỜNG/XÃ, TỈNH/THÀNH)
+    function autoCleanDetailAddress() {
+      const inputEl = document.getElementById('diaChiChiTiet');
+      const wardVal = (document.getElementById('phuongXaSelect')?.value || '').trim();
+      const provVal = (document.getElementById('tinhThanhSelect')?.value || '').trim();
+
+      if (!inputEl || !inputEl.value.trim()) return;
+
+      let cleaned = inputEl.value.trim();
+
+      // 1. Tự động xóa tên Phường/Xã đã chọn ở ô bên cạnh nếu bị gõ trùng
+      if (wardVal) {
+        const wardRegex = new RegExp(wardVal.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+        cleaned = cleaned.replace(wardRegex, '');
+      }
+
+      // 2. Tự động xóa tên Tỉnh/Thành phố đã chọn ở ô bên cạnh nếu bị gõ trùng
+      if (provVal) {
+        const provRegex = new RegExp(provVal.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+        cleaned = cleaned.replace(provRegex, '');
+      }
+
+      // 3. Tự động cắt các cụm từ hành chính thừa ở đuôi
+      cleaned = cleaned.replace(/(,\s*|\s+)(phường|xã|thị trấn|quận|huyện|thị xã|thành phố|tỉnh|tp)\b.*$/gi, '');
+
+      // 4. Xóa các dấu phẩy, dấu chấm, khoảng trắng dư thừa
+      cleaned = cleaned.replace(/[\s,.-]+$/, '').trim();
+
+      inputEl.value = cleaned;
+    }
+
     window.addEventListener('DOMContentLoaded', () => {
       loadProvinces();
       loadLiveConfig();
@@ -759,7 +794,6 @@
 
     // 1. TẢI CẤU HÌNH VỚI BỘ NHỚ ĐỆM LOCALSTORAGE SIÊU TỐC
     async function loadLiveConfig() {
-      // Đọc ngay từ cache để giao diện hiển thị ngay lập tức (0.1 giây)
       const cached = localStorage.getItem('APAG_CONFIG_CACHE');
       if (cached) {
         try {
@@ -768,7 +802,6 @@
         } catch(e) {}
       }
 
-      // Tải ngầm dữ liệu mới nhất từ Supabase để đồng bộ
       try {
         if (!window.db) return;
         const { data, error } = await window.db.from('cau_hinh').select('*');
@@ -862,6 +895,7 @@
       (administrativeData[pName] || []).forEach(w => {
         const opt = document.createElement('option'); opt.value = w; wardListEl.appendChild(opt);
       });
+      autoCleanDetailAddress();
     }
 
     // 3. TỰ ĐỘNG NHẬN DIỆN CCCD VỚI THUẬT TOÁN THÔNG MINH ILIKE
@@ -905,10 +939,14 @@
       }
     }
 
-    // 4. TIẾP NHẬN HOẶC CẬP NHẬT ĐƠN ĐĂNG KÝ
+    // 4. TIẾP NHẬN HOẶC CẬP NHẬT ĐƠN ĐĂNG KÝ (CÓ TỰ ĐỘNG NỐI ĐỊA CHỈ KHÔNG TRÙNG LẶP)
     let lastRegisteredData = null;
     async function handleFormSubmit(e) {
       e.preventDefault();
+      
+      // Làm sạch ô Địa chỉ chi tiết trước khi gửi
+      autoCleanDetailAddress();
+
       const btn = document.getElementById('btnSubmit');
       btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Đang xử lý...';
 
@@ -917,7 +955,9 @@
       const chitiet = document.getElementById('diaChiChiTiet').value.trim();
       const xa = document.getElementById('phuongXaSelect').value.trim();
       const tinh = document.getElementById('tinhThanhSelect').value.trim();
-      const fullAddress = (chitiet ? chitiet + ", " : "") + (xa ? xa + ", " : "") + tinh;
+      
+      // Ghép nối địa chỉ chuẩn, hoàn toàn không bị lặp lại
+      const fullAddress = [chitiet, xa, tinh].filter(Boolean).join(', ');
 
       const formData = {
         ho_ten: document.getElementById('hoTen').value.trim().toUpperCase(),
