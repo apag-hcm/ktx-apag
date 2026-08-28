@@ -39,20 +39,6 @@
   <style>
     .hero-gradient { background: linear-gradient(135deg, #0c2556 0%, #1e3a8a 100%); }
     .custom-shadow { box-shadow: 0 10px 25px -5px rgba(12, 37, 86, 0.1), 0 8px 10px -6px rgba(12, 37, 86, 0.1); }
-
-    /* TỐI ƯU GIAO DIỆN DI ĐỘNG & MÁY TÍNH */
-    html { -webkit-tap-highlight-color: transparent; scroll-behavior: smooth; }
-    input, select, textarea { font-size: 16px; } /* Tránh iOS Safari tự động zoom */
-    @media (min-width: 768px) {
-      input, select, textarea { font-size: 14px; }
-    }
-    .touch-scroller { -webkit-overflow-scrolling: touch; scrollbar-width: thin; }
-    .touch-scroller::-webkit-scrollbar { height: 6px; width: 6px; }
-    .touch-scroller::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
-    .touch-scroller::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-    .btn-tap { transition: all 0.15s ease; }
-    .btn-tap:active { transform: scale(0.97); }
-
     #printA4Template { display: none; }
 
     @page { size: A4 portrait; margin: 0 !important; }
@@ -89,11 +75,11 @@
         <span class="font-medium tracking-wide">Hệ thống tiếp nhận hồ sơ KTX <span class="lblNamHoc">2026</span> - Phân hiệu TP. Hồ Chí Minh</span>
       </div>
       <div class="flex items-center space-x-4">
-        <button onclick="openLookupModal()" class="hover:text-amber-300 transition flex items-center gap-1 font-semibold text-amber-400 btn-tap">
+        <button onclick="openLookupModal()" class="hover:text-amber-300 transition flex items-center gap-1 font-semibold text-amber-400">
           <i class="fa-solid fa-magnifying-glass"></i> Tra cứu kết quả & In đơn
         </button>
         <span class="text-white/30">|</span>
-        <button onclick="openAdminModal()" class="hover:text-amber-300 transition flex items-center gap-1 font-semibold text-slate-300 btn-tap">
+        <button onclick="openAdminModal()" class="hover:text-amber-300 transition flex items-center gap-1 font-semibold text-slate-300">
           <i class="fa-solid fa-lock"></i> Cổng Quản trị / Duyệt đơn
         </button>
       </div>
@@ -101,21 +87,21 @@
   </div>
 
   <!-- HEADER -->
-  <header class="bg-white shadow-md sticky top-0 z-40 backdrop-blur-md bg-white/95 transition-all">
-    <div class="max-w-7xl mx-auto px-3 sm:px-4 py-2.5 sm:py-3 flex flex-col sm:flex-row justify-between items-center gap-2.5 sm:gap-4">
-      <div class="flex items-center space-x-2.5 sm:space-x-3 text-center sm:text-left">
-        <img src="https://lh3.googleusercontent.com/d/1dEflBL-GkyaMNltl4Bv8IKVELD74DSRB" alt="Logo APAG" class="h-10 w-10 sm:h-12 sm:w-12 object-contain rounded-full bg-white p-0.5 border border-slate-200 shadow-sm" referrerpolicy="no-referrer">
+  <header class="bg-white shadow-sm sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="flex items-center space-x-3">
+        <img src="https://lh3.googleusercontent.com/d/1dEflBL-GkyaMNltl4Bv8IKVELD74DSRB" alt="Logo APAG" class="h-12 w-12 object-contain rounded-full bg-white p-0.5 border border-slate-200 shadow-sm" referrerpolicy="no-referrer">
         <div>
-          <h2 class="text-[11px] sm:text-xs md:text-sm font-bold text-brand-dark uppercase tracking-wider leading-tight">HỌC VIỆN HÀNH CHÍNH VÀ QUẢN TRỊ CÔNG</h2>
-          <h1 class="text-xs sm:text-sm md:text-base font-extrabold text-brand-blue uppercase leading-tight">PHÂN HIỆU TẠI THÀNH PHỐ HỒ CHÍ MINH</h1>
-          <p class="text-[10px] sm:text-[11px] text-amber-600 font-semibold uppercase tracking-wider">Cổng đăng ký xét duyệt ký túc xá đại học chính quy <span class="lblNamHoc">2026</span></p>
+          <h2 class="text-xs md:text-sm font-bold text-brand-dark uppercase tracking-wider leading-tight">HỌC VIỆN HÀNH CHÍNH VÀ QUẢN TRỊ CÔNG</h2>
+          <h1 class="text-sm md:text-base font-extrabold text-brand-blue uppercase leading-tight">PHÂN HIỆU TẠI THÀNH PHỐ HỒ CHÍ MINH</h1>
+          <p class="text-[11px] text-amber-600 font-semibold uppercase tracking-wider">Cổng đăng ký xét duyệt ký túc xá đại học chính quy <span class="lblNamHoc">2026</span></p>
         </div>
       </div>
-      <div class="flex items-center space-x-2 w-full sm:w-auto justify-center">
-        <button onclick="openLookupModal()" class="flex-1 sm:flex-none px-3 py-2 text-xs md:text-sm font-semibold text-brand-blue bg-blue-50 hover:bg-blue-100 rounded-lg transition border border-blue-200 flex items-center justify-center gap-1.5 shadow-sm btn-tap">
+      <div class="flex items-center space-x-2">
+        <button onclick="openLookupModal()" class="px-3 py-2 text-xs md:text-sm font-semibold text-brand-blue bg-blue-50 hover:bg-blue-100 rounded-lg transition border border-blue-200 flex items-center gap-1.5 shadow-sm">
           <i class="fa-solid fa-search"></i> Tra cứu & In đơn
         </button>
-        <button onclick="openAdminModal()" class="flex-1 sm:flex-none px-3 py-2 text-xs md:text-sm font-semibold text-white bg-brand-dark hover:bg-brand-blue rounded-lg transition flex items-center justify-center gap-1.5 shadow-sm btn-tap">
+        <button onclick="openAdminModal()" class="px-3 py-2 text-xs md:text-sm font-semibold text-white bg-brand-dark hover:bg-brand-blue rounded-lg transition flex items-center gap-1.5 shadow-sm">
           <i class="fa-solid fa-shield-halved text-amber-400"></i> Hội đồng duyệt
         </button>
       </div>
@@ -123,22 +109,22 @@
   </header>
 
   <!-- HERO BANNER VỚI ĐỒNG HỒ ĐẾM NGƯỢC -->
-  <section class="hero-gradient text-white py-6 md:py-10 px-3 sm:px-4">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-start">
-      <div class="lg:col-span-7 space-y-3 sm:space-y-4">
+  <section class="hero-gradient text-white py-8 md:py-10 px-4">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+      <div class="lg:col-span-7 space-y-4">
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-amber-300 text-xs font-semibold">
           <i class="fa-solid fa-graduation-cap"></i> Khóa tuyển sinh <span class="lblNamHoc">2026</span> • Đại học chính quy
         </div>
-        <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight">
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight">
           Đăng ký xét duyệt <br><span class="text-amber-400 underline decoration-amber-400/40">Ký túc xá</span> trực tuyến
         </h1>
-        <p class="text-slate-200 text-xs sm:text-sm md:text-base max-w-xl leading-relaxed">
+        <p class="text-slate-200 text-sm md:text-base max-w-xl leading-relaxed">
           Học viện hỗ trợ không gian lưu trú an toàn, tiện nghi, chi phí ưu đãi cho tân sinh viên trúng tuyển tại các cơ sở Ký túc xá thuộc Phân hiệu TP. Hồ Chí Minh.
         </p>
-        <div class="flex flex-wrap gap-2.5 pt-1">
+        <div class="flex flex-wrap gap-3 pt-2">
           <div class="flex items-center gap-2 bg-white/10 px-3 py-2 rounded-lg border border-white/15 text-xs font-medium">
             <i class="fa-solid fa-bed text-amber-400 text-base"></i>
-            <span>Chỉ tiêu KTX: <strong class="text-white" id="displayTongChoKTX3">0 chỗ trống</strong></span>
+            <span>Tổng chỉ tiêu KTX: <strong class="text-white" id="displayTongChoKTX3">0 chỗ trống</strong></span>
           </div>
           <div class="flex items-center gap-2 bg-white/10 px-3 py-2 rounded-lg border border-white/15 text-xs font-medium">
             <i class="fa-solid fa-calendar-check text-amber-400 text-base"></i>
@@ -149,36 +135,36 @@
 
       <div class="lg:col-span-5 space-y-4 w-full">
         <!-- ĐỒNG HỒ ĐẾM NGƯỢC HẠN ĐĂNG KÝ -->
-        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-3.5 sm:p-5 border border-amber-400/40 shadow-2xl text-white space-y-3">
-          <div class="flex items-center justify-between border-b border-white/15 pb-2">
-            <span class="text-xs md:text-sm font-bold uppercase tracking-wider text-amber-300 flex items-center gap-1.5">
+        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-4 md:p-5 border border-amber-400/40 shadow-2xl text-white space-y-3">
+          <div class="flex items-center justify-between border-b border-white/15 pb-2.5">
+            <span class="text-xs md:text-sm font-bold uppercase tracking-wider text-amber-300 flex items-center gap-2">
               <i class="fa-solid fa-clock text-amber-400 animate-pulse"></i> Hạn chót nhận đơn trực tuyến
             </span>
             <span id="lblDeadlineDisplay" class="text-[11px] text-slate-200 font-semibold">24/08/2026 17:00</span>
           </div>
           <div class="grid grid-cols-4 gap-2 text-center pt-1">
             <div class="bg-black/30 p-2 rounded-xl border border-white/10">
-              <div id="cdDays" class="text-lg sm:text-2xl font-extrabold text-amber-400">00</div>
-              <div class="text-[9px] sm:text-[10px] text-slate-300 uppercase font-semibold">Ngày</div>
+              <div id="cdDays" class="text-xl md:text-2xl font-extrabold text-amber-400">00</div>
+              <div class="text-[10px] text-slate-300 uppercase font-semibold">Ngày</div>
             </div>
             <div class="bg-black/30 p-2 rounded-xl border border-white/10">
-              <div id="cdHours" class="text-lg sm:text-2xl font-extrabold text-white">00</div>
-              <div class="text-[9px] sm:text-[10px] text-slate-300 uppercase font-semibold">Giờ</div>
+              <div id="cdHours" class="text-xl md:text-2xl font-extrabold text-white">00</div>
+              <div class="text-[10px] text-slate-300 uppercase font-semibold">Giờ</div>
             </div>
             <div class="bg-black/30 p-2 rounded-xl border border-white/10">
-              <div id="cdMinutes" class="text-lg sm:text-2xl font-extrabold text-white">00</div>
-              <div class="text-[9px] sm:text-[10px] text-slate-300 uppercase font-semibold">Phút</div>
+              <div id="cdMinutes" class="text-xl md:text-2xl font-extrabold text-white">00</div>
+              <div class="text-[10px] text-slate-300 uppercase font-semibold">Phút</div>
             </div>
             <div class="bg-black/30 p-2 rounded-xl border border-white/10">
-              <div id="cdSeconds" class="text-lg sm:text-2xl font-extrabold text-amber-400">00</div>
-              <div class="text-[9px] sm:text-[10px] text-slate-300 uppercase font-semibold">Giây</div>
+              <div id="cdSeconds" class="text-xl md:text-2xl font-extrabold text-amber-400">00</div>
+              <div class="text-[10px] text-slate-300 uppercase font-semibold">Giây</div>
             </div>
           </div>
         </div>
 
         <!-- THẺ HIỂN THỊ BẬC ƯU TIÊN ĐỘNG -->
-        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-3.5 sm:p-5 border border-white/20 shadow-2xl text-white space-y-3">
-          <div class="flex items-center justify-between border-b border-white/15 pb-2">
+        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-4 md:p-5 border border-white/20 shadow-2xl text-white space-y-3">
+          <div class="flex items-center justify-between border-b border-white/15 pb-2.5">
             <span class="text-xs md:text-sm font-bold uppercase tracking-wider text-amber-300 flex items-center gap-2">
               <i class="fa-solid fa-layer-group"></i> Bậc ưu tiên xét duyệt KTX <span class="lblNamHoc">2026</span>
             </span>
@@ -187,8 +173,8 @@
         </div>
 
         <!-- THẺ HIỂN THỊ CƠ SỞ KTX ĐỘNG -->
-        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-3.5 sm:p-5 border border-white/20 shadow-2xl text-white space-y-3">
-          <div class="flex items-center justify-between border-b border-white/15 pb-2">
+        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-4 md:p-5 border border-white/20 shadow-2xl text-white space-y-3">
+          <div class="flex items-center justify-between border-b border-white/15 pb-2.5">
             <span class="text-xs md:text-sm font-bold uppercase tracking-wider text-amber-300 flex items-center gap-2">
               <i class="fa-solid fa-coins"></i> Định mức kinh phí Ký túc xá <span class="lblNamHoc">2026</span>
             </span>
@@ -200,9 +186,9 @@
   </section>
 
   <!-- LỊCH TIẾP SINH -->
-  <section class="max-w-7xl mx-auto px-3 sm:px-4 -mt-4 sm:-mt-5">
-    <div class="bg-white rounded-2xl p-4 sm:p-6 custom-shadow border border-slate-100 space-y-4">
-      <div class="bg-amber-50 border border-amber-200 rounded-xl p-3.5 flex items-start gap-3">
+  <section class="max-w-7xl mx-auto px-4 -mt-5">
+    <div class="bg-white rounded-2xl p-6 custom-shadow border border-slate-100 space-y-4">
+      <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 flex items-start gap-3">
         <i class="fa-solid fa-triangle-exclamation text-amber-600 text-lg mt-0.5"></i>
         <div class="text-xs text-amber-900 leading-relaxed">
           <strong class="font-bold block text-sm mb-0.5">LƯU Ý QUAN TRỌNG VỀ GIẤY TỜ MINH CHỨNG:</strong>
@@ -210,18 +196,18 @@
         </div>
       </div>
 
-      <div class="flex items-center justify-between border-b pb-2.5">
-        <h3 class="text-xs sm:text-sm font-bold text-brand-dark uppercase tracking-wider flex items-center gap-2">
+      <div class="flex items-center justify-between border-b pb-3">
+        <h3 class="text-sm font-bold text-brand-dark uppercase tracking-wider flex items-center gap-2">
           <i class="fa-solid fa-calendar-days text-amber-500"></i> Lịch nhập học trực tiếp tại số 10 đường 3/2, Phường Hòa Hưng, TP.HCM
         </h3>
       </div>
-      <div class="grid md:grid-cols-2 gap-3 text-xs">
-        <div class="p-3 rounded-xl bg-blue-50/70 border border-blue-200">
-          <div class="font-bold text-brand-blue text-xs sm:text-sm mb-1"><i class="fa-solid fa-clock mr-1"></i> Ngày 25/8/<span class="lblNamHoc">2026</span></div>
+      <div class="grid md:grid-cols-2 gap-4 text-xs">
+        <div class="p-3.5 rounded-xl bg-blue-50/70 border border-blue-200">
+          <div class="font-bold text-brand-blue text-sm mb-1"><i class="fa-solid fa-clock mr-1"></i> Ngày 25/8/<span class="lblNamHoc">2026</span></div>
           <p class="text-slate-700 leading-relaxed font-medium">Ngành: Quản lý nhà nước, Quản trị văn phòng, Quản trị nhân lực, Lưu trữ học, Văn thư Lưu trữ.</p>
         </div>
-        <div class="p-3 rounded-xl bg-amber-50/70 border border-amber-200">
-          <div class="font-bold text-amber-900 text-xs sm:text-sm mb-1"><i class="fa-solid fa-clock mr-1"></i> Ngày 26/8/<span class="lblNamHoc">2026</span></div>
+        <div class="p-3.5 rounded-xl bg-amber-50/70 border border-amber-200">
+          <div class="font-bold text-amber-900 text-sm mb-1"><i class="fa-solid fa-clock mr-1"></i> Ngày 26/8/<span class="lblNamHoc">2026</span></div>
           <p class="text-slate-700 leading-relaxed font-medium">Ngành: Luật, Kinh tế, Xây dựng Đảng và chính quyền Nhà nước, Thanh tra.</p>
         </div>
       </div>
@@ -229,23 +215,22 @@
   </section>
 
   <!-- FORM ĐĂNG KÝ -->
-  <main class="max-w-4xl mx-auto px-3 sm:px-4 py-6 sm:py-8 w-full">
-    <div class="bg-white rounded-2xl p-4 sm:p-8 custom-shadow border border-slate-100">
-      <div class="border-b border-slate-200 pb-3.5 mb-5">
-        <h2 class="text-lg sm:text-2xl font-bold text-brand-dark flex items-center gap-2">
+  <main class="max-w-4xl mx-auto px-4 py-8 w-full">
+    <div class="bg-white rounded-2xl p-6 md:p-8 custom-shadow border border-slate-100">
+      <div class="border-b border-slate-200 pb-4 mb-6">
+        <h2 class="text-xl md:text-2xl font-bold text-brand-dark flex items-center gap-2">
           <i class="fa-solid fa-file-signature text-brand-gold"></i> Phiếu Đăng Ký Xét Duyệt Ký Túc Xá Năm Học <span class="lblNamHoc">2026</span>
         </h2>
         <p class="text-xs text-slate-500 mt-1">Phân hiệu Học viện Hành chính và Quản trị công tại Thành phố Hồ Chí Minh</p>
       </div>
 
-      <form id="regForm" onsubmit="handleFormSubmit(event)" class="space-y-5 sm:space-y-6">
+      <form id="regForm" onsubmit="handleFormSubmit(event)" class="space-y-6">
         <div>
-          <!-- NHẬP CCCD LÊN ĐẦU ĐỂ TỰ ĐỘNG NẠP THÔNG TIN -->
-          <div class="bg-blue-50 border border-blue-200 rounded-xl p-3.5 sm:p-4 mb-5">
+          <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-5">
             <label class="block text-xs font-bold text-brand-dark mb-1 uppercase tracking-wider">
               <i class="fa-solid fa-id-card text-brand-blue mr-1"></i> Nhập Số CCCD / Định danh (Đăng nhập hệ thống) <span class="text-red-500">*</span>
             </label>
-            <input type="text" id="soCCCD" required pattern="[0-9]{12}" maxlength="12" placeholder="Nhập đúng 12 số CCCD..." class="w-full md:w-1/2 px-3 py-2.5 text-base md:text-sm btn-tap border border-brand-blue rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none font-bold bg-white">
+            <input type="text" id="soCCCD" required pattern="[0-9]{12}" maxlength="12" placeholder="Nhập đúng 12 số CCCD..." class="w-full md:w-1/2 px-3 py-2.5 text-sm border border-brand-blue rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none font-bold bg-white">
             <p class="text-[11px] text-brand-blue mt-1 font-medium">💡 Nhập số CCCD của bạn để hệ thống tự động nhận diện và nạp thông tin trúng tuyển.</p>
           </div>
 
@@ -253,25 +238,25 @@
             <span class="w-5 h-5 rounded-full bg-blue-100 text-brand-blue inline-flex items-center justify-center text-xs">1</span>
             Thông tin cá nhân tân sinh viên
           </h3>
-          <div class="grid md:grid-cols-3 gap-3.5">
+          <div class="grid md:grid-cols-3 gap-4">
             <div>
               <label class="block text-xs font-semibold text-slate-700 mb-1">Mã Sinh Viên (MSSV)</label>
-              <input type="text" id="displayMSSV" readonly placeholder="Tự động hiển thị..." class="w-full px-3 py-2.5 text-base md:text-sm btn-tap border border-slate-200 rounded-lg bg-slate-100 font-bold text-brand-blue">
+              <input type="text" id="displayMSSV" readonly placeholder="Tự động hiển thị..." class="w-full px-3 py-2.5 text-sm border border-slate-200 rounded-lg bg-slate-100 font-bold text-brand-blue">
             </div>
             <div class="md:col-span-2">
               <label class="block text-xs font-semibold text-slate-700 mb-1">Họ và tên <span class="text-red-500">*</span></label>
-              <input type="text" id="hoTen" required placeholder="NGUYỄN VĂN A" class="w-full px-3 py-2.5 text-base md:text-sm btn-tap border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none uppercase font-semibold">
+              <input type="text" id="hoTen" required placeholder="NGUYỄN VĂN A" class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none uppercase font-semibold">
             </div>
           </div>
 
-          <div class="grid md:grid-cols-2 gap-3.5 mt-3">
+          <div class="grid md:grid-cols-2 gap-4 mt-3">
             <div>
               <label class="block text-xs font-semibold text-slate-700 mb-1">Ngày sinh <span class="text-red-500">*</span></label>
-              <input type="date" id="ngaySinh" required class="w-full px-3 py-2.5 text-base md:text-sm btn-tap border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none">
+              <input type="date" id="ngaySinh" required class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none">
             </div>
             <div>
               <label class="block text-xs font-semibold text-slate-700 mb-1">Giới tính <span class="text-red-500">*</span></label>
-              <select id="gioiTinh" required class="w-full px-3 py-2.5 text-base md:text-sm btn-tap border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none bg-white">
+              <select id="gioiTinh" required class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none bg-white">
                 <option value="">-- Chọn giới tính --</option>
                 <option value="Nam">Nam</option>
                 <option value="Nữ">Nữ</option>
@@ -279,14 +264,14 @@
             </div>
           </div>
 
-          <div class="grid md:grid-cols-2 gap-3.5 mt-3">
+          <div class="grid md:grid-cols-2 gap-4 mt-3">
             <div>
               <label class="block text-xs font-semibold text-slate-700 mb-1">Ngày cấp CCCD <span class="text-red-500">*</span></label>
-              <input type="date" id="ngayCapCCCD" required class="w-full px-3 py-2.5 text-base md:text-sm btn-tap border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none">
+              <input type="date" id="ngayCapCCCD" required class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none">
             </div>
             <div>
               <label class="block text-xs font-semibold text-slate-700 mb-1">Nơi cấp CCCD <span class="text-red-500">*</span></label>
-              <input list="noiCapList" id="noiCapCCCD" required placeholder="Chọn hoặc nhập..." class="w-full px-3 py-2.5 text-base md:text-sm btn-tap border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none">
+              <input list="noiCapList" id="noiCapCCCD" required placeholder="Chọn hoặc nhập..." class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none">
               <datalist id="noiCapList">
                 <option value="Bộ Công an"></option>
                 <option value="Cục Cảnh sát quản lý hành chính về trật tự xã hội"></option>
@@ -294,39 +279,39 @@
             </div>
           </div>
 
-          <div class="grid md:grid-cols-3 gap-3.5 mt-3">
+          <div class="grid md:grid-cols-3 gap-4 mt-3">
             <div>
               <label class="block text-xs font-semibold text-slate-700 mb-1">SĐT cá nhân <span class="text-red-500">*</span></label>
-              <input type="tel" id="soDienThoai" required pattern="[0-9]{10}" placeholder="0905xxxxxx" class="w-full px-3 py-2.5 text-base md:text-sm btn-tap border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none font-semibold">
+              <input type="tel" id="soDienThoai" required pattern="[0-9]{10}" placeholder="0905xxxxxx" class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none font-semibold">
             </div>
             <div>
               <label class="block text-xs font-semibold text-slate-700 mb-1">SĐT gia đình <span class="text-red-500">*</span></label>
-              <input type="tel" id="soDienThoaiGD" required pattern="[0-9]{10}" placeholder="0913xxxxxx" class="w-full px-3 py-2.5 text-base md:text-sm btn-tap border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none">
+              <input type="tel" id="soDienThoaiGD" required pattern="[0-9]{10}" placeholder="0913xxxxxx" class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none">
             </div>
             <div>
               <label class="block text-xs font-semibold text-slate-700 mb-1">Email liên hệ <span class="text-red-500">*</span></label>
-              <input type="email" id="email" required placeholder="sinhvien@gmail.com" class="w-full px-3 py-2.5 text-base md:text-sm btn-tap border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none">
+              <input type="email" id="email" required placeholder="sinhvien@gmail.com" class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none">
             </div>
           </div>
           
           <!-- KHU VỰC ĐỊA CHỈ -->
           <div class="mt-4 space-y-3">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
                 <label class="block text-xs font-semibold text-slate-700 mb-1">
                   Địa chỉ chi tiết (Thôn/Xóm/Số nhà/Tên đường) <span class="text-red-500">*</span>
                 </label>
-                <input type="text" id="diaChiChiTiet" required onblur="autoCleanDetailAddress()" placeholder="Ví dụ: Số 123 đường ABC" class="w-full px-3 py-2.5 text-base md:text-sm btn-tap border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none bg-white">
+                <input type="text" id="diaChiChiTiet" required onblur="autoCleanDetailAddress()" placeholder="Ví dụ: Số 123 đường ABC" class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none bg-white">
                 <p class="text-[11px] text-amber-600 mt-1 font-medium">⚠️ <strong>Lưu ý:</strong> Không nhập tên Phường/Xã hay Tỉnh/Thành vào ô này.</p>
               </div>
               <div>
                 <label class="block text-xs font-semibold text-slate-700 mb-1">Tỉnh / Thành phố <span class="text-red-500">*</span></label>
-                <input list="tinhThanhList" id="tinhThanhSelect" required oninput="onProvinceChange()" placeholder="Gõ tìm Tỉnh/Thành..." class="w-full px-3 py-2.5 text-base md:text-sm btn-tap border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none bg-white font-medium">
+                <input list="tinhThanhList" id="tinhThanhSelect" required oninput="onProvinceChange()" placeholder="Gõ tìm Tỉnh/Thành..." class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none bg-white font-medium">
                 <datalist id="tinhThanhList"></datalist>
               </div>
               <div>
                 <label class="block text-xs font-semibold text-slate-700 mb-1">Phường / Xã <span class="text-red-500">*</span></label>
-                <input list="phuongXaList" id="phuongXaSelect" required oninput="autoCleanDetailAddress()" placeholder="Gõ tìm Phường/Xã..." class="w-full px-3 py-2.5 text-base md:text-sm btn-tap border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none bg-white font-medium">
+                <input list="phuongXaList" id="phuongXaSelect" required oninput="autoCleanDetailAddress()" placeholder="Gõ tìm Phường/Xã..." class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none bg-white font-medium">
                 <datalist id="phuongXaList"></datalist>
               </div>
             </div>
@@ -338,10 +323,10 @@
             <span class="w-5 h-5 rounded-full bg-blue-100 text-brand-blue inline-flex items-center justify-center text-xs">2</span>
             Thông tin trúng tuyển & Nguyện vọng KTX
           </h3>
-          <div class="grid md:grid-cols-3 gap-3.5">
+          <div class="grid md:grid-cols-3 gap-4">
             <div>
               <label class="block text-xs font-semibold text-slate-700 mb-1">Ngành trúng tuyển <span class="text-red-500">*</span></label>
-              <select id="nganhHoc" required class="w-full px-3 py-2.5 text-base md:text-sm btn-tap border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none bg-white">
+              <select id="nganhHoc" required class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none bg-white">
                 <option value="">-- Chọn ngành học --</option>
                 <option value="Quản lý nhà nước">Quản lý nhà nước</option>
                 <option value="Quản trị văn phòng">Quản trị văn phòng</option>
@@ -356,24 +341,24 @@
             </div>
             <div>
               <label class="block text-xs font-semibold text-slate-700 mb-1">Điểm xét tuyển <span class="text-red-500">*</span></label>
-              <input type="number" step="0.01" min="0" max="40" id="diemXetTuyen" required placeholder="Ví dụ: 25.5" class="w-full px-3 py-2.5 text-base md:text-sm btn-tap border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none">
+              <input type="number" step="0.01" min="0" max="40" id="diemXetTuyen" required placeholder="Ví dụ: 25.5" class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none">
             </div>
             <div>
               <label class="block text-xs font-semibold text-slate-700 mb-1">Bậc ưu tiên <span class="text-red-500">*</span></label>
-              <select id="bacUuTien" required class="w-full px-3 py-2.5 text-base md:text-sm btn-tap border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none bg-white"></select>
+              <select id="bacUuTien" required class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none bg-white"></select>
             </div>
           </div>
 
-          <div class="grid md:grid-cols-1 gap-3.5 mt-3">
+          <div class="grid md:grid-cols-1 gap-4 mt-3">
             <div>
               <label class="block text-xs font-semibold text-slate-700 mb-1">Khu Ký túc xá đăng ký <span class="text-red-500">*</span></label>
-              <select id="loaiPhong" required class="w-full px-3 py-2.5 text-base md:text-sm btn-tap border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none bg-white font-medium"></select>
+              <select id="loaiPhong" required class="w-full px-3 py-2.5 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none bg-white font-medium"></select>
             </div>
           </div>
         </div>
 
         <div class="text-center pt-2">
-          <button type="submit" id="btnSubmit" class="w-full md:w-auto px-8 py-3.5 bg-brand-dark hover:bg-brand-blue text-white font-bold rounded-xl transition shadow-lg flex items-center justify-center gap-2 mx-auto btn-tap">
+          <button type="submit" id="btnSubmit" class="w-full md:w-auto px-8 py-3.5 bg-brand-dark hover:bg-brand-blue text-white font-bold rounded-xl transition shadow-lg flex items-center justify-center gap-2 mx-auto">
             <i class="fa-solid fa-paper-plane"></i> Gửi hồ sơ đăng ký xét duyệt KTX
           </button>
         </div>
@@ -382,7 +367,7 @@
   </main>
 
   <!-- FOOTER -->
-  <footer class="bg-slate-900 text-slate-400 text-xs py-8 sm:py-10 px-4 border-t border-slate-800">
+  <footer class="bg-slate-900 text-slate-400 text-xs py-10 px-4 border-t border-slate-800">
     <div class="max-w-7xl mx-auto text-center space-y-2">
       <div class="text-white font-bold">PHÂN HIỆU HỌC VIỆN HÀNH CHÍNH VÀ QUẢN TRỊ CÔNG TẠI THÀNH PHỐ HỒ CHÍ MINH</div>
       <p>Cơ sở chính: Số 10, đường 3/2, Phường Hòa Hưng, TP. Hồ Chí Minh • Hotline KTX: <span id="lblHotline">0905.865.919</span></p>
@@ -391,26 +376,26 @@
   </footer>
 
   <!-- MODAL TRA CỨU & IN ĐƠN -->
-  <div id="lookupModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-4">
-    <div class="bg-white rounded-2xl max-w-md w-full p-5 sm:p-6 shadow-2xl relative">
-      <button onclick="closeLookupModal()" class="absolute top-3.5 right-3.5 text-slate-400 hover:text-slate-600 text-lg btn-tap"><i class="fa-solid fa-xmark"></i></button>
-      <div class="text-center mb-4">
+  <div id="lookupModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl relative">
+      <button onclick="closeLookupModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-lg"><i class="fa-solid fa-xmark"></i></button>
+      <div class="text-center mb-5">
         <div class="w-12 h-12 rounded-full bg-blue-50 text-brand-blue mx-auto flex items-center justify-center text-xl mb-2"><i class="fa-solid fa-id-card"></i></div>
         <h3 class="text-lg font-bold text-brand-dark">Tra cứu hồ sơ & In đơn KTX</h3>
         <p class="text-xs text-slate-500">Nhập <strong>Số CCCD (12 số)</strong> để tra cứu bảo mật</p>
       </div>
       <div class="space-y-3">
-        <input type="text" id="lookupInput" maxlength="12" pattern="[0-9]{12}" placeholder="Nhập 12 số CCCD..." class="w-full px-3 py-2.5 text-base md:text-sm btn-tap border rounded-lg font-semibold">
-        <button onclick="performSearch()" id="btnSearch" class="w-full py-2.5 bg-brand-blue text-white font-semibold rounded-lg transition btn-tap"><i class="fa-solid fa-search"></i> Tra cứu bảo mật</button>
+        <input type="text" id="lookupInput" maxlength="12" pattern="[0-9]{12}" placeholder="Nhập 12 số CCCD..." class="w-full px-3 py-2.5 text-sm border rounded-lg font-semibold">
+        <button onclick="performSearch()" id="btnSearch" class="w-full py-2.5 bg-brand-blue text-white font-semibold rounded-lg transition"><i class="fa-solid fa-search"></i> Tra cứu bảo mật</button>
       </div>
-      <div id="lookupResult" class="mt-4 hidden border-t pt-3 text-xs space-y-2"></div>
+      <div id="lookupResult" class="mt-5 hidden border-t pt-4 text-xs space-y-2"></div>
     </div>
   </div>
 
-  <!-- MODAL QUẢN TRỊ ADMIN (TỐI ƯU TOÀN MÀN HÌNH DI ĐỘNG) -->
-  <div id="adminModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-0 md:p-6">
-    <div class="bg-white rounded-none md:rounded-2xl max-w-7xl w-full h-full md:h-[94vh] flex flex-col p-3 md:p-5 shadow-2xl relative overflow-hidden transition-all">
-      <button onclick="closeAdminModal()" class="absolute top-3.5 right-3.5 text-slate-400 hover:text-slate-600 text-lg z-10 btn-tap"><i class="fa-solid fa-xmark"></i></button>
+  <!-- MODAL QUẢN TRỊ ADMIN -->
+  <div id="adminModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-2 md:p-6">
+    <div class="bg-white rounded-2xl max-w-7xl w-full h-[96vh] md:h-[94vh] flex flex-col p-3 md:p-5 shadow-2xl relative overflow-hidden">
+      <button onclick="closeAdminModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-lg z-10"><i class="fa-solid fa-xmark"></i></button>
 
       <!-- ĐĂNG NHẬP ADMIN -->
       <div id="adminLoginView" class="max-w-sm mx-auto my-auto text-center space-y-4 py-8">
@@ -419,9 +404,9 @@
           <h3 class="text-lg font-bold text-brand-dark">Hội Đồng Xét Duyệt KTX <span class="lblNamHoc">2026</span></h3>
           <p class="text-xs text-slate-500">Đăng nhập tài khoản cán bộ quản trị</p>
         </div>
-        <input type="text" id="adminUser" placeholder="Tên đăng nhập..." class="w-full px-3 py-2.5 text-base md:text-sm btn-tap border rounded-lg">
-        <input type="password" id="adminPass" placeholder="Mật khẩu" class="w-full px-3 py-2.5 text-base md:text-sm btn-tap border rounded-lg">
-        <button onclick="handleAdminLogin()" class="w-full py-2.5 bg-brand-dark text-white text-sm font-semibold rounded-lg shadow btn-tap">Đăng nhập</button>
+        <input type="text" id="adminUser" placeholder="Tên đăng nhập..." class="w-full px-3 py-2.5 text-sm border rounded-lg">
+        <input type="password" id="adminPass" placeholder="Mật khẩu" class="w-full px-3 py-2.5 text-sm border rounded-lg">
+        <button onclick="handleAdminLogin()" class="w-full py-2.5 bg-brand-dark text-white text-sm font-semibold rounded-lg shadow">Đăng nhập</button>
       </div>
 
       <!-- GIAO DIỆN QUẢN TRỊ VIÊN -->
@@ -429,25 +414,25 @@
         <!-- BAR CÔNG CỤ TẬP TRUNG -->
         <div class="flex flex-wrap justify-between items-center pb-2 border-b gap-2 flex-shrink-0">
           <div class="flex items-center space-x-2">
-            <button onclick="switchAdminTab('dashboard')" id="adminTabBtnDash" class="px-3 py-1.5 rounded-lg font-bold text-xs bg-brand-dark text-white transition btn-tap">Quản lý & Duyệt đơn</button>
-            <button onclick="switchAdminTab('settings')" id="adminTabBtnSettings" class="px-3 py-1.5 rounded-lg font-bold text-xs bg-slate-200 text-slate-700 hover:bg-slate-300 transition btn-tap"><i class="fa-solid fa-sliders mr-1"></i> Cài đặt & Cấu hình</button>
+            <button onclick="switchAdminTab('dashboard')" id="adminTabBtnDash" class="px-3 py-1.5 rounded-lg font-bold text-xs bg-brand-dark text-white transition">Quản lý & Duyệt đơn</button>
+            <button onclick="switchAdminTab('settings')" id="adminTabBtnSettings" class="px-3 py-1.5 rounded-lg font-bold text-xs bg-slate-200 text-slate-700 hover:bg-slate-300 transition"><i class="fa-solid fa-sliders mr-1"></i> Cài đặt & Cấu hình</button>
           </div>
           
-          <div class="flex items-center gap-1.5 sm:gap-2 flex-wrap">
-            <button id="btnQuickTogglePortal" onclick="quickTogglePortal()" class="px-2.5 sm:px-3 py-1.5 bg-slate-800 text-white text-xs font-extrabold rounded-lg transition flex items-center gap-1.5 shadow btn-tap">
+          <div class="flex items-center gap-2">
+            <button id="btnQuickTogglePortal" onclick="quickTogglePortal()" class="px-3 py-1.5 bg-slate-800 text-white text-xs font-extrabold rounded-lg transition flex items-center gap-1.5 shadow">
               <i class="fa-solid fa-power-off"></i> <span>Trạng thái Cổng</span>
             </button>
 
-            <button onclick="openExcelImportModal()" class="px-2.5 sm:px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-lg transition flex items-center gap-1.5 shadow btn-tap">
-              <i class="fa-solid fa-file-excel"></i> Nạp Excel
+            <button onclick="openExcelImportModal()" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-lg transition flex items-center gap-1.5 shadow">
+              <i class="fa-solid fa-file-excel"></i> Nạp Excel Trúng Tuyển
             </button>
-            <button onclick="exportFilteredToExcel()" class="px-2.5 sm:px-3 py-1.5 bg-brand-blue hover:bg-brand-dark text-white text-xs font-bold rounded-lg transition flex items-center gap-1.5 shadow btn-tap">
-              <i class="fa-solid fa-file-export"></i> Xuất Excel
+            <button onclick="exportFilteredToExcel()" class="px-3 py-1.5 bg-brand-blue hover:bg-brand-dark text-white text-xs font-bold rounded-lg transition flex items-center gap-1.5 shadow">
+              <i class="fa-solid fa-file-export"></i> Xuất Excel (Bộ lọc)
             </button>
-            <button onclick="loadAdminData()" class="px-2.5 sm:px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-lg btn-tap">
-              <i class="fa-solid fa-rotate-right"></i>
+            <button onclick="loadAdminData()" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-lg">
+              <i class="fa-solid fa-rotate-right"></i> Làm mới
             </button>
-            <button onclick="logoutAdmin()" class="px-2.5 sm:px-3 py-1.5 bg-red-50 text-red-600 hover:bg-red-100 text-xs font-semibold rounded-lg btn-tap">
+            <button onclick="logoutAdmin()" class="px-3 py-1.5 bg-red-50 text-red-600 hover:bg-red-100 text-xs font-semibold rounded-lg">
               Đăng xuất
             </button>
           </div>
@@ -456,29 +441,29 @@
         <!-- TAB DASHBOARD QUẢN LÝ -->
         <div id="adminTabContentDash" class="flex flex-col h-full space-y-3 overflow-hidden">
           <!-- KPI BANNER -->
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 flex-shrink-0">
-            <div class="bg-gradient-to-br from-blue-900 to-indigo-950 p-2.5 sm:p-3 rounded-xl text-white shadow-sm space-y-0.5 sm:space-y-1">
-              <div class="text-[11px] sm:text-xs">Quỹ chỗ KTX: <strong class="text-amber-300" id="kpiOccupancyPct">0%</strong></div>
-              <div class="text-lg sm:text-xl font-extrabold" id="kpiApprovedSlots">0 / 0 chỗ</div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 flex-shrink-0">
+            <div class="bg-gradient-to-br from-blue-900 to-indigo-950 p-3 rounded-xl text-white shadow-sm space-y-1">
+              <div class="text-xs">Quỹ chỗ KTX: <strong class="text-amber-300" id="kpiOccupancyPct">0%</strong></div>
+              <div class="text-xl font-extrabold" id="kpiApprovedSlots">0 / 0 chỗ</div>
             </div>
-            <div class="bg-gradient-to-br from-slate-900 to-slate-950 p-2.5 sm:p-3 rounded-xl text-white shadow-sm space-y-0.5 sm:space-y-1">
-              <div class="text-[11px] sm:text-xs">SV thực tế đăng ký KTX</div>
-              <div class="text-lg sm:text-xl font-extrabold text-amber-400" id="kpiRegisteredCount">0 sinh viên</div>
+            <div class="bg-gradient-to-br from-slate-900 to-slate-950 p-3 rounded-xl text-white shadow-sm space-y-1">
+              <div class="text-xs">SV thực tế đăng ký KTX</div>
+              <div class="text-xl font-extrabold text-amber-400" id="kpiRegisteredCount">0 sinh viên</div>
             </div>
-            <div class="bg-gradient-to-br from-emerald-950 to-slate-950 p-2.5 sm:p-3 rounded-xl text-white shadow-sm space-y-0.5 sm:space-y-1">
-              <div class="text-[11px] sm:text-xs">Diện ưu tiên (Bậc 1 + 2)</div>
-              <div class="text-lg sm:text-xl font-extrabold text-emerald-400" id="kpiPolicyCount">0 suất</div>
+            <div class="bg-gradient-to-br from-emerald-950 to-slate-950 p-3 rounded-xl text-white shadow-sm space-y-1">
+              <div class="text-xs">Diện ưu tiên (Bậc 1 + 2)</div>
+              <div class="text-xl font-extrabold text-emerald-400" id="kpiPolicyCount">0 suất</div>
             </div>
           </div>
 
           <!-- BỘ LỌC DỮ LIỆU ĐA CHIỀU -->
-          <div class="bg-slate-50 border rounded-xl p-2 sm:p-2.5 flex flex-wrap gap-2 items-center flex-shrink-0 text-xs">
+          <div class="bg-slate-50 border rounded-xl p-2.5 flex flex-wrap gap-2 items-center flex-shrink-0 text-xs">
             <div class="font-bold text-slate-700 flex items-center gap-1">
-              <i class="fa-solid fa-filter text-brand-blue"></i> Lọc:
+              <i class="fa-solid fa-filter text-brand-blue"></i> Bộ lọc:
             </div>
-            <input type="text" id="adminSearchInput" onkeyup="applyAdminFilters()" placeholder="Tìm Tên, CCCD, MSSV..." class="px-2.5 py-1.5 border rounded-lg font-medium text-xs w-full sm:w-44 bg-white focus:outline-none focus:ring-1 focus:ring-brand-blue btn-tap">
+            <input type="text" id="adminSearchInput" onkeyup="applyAdminFilters()" placeholder="Tìm Tên, CCCD, MSSV, Mã HS..." class="px-2.5 py-1.5 border rounded-lg font-medium text-xs w-48 bg-white focus:outline-none focus:ring-1 focus:ring-brand-blue">
             
-            <select id="adminFilterNganh" onchange="applyAdminFilters()" class="px-2 py-1.5 border rounded-lg bg-white font-medium w-full sm:w-auto btn-tap">
+            <select id="adminFilterNganh" onchange="applyAdminFilters()" class="px-2 py-1.5 border rounded-lg bg-white font-medium">
               <option value="">-- Tất cả ngành --</option>
               <option value="Quản lý nhà nước">Quản lý nhà nước</option>
               <option value="Quản trị văn phòng">Quản trị văn phòng</option>
@@ -491,11 +476,11 @@
               <option value="Xây dựng Đảng và chính quyền Nhà nước">Xây dựng Đảng</option>
             </select>
 
-            <select id="adminFilterKhu" onchange="applyAdminFilters()" class="px-2 py-1.5 border rounded-lg bg-white font-medium w-full sm:w-auto btn-tap"></select>
+            <select id="adminFilterKhu" onchange="applyAdminFilters()" class="px-2 py-1.5 border rounded-lg bg-white font-medium"></select>
 
-            <select id="adminFilterBacUT" onchange="applyAdminFilters()" class="px-2 py-1.5 border rounded-lg bg-white font-medium w-full sm:w-auto btn-tap"></select>
+            <select id="adminFilterBacUT" onchange="applyAdminFilters()" class="px-2 py-1.5 border rounded-lg bg-white font-medium"></select>
 
-            <select id="adminFilterTrangThai" onchange="applyAdminFilters()" class="px-2 py-1.5 border rounded-lg bg-white font-medium w-full sm:w-auto btn-tap">
+            <select id="adminFilterTrangThai" onchange="applyAdminFilters()" class="px-2 py-1.5 border rounded-lg bg-white font-medium">
               <option value="">-- Tất cả trạng thái --</option>
               <option value="Đã tiếp nhận">Đã duyệt tiếp nhận</option>
               <option value="Chờ duyệt">Chờ duyệt</option>
@@ -508,9 +493,9 @@
             </div>
           </div>
 
-          <!-- BẢNG DỮ LIỆU TỐI ƯU VUỐT NGANG TRÊN DI ĐỘNG -->
-          <div class="flex-1 border rounded-xl bg-white overflow-y-auto overflow-x-auto min-h-0 touch-scroller">
-            <table class="w-full min-w-[768px] text-left text-xs border-collapse">
+          <!-- BẢNG DỮ LIỆU -->
+          <div class="flex-1 border rounded-xl bg-white overflow-y-auto min-h-0">
+            <table class="w-full text-left text-xs border-collapse">
               <thead class="bg-slate-100 uppercase font-bold sticky top-0 border-b z-10 text-slate-700">
                 <tr>
                   <th class="p-2.5">Mã HS</th>
@@ -528,7 +513,7 @@
           </div>
 
           <!-- THANH PHÂN TRANG -->
-          <div class="flex flex-wrap justify-between items-center bg-slate-50 border rounded-xl px-3 py-2 flex-shrink-0 text-xs gap-2">
+          <div class="flex flex-wrap justify-between items-center bg-slate-50 border rounded-xl px-3 py-2 flex-shrink-0 text-xs">
             <div class="text-slate-600 font-medium" id="adminPaginationInfo">Hiển thị 1 - 20 trong số 0 sinh viên</div>
             <div class="flex items-center space-x-1.5" id="adminPaginationButtons"></div>
           </div>
@@ -537,17 +522,17 @@
         <!-- TAB SETTINGS CẤU HÌNH -->
         <div id="adminTabContentSettings" class="hidden flex flex-col h-full space-y-4 overflow-y-auto p-2 text-xs">
           
-          <div class="bg-slate-50 border rounded-xl p-3.5 sm:p-4 space-y-3">
+          <div class="bg-slate-50 border rounded-xl p-4 space-y-3">
             <div class="flex justify-between items-center pb-2 border-b">
               <span class="font-bold text-sm text-brand-dark flex items-center gap-1.5">
                 <i class="fa-solid fa-building text-amber-600"></i> Quản lý Tòa nhà & Cơ sở Ký túc xá
               </span>
-              <button onclick="openAddKtxBuildingModal()" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg text-xs flex items-center gap-1 shadow btn-tap">
-                <i class="fa-solid fa-plus"></i> Thêm Cơ Sở
+              <button onclick="openAddKtxBuildingModal()" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg text-xs flex items-center gap-1 shadow">
+                <i class="fa-solid fa-plus"></i> Thêm Cơ Sở / Tòa Nhà KTX
               </button>
             </div>
-            <div class="overflow-x-auto touch-scroller">
-              <table class="w-full min-w-[500px] text-left border-collapse bg-white rounded-lg overflow-hidden border">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse bg-white rounded-lg overflow-hidden border">
                 <thead class="bg-slate-100 font-bold text-slate-700">
                   <tr>
                     <th class="p-2 border-b">Tên Cơ Sở KTX</th>
@@ -561,17 +546,17 @@
             </div>
           </div>
 
-          <div class="bg-slate-50 border rounded-xl p-3.5 sm:p-4 space-y-3">
+          <div class="bg-slate-50 border rounded-xl p-4 space-y-3">
             <div class="flex justify-between items-center pb-2 border-b">
               <span class="font-bold text-sm text-brand-dark flex items-center gap-1.5">
                 <i class="fa-solid fa-layer-group text-blue-600"></i> Quản lý Bậc Ưu Tiên Xét Duyệt
               </span>
-              <button onclick="openAddPriorityTierModal()" class="px-3 py-1.5 bg-brand-blue hover:bg-brand-dark text-white font-bold rounded-lg text-xs flex items-center gap-1 shadow btn-tap">
-                <i class="fa-solid fa-plus"></i> Thêm Bậc Mới
+              <button onclick="openAddPriorityTierModal()" class="px-3 py-1.5 bg-brand-blue hover:bg-brand-dark text-white font-bold rounded-lg text-xs flex items-center gap-1 shadow">
+                <i class="fa-solid fa-plus"></i> Thêm Bậc Ưu Tiên Mới
               </button>
             </div>
-            <div class="overflow-x-auto touch-scroller">
-              <table class="w-full min-w-[500px] text-left border-collapse bg-white rounded-lg overflow-hidden border">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse bg-white rounded-lg overflow-hidden border">
                 <thead class="bg-slate-100 font-bold text-slate-700">
                   <tr>
                     <th class="p-2 border-b">Tên Bậc Ưu Tiên</th>
@@ -584,19 +569,19 @@
             </div>
           </div>
 
-          <!-- CẤU HÌNH THÔNG TIN HỆ THỐNG TINH GỌN -->
-          <div class="bg-slate-50 border rounded-xl p-3.5 sm:p-4 space-y-3">
+          <!-- CẤU HÌNH THÔNG TIN HỆ THỐNG TINH GỌN VÀ NĂM HỌC ĐỘNG -->
+          <div class="bg-slate-50 border rounded-xl p-4 space-y-3">
             <div class="font-bold text-sm text-brand-dark flex items-center gap-1.5 pb-2 border-b">
               <i class="fa-solid fa-sliders text-brand-blue"></i> Cấu hình Năm Học, Trạng Thái Cổng & Hotline
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label class="block font-bold text-slate-700 mb-1">Năm học tuyển sinh (NAM_HOC):</label>
-                <input type="text" id="cfg_NAM_HOC" placeholder="2026" class="w-full px-3 py-2 border rounded-lg font-semibold bg-white focus:outline-none focus:ring-2 focus:ring-brand-blue btn-tap">
+                <input type="text" id="cfg_NAM_HOC" placeholder="2026" class="w-full px-3 py-2 border rounded-lg font-semibold bg-white focus:outline-none focus:ring-2 focus:ring-brand-blue">
               </div>
               <div>
                 <label class="block font-bold text-slate-700 mb-1">Trạng thái Cổng (TRANG_THAI_CONG):</label>
-                <select id="cfg_TRANG_THAI_CONG" class="w-full px-3 py-2 border rounded-lg font-semibold bg-white focus:outline-none focus:ring-2 focus:ring-brand-blue btn-tap">
+                <select id="cfg_TRANG_THAI_CONG" class="w-full px-3 py-2 border rounded-lg font-semibold bg-white focus:outline-none focus:ring-2 focus:ring-brand-blue">
                   <option value="AUTO">AUTO (Tự động theo đếm ngược)</option>
                   <option value="OPEN">OPEN (Ép mở cổng đăng ký)</option>
                   <option value="CLOSE">CLOSE (Ép khóa cổng đăng ký)</option>
@@ -604,18 +589,18 @@
               </div>
               <div>
                 <label class="block font-bold text-slate-700 mb-1">Thời hạn đếm ngược (DEADLINE_DANG_KY):</label>
-                <input type="text" id="cfg_DEADLINE_DANG_KY" placeholder="2026-08-30 17:00:00" class="w-full px-3 py-2 border rounded-lg font-semibold bg-white focus:outline-none focus:ring-2 focus:ring-brand-blue btn-tap">
+                <input type="text" id="cfg_DEADLINE_DANG_KY" placeholder="2026-08-30 17:00:00" class="w-full px-3 py-2 border rounded-lg font-semibold bg-white focus:outline-none focus:ring-2 focus:ring-brand-blue">
               </div>
               <div>
                 <label class="block font-bold text-slate-700 mb-1">Lịch tiếp sinh nhập học (NGAY_TIEP_SINH):</label>
-                <input type="text" id="cfg_NGAY_TIEP_SINH" placeholder="25 - 26/8/2026" class="w-full px-3 py-2 border rounded-lg font-semibold bg-white focus:outline-none focus:ring-2 focus:ring-brand-blue btn-tap">
+                <input type="text" id="cfg_NGAY_TIEP_SINH" placeholder="25 - 26/8/2026" class="w-full px-3 py-2 border rounded-lg font-semibold bg-white focus:outline-none focus:ring-2 focus:ring-brand-blue">
               </div>
               <div class="md:col-span-2">
                 <label class="block font-bold text-slate-700 mb-1">Hotline tư vấn KTX (HOTLINE_KTX):</label>
-                <input type="text" id="cfg_HOTLINE_KTX" placeholder="0905.865.919" class="w-full px-3 py-2 border rounded-lg font-semibold bg-white focus:outline-none focus:ring-2 focus:ring-brand-blue btn-tap">
+                <input type="text" id="cfg_HOTLINE_KTX" placeholder="0905.865.919" class="w-full px-3 py-2 border rounded-lg font-semibold bg-white focus:outline-none focus:ring-2 focus:ring-brand-blue">
               </div>
             </div>
-            <button onclick="saveSystemConfigs()" class="px-5 py-2.5 bg-brand-dark hover:bg-brand-blue text-white font-bold rounded-lg shadow transition flex items-center gap-2 btn-tap">
+            <button onclick="saveSystemConfigs()" class="px-5 py-2.5 bg-brand-dark hover:bg-brand-blue text-white font-bold rounded-lg shadow transition flex items-center gap-2">
               <i class="fa-solid fa-floppy-disk"></i> Lưu thay đổi hệ thống
             </button>
           </div>
@@ -626,16 +611,16 @@
   </div>
 
   <!-- MODAL NHẬP DỮ LIỆU EXCEL TỪ MẪU DSTT -->
-  <div id="excelImportModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-4">
-    <div class="bg-white rounded-2xl max-w-xl w-full p-5 sm:p-6 shadow-2xl relative space-y-4">
-      <button onclick="closeExcelImportModal()" class="absolute top-3.5 right-3.5 text-slate-400 hover:text-slate-600 text-lg btn-tap"><i class="fa-solid fa-xmark"></i></button>
+  <div id="excelImportModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-xl w-full p-6 shadow-2xl relative space-y-4">
+      <button onclick="closeExcelImportModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-lg"><i class="fa-solid fa-xmark"></i></button>
       <div class="text-center">
         <div class="w-12 h-12 rounded-full bg-emerald-50 text-emerald-600 mx-auto flex items-center justify-center text-xl mb-2"><i class="fa-solid fa-file-excel"></i></div>
         <h3 class="text-lg font-bold text-brand-dark">Nạp Dữ Liệu Từ File Excel DSTT Mẫu</h3>
         <p class="text-xs text-slate-500">Tải lên tệp Excel danh sách trúng tuyển để nạp vào hệ thống Supabase</p>
       </div>
 
-      <div class="border-2 border-dashed border-slate-300 rounded-xl p-4 sm:p-5 text-center bg-slate-50 hover:bg-slate-100 transition cursor-pointer btn-tap" onclick="document.getElementById('excelFileInput').click()">
+      <div class="border-2 border-dashed border-slate-300 rounded-xl p-5 text-center bg-slate-50 hover:bg-slate-100 transition cursor-pointer" onclick="document.getElementById('excelFileInput').click()">
         <i class="fa-solid fa-cloud-arrow-up text-3xl text-brand-blue mb-2"></i>
         <div class="text-xs font-bold text-slate-700">Bấm vào đây để chọn tệp .xlsx / .xls mẫu</div>
         <div class="text-[11px] text-slate-400 mt-1" id="excelFileNameDisplay">Chấp nhận file Excel DSTT DHCQ HCM APAG</div>
@@ -647,11 +632,11 @@
         <div class="text-slate-600" id="excelPreviewDetails"></div>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-        <button onclick="processExcelImport(true)" id="btnImportReplace" disabled class="py-3 bg-red-600 hover:bg-red-700 disabled:bg-slate-300 text-white font-bold text-xs rounded-xl transition flex items-center justify-center gap-1.5 shadow btn-tap">
-          <i class="fa-solid fa-trash-can"></i> Xóa dữ liệu cũ & Import
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2">
+        <button onclick="processExcelImport(true)" id="btnImportReplace" disabled class="py-3 bg-red-600 hover:bg-red-700 disabled:bg-slate-300 text-white font-bold text-xs rounded-xl transition flex items-center justify-center gap-1.5 shadow">
+          <i class="fa-solid fa-trash-can"></i> Xóa dữ liệu cũ & Import mới
         </button>
-        <button onclick="processExcelImport(false)" id="btnImportMerge" disabled class="py-3 bg-brand-blue hover:bg-brand-dark disabled:bg-slate-300 text-white font-bold text-xs rounded-xl transition flex items-center justify-center gap-1.5 shadow btn-tap">
+        <button onclick="processExcelImport(false)" id="btnImportMerge" disabled class="py-3 bg-brand-blue hover:bg-brand-dark disabled:bg-slate-300 text-white font-bold text-xs rounded-xl transition flex items-center justify-center gap-1.5 shadow">
           <i class="fa-solid fa-file-circle-plus"></i> Cập nhật / Nạp bổ sung
         </button>
       </div>
@@ -871,6 +856,7 @@
       inputEl.value = cleaned;
     }
 
+    // NẠP VÀ ĐỒNG BỘ DANH MỤC PHƯỜNG XÃ KHÔNG XÓA DỮ LIỆU CSDL
     function updateWardDatalist(pName) {
       const wardListEl = document.getElementById('phuongXaList');
       if (!wardListEl) return;
@@ -889,6 +875,7 @@
       autoCleanDetailAddress();
     }
 
+    // THUẬT TOÁN TÁCH VÀ KHÔI PHỤC BẢO VỆ Ô ĐỊA CHỈ KHÔNG BỊ TRÙNG LẶP HOẶC MẤT PHƯỜNG XÃ
     function parseFullAddressToFields(fullAddress) {
       if (!fullAddress) return;
       
@@ -903,9 +890,11 @@
         provVal = parts[parts.length - 1];
         wardVal = parts[parts.length - 2];
         
+        // Tách lọc bỏ các chuỗi Tỉnh/Phường bị thừa trong phần Chi tiết
         let rawDetailParts = parts.slice(0, parts.length - 2);
         let detailCleanStr = rawDetailParts.join(', ');
 
+        // Xóa Tỉnh và Phường nếu lặp lại trong chuỗi Chi tiết
         if (provVal) {
           const provRegex = new RegExp(provVal.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
           detailCleanStr = detailCleanStr.replace(provRegex, '');
@@ -915,6 +904,7 @@
           detailCleanStr = detailCleanStr.replace(wardRegex, '');
         }
 
+        // Xóa bớt đuôi tên hành chính lặp
         detailCleanStr = detailCleanStr.replace(/(,\s*|\s+)(phường|xã|thị trấn|quận|huyện|thị xã|thành phố|tỉnh|tp)\b.*$/gi, '');
         detailCleanStr = detailCleanStr.replace(/^[\s,.-]+|[\s,.-]+$/, '').trim();
 
@@ -939,6 +929,7 @@
       initEvents();
     });
 
+    // TẢI CẤU HÌNH VÀ VẼ GIAO DIỆN ĐỘNG
     async function loadLiveConfig() {
       const cached = localStorage.getItem('APAG_CONFIG_CACHE');
       if (cached) {
@@ -1059,7 +1050,6 @@
       }
     }
 
-    // NÚT BẤM CHUYỂN TRẠNG THÁI CỔNG NHANH CHO QUẢN TRỊ (CÓ BẮT LỖI SUPABASE VÀ ONCONFLICT)
     async function quickTogglePortal() {
       const current = String(systemConfigs.TRANG_THAI_CONG || 'AUTO').trim().toUpperCase();
       let nextState = 'CLOSE';
@@ -1067,18 +1057,9 @@
       else if (current === 'OPEN') nextState = 'AUTO';
       else nextState = 'CLOSE';
 
-      Swal.fire({ title: 'Đang cập nhật CSDL...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
-
-      const { error } = await window.db
-        .from('cau_hinh')
-        .upsert([{ key: 'TRANG_THAI_CONG', value: nextState }], { onConflict: 'key' });
-
-      if (error) {
-        Swal.fire({ icon: 'error', title: 'Lưu CSDL thất bại!', text: 'Lỗi Supabase: ' + error.message });
-        return;
-      }
-
       systemConfigs.TRANG_THAI_CONG = nextState;
+      
+      await window.db.from('cau_hinh').upsert([{ key: 'TRANG_THAI_CONG', value: nextState }]);
       localStorage.setItem('APAG_CONFIG_CACHE', JSON.stringify(systemConfigs));
       
       const stateName = nextState === 'OPEN' ? 'MỞ (OPEN)' : nextState === 'CLOSE' ? 'KHÓA (CLOSE)' : 'TỰ ĐỘNG (AUTO)';
@@ -1097,13 +1078,13 @@
       const btn = document.getElementById('btnQuickTogglePortal');
       if (!btn) return;
       if (statusCong === 'CLOSE') {
-        btn.className = "px-3 py-1.5 bg-red-600 hover:bg-red-700 text-white text-xs font-extrabold rounded-lg transition flex items-center gap-1.5 shadow btn-tap";
+        btn.className = "px-3 py-1.5 bg-red-600 hover:bg-red-700 text-white text-xs font-extrabold rounded-lg transition flex items-center gap-1.5 shadow";
         btn.innerHTML = `<i class="fa-solid fa-lock"></i> <span>Cổng: ĐÃ KHÓA (Bấm để Mở)</span>`;
       } else if (statusCong === 'OPEN') {
-        btn.className = "px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-extrabold rounded-lg transition flex items-center gap-1.5 shadow btn-tap";
+        btn.className = "px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-extrabold rounded-lg transition flex items-center gap-1.5 shadow";
         btn.innerHTML = `<i class="fa-solid fa-lock-open"></i> <span>Cổng: ĐANG MỞ (Bấm để Tự động)</span>`;
       } else {
-        btn.className = "px-3 py-1.5 bg-brand-blue hover:bg-brand-dark text-white text-xs font-extrabold rounded-lg transition flex items-center gap-1.5 shadow btn-tap";
+        btn.className = "px-3 py-1.5 bg-brand-blue hover:bg-brand-dark text-white text-xs font-extrabold rounded-lg transition flex items-center gap-1.5 shadow";
         btn.innerHTML = `<i class="fa-solid fa-clock"></i> <span>Cổng: TỰ ĐỘNG (Bấm để Khóa)</span>`;
       }
     }
@@ -1165,7 +1146,344 @@
       if (btnSubmit) {
         btnSubmit.disabled = false;
         btnSubmit.innerHTML = `<i class="fa-solid fa-paper-plane"></i> Gửi hồ sơ đăng ký xét duyệt KTX`;
-        btnSubmit.className = "w-full md:w-auto px-8 py-3.5 bg-brand-dark hover:bg-brand-blue text-white font-bold rounded-xl transition shadow-lg flex items-center justify-center gap-2 mx-auto btn-tap";
+        btnSubmit.className = "w-full md:w-auto px-8 py-3.5 bg-brand-dark hover:bg-brand-blue text-white font-bold rounded-xl transition shadow-lg flex items-center justify-center gap-2 mx-auto";
+      }
+    }
+
+    // TỈNH/THÀNH VÀ PHƯỜNG/XÃ (NẠP ĐẦY ĐỦ 3.321 XÃ/PHƯỜNG TỪ EXCEL)
+    const administrativeData = {
+      "Thành phố Cần Thơ": ["Phường An Bình", "Phường Bình Thủy", "Phường Cái Khế", "Phường Cái Răng", "Phường Hưng Phú", "Phường Khánh Hòa", "Phường Long Bình", "Phường Long Mỹ", "Phường Long Phú 1", "Phường Long Tuyền", "Phường Mỹ Quới", "Phường Mỹ Xuyên", "Phường Ngã Bảy", "Phường Ngã Năm", "Phường Ninh Kiều", "Phường Phú Lợi", "Phường Phước Thới", "Phường Sóc Trăng", "Phường Thuận Hưng", "Phường Thốt Nốt", "Phường Thới An Đông", "Phường Thới Long", "Phường Trung Nhứt", "Phường Tân An", "Phường Tân Lộc", "Phường Vĩnh Châu", "Phường Vĩnh Phước", "Phường Vị Thanh", "Phường Vị Tân", "Phường Ô Môn", "Phường Đại Thành", "Xã  Vĩnh Tường", "Xã An Lạc Thôn", "Xã An Ninh", "Xã An Thạnh", "Xã Châu Thành", "Xã Cù Lao Dung", "Xã Cờ Đỏ", "Xã Gia Hòa", "Xã Hiệp Hưng", "Xã Hòa An", "Xã Hòa Tú", "Xã Hỏa Lựu", "Xã Hồ Đắc Kiện", "Xã Kế Sách", "Xã Lai Hòa", "Xã Liêu Tú", "Xã Long Hưng", "Xã Long Phú", "Xã Lâm Tân", "Xã Lương Tâm", "Xã Lịch Hội Thượng", "Xã Mỹ Hương", "Xã Mỹ Phước", "Xã Mỹ Tú", "Xã Ngọc Tố", "Xã Nhu Gia", "Xã Nhơn Mỹ", "Xã Nhơn Ái", "Xã Phong Nẫm", "Xã Phong Điền", "Xã Phú Hữu", "Xã Phú Lộc", "Xã Phú Tâm", "Xã Phương Bình", "Xã Phụng Hiệp", "Xã Thuận Hòa", "Xã Thạnh An", "Xã Thạnh Hòa", "Xã Thạnh Phú", "Xã Thạnh Quới", "Xã Thạnh Thới An", "Xã Thạnh Xuân", "Xã Thới An Hội", "Xã Thới Hưng", "Xã Thới Lai", "Xã Trung Hưng", "Xã Trường Khánh", "Xã Trường Long", "Xã Trường Long Tây", "Xã Trường Thành", "Xã Trường Xuân", "Xã Trần Đề", "Xã Tài Văn", "Xã Tân Bình", "Xã Tân Hòa", "Xã Tân Long", "Xã Tân Phước Hưng", "Xã Tân Thạnh", "Xã Vĩnh Hải", "Xã Vĩnh Lợi", "Xã Vĩnh Thuận Đông", "Xã Vĩnh Thạnh", "Xã Vĩnh Trinh", "Xã Vĩnh Viễn", "Xã Vị Thanh 1", "Xã Vị Thủy", "Xã Xà Phiên", "Xã Đông Hiệp", "Xã Đông Phước", "Xã Đông Thuận", "Xã Đại Hải", "Xã Đại Ngãi"],
+      "Thành phố Huế": ["Phường An Cựu", "Phường Dương Nỗ", "Phường Hóa Châu", "Phường Hương An", "Phường Hương Thủy", "Phường Hương Trà", "Phường Kim Long", "Phường Kim Trà", "Phường Mỹ Thượng", "Phường Phong Dinh", "Phường Phong Phú", "Phường Phong Quảng", "Phường Phong Thái", "Phường Phong Điền", "Phường Phú Bài", "Phường Phú Xuân", "Phường Thanh Thủy", "Phường Thuận An", "Phường Thuận Hóa", "Phường Thủy Xuân", "Phường Vỹ Dạ", "Xã A Lưới 1", "Xã A Lưới 2", "Xã A Lưới 3", "Xã A Lưới 4", "Xã A Lưới 5", "Xã Bình Điền", "Xã Chân Mây - Lăng Cô", "Xã Hưng Lộc", "Xã Khe Tre", "Xã Long Quảng", "Xã Lộc An", "Xã Nam Đông", "Xã Phú Hồ", "Xã Phú Lộc", "Xã Phú Vang", "Xã Phú Vinh", "Xã Quảng Điền", "Xã Vinh Lộc", "Xã Đan Điền"],
+      "Thành phố Hà Nội": ["Phường Ba Đình", "Phường Bạch Mai", "Phường Bồ Đề", "Phường Chương Mỹ", "Phường Cầu Giấy", "Phường Cửa Nam", "Phường Dương Nội", "Phường Giảng Võ", "Phường Hai Bà Trưng", "Phường Hoàn Kiếm", "Phường Hoàng Liệt", "Phường Hoàng Mai", "Phường Hà Đông", "Phường Hồng Hà", "Phường Khương Đình", "Phường Kim Liên", "Phường Kiến Hưng", "Phường Long Biên", "Phường Láng", "Phường Lĩnh Nam", "Phường Nghĩa Đô", "Phường Ngọc Hà", "Phường Phú Diễn", "Phường Phú Lương", "Phường Phú Thượng", "Phường Phúc Lợi", "Phường Phương Liệt", "Phường Sơn Tây", "Phường Thanh Liệt", "Phường Thanh Xuân", "Phường Thượng Cát", "Phường Tây Hồ", "Phường Tây Mỗ", "Phường Tây Tựu", "Phường Tùng Thiện", "Phường Tương Mai", "Phường Từ Liêm", "Phường Việt Hưng", "Phường Văn Miếu - Quốc Tử Giám", "Phường Vĩnh Hưng", "Phường Vĩnh Tuy", "Phường Xuân Phương", "Phường Xuân Đỉnh", "Phường Yên Hòa", "Phường Yên Nghĩa", "Phường Yên Sở", "Phường Ô Chợ Dừa", "Phường Đông Ngạc", "Phường Đại Mỗ", "Phường Định Công", "Phường Đống Đa", "Xã Hưng Đạo", "Xã Trung Giã", "Xã Đan Phượng", "Xã An Khánh", "Xã Ba Vì", "Xã Bát Tràng", "Xã Bình Minh", "Xã Bất Bạt", "Xã Chuyên Mỹ", "Xã Chương Dương", "Xã Cổ Đô", "Xã Dân Hòa", "Xã Dương Hòa", "Xã Gia Lâm", "Xã Hoài Đức", "Xã Hát Môn", "Xã Hòa Lạc", "Xã Hòa Phú", "Xã Hòa Xá", "Xã Hương Sơn", "Xã Hạ Bằng", "Xã Hồng Sơn", "Xã Hồng Vân", "Xã Kim Anh", "Xã Kiều Phú", "Xã Liên Minh", "Xã Minh Châu", "Xã Mê Linh", "Xã Mỹ Đức", "Xã Nam Phù", "Xã Ngọc Hồi", "Xã Nội Bài", "Xã Phù Đổng", "Xã Phú Cát", "Xã Phú Nghĩa", "Xã Phú Xuyên", "Xã Phúc Lộc", "Xã Phúc Sơn", "Xã Phúc Thịnh", "Xã Phúc Thọ", "Xã Phượng Dực", "Xã Quang Minh", "Xã Quảng Bị", "Xã Quảng Oai", "Xã Quốc Oai", "Xã Suối Hai", "Xã Sóc Sơn", "Xã Sơn Đồng", "Xã Tam Hưng", "Xã Thanh Oai", "Xã Thanh Trì", "Xã Thiên Lộc", "Xã Thuận An", "Xã Thư Lâm", "Xã Thường Tín", "Xã Thượng Phúc", "Xã Thạch Thất", "Xã Tiến Thắng", "Xã Trần Phú", "Xã Tây Phương", "Xã Vân Đình", "Xã Vĩnh Thanh", "Xã Vật Lại", "Xã Xuân Mai", "Xã Yên Bài", "Xã Yên Lãng", "Xã Yên Xuân", "Xã Ô Diên", "Xã Đa Phúc", "Xã Đoài Phương", "Xã Đông Anh", "Xã Đại Thanh", "Xã Đại Xuyên", "Xã Ứng Hòa", "Xã Ứng Thiên"],
+      "Thành phố Hải Phòng": ["Phường An Biên", "Phường An Dương", "Phường An Hải", "Phường An Phong", "Phường Bạch Đằng", "Phường Bắc An Phụ", "Phường Chu Văn An", "Phường Chí Linh", "Phường Dương Kinh", "Phường Gia Viên", "Phường Hòa Bình", "Phường Hưng Đạo", "Phường Hải An", "Phường Hải Dương", "Phường Hồng An", "Phường Hồng Bàng", "Phường Kinh Môn", "Phường Kiến An", "Phường Lê Chân", "Phường Lê Thanh Nghị", "Phường Lê Ích Mộc", "Phường Lê Đại Hành", "Phường Lưu Kiếm", "Phường Nam Triệu", "Phường Nam Đồ Sơn", "Phường Nam Đồng", "Phường Nguyễn Trãi", "Phường Nguyễn Đại Năng", "Phường Ngô Quyền", "Phường Nhị Chiểu", "Phường Phù Liễn", "Phường Phạm Sư Mạnh", "Phường Thiên Hương", "Phường Thành Đông", "Phường Thạch Khôi", "Phường Thủy Nguyên", "Phường Trần Hưng Đạo", "Phường Trần Liễu", "Phường Trần Nhân Tông", "Phường Tân Hưng", "Phường Tứ Minh", "Phường Việt Hòa", "Phường Ái Quốc", "Phường Đông Hải", "Phường Đồ Sơn", "Xã An Hưng", "Xã An Khánh", "Xã An Lão", "Xã An Phú", "Xã An Quang", "Xã An Thành", "Xã An Trường", "Xã Bình Giang", "Xã Bắc Thanh Miện", "Xã Chí Minh", "Xã Chấn Hưng", "Xã Cẩm Giang", "Xã Cẩm Giàng", "Xã Gia Lộc", "Xã Gia Phúc", "Xã Hà Bắc", "Xã Hà Nam", "Xã Hà Tây", "Xã Hà Đông", "Xã Hùng Thắng", "Xã Hải Hưng", "Xã Hồng Châu", "Xã Hợp Tiến", "Xã Khúc Thừa Dụ", "Xã Kim Thành", "Xã Kiến Hưng", "Xã Kiến Hải", "Xã Kiến Minh", "Xã Kiến Thụy", "Xã Kẻ Sặt", "Xã Lai Khê", "Xã Lạc Phượng", "Xã Mao Điền", "Xã Nam An Phụ", "Xã Nam Sách", "Xã Nam Thanh Miện", "Xã Nghi Dương", "Xã Nguyên Giáp", "Xã Nguyễn Bỉnh Khiêm", "Xã Nguyễn Lương Bằng", "Xã Ninh Giang", "Xã Phú Thái", "Xã Quyết Thắng", "Xã Thanh Hà", "Xã Thanh Miện", "Xã Thái Tân", "Xã Thượng Hồng", "Xã Tiên Lãng", "Xã Tiên Minh", "Xã Trường Tân", "Xã Trần Phú", "Xã Tuệ Tĩnh", "Xã Tân An", "Xã Tân Kỳ", "Xã Tân Minh", "Xã Tứ Kỳ", "Xã Việt Khê", "Xã Vĩnh Am", "Xã Vĩnh Bảo", "Xã Vĩnh Hòa", "Xã Vĩnh Hải", "Xã Vĩnh Lại", "Xã Vĩnh Thuận", "Xã Vĩnh Thịnh", "Xã Yết Kiêu", "Xã Đường An", "Xã Đại Sơn", "Đặc khu Bạch Long Vĩ", "Đặc khu Cát Hải"],
+      "Thành phố Hồ Chí Minh": ["Phường An Hội Tây", "Phường An Hội Đông", "Phường An Khánh", "Phường An Lạc", "Phường An Nhơn", "Phường An Phú", "Phường An Phú Đông", "Phường An Đông", "Phường Bà Rịa", "Phường Bàn Cờ", "Phường Bình Cơ", "Phường Bình Dương", "Phường Bình Hòa", "Phường Bình Hưng Hòa", "Phường Bình Lợi Trung", "Phường Bình Phú", "Phường Bình Quới", "Phường Bình Thạnh", "Phường Bình Thới", "Phường Bình Tiên", "Phường Bình Trưng", "Phường Bình Trị Đông", "Phường Bình Tân", "Phường Bình Tây", "Phường Bình Đông", "Phường Bảy Hiền", "Phường Bến Cát", "Phường Bến Thành", "Phường Chánh Hiệp", "Phường Chánh Hưng", "Phường Chánh Phú Hòa", "Phường Chợ Lớn", "Phường Chợ Quán", "Phường Cát Lái", "Phường Cầu Kiệu", "Phường Cầu Ông Lãnh", "Phường Diên Hồng", "Phường Dĩ An", "Phường Gia Định", "Phường Gò Vấp", "Phường Hiệp Bình", "Phường Hòa Bình", "Phường Hòa Hưng", "Phường Hòa Lợi", "Phường Hạnh Thông", "Phường Khánh Hội", "Phường Linh Xuân", "Phường Long Bình", "Phường Long Hương", "Phường Long Nguyên", "Phường Long Phước", "Phường Long Trường", "Phường Lái Thiêu", "Phường Minh Phụng", "Phường Nhiêu Lộc", "Phường Phú An", "Phường Phú Lâm", "Phường Phú Lợi", "Phường Phú Mỹ", "Phường Phú Nhuận", "Phường Phú Thuận", "Phường Phú Thạnh", "Phường Phú Thọ", "Phường Phú Thọ Hòa", "Phường Phú Định", "Phường Phước Long", "Phường Phước Thắng", "Phường Rạch Dừa", "Phường Sài Gòn", "Phường Tam Bình", "Phường Tam Long", "Phường Tam Thắng", "Phường Thuận An", "Phường Thuận Giao", "Phường Thông Tây Hội", "Phường Thạnh Mỹ Tây", "Phường Thới An", "Phường Thới Hòa", "Phường Thủ Dầu Một", "Phường Thủ Đức", "Phường Trung Mỹ Tây", "Phường Tân Bình", "Phường Tân Hiệp", "Phường Tân Hòa", "Phường Tân Hưng", "Phường Tân Hải", "Phường Tân Khánh", "Phường Tân Mỹ", "Phường Tân Phú", "Phường Tân Phước", "Phường Tân Sơn", "Phường Tân Sơn Hòa", "Phường Tân Sơn Nhì", "Phường Tân Sơn Nhất", "Phường Tân Thuận", "Phường Tân Thành", "Phường Tân Thới Hiệp", "Phường Tân Tạo", "Phường Tân Uyên", "Phường Tân Đông Hiệp", "Phường Tân Định", "Phường Tây Nam", "Phường Tây Thạnh", "Phường Tăng Nhơn Phú", "Phường Vĩnh Hội", "Phường Vĩnh Tân", "Phường Vũng Tàu", "Phường Vườn Lài", "Phường Xuân Hòa", "Phường Xóm Chiếu", "Phường Đông Hòa", "Phường Đông Hưng Thuận", "Phường Đức Nhuận", "Xã An Long", "Xã An Nhơn Tây", "Xã An Thới Đông", "Xã Bà Điểm", "Xã Bàu Bàng", "Xã Bàu Lâm", "Xã Bình Chánh", "Xã Bình Châu", "Xã Bình Giã", "Xã Bình Hưng", "Xã Bình Khánh", "Xã Bình Lợi", "Xã Bình Mỹ", "Xã Bắc Tân Uyên", "Xã Châu Pha", "Xã Châu Đức", "Xã Cần Giờ", "Xã Củ Chi", "Xã Dầu Tiếng", "Xã Hiệp Phước", "Xã Hòa Hiệp", "Xã Hòa Hội", "Xã Hóc Môn", "Xã Hưng Long", "Xã Hồ Tràm", "Xã Kim Long", "Xã Long Hòa", "Xã Long Hải", "Xã Long Sơn", "Xã Long Điền", "Xã Minh Thạnh", "Xã Nghĩa Thành", "Xã Ngãi Giao", "Xã Nhuận Đức", "Xã Nhà Bè", "Xã Phú Giáo", "Xã Phú Hòa Đông", "Xã Phước Hòa", "Xã Phước Hải", "Xã Phước Thành", "Xã Thanh An", "Xã Thái Mỹ", "Xã Thường Tân", "Xã Thạnh An", "Xã Trừ Văn Thố", "Xã Tân An Hội", "Xã Tân Nhựt", "Xã Tân Vĩnh Lộc", "Xã Vĩnh Lộc", "Xã Xuyên Mộc", "Xã Xuân Sơn", "Xã Xuân Thới Sơn", "Xã Đông Thạnh", "Xã Đất Đỏ", "Đặc khu Côn Đảo"],
+      "Thành phố Đà Nẵng": ["Phường An Hải", "Phường An Khê", "Phường An Thắng", "Phường Bàn Thạch", "Phường Cẩm Lệ", "Phường Hòa Cường", "Phường Hòa Khánh", "Phường Hòa Xuân", "Phường Hương Trà", "Phường Hải Châu", "Phường Hải Vân", "Phường Hội An", "Phường Hội An Tây", "Phường Hội An Đông", "Phường Liên Chiểu", "Phường Ngũ Hành Sơn", "Phường Quảng Phú", "Phường Sơn Trà", "Phường Tam Kỳ", "Phường Thanh Khê", "Phường Điện Bàn", "Phường Điện Bàn Bắc", "Phường Điện Bàn Đông", "Xã Avương", "Xã Bà Nà", "Xã Bến Giằng", "Xã Bến Hiên", "Xã Chiên Đàn", "Xã Duy Nghĩa", "Xã Duy Xuyên", "Xã Gò Nổi", "Xã Hiệp Đức", "Xã Hà Nha", "Xã Hòa Tiến", "Xã Hòa Vang", "Xã Hùng Sơn", "Xã Khâm Đức", "Xã La Dêê", "Xã La Êê", "Xã Lãnh Ngọc", "Xã Nam Giang", "Xã Nam Phước", "Xã Nam Trà My", "Xã Nông Sơn", "Xã Núi Thành", "Xã Phú Ninh", "Xã Phú Thuận", "Xã Phước Chánh", "Xã Phước Hiệp", "Xã Phước Năng", "Xã Phước Thành", "Xã Phước Trà", "Xã Quế Phước", "Xã Quế Sơn", "Xã Quế Sơn Trung", "Xã Sông Kôn", "Xã Sông Vàng", "Xã Sơn Cẩm Hà", "Xã Tam Anh", "Xã Tam Hải", "Xã Tam Mỹ", "Xã Tam Xuân", "Xã Thu Bồn", "Xã Thăng An", "Xã Thăng Bình", "Xã Thăng Phú", "Xã Thăng Trường", "Xã Thăng Điền", "Xã Thượng Đức", "Xã Thạnh Bình", "Xã Thạnh Mỹ", "Xã Tiên Phước", "Xã Trà Giáp", "Xã Trà Leng", "Xã Trà Linh", "Xã Trà Liên", "Xã Trà My", "Xã Trà Tân", "Xã Trà Tập", "Xã Trà Vân", "Xã Trà Đốc", "Xã Tân Hiệp", "Xã Tây Giang", "Xã Tây Hồ", "Xã Việt An", "Xã Vu Gia", "Xã Xuân Phú", "Xã Điện Bàn Tây", "Xã Đông Giang", "Xã Đại Lộc", "Xã Đắc Pring", "Xã Đồng Dương", "Xã Đức Phú", "Đặc khu Hoàng Sa"],
+      "Tỉnh An Giang": ["Phường Bình Đức", "Phường Chi Lăng", "Phường Châu Đốc", "Phường Hà Tiên", "Phường Long Phú", "Phường Long Xuyên", "Phường Mỹ Thới", "Phường Rạch Giá", "Phường Thới Sơn", "Phường Tân Châu", "Phường Tô Châu", "Phường Tịnh Biên", "Phường Vĩnh Thông", "Phường Vĩnh Tế", "Xã An Biên", "Xã An Châu", "Xã An Cư", "Xã An Minh", "Xã An Phú", "Xã Ba Chúc", "Xã Bình An", "Xã Bình Giang", "Xã Bình Hòa", "Xã Bình Mỹ", "Xã Bình Sơn", "Xã Bình Thạnh Đông", "Xã Châu Phong", "Xã Châu Phú", "Xã Châu Thành", "Xã Chợ Mới", "Xã Chợ Vàm", "Xã Cô Tô", "Xã Cù Lao Giêng", "Xã Cần Đăng", "Xã Giang Thành", "Xã Giồng Riềng", "Xã Gò Quao", "Xã Hòa Hưng", "Xã Hòa Lạc", "Xã Hòa Thuận", "Xã Hòa Điền", "Xã Hòn Nghệ", "Xã Hòn Đất", "Xã Hội An", "Xã Khánh Bình", "Xã Kiên Lương", "Xã Long Kiến", "Xã Long Thạnh", "Xã Long Điền", "Xã Mỹ Hòa Hưng", "Xã Mỹ Thuận", "Xã Mỹ Đức", "Xã Ngọc Chúc", "Xã Nhơn Hội", "Xã Nhơn Mỹ", "Xã Núi Cấm", "Xã Phú An", "Xã Phú Hòa", "Xã Phú Hữu", "Xã Phú Lâm", "Xã Phú Tân", "Xã Sơn Hải", "Xã Sơn Kiên", "Xã Thoại Sơn", "Xã Thạnh Hưng", "Xã Thạnh Lộc", "Xã Thạnh Mỹ Tây", "Xã Thạnh Đông", "Xã Tiên Hải", "Xã Tri Tôn", "Xã Tân An", "Xã Tân Hiệp", "Xã Tân Hội", "Xã Tân Thạnh", "Xã Tây Phú", "Xã Tây Yên", "Xã U Minh Thượng", "Xã Vân Khánh", "Xã Vĩnh An", "Xã Vĩnh Bình", "Xã Vĩnh Gia", "Xã Vĩnh Hanh", "Xã Vĩnh Hòa", "Xã Vĩnh Hòa Hưng", "Xã Vĩnh Hậu", "Xã Vĩnh Phong", "Xã Vĩnh Thuận", "Xã Vĩnh Thạnh Trung", "Xã Vĩnh Trạch", "Xã Vĩnh Tuy", "Xã Vĩnh Xương", "Xã Vĩnh Điều", "Xã Óc Eo", "Xã Ô Lâm", "Xã Đông Hòa", "Xã Đông Hưng", "Xã Đông Thái", "Xã Định Hòa", "Xã Định Mỹ", "Đặc khu Kiên Hải", "Đặc khu Phú Quốc", "Đặc khu Thổ Châu"],
+      "Tỉnh Bắc Ninh": ["Phường Bắc Giang", "Phường Bồng Lai", "Phường Chũ", "Phường Cảnh Thụy", "Phường Hạp Lĩnh", "Phường Kinh Bắc", "Phường Mão Điền", "Phường Nam Sơn", "Phường Nhân Hòa", "Phường Ninh Xá", "Phường Nếnh", "Phường Phù Khê", "Phường Phương Liễu", "Phường Phượng Sơn", "Phường Quế Võ", "Phường Song Liễu", "Phường Tam Sơn", "Phường Thuận Thành", "Phường Tiền Phong", "Phường Trí Quả", "Phường Trạm Lộ", "Phường Tân An", "Phường Tân Tiến", "Phường Từ Sơn", "Phường Tự Lạn", "Phường Việt Yên", "Phường Vân Hà", "Phường Võ Cường", "Phường Vũ Ninh", "Phường Yên Dũng", "Phường Đa Mai", "Phường Đào Viên", "Phường Đồng Nguyên", "Xã An Lạc", "Xã Biên Sơn", "Xã Biển Động", "Xã Bảo Đài", "Xã Bắc Lũng", "Xã Bố Hạ", "Xã Cao Đức", "Xã Chi Lăng", "Xã Cẩm Lý", "Xã Dương Hưu", "Xã Gia Bình", "Xã Hiệp Hoà", "Xã Hoàng Vân", "Xã Hợp Thịnh", "Xã Kiên Lao", "Xã Kép", "Xã Liên Bão", "Xã Lâm Thao", "Xã Lương Tài", "Xã Lạng Giang", "Xã Lục Nam", "Xã Lục Ngạn", "Xã Lục Sơn", "Xã Mỹ Thái", "Xã Nam Dương", "Xã Nghĩa Phương", "Xã Ngọc Thiện", "Xã Nhân Thắng", "Xã Nhã Nam", "Xã Phù Lãng", "Xã Phúc Hòa", "Xã Phật Tích", "Xã Quang Trung", "Xã Sa Lý", "Xã Sơn Hải", "Xã Sơn Động", "Xã Tam Giang", "Xã Tam Tiến", "Xã Tam Đa", "Xã Tiên Du", "Xã Tiên Lục", "Xã Trung Chính", "Xã Trung Kênh", "Xã Trường Sơn", "Xã Tuấn Đạo", "Xã Tân Chi", "Xã Tân Dĩnh", "Xã Tân Sơn", "Xã Tân Yên", "Xã Tây Yên Tử", "Xã Vân Sơn", "Xã Văn Môn", "Xã Xuân Cẩm", "Xã Xuân Lương", "Xã Yên Phong", "Xã Yên Thế", "Xã Yên Trung", "Xã Yên Định", "Xã Đèo Gia", "Xã Đông Cứu", "Xã Đông Phú", "Xã Đại Lai", "Xã Đại Sơn", "Xã Đại Đồng", "Xã Đồng Kỳ", "Xã Đồng Việt"],
+      "Tỉnh Cao Bằng": ["Phường Nùng Trí Cao", "Phường Thục Phán", "Phường Tân Giang", "Xã Bạch Đằng", "Xã Bảo Lâm", "Xã Bảo Lạc", "Xã Bế Văn Đàn", "Xã Ca Thành", "Xã Canh Tân", "Xã Cô Ba", "Xã Cần Yên", "Xã Cốc Pàng", "Xã Huy Giáp", "Xã Hà Quảng", "Xã Hòa An", "Xã Hưng Đạo", "Xã Hạ Lang", "Xã Hạnh Phúc", "Xã Khánh Xuân", "Xã Kim Đồng", "Xã Lý Bôn", "Xã Lý Quốc", "Xã Lũng Nặm", "Xã Minh Khai", "Xã Minh Tâm", "Xã Nam Quang", "Xã Nam Tuấn", "Xã Nguyên Bình", "Xã Nguyễn Huệ", "Xã Phan Thanh", "Xã Phục Hòa", "Xã Quang Hán", "Xã Quang Long", "Xã Quang Trung", "Xã Quảng Lâm", "Xã Quảng Uyên", "Xã Sơn Lộ", "Xã Tam Kim", "Xã Thanh Long", "Xã Thành Công", "Xã Thông Nông", "Xã Thạch An", "Xã Trà Lĩnh", "Xã Trùng Khánh", "Xã Trường Hà", "Xã Tĩnh Túc", "Xã Tổng Cọt", "Xã Vinh Quý", "Xã Xuân Trường", "Xã Yên Thổ", "Xã Đoài Dương", "Xã Đàm Thủy", "Xã Đình Phong", "Xã Đông Khê", "Xã Độc Lập", "Xã Đức Long"],
+      "Tỉnh Cà Mau": ["Phường An Xuyên", "Phường Bạc Liêu", "Phường Giá Rai", "Phường Hiệp Thành", "Phường Hòa Thành", "Phường Láng Tròn", "Phường Lý Văn Lâm", "Phường Tân Thành", "Phường Vĩnh Trạch", "Xã An Trạch", "Xã Biển Bạch", "Xã Châu Thới", "Xã Cái Nước", "Xã Cái Đôi Vàm", "Xã Gành Hào", "Xã Hòa Bình", "Xã Hưng Hội", "Xã Hưng Mỹ", "Xã Hồ Thị Kỷ", "Xã Hồng Dân", "Xã Khánh An", "Xã Khánh Bình", "Xã Khánh Hưng", "Xã Khánh Lâm", "Xã Long Điền", "Xã Lương Thế Trân", "Xã Nguyễn Phích", "Xã Nguyễn Việt Khái", "Xã Ninh Quới", "Xã Ninh Thạnh Lợi", "Xã Năm Căn", "Xã Phan Ngọc Hiển", "Xã Phong Hiệp", "Xã Phong Thạnh", "Xã Phú Mỹ", "Xã Phú Tân", "Xã Phước Long", "Xã Quách Phẩm", "Xã Sông Đốc", "Xã Tam Giang", "Xã Thanh Tùng", "Xã Thới Bình", "Xã Trí Phải", "Xã Trần Phán", "Xã Trần Văn Thời", "Xã Tân Hưng", "Xã Tân Lộc", "Xã Tân Thuận", "Xã Tân Tiến", "Xã Tân Ân", "Xã Tạ An Khương", "Xã U Minh", "Xã Vĩnh Hậu", "Xã Vĩnh Lộc", "Xã Vĩnh Lợi", "Xã Vĩnh Mỹ", "Xã Vĩnh Phước", "Xã Vĩnh Thanh", "Xã Đá Bạc", "Xã Đông Hải", "Xã Đất Mũi", "Xã Đất Mới", "Xã Đầm Dơi", "Xã Định Thành"],
+      "Tỉnh Gia Lai": ["Phường An Bình", "Phường An Khê", "Phường An Nhơn", "Phường An Nhơn Bắc", "Phường An Nhơn Nam", "Phường An Nhơn Đông", "Phường An Phú", "Phường Ayun Pa", "Phường Bình Định", "Phường Bồng Sơn", "Phường Diên Hồng", "Phường Hoài Nhơn", "Phường Hoài Nhơn Bắc", "Phường Hoài Nhơn Nam", "Phường Hoài Nhơn Tây", "Phường Hoài Nhơn Đông", "Phường Hội Phú", "Phường Pleiku", "Phường Quy Nhơn", "Phường Quy Nhơn Bắc", "Phường Quy Nhơn Nam", "Phường Quy Nhơn Tây", "Phường Quy Nhơn Đông", "Phường Tam Quan", "Phường Thống Nhất", "Xã Al Bá", "Xã An Hòa", "Xã An Lão", "Xã An Lương", "Xã An Nhơn Tây", "Xã An Toàn", "Xã An Vinh", "Xã Ayun", "Xã Biển Hồ", "Xã Bàu Cạn", "Xã Bình An", "Xã Bình Dương", "Xã Bình Hiệp", "Xã Bình Khê", "Xã Bình Phú", "Xã Bờ Ngoong", "Xã Canh Liên", "Xã Canh Vinh", "Xã Chơ Long", "Xã Chư A Thai", "Xã Chư Krey", "Xã Chư Prông", "Xã Chư Păh", "Xã Chư Pưh", "Xã Chư Sê", "Xã Cát Tiến", "Xã Cửu An", "Xã Gào", "Xã Hoài Ân", "Xã Hra", "Xã Hòa Hội", "Xã Hội Sơn", "Xã Ia Boòng", "Xã Ia Băng", "Xã Ia Chia", "Xã Ia Dom", "Xã Ia Dreh", "Xã Ia Dơk", "Xã Ia Grai", "Xã Ia Hiao", "Xã Ia Hrung", "Xã Ia Hrú", "Xã Ia Khươl", "Xã Ia Ko", "Xã Ia Krái", "Xã Ia Krêl", "Xã Ia Le", "Xã Ia Ly", "Xã Ia Lâu", "Xã Ia Mơ", "Xã Ia Nan", "Xã Ia O", "Xã Ia Pa", "Xã Ia Phí", "Xã Ia Pia", "Xã Ia Pnôn", "Xã Ia Púch", "Xã Ia Rbol", "Xã Ia Rsai", "Xã Ia Sao", "Xã Ia Tul", "Xã Ia Tôr", "Xã KDang", "Xã Kbang", "Xã Kim Sơn", "Xã Kon Chiêng", "Xã Kon Gang", "Xã Krong", "Xã Kông Bơ La", "Xã Kông Chro", "Xã Lơ Pang", "Xã Mang Yang", "Xã Ngô Mây", "Xã Nhơn Châu", "Xã Phù Cát", "Xã Phù Mỹ", "Xã Phù Mỹ Bắc", "Xã Phù Mỹ Nam", "Xã Phù Mỹ Tây", "Xã Phù Mỹ Đông", "Xã Phú Thiện", "Xã Phú Túc", "Xã Pờ Tó", "Xã SRó", "Xã Sơn Lang", "Xã Tuy Phước", "Xã Tuy Phước Bắc", "Xã Tuy Phước Tây", "Xã Tuy Phước Đông", "Xã Tây Sơn", "Xã Tơ Tung", "Xã Uar", "Xã Vân Canh", "Xã Vĩnh Quang", "Xã Vĩnh Sơn", "Xã Vĩnh Thạnh", "Xã Vĩnh Thịnh", "Xã Vạn Đức", "Xã Xuân An", "Xã Ya Hội", "Xã Ya Ma", "Xã Ân Hảo", "Xã Ân Tường", "Xã Đak Pơ", "Xã Đak Rong", "Xã Đak Sơmei", "Xã Đak Đoa", "Xã Đăk Song", "Xã Đề Gi", "Xã Đức Cơ"],
+      "Tỉnh Hà Tĩnh": ["Phường Bắc Hồng Lĩnh", "Phường Hoành Sơn", "Phường Hà Huy Tập", "Phường Hải Ninh", "Phường Nam Hồng Lĩnh", "Phường Sông Trí", "Phường Thành Sen", "Phường Trần Phú", "Phường Vũng Áng", "Xã Can Lộc", "Xã Cẩm Bình", "Xã Cẩm Duệ", "Xã Cẩm Hưng", "Xã Cẩm Lạc", "Xã Cẩm Trung", "Xã Cẩm Xuyên", "Xã Cổ Đạm", "Xã Gia Hanh", "Xã Hà Linh", "Xã Hương Bình", "Xã Hương Khê", "Xã Hương Phố", "Xã Hương Sơn", "Xã Hương Xuân", "Xã Hương Đô", "Xã Hồng Lộc", "Xã Kim Hoa", "Xã Kỳ Anh", "Xã Kỳ Hoa", "Xã Kỳ Khang", "Xã Kỳ Lạc", "Xã Kỳ Thượng", "Xã Kỳ Văn", "Xã Kỳ Xuân", "Xã Lộc Hà", "Xã Mai Hoa", "Xã Mai Phụ", "Xã Nghi Xuân", "Xã Phúc Trạch", "Xã Sơn Giang", "Xã Sơn Hồng", "Xã Sơn Kim 1", "Xã Sơn Kim 2", "Xã Sơn Tiến", "Xã Sơn Tây", "Xã Thiên Cầm", "Xã Thượng Đức", "Xã Thạch Hà", "Xã Thạch Khê", "Xã Thạch Lạc", "Xã Thạch Xuân", "Xã Tiên Điền", "Xã Toàn Lưu", "Xã Trường Lưu", "Xã Tùng Lộc", "Xã Tứ Mỹ", "Xã Việt Xuyên", "Xã Vũ Quang", "Xã Xuân Lộc", "Xã Yên Hòa", "Xã Đan Hải", "Xã Đông Kinh", "Xã Đồng Lộc", "Xã Đồng Tiến", "Xã Đức Minh", "Xã Đức Quang", "Xã Đức Thịnh", "Xã Đức Thọ", "Xã Đức Đồng"],
+      "Tỉnh Hưng Yên": ["Phường Hồng Châu", "Phường Mỹ Hào", "Phường Phố Hiến", "Phường Sơn Nam", "Phường Thái Bình", "Phường Thượng Hồng", "Phường Trà Lý", "Phường Trần Hưng Đạo", "Phường Trần Lãm", "Phường Vũ Phúc", "Phường Đường Hào", "Xã A Sào", "Xã Bình Nguyên", "Xã Bình Thanh", "Xã Bình Định", "Xã Bắc Thái Ninh", "Xã Bắc Thụy Anh", "Xã Bắc Tiên Hưng", "Xã Bắc Đông Hưng", "Xã Bắc Đông Quan", "Xã Châu Ninh", "Xã Chí Minh", "Xã Diên Hà", "Xã Hiệp Cường", "Xã Hoàn Long", "Xã Hoàng Hoa Thám", "Xã Hưng Hà", "Xã Hưng Phú", "Xã Hồng Minh", "Xã Hồng Quang", "Xã Hồng Vũ", "Xã Khoái Châu", "Xã Kiến Xương", "Xã Long Hưng", "Xã Lê Lợi", "Xã Lê Quý Đôn", "Xã Lương Bằng", "Xã Lạc Đạo", "Xã Minh Thọ", "Xã Mễ Sở", "Xã Nam Cường", "Xã Nam Thái Ninh", "Xã Nam Thụy Anh", "Xã Nam Tiên Hưng", "Xã Nam Tiền Hải", "Xã Nam Đông Hưng", "Xã Nghĩa Dân", "Xã Nghĩa Trụ", "Xã Nguyễn Du", "Xã Nguyễn Trãi", "Xã Nguyễn Văn Linh", "Xã Ngọc Lâm", "Xã Ngự Thiên", "Xã Như Quỳnh", "Xã Phạm Ngũ Lão", "Xã Phụ Dực", "Xã Phụng Công", "Xã Quang Hưng", "Xã Quang Lịch", "Xã Quỳnh An", "Xã Quỳnh Phụ", "Xã Thái Ninh", "Xã Thái Thụy", "Xã Thư Trì", "Xã Thư Vũ", "Xã Thần Khê", "Xã Thụy Anh", "Xã Tiên Hoa", "Xã Tiên Hưng", "Xã Tiên La", "Xã Tiên Lữ", "Xã Tiên Tiến", "Xã Tiền Hải", "Xã Triệu Việt Vương", "Xã Trà Giang", "Xã Tân Hưng", "Xã Tân Thuận", "Xã Tân Tiến", "Xã Tây Thái Ninh", "Xã Tây Thụy Anh", "Xã Tây Tiền Hải", "Xã Tống Trân", "Xã Việt Tiến", "Xã Việt Yên", "Xã Văn Giang", "Xã Vũ Quý", "Xã Vũ Thư", "Xã Vũ Tiên", "Xã Vạn Xuân", "Xã Xuân Trúc", "Xã Yên Mỹ", "Xã Ái Quốc", "Xã Ân Thi", "Xã Đoàn Đào", "Xã Đông Hưng", "Xã Đông Quan", "Xã Đông Thái Ninh", "Xã Đông Thụy Anh", "Xã Đông Tiên Hưng", "Xã Đông Tiền Hải", "Xã Đại Đồng", "Xã Đồng Bằng", "Xã Đồng Châu", "Xã Đức Hợp"],
+      "Tỉnh Khánh Hòa": ["Phường Ba Ngòi", "Phường Bảo An", "Phường Bắc Cam Ranh", "Phường Bắc Nha Trang", "Phường Cam Linh", "Phường Cam Ranh", "Phường Hòa Thắng", "Phường Nam Nha Trang", "Phường Nha Trang", "Phường Ninh Chử", "Phường Ninh Hòa", "Phường Phan Rang", "Phường Tây Nha Trang", "Phường Đô Vinh", "Phường Đông Hải", "Phường Đông Ninh Hòa", "Xã Anh Dũng", "Xã Bác Ái", "Xã Bác Ái Tây", "Xã Bác Ái Đông", "Xã Bắc Khánh Vĩnh", "Xã Bắc Ninh Hòa", "Xã Cam An", "Xã Cam Hiệp", "Xã Cam Lâm", "Xã Cà Ná", "Xã Công Hải", "Xã Diên Khánh", "Xã Diên Lâm", "Xã Diên Lạc", "Xã Diên Thọ", "Xã Diên Điền", "Xã Hòa Trí", "Xã Khánh Sơn", "Xã Khánh Vĩnh", "Xã Lâm Sơn", "Xã Mỹ Sơn", "Xã Nam Cam Ranh", "Xã Nam Khánh Vĩnh", "Xã Nam Ninh Hòa", "Xã Ninh Hải", "Xã Ninh Phước", "Xã Ninh Sơn", "Xã Phước Dinh", "Xã Phước Hà", "Xã Phước Hậu", "Xã Phước Hữu", "Xã Suối Dầu", "Xã Suối Hiệp", "Xã Thuận Bắc", "Xã Thuận Nam", "Xã Trung Khánh Vĩnh", "Xã Tu Bông", "Xã Tân Định", "Xã Tây Khánh Sơn", "Xã Tây Khánh Vĩnh", "Xã Tây Ninh Hòa", "Xã Vĩnh Hải", "Xã Vạn Hưng", "Xã Vạn Ninh", "Xã Vạn Thắng", "Xã Xuân Hải", "Xã Đông Khánh Sơn", "Xã Đại Lãnh", "Đặc khu Trường Sa"],
+      "Tỉnh Lai Châu": ["Phường Tân Phong", "Phường Đoàn Kết", "Xã Bum Nưa", "Xã Bum Tở", "Xã Bình Lư", "Xã Bản Bo", "Xã Dào San", "Xã Hua Bum", "Xã Hồng Thu", "Xã Khoen On", "Xã Khun Há", "Xã Khổng Lào", "Xã Lê Lợi", "Xã Mù Cả", "Xã Mường Khoa", "Xã Mường Kim", "Xã Mường Mô", "Xã Mường Than", "Xã Mường Tè", "Xã Nậm Cuổi", "Xã Nậm Hàng", "Xã Nậm Mạ", "Xã Nậm Sỏ", "Xã Nậm Tăm", "Xã Pa Tần", "Xã Pa Ủ", "Xã Phong Thổ", "Xã Pu Sam Cáp", "Xã Pắc Ta", "Xã Sin Suối Hồ", "Xã Sì Lở Lầu", "Xã Sìn Hồ", "Xã Than Uyên", "Xã Thu Lũm", "Xã Tà Tổng", "Xã Tân Uyên", "Xã Tả Lèng", "Xã Tủa Sín Chải"],
+      "Tỉnh Lào Cai": ["Phường Cam Đường", "Phường Cầu Thia", "Phường Lào Cai", "Phường Nam Cường", "Phường Nghĩa Lộ", "Phường Sa Pa", "Phường Trung Tâm", "Phường Văn Phú", "Phường Yên Bái", "Phường Âu Lâu", "Xã A Mú Sung", "Xã Bát Xát", "Xã Bản Hồ", "Xã Bản Liền", "Xã Bản Lầu", "Xã Bản Xèo", "Xã Bảo Hà", "Xã Bảo Nhai", "Xã Bảo Thắng", "Xã Bảo Yên", "Xã Bảo Ái", "Xã Bắc Hà", "Xã Cao Sơn", "Xã Chiềng Ken", "Xã Châu Quế", "Xã Chấn Thịnh", "Xã Chế Tạo", "Xã Cát Thịnh", "Xã Cảm Nhân", "Xã Cốc Lầu", "Xã Cốc San", "Xã Dương Quỳ", "Xã Dền Sáng", "Xã Gia Hội", "Xã Gia Phú", "Xã Hưng Khánh", "Xã Hạnh Phúc", "Xã Hợp Thành", "Xã Khao Mang", "Xã Khánh Hòa", "Xã Khánh Yên", "Xã Lao Chải", "Xã Liên Sơn", "Xã Lâm Giang", "Xã Lâm Thượng", "Xã Lùng Phình", "Xã Lương Thịnh", "Xã Lục Yên", "Xã Minh Lương", "Xã Mù Cang Chải", "Xã Mường Bo", "Xã Mường Hum", "Xã Mường Khương", "Xã Mường Lai", "Xã Mậu A", "Xã Mỏ Vàng", "Xã Nghĩa Tâm", "Xã Nghĩa Đô", "Xã Ngũ Chỉ Sơn", "Xã Nậm Chày", "Xã Nậm Có", "Xã Nậm Xé", "Xã Pha Long", "Xã Phong Dụ Hạ", "Xã Phong Dụ Thượng", "Xã Phong Hải", "Xã Phình Hồ", "Xã Phúc Khánh", "Xã Phúc Lợi", "Xã Púng Luông", "Xã Quy Mông", "Xã Si Ma Cai", "Xã Sín Chéng", "Xã Sơn Lương", "Xã Thác Bà", "Xã Thượng Bằng La", "Xã Thượng Hà", "Xã Trạm Tấu", "Xã Trấn Yên", "Xã Trịnh Tường", "Xã Tà Xi Láng", "Xã Tân Hợp", "Xã Tân Lĩnh", "Xã Tú Lệ", "Xã Tả Củ Tỷ", "Xã Tả Phìn", "Xã Tả Van", "Xã Tằng Loỏng", "Xã Việt Hồng", "Xã Võ Lao", "Xã Văn Bàn", "Xã Văn Chấn", "Xã Xuân Hòa", "Xã Xuân Quang", "Xã Xuân Ái", "Xã Y Tý", "Xã Yên Bình", "Xã Yên Thành", "Xã Đông Cuông"],
+      "Tỉnh Lâm Đồng": ["Phường 1 Bảo Lộc", "Phường 2 Bảo Lộc", "Phường 3 Bảo Lộc", "Phường Bình Thuận", "Phường Bắc Gia Nghĩa", "Phường B’Lao", "Phường Cam Ly - Đà Lạt", "Phường Hàm Thắng", "Phường La Gi", "Phường Lang Biang - Đà Lạt", "Phường Lâm Viên - Đà Lạt", "Phường Mũi Né", "Phường Nam Gia Nghĩa", "Phường Phan Thiết", "Phường Phú Thuỷ", "Phường Phước Hội", "Phường Tiến Thành", "Phường Xuân Hương - Đà Lạt", "Phường Xuân Trường - Đà Lạt", "Phường Đông Gia Nghĩa", "Xã Bảo Lâm 1", "Xã Bảo Lâm 2", "Xã Bảo Lâm 3", "Xã Bảo Lâm 4", "Xã Bảo Lâm 5", "Xã Bảo Thuận", "Xã Bắc Bình", "Xã Bắc Ruộng", "Xã Cát Tiên", "Xã Cát Tiên 2", "Xã Cát Tiên 3", "Xã Cư Jút", "Xã Di Linh", "Xã D’Ran", "Xã Gia Hiệp", "Xã Hiệp Thạnh", "Xã Hoài Đức", "Xã Hàm Kiệm", "Xã Hàm Liêm", "Xã Hàm Thuận", "Xã Hàm Thuận Bắc", "Xã Hàm Thuận Nam", "Xã Hàm Thạnh", "Xã Hàm Tân", "Xã Hòa Bắc", "Xã Hòa Ninh", "Xã Hòa Thắng", "Xã Hải Ninh", "Xã Hồng Sơn", "Xã Hồng Thái", "Xã Ka Đô", "Xã Kiến Đức", "Xã Krông Nô", "Xã La Dạ", "Xã Liên Hương", "Xã Lương Sơn", "Xã Lạc Dương", "Xã Nam Ban Lâm Hà", "Xã Nam Dong", "Xã Nam Hà Lâm Hà", "Xã Nam Thành", "Xã Nam Đà", "Xã Nghị Đức", "Xã Nhân Cơ", "Xã Ninh Gia", "Xã Nâm Nung", "Xã Phan Rí Cửa", "Xã Phan Sơn", "Xã Phú Sơn Lâm Hà", "Xã Phúc Thọ Lâm Hà", "Xã Quảng Hòa", "Xã Quảng Khê", "Xã Quảng Lập", "Xã Quảng Phú", "Xã Quảng Sơn", "Xã Quảng Trực", "Xã Quảng Tân", "Xã Quảng Tín", "Xã Suối Kiết", "Xã Sông Lũy", "Xã Sơn Mỹ", "Xã Sơn Điền", "Xã Thuận An", "Xã Thuận Hạnh", "Xã Trà Tân", "Xã Trường Xuân", "Xã Tuy Phong", "Xã Tuy Đức", "Xã Tuyên Quang", "Xã Tà Hine", "Xã Tà Năng", "Xã Tà Đùng", "Xã Tánh Linh", "Xã Tân Hà Lâm Hà", "Xã Tân Hải", "Xã Tân Hội", "Xã Tân Lập", "Xã Tân Minh", "Xã Tân Thành", "Xã Vĩnh Hảo", "Xã Đam Rông 1", "Xã Đam Rông 2", "Xã Đam Rông 3", "Xã Đam Rông 4", "Xã Đinh Trang Thượng", "Xã Đinh Văn Lâm Hà", "Xã Đông Giang", "Xã Đơn Dương", "Xã Đạ Huoai", "Xã Đạ Huoai 2", "Xã Đạ Huoai 3", "Xã Đạ Tẻh", "Xã Đạ Tẻh 2", "Xã Đạ Tẻh 3", "Xã Đắk Mil", "Xã Đắk Song", "Xã Đắk Sắk", "Xã Đắk Wil", "Xã Đồng Kho", "Xã Đức An", "Xã Đức Linh", "Xã Đức Lập", "Xã Đức Trọng", "Đặc khu Phú Quý"],
+      "Tỉnh Lạng Sơn": ["Phường Kỳ Lừa", "Phường Lương Văn Tri", "Phường Tam Thanh", "Phường Đông Kinh", "Xã Ba Sơn", "Xã Bình Gia", "Xã Bằng Mạc", "Xã Cai Kinh", "Xã Cao Lộc", "Xã Chi Lăng", "Xã Chiến Thắng", "Xã Châu Sơn", "Xã Công Sơn", "Xã Hoa Thám", "Xã Hoàng Văn Thụ", "Xã Hưng Vũ", "Xã Hồng Phong", "Xã Hội Hoan", "Xã Hữu Liên", "Xã Hữu Lũng", "Xã Khuất Xá", "Xã Kháng Chiến", "Xã Khánh Khê", "Xã Kiên Mộc", "Xã Lộc Bình", "Xã Lợi Bác", "Xã Mẫu Sơn", "Xã Na Dương", "Xã Na Sầm", "Xã Nhân Lý", "Xã Nhất Hòa", "Xã Quan Sơn", "Xã Quý Hòa", "Xã Quốc Khánh", "Xã Quốc Việt", "Xã Thiện Hòa", "Xã Thiện Long", "Xã Thiện Thuật", "Xã Thiện Tân", "Xã Thái Bình", "Xã Thất Khê", "Xã Thống Nhất", "Xã Thụy Hùng", "Xã Tri Lễ", "Xã Tràng Định", "Xã Tuấn Sơn", "Xã Tân Thành", "Xã Tân Tiến", "Xã Tân Tri", "Xã Tân Văn", "Xã Tân Đoàn", "Xã Vân Nham", "Xã Văn Lãng", "Xã Văn Quan", "Xã Vũ Lăng", "Xã Vũ Lễ", "Xã Vạn Linh", "Xã Xuân Dương", "Xã Yên Bình", "Xã Yên Phúc", "Xã Điềm He", "Xã Đoàn Kết", "Xã Đình Lập", "Xã Đồng Đăng", "xã Bắc Sơn"],
+      "Tỉnh Nghệ An": ["Phường Cửa Lò", "Phường Hoàng Mai", "Phường Quỳnh Mai", "Phường Thành Vinh", "Phường Thái Hòa", "Phường Trường Vinh", "Phường Tân Mai", "Phường Tây Hiếu", "Phường Vinh Hưng", "Phường Vinh Lộc", "Phường Vinh Phú", "Xã An Châu", "Xã Anh Sơn", "Xã Anh Sơn Đông", "Xã Bình Chuẩn", "Xã Bình Minh", "Xã Bích Hào", "Xã Bạch Hà", "Xã Bạch Ngọc", "Xã Bắc Lý", "Xã Cam Phục", "Xã Chiêu Lưu", "Xã Châu Bình", "Xã Châu Hồng", "Xã Châu Khê", "Xã Châu Lộc", "Xã Châu Tiến", "Xã Con Cuông", "Xã Cát Ngạn", "Xã Diễn Châu", "Xã Giai Lạc", "Xã Giai Xuân", "Xã Hoa Quân", "Xã Huồi Tụ", "Xã Hùng Chân", "Xã Hùng Châu", "Xã Hưng Nguyên", "Xã Hưng Nguyên Nam", "Xã Hạnh Lâm", "Xã Hải Châu", "Xã Hải Lộc", "Xã Hợp Minh", "Xã Hữu Khuông", "Xã Hữu Kiệm", "Xã Keng Đu", "Xã Kim Bảng", "Xã Kim Liên", "Xã Lam Thành", "Xã Lương Sơn", "Xã Lượng Minh", "Xã Minh Châu", "Xã Minh Hợp", "Xã Môn Sơn", "Xã Mường Chọng", "Xã Mường Ham", "Xã Mường Lống", "Xã Mường Quàng", "Xã Mường Típ", "Xã Mường Xén", "Xã Mậu Thạch", "Xã Mỹ Lý", "Xã Na Loi", "Xã Na Ngoi", "Xã Nam Đàn", "Xã Nga My", "Xã Nghi Lộc", "Xã Nghĩa Hành", "Xã Nghĩa Hưng", "Xã Nghĩa Khánh", "Xã Nghĩa Lâm", "Xã Nghĩa Lộc", "Xã Nghĩa Mai", "Xã Nghĩa Thọ", "Xã Nghĩa Đàn", "Xã Nghĩa Đồng", "Xã Nhân Hòa", "Xã Nhôn Mai", "Xã Nậm Cắn", "Xã Phúc Lộc", "Xã Quan Thành", "Xã Quang Đồng", "Xã Quảng Châu", "Xã Quế Phong", "Xã Quỳ Châu", "Xã Quỳ Hợp", "Xã Quỳnh Anh", "Xã Quỳnh Lưu", "Xã Quỳnh Phú", "Xã Quỳnh Sơn", "Xã Quỳnh Tam", "Xã Quỳnh Thắng", "Xã Quỳnh Văn", "Xã Sơn Lâm", "Xã Tam Hợp", "Xã Tam Quang", "Xã Tam Thái", "Xã Tam Đồng", "Xã Thiên Nhẫn", "Xã Thuần Trung", "Xã Thành Bình Thọ", "Xã Thông Thụ", "Xã Thần Lĩnh", "Xã Tiên Đồng", "Xã Tiền Phong", "Xã Tri Lễ", "Xã Trung Lộc", "Xã Tân An", "Xã Tân Châu", "Xã Tân Kỳ", "Xã Tân Phú", "Xã Tương Dương", "Xã Vân Du", "Xã Vân Tụ", "Xã Văn Hiến", "Xã Văn Kiều", "Xã Vĩnh Tường", "Xã Vạn An", "Xã Xuân Lâm", "Xã Yên Hòa", "Xã Yên Na", "Xã Yên Thành", "Xã Yên Trung", "Xã Yên Xuân", "Xã Đô Lương", "Xã Đông Hiếu", "Xã Đông Lộc", "Xã Đông Thành", "Xã Đại Huệ", "Xã Đại Đồng", "Xã Đức Châu"],
+      "Tỉnh Ninh Bình": ["Phường Châu Sơn", "Phường Duy Hà", "Phường Duy Tiên", "Phường Duy Tân", "Phường Hoa Lư", "Phường Hà Nam", "Phường Hồng Quang", "Phường Kim Bảng", "Phường Kim Thanh", "Phường Liêm Tuyền", "Phường Lê Hồ", "Phường Lý Thường Kiệt", "Phường Mỹ Lộc", "Phường Nam Hoa Lư", "Phường Nam Định", "Phường Nguyễn Uý", "Phường Phù Vân", "Phường Phủ Lý", "Phường Tam Chúc", "Phường Tam Điệp", "Phường Thiên Trường", "Phường Thành Nam", "Phường Tiên Sơn", "Phường Trung Sơn", "Phường Trường Thi", "Phường Tây Hoa Lư", "Phường Vị Khê", "Phường Yên Sơn", "Phường Yên Thắng", "Phường Đông A", "Phường Đông Hoa Lư", "Phường Đồng Văn", "Xã Bình An", "Xã Bình Giang", "Xã Bình Lục", "Xã Bình Minh", "Xã Bình Mỹ", "Xã Bình Sơn", "Xã Bắc Lý", "Xã Chất Bình", "Xã Cát Thành", "Xã Cúc Phương", "Xã Cổ Lễ", "Xã Gia Hưng", "Xã Gia Lâm", "Xã Gia Phong", "Xã Gia Trấn", "Xã Gia Tường", "Xã Gia Viễn", "Xã Gia Vân", "Xã Giao Bình", "Xã Giao Hoà", "Xã Giao Hưng", "Xã Giao Minh", "Xã Giao Ninh", "Xã Giao Phúc", "Xã Giao Thuỷ", "Xã Hiển Khánh", "Xã Hải An", "Xã Hải Anh", "Xã Hải Hưng", "Xã Hải Hậu", "Xã Hải Quang", "Xã Hải Thịnh", "Xã Hải Tiến", "Xã Hải Xuân", "Xã Hồng Phong", "Xã Khánh Hội", "Xã Khánh Nhạc", "Xã Khánh Thiện", "Xã Khánh Trung", "Xã Kim Sơn", "Xã Kim Đông", "Xã Lai Thành", "Xã Liêm Hà", "Xã Liên Minh", "Xã Lý Nhân", "Xã Minh Thái", "Xã Minh Tân", "Xã Nam Hồng", "Xã Nam Lý", "Xã Nam Minh", "Xã Nam Ninh", "Xã Nam Trực", "Xã Nam Xang", "Xã Nam Đồng", "Xã Nghĩa Hưng", "Xã Nghĩa Lâm", "Xã Nghĩa Sơn", "Xã Nho Quan", "Xã Nhân Hà", "Xã Ninh Cường", "Xã Ninh Giang", "Xã Phong Doanh", "Xã Phát Diệm", "Xã Phú Long", "Xã Phú Sơn", "Xã Quang Hưng", "Xã Quang Thiện", "Xã Quỳnh Lưu", "Xã Quỹ Nhất", "Xã Rạng Đông", "Xã Thanh Bình", "Xã Thanh Liêm", "Xã Thanh Lâm", "Xã Thanh Sơn", "Xã Trần Thương", "Xã Trực Ninh", "Xã Tân Minh", "Xã Tân Thanh", "Xã Vĩnh Trụ", "Xã Vũ Dương", "Xã Vạn Thắng", "Xã Vụ Bản", "Xã Xuân Giang", "Xã Xuân Hưng", "Xã Xuân Hồng", "Xã Xuân Trường", "Xã Yên Cường", "Xã Yên Khánh", "Xã Yên Mô", "Xã Yên Mạc", "Xã Yên Từ", "Xã Yên Đồng", "Xã Ý Yên", "Xã Đại Hoàng", "Xã Định Hóa", "Xã Đồng Thái", "Xã Đồng Thịnh"],
+      "Tỉnh Phú Thọ": ["Phường Hòa Bình", "Phường Kỳ Sơn", "Phường Nông Trang", "Phường Phong Châu", "Phường Phú Thọ", "Phường Phúc Yên", "Phường Thanh Miếu", "Phường Thống Nhất", "Phường Tân Hòa", "Phường Việt Trì", "Phường Vân Phú", "Phường Vĩnh Phúc", "Phường Vĩnh Yên", "Phường Xuân Hòa", "Phường Âu Cơ", "Xã An Bình", "Xã An Nghĩa", "Xã Bao La", "Xã Bình Nguyên", "Xã Bình Phú", "Xã Bình Tuyền", "Xã Bình Xuyên", "Xã Bản Nguyên", "Xã Bằng Luân", "Xã Cao Dương", "Xã Cao Phong", "Xã Cao Sơn", "Xã Chân Mộng", "Xã Chí Tiên", "Xã Chí Đám", "Xã Cẩm Khê", "Xã Cự Đồng", "Xã Dân Chủ", "Xã Dũng Tiến", "Xã Hiền Lương", "Xã Hiền Quan", "Xã Hoàng An", "Xã Hoàng Cương", "Xã Hy Cương", "Xã Hùng Việt", "Xã Hương Cần", "Xã Hạ Hòa", "Xã Hải Lựu", "Xã Hội Thịnh", "Xã Hợp Kim", "Xã Hợp Lý", "Xã Khả Cửu", "Xã Kim Bôi", "Xã Lai Đồng", "Xã Liên Châu", "Xã Liên Hòa", "Xã Liên Minh", "Xã Liên Sơn", "Xã Long Cốc", "Xã Lâm Thao", "Xã Lương Sơn", "Xã Lạc Lương", "Xã Lạc Sơn", "Xã Lạc Thủy", "Xã Lập Thạch", "Xã Mai Châu", "Xã Mai Hạ", "Xã Minh Hòa", "Xã Minh Đài", "Xã Mường Bi", "Xã Mường Hoa", "Xã Mường Thàng", "Xã Mường Vang", "Xã Mường Động", "Xã Nguyệt Đức", "Xã Ngọc Sơn", "Xã Nhân Nghĩa", "Xã Nật Sơn", "Xã Phù Ninh", "Xã Phùng Nguyên", "Xã Phú Khê", "Xã Phú Mỹ", "Xã Pà Cò", "Xã Quy Đức", "Xã Quyết Thắng", "Xã Quảng Yên", "Xã Sông Lô", "Xã Sơn Lương", "Xã Sơn Đông", "Xã Tam Dương", "Xã Tam Dương Bắc", "Xã Tam Hồng", "Xã Tam Nông", "Xã Tam Sơn", "Xã Tam Đảo", "Xã Thanh Ba", "Xã Thanh Sơn", "Xã Thanh Thủy", "Xã Thu Cúc", "Xã Thung Nai", "Xã Thái Hòa", "Xã Thượng Cốc", "Xã Thượng Long", "Xã Thịnh Minh", "Xã Thọ Văn", "Xã Thổ Tang", "Xã Tiên Lương", "Xã Tiên Lữ", "Xã Tiền Phong", "Xã Toàn Thắng", "Xã Trung Sơn", "Xã Trạm Thản", "Xã Tu Vũ", "Xã Tân Lạc", "Xã Tân Mai", "Xã Tân Pheo", "Xã Tân Sơn", "Xã Tây Cốc", "Xã Tề Lỗ", "Xã Vân Bán", "Xã Vân Sơn", "Xã Võ Miếu", "Xã Văn Lang", "Xã Văn Miếu", "Xã Vĩnh An", "Xã Vĩnh Chân", "Xã Vĩnh Hưng", "Xã Vĩnh Phú", "Xã Vĩnh Thành", "Xã Vĩnh Tường", "Xã Vạn Xuân", "Xã Xuân Lãng", "Xã Xuân Lũng", "Xã Xuân Viên", "Xã Xuân Đài", "Xã Yên Kỳ", "Xã Yên Lãng", "Xã Yên Lạc", "Xã Yên Lập", "Xã Yên Phú", "Xã Yên Sơn", "Xã Yên Thủy", "Xã Yên Trị", "Xã Đan Thượng", "Xã Đoan Hùng", "Xã Đà Bắc", "Xã Đào Xá", "Xã Đông Thành", "Xã Đại Đình", "Xã Đại Đồng", "Xã Đạo Trù", "Xã Đồng Lương", "Xã Đức Nhàn"],
+      "Tỉnh Quảng Ngãi": ["Phường Cẩm Thành", "Phường Kon Tum", "Phường Nghĩa Lộ", "Phường Sa Huỳnh", "Phường Trà Câu", "Phường Trương Quang Trọng", "Phường Đăk Bla", "Phường Đăk Cấm", "Phường Đức Phổ", "Xã An Phú", "Xã Ba Dinh", "Xã Ba Gia", "Xã Ba Tô", "Xã Ba Tơ", "Xã Ba Vinh", "Xã Ba Vì", "Xã Ba Xa", "Xã Ba Động", "Xã Bình Chương", "Xã Bình Minh", "Xã Bình Sơn", "Xã Bờ Y", "Xã Cà Đam", "Xã Dục Nông", "Xã Ia Chim", "Xã Ia Tơi", "Xã Ia Đal", "Xã Khánh Cường", "Xã Kon Braih", "Xã Kon Plông", "Xã Kon Đào", "Xã Long Phụng", "Xã Lân Phong", "Xã Minh Long", "Xã Mô Rai", "Xã Măng Bút", "Xã Măng Ri", "Xã Măng Đen", "Xã Mỏ Cày", "Xã Mộ Đức", "Xã Nghĩa Giang", "Xã Nghĩa Hành", "Xã Nguyễn Nghiêm", "Xã Ngọc Linh", "Xã Ngọk Bay", "Xã Ngọk Réo", "Xã Ngọk Tụ", "Xã Phước Giang", "Xã Rờ Kơi", "Xã Sa Bình", "Xã Sa Loong", "Xã Sa Thầy", "Xã Sơn Hà", "Xã Sơn Hạ", "Xã Sơn Kỳ", "Xã Sơn Linh", "Xã Sơn Mai", "Xã Sơn Thủy", "Xã Sơn Tây", "Xã Sơn Tây Hạ", "Xã Sơn Tây Thượng", "Xã Sơn Tịnh", "Xã Thanh Bồng", "Xã Thiện Tín", "Xã Thọ Phong", "Xã Trà Bồng", "Xã Trà Giang", "Xã Trường Giang", "Xã Tu Mơ Rông", "Xã Tây Trà", "Xã Tây Trà Bồng", "Xã Tư Nghĩa", "Xã Tịnh Khê", "Xã Vạn Tường", "Xã Vệ Giang", "Xã Xốp", "Xã Ya Ly", "Xã Đình Cương", "Xã Đông Sơn", "Xã Đông Trà Bồng", "Xã Đăk Hà", "Xã Đăk Kôi", "Xã Đăk Long", "Xã Đăk Mar", "Xã Đăk Môn", "Xã Đăk Plô", "Xã Đăk Pxi", "Xã Đăk Pék", "Xã Đăk Rve", "Xã Đăk Rơ Wa", "Xã Đăk Sao", "Xã Đăk Tô", "Xã Đăk Tờ Kan", "Xã Đăk Ui", "Xã Đặng Thùy Trâm", "Đặc khu Lý Sơn"],
+      "Tỉnh Quảng Ninh": ["Phường An Sinh", "Phường Bãi Cháy", "Phường Bình Khê", "Phường Cao Xanh", "Phường Cẩm Phả", "Phường Cửa Ông", "Phường Hiệp Hòa", "Phường Hoàng Quế", "Phường Hoành Bồ", "Phường Hà An", "Phường Hà Lầm", "Phường Hà Tu", "Phường Hạ Long", "Phường Hồng Gai", "Phường Liên Hòa", "Phường Móng Cái 1", "Phường Móng Cái 2", "Phường Móng Cái 3", "Phường Mông Dương", "Phường Mạo Khê", "Phường Phong Cốc", "Phường Quang Hanh", "Phường Quảng Yên", "Phường Tuần Châu", "Phường Uông Bí", "Phường Việt Hưng", "Phường Vàng Danh", "Phường Yên Tử", "Phường Đông Mai", "Phường Đông Triều", "Xã Ba Chẽ", "Xã Bình Liêu", "Xã Cái Chiên", "Xã Hoành Mô", "Xã Hải Hòa", "Xã Hải Lạng", "Xã Hải Ninh", "Xã Hải Sơn", "Xã Kỳ Thượng", "Xã Lương Minh", "Xã Lục Hồn", "Xã Quảng Hà", "Xã Quảng La", "Xã Quảng Tân", "Xã Quảng Đức", "Xã Thống Nhất", "Xã Tiên Yên", "Xã Vĩnh Thực", "Xã Điền Xá", "Xã Đông Ngũ", "Xã Đường Hoa", "Xã Đầm Hà", "Đặc khu Cô Tô", "Đặc khu Vân Đồn"],
+      "Tỉnh Quảng Trị": ["Phường Ba Đồn", "Phường Bắc Gianh", "Phường Nam Đông Hà", "Phường Quảng Trị", "Phường Đông Hà", "Phường Đồng Hới", "Phường Đồng Sơn", "Phường Đồng Thuận", "Xã A Dơi", "Xã Ba Lòng", "Xã Bắc Trạch", "Xã Bến Hải", "Xã Bến Quan", "Xã Bố Trạch", "Xã Cam Hồng", "Xã Cam Lộ", "Xã Cồn Tiên", "Xã Cửa Tùng", "Xã Cửa Việt", "Xã Diên Sanh", "Xã Dân Hóa", "Xã Gio Linh", "Xã Hiếu Giang", "Xã Hoàn Lão", "Xã Hòa Trạch", "Xã Hướng Hiệp", "Xã Hướng Lập", "Xã Hướng Phùng", "Xã Hải Lăng", "Xã Khe Sanh", "Xã Kim Ngân", "Xã Kim Phú", "Xã Kim Điền", "Xã La Lay", "Xã Lao Bảo", "Xã Lìa", "Xã Lệ Ninh", "Xã Lệ Thủy", "Xã Minh Hóa", "Xã Mỹ Thủy", "Xã Nam Ba Đồn", "Xã Nam Cửa Việt", "Xã Nam Gianh", "Xã Nam Hải Lăng", "Xã Nam Trạch", "Xã Ninh Châu", "Xã Phong Nha", "Xã Phú Trạch", "Xã Quảng Ninh", "Xã Quảng Trạch", "Xã Sen Ngư", "Xã Thượng Trạch", "Xã Triệu Bình", "Xã Triệu Cơ", "Xã Triệu Phong", "Xã Trung Thuần", "Xã Trường Ninh", "Xã Trường Phú", "Xã Trường Sơn", "Xã Tuyên Bình", "Xã Tuyên Hóa", "Xã Tuyên Lâm", "Xã Tuyên Phú", "Xã Tuyên Sơn", "Xã Tà Rụt", "Xã Tân Gianh", "Xã Tân Lập", "Xã Tân Mỹ", "Xã Tân Thành", "Xã Vĩnh Hoàng", "Xã Vĩnh Linh", "Xã Vĩnh Thủy", "Xã Vĩnh Định", "Xã Ái Tử", "Xã Đakrông", "Xã Đông Trạch", "Xã Đồng Lê", "Đặc khu Cồn Cỏ"],
+      "Tỉnh Sơn La": ["Phường Chiềng An", "Phường Chiềng Cơi", "Phường Chiềng Sinh", "Phường Mộc Châu", "Phường Mộc Sơn", "Phường Thảo Nguyên", "Phường Tô Hiệu", "Phường Vân Sơn", "Xã Bình Thuận", "Xã Bó Sinh", "Xã Bắc Yên", "Xã Chiềng Hoa", "Xã Chiềng Hặc", "Xã Chiềng Khoong", "Xã Chiềng Khương", "Xã Chiềng La", "Xã Chiềng Lao", "Xã Chiềng Mai", "Xã Chiềng Mung", "Xã Chiềng Sung", "Xã Chiềng Sơ", "Xã Chiềng Sơn", "Xã Chiềng Sại", "Xã Co Mạ", "Xã Gia Phù", "Xã Huổi Một", "Xã Kim Bon", "Xã Long Hẹ", "Xã Lóng Phiêng", "Xã Lóng Sập", "Xã Mai Sơn", "Xã Muổi Nọi", "Xã Mường Bang", "Xã Mường Bám", "Xã Mường Bú", "Xã Mường Chanh", "Xã Mường Chiên", "Xã Mường Cơi", "Xã Mường Giôn", "Xã Mường Hung", "Xã Mường Khiêng", "Xã Mường La", "Xã Mường Lèo", "Xã Mường Lạn", "Xã Mường Lầm", "Xã Mường Sại", "Xã Mường É", "Xã Ngọc Chiến", "Xã Nậm Lầu", "Xã Nậm Ty", "Xã Phiêng Cằm", "Xã Phiêng Khoài", "Xã Phiêng Pằn", "Xã Phù Yên", "Xã Púng Bánh", "Xã Pắc Ngà", "Xã Quỳnh Nhai", "Xã Song Khủa", "Xã Suối Tọ", "Xã Sông Mã", "Xã Sốp Cộp", "Xã Thuận Châu", "Xã Tà Hộc", "Xã Tà Xùa", "Xã Tân Phong", "Xã Tân Yên", "Xã Tô Múa", "Xã Tường Hạ", "Xã Tạ Khoa", "Xã Vân Hồ", "Xã Xuân Nha", "Xã Xím Vàng", "Xã Yên Châu", "Xã Yên Sơn", "Xã Đoàn Kết"],
+      "Tỉnh Thanh Hóa": ["Phường Bỉm Sơn", "Phường Hàm Rồng", "Phường Hạc Thành", "Phường Hải Bình", "Phường Hải Lĩnh", "Phường Nam Sầm Sơn", "Phường Nghi Sơn", "Phường Nguyệt Viên", "Phường Ngọc Sơn", "Phường Quang Trung", "Phường Quảng Phú", "Phường Sầm Sơn", "Phường Trúc Lâm", "Phường Tân Dân", "Phường Tĩnh Gia", "Phường Đào Duy Từ", "Phường Đông Quang", "Phường Đông Sơn", "Phường Đông Tiến", "Xã An Nông", "Xã Ba Đình", "Xã Biện Thượng", "Xã Bá Thước", "Xã Bát Mọt", "Xã Các Sơn", "Xã Công Chính", "Xã Cẩm Thạch", "Xã Cẩm Thủy", "Xã Cẩm Tân", "Xã Cẩm Tú", "Xã Cẩm Vân", "Xã Cổ Lũng", "Xã Giao An", "Xã Hiền Kiệt", "Xã Hoa Lộc", "Xã Hoạt Giang", "Xã Hoằng Châu", "Xã Hoằng Giang", "Xã Hoằng Hóa", "Xã Hoằng Lộc", "Xã Hoằng Phú", "Xã Hoằng Sơn", "Xã Hoằng Thanh", "Xã Hoằng Tiến", "Xã Hà Long", "Xã Hà Trung", "Xã Hóa Quỳ", "Xã Hậu Lộc", "Xã Hồ Vương", "Xã Hồi Xuân", "Xã Hợp Tiến", "Xã Kim Tân", "Xã Kiên Thọ", "Xã Lam Sơn", "Xã Linh Sơn", "Xã Luận Thành", "Xã Lĩnh Toại", "Xã Lưu Vệ", "Xã Lương Sơn", "Xã Minh Sơn", "Xã Mường Chanh", "Xã Mường Lát", "Xã Mường Lý", "Xã Mường Mìn", "Xã Mậu Lâm", "Xã Na Mèo", "Xã Nam Xuân", "Xã Nga An", "Xã Nga Sơn", "Xã Nga Thắng", "Xã Nguyệt Ấn", "Xã Ngọc Liên", "Xã Ngọc Lặc", "Xã Ngọc Trạo", "Xã Nhi Sơn", "Xã Như Thanh", "Xã Như Xuân", "Xã Nông Cống", "Xã Phú Lệ", "Xã Phú Xuân", "Xã Pù Luông", "Xã Pù Nhi", "Xã Quan Sơn", "Xã Quang Chiểu", "Xã Quý Lương", "Xã Quý Lộc", "Xã Quảng Bình", "Xã Quảng Chính", "Xã Quảng Ngọc", "Xã Quảng Ninh", "Xã Quảng Yên", "Xã Sao Vàng", "Xã Sơn Thủy", "Xã Sơn Điện", "Xã Tam Chung", "Xã Tam Lư", "Xã Tam Thanh", "Xã Thanh Kỳ", "Xã Thanh Phong", "Xã Thanh Quân", "Xã Thiên Phủ", "Xã Thiết Ống", "Xã Thiệu Hóa", "Xã Thiệu Quang", "Xã Thiệu Tiến", "Xã Thiệu Toán", "Xã Thiệu Trung", "Xã Thành Vinh", "Xã Thăng Bình", "Xã Thường Xuân", "Xã Thượng Ninh", "Xã Thạch Bình", "Xã Thạch Lập", "Xã Thạch Quảng", "Xã Thắng Lộc", "Xã Thắng Lợi", "Xã Thọ Bình", "Xã Thọ Long", "Xã Thọ Lập", "Xã Thọ Ngọc", "Xã Thọ Phú", "Xã Thọ Xuân", "Xã Tiên Trang", "Xã Triệu Lộc", "Xã Triệu Sơn", "Xã Trung Chính", "Xã Trung Hạ", "Xã Trung Lý", "Xã Trung Sơn", "Xã Trung Thành", "Xã Trường Lâm", "Xã Trường Văn", "Xã Tân Ninh", "Xã Tân Thành", "Xã Tân Tiến", "Xã Tây Đô", "Xã Tượng Lĩnh", "Xã Tống Sơn", "Xã Vân Du", "Xã Văn Nho", "Xã Văn Phú", "Xã Vĩnh Lộc", "Xã Vạn Lộc", "Xã Vạn Xuân", "Xã Xuân Bình", "Xã Xuân Chinh", "Xã Xuân Du", "Xã Xuân Hòa", "Xã Xuân Lập", "Xã Xuân Thái", "Xã Xuân Tín", "Xã Yên Khương", "Xã Yên Nhân", "Xã Yên Ninh", "Xã Yên Phú", "Xã Yên Thắng", "Xã Yên Thọ", "Xã Yên Trường", "Xã Yên Định", "Xã Điền Lư", "Xã Điền Quang", "Xã Đông Thành", "Xã Định Hòa", "Xã Định Tân", "Xã Đồng Lương", "Xã Đồng Tiến"],
+      "Tỉnh Thái Nguyên": ["Phường Bá Xuyên", "Phường Bách Quang", "Phường Bắc Kạn", "Phường Gia Sàng", "Phường Linh Sơn", "Phường Phan Đình Phùng", "Phường Phúc Thuận", "Phường Phổ Yên", "Phường Quan Triều", "Phường Quyết Thắng", "Phường Sông Công", "Phường Trung Thành", "Phường Tích Lương", "Phường Vạn Xuân", "Phường Đức Xuân", "Xã An Khánh", "Xã Ba Bể", "Xã Bình Thành", "Xã Bình Yên", "Xã Bạch Thông", "Xã Bằng Thành", "Xã Bằng Vân", "Xã Cao Minh", "Xã Chợ Mới", "Xã Chợ Rã", "Xã Chợ Đồn", "Xã Côn Minh", "Xã Cường Lợi", "Xã Cẩm Giàng", "Xã Dân Tiến", "Xã Hiệp Lực", "Xã Hợp Thành", "Xã Kha Sơn", "Xã Kim Phượng", "Xã La Bằng", "Xã La Hiên", "Xã Lam Vỹ", "Xã Na Rì", "Xã Nam Cường", "Xã Nam Hòa", "Xã Nghinh Tường", "Xã Nghiên Loan", "Xã Nghĩa Tá", "Xã Ngân Sơn", "Xã Nà Phặc", "Xã Phong Quang", "Xã Phú Bình", "Xã Phú Lương", "Xã Phú Lạc", "Xã Phú Thịnh", "Xã Phú Xuyên", "Xã Phú Đình", "Xã Phúc Lộc", "Xã Phượng Tiến", "Xã Phủ Thông", "Xã Quang Sơn", "Xã Quân Chu", "Xã Quảng Bạch", "Xã Sảng Mộc", "Xã Thanh Mai", "Xã Thanh Thịnh", "Xã Thành Công", "Xã Thượng Minh", "Xã Thượng Quan", "Xã Thần Sa", "Xã Trung Hội", "Xã Tràng Xá", "Xã Trại Cau", "Xã Trần Phú", "Xã Tân Cương", "Xã Tân Khánh", "Xã Tân Kỳ", "Xã Tân Thành", "Xã Vô Tranh", "Xã Võ Nhai", "Xã Văn Hán", "Xã Văn Lang", "Xã Văn Lăng", "Xã Vĩnh Thông", "Xã Vạn Phú", "Xã Xuân Dương", "Xã Yên Bình", "Xã Yên Phong", "Xã Yên Thịnh", "Xã Yên Trạch", "Xã Điềm Thụy", "Xã Đại Phúc", "Xã Đại Từ", "Xã Định Hóa", "Xã Đồng Hỷ", "Xã Đồng Phúc", "Xã Đức Lương"],
+      "Tỉnh Tuyên Quang": ["Phường An Tường", "Phường Bình Thuận", "Phường Hà Giang 1", "Phường Hà Giang 2", "Phường Minh Xuân", "Phường Mỹ Lâm", "Phường Nông Tiến", "Xã Bình An", "Xã Bình Ca", "Xã Bình Xa", "Xã Bạch Ngọc", "Xã Bạch Xa", "Xã Bạch Đích", "Xã Bản Máy", "Xã Bắc Mê", "Xã Bắc Quang", "Xã Bằng Hành", "Xã Bằng Lang", "Xã Cao Bồ", "Xã Chiêm Hoá", "Xã Cán Tỷ", "Xã Côn Lôn", "Xã Du Già", "Xã Giáp Trung", "Xã Hoà An", "Xã Hoàng Su Phì", "Xã Hàm Yên", "Xã Hùng An", "Xã Hùng Lợi", "Xã Hùng Đức", "Xã Hồ Thầu", "Xã Hồng Sơn", "Xã Hồng Thái", "Xã Khuôn Lùng", "Xã Khâu Vai", "Xã Kim Bình", "Xã Kiên Đài", "Xã Kiến Thiết", "Xã Lao Chải", "Xã Linh Hồ", "Xã Liên Hiệp", "Xã Lâm Bình", "Xã Lùng Tám", "Xã Lũng Cú", "Xã Lũng Phìn", "Xã Lực Hành", "Xã Minh Ngọc", "Xã Minh Quang", "Xã Minh Sơn", "Xã Minh Thanh", "Xã Minh Tân", "Xã Mèo Vạc", "Xã Mậu Duệ", "Xã Nghĩa Thuận", "Xã Ngọc Long", "Xã Ngọc Đường", "Xã Nhữ Khê", "Xã Niêm Sơn", "Xã Nà Hang", "Xã Nấm Dẩn", "Xã Nậm Dịch", "Xã Phù Lưu", "Xã Phú Linh", "Xã Phú Lương", "Xã Phố Bảng", "Xã Pà Vầy Sủ", "Xã Pờ Ly Ngài", "Xã Quang Bình", "Xã Quản Bạ", "Xã Quảng Nguyên", "Xã Sà Phìn", "Xã Sơn Dương", "Xã Sơn Thuỷ", "Xã Sơn Vĩ", "Xã Sủng Máng", "Xã Thanh Thủy", "Xã Thuận Hoà", "Xã Thàng Tín", "Xã Thái Bình", "Xã Thái Hoà", "Xã Thái Sơn", "Xã Thông Nguyên", "Xã Thượng Lâm", "Xã Thượng Nông", "Xã Thượng Sơn", "Xã Thắng Mố", "Xã Tiên Nguyên", "Xã Tiên Yên", "Xã Tri Phú", "Xã Trung Hà", "Xã Trung Sơn", "Xã Trung Thịnh", "Xã Trường Sinh", "Xã Tát Ngà", "Xã Tân An", "Xã Tân Long", "Xã Tân Mỹ", "Xã Tân Quang", "Xã Tân Thanh", "Xã Tân Tiến", "Xã Tân Trào", "Xã Tân Trịnh", "Xã Tùng Bá", "Xã Tùng Vài", "Xã Việt Lâm", "Xã Vĩnh Tuy", "Xã Vị Xuyên", "Xã Xuân Giang", "Xã Xuân Vân", "Xã Xín Mần", "Xã Yên Cường", "Xã Yên Hoa", "Xã Yên Lập", "Xã Yên Minh", "Xã Yên Nguyên", "Xã Yên Phú", "Xã Yên Sơn", "Xã Yên Thành", "Xã Đông Thọ", "Xã Đường Hồng", "Xã Đường Thượng", "Xã Đồng Tâm", "Xã Đồng Văn", "Xã Đồng Yên"],
+      "Tỉnh Tây Ninh": ["Phường An Tịnh", "Phường Bình Minh", "Phường Gia Lộc", "Phường Gò Dầu", "Phường Hòa Thành", "Phường Khánh Hậu", "Phường Kiến Tường", "Phường Long An", "Phường Long Hoa", "Phường Ninh Thạnh", "Phường Thanh Điền", "Phường Trảng Bàng", "Phường Tân An", "Phường Tân Ninh", "Xã An Lục Long", "Xã An Ninh", "Xã Bình Hiệp", "Xã Bình Hòa", "Xã Bình Thành", "Xã Bình Đức", "Xã Bến Cầu", "Xã Bến Lức", "Xã Châu Thành", "Xã Cần Giuộc", "Xã Cần Đước", "Xã Cầu Khởi", "Xã Dương Minh Châu", "Xã Hiệp Hòa", "Xã Hòa Hội", "Xã Hòa Khánh", "Xã Hưng Thuận", "Xã Hưng Điền", "Xã Hảo Đước", "Xã Hậu Nghĩa", "Xã Hậu Thạnh", "Xã Khánh Hưng", "Xã Long Cang", "Xã Long Chữ", "Xã Long Hựu", "Xã Long Thuận", "Xã Lương Hòa", "Xã Lộc Ninh", "Xã Mộc Hóa", "Xã Mỹ An", "Xã Mỹ Hạnh", "Xã Mỹ Lệ", "Xã Mỹ Lộc", "Xã Mỹ Quý", "Xã Mỹ Thạnh", "Xã Mỹ Yên", "Xã Nhơn Hòa Lập", "Xã Nhơn Ninh", "Xã Nhựt Tảo", "Xã Ninh Điền", "Xã Phước Chỉ", "Xã Phước Lý", "Xã Phước Thạnh", "Xã Phước Vinh", "Xã Phước Vĩnh Tây", "Xã Rạch Kiến", "Xã Thuận Mỹ", "Xã Thạnh Bình", "Xã Thạnh Hóa", "Xã Thạnh Lợi", "Xã Thạnh Phước", "Xã Thạnh Đức", "Xã Thủ Thừa", "Xã Truông Mít", "Xã Trà Vong", "Xã Tuyên Bình", "Xã Tuyên Thạnh", "Xã Tân Biên", "Xã Tân Châu", "Xã Tân Hòa", "Xã Tân Hưng", "Xã Tân Hội", "Xã Tân Long", "Xã Tân Lân", "Xã Tân Lập", "Xã Tân Phú", "Xã Tân Thành", "Xã Tân Thạnh", "Xã Tân Trụ", "Xã Tân Tây", "Xã Tân Tập", "Xã Tân Đông", "Xã Tầm Vu", "Xã Vàm Cỏ", "Xã Vĩnh Châu", "Xã Vĩnh Công", "Xã Vĩnh Hưng", "Xã Vĩnh Thạnh", "Xã Đông Thành", "Xã Đức Huệ", "Xã Đức Hòa", "Xã Đức Lập"],
+      "Tỉnh Vĩnh Long": ["Phường An Hội", "Phường Bình Minh", "Phường Bến Tre", "Phường Cái Vồn", "Phường Duyên Hải", "Phường Hòa Thuận", "Phường Long Châu", "Phường Long Đức", "Phường Nguyệt Hóa", "Phường Phú Khương", "Phường Phú Tân", "Phường Phước Hậu", "Phường Sơn Đông", "Phường Thanh Đức", "Phường Trà Vinh", "Phường Trường Long Hòa", "Phường Tân Hạnh", "Phường Tân Ngãi", "Phường Đông Thành", "Xã An Bình", "Xã An Hiệp", "Xã An Ngãi Trung", "Xã An Phú Tân", "Xã An Qui", "Xã An Trường", "Xã An Định", "Xã Ba Tri", "Xã Bình Phú", "Xã Bình Phước", "Xã Bình Đại", "Xã Bảo Thạnh", "Xã Châu Hòa", "Xã Châu Hưng", "Xã Châu Thành", "Xã Chợ Lách", "Xã Càng Long", "Xã Cái Ngang", "Xã Cái Nhum", "Xã Cầu Kè", "Xã Cầu Ngang", "Xã Giao Long", "Xã Giồng Trôm", "Xã Hiếu Phụng", "Xã Hiếu Thành", "Xã Hiệp Mỹ", "Xã Hàm Giang", "Xã Hòa Bình", "Xã Hòa Hiệp", "Xã Hòa Minh", "Xã Hùng Hòa", "Xã Hưng Khánh Trung", "Xã Hưng Mỹ", "Xã Hưng Nhượng", "Xã Hương Mỹ", "Xã Long Hiệp", "Xã Long Hòa", "Xã Long Hồ", "Xã Long Hữu", "Xã Long Thành", "Xã Long Vĩnh", "Xã Lưu Nghiệp Anh", "Xã Lương Hòa", "Xã Lương Phú", "Xã Lộc Thuận", "Xã Lục Sĩ Thành", "Xã Mỏ Cày", "Xã Mỹ Chánh Hòa", "Xã Mỹ Long", "Xã Mỹ Thuận", "Xã Ngãi Tứ", "Xã Ngũ Lạc", "Xã Nhuận Phú Tân", "Xã Nhơn Phú", "Xã Nhị Long", "Xã Nhị Trường", "Xã Phong Thạnh", "Xã Phú Phụng", "Xã Phú Quới", "Xã Phú Thuận", "Xã Phú Túc", "Xã Phước Long", "Xã Phước Mỹ Trung", "Xã Quới An", "Xã Quới Thiện", "Xã Quới Điền", "Xã Song Lộc", "Xã Song Phú", "Xã Tam Bình", "Xã Tam Ngãi", "Xã Thành Thới", "Xã Thạnh Hải", "Xã Thạnh Phong", "Xã Thạnh Phú", "Xã Thạnh Phước", "Xã Thạnh Trị", "Xã Thới Thuận", "Xã Tiên Thủy", "Xã Tiểu Cần", "Xã Trung Hiệp", "Xã Trung Ngãi", "Xã Trung Thành", "Xã Trà Côn", "Xã Trà Cú", "Xã Trà Ôn", "Xã Tân An", "Xã Tân Hào", "Xã Tân Hòa", "Xã Tân Long Hội", "Xã Tân Lược", "Xã Tân Phú", "Xã Tân Quới", "Xã Tân Thành Bình", "Xã Tân Thủy", "Xã Tân Xuân", "Xã Tập Ngãi", "Xã Tập Sơn", "Xã Vinh Kim", "Xã Vĩnh Thành", "Xã Vĩnh Xuân", "Xã Đôn Châu", "Xã Đông Hải", "Xã Đại An", "Xã Đại Điền", "Xã Đồng Khởi"],
+      "Tỉnh Điện Biên": ["Phường Mường Lay", "Phường Mường Thanh", "Phường Điện Biên Phủ", "Xã Búng Lao", "Xã Chiềng Sinh", "Xã Chà Tở", "Xã Mường Chà", "Xã Mường Luân", "Xã Mường Lạn", "Xã Mường Mùn", "Xã Mường Nhà", "Xã Mường Nhé", "Xã Mường Phăng", "Xã Mường Pồn", "Xã Mường Toong", "Xã Mường Tùng", "Xã Mường Ảng", "Xã Na Sang", "Xã Na Son", "Xã Nà Bủng", "Xã Nà Hỳ", "Xã Nà Tấu", "Xã Núa Ngam", "Xã Nậm Kè", "Xã Nậm Nèn", "Xã Pa Ham", "Xã Phình Giàng", "Xã Pu Nhi", "Xã Pú Nhung", "Xã Quài Tở", "Xã Quảng Lâm", "Xã Sam Mứn", "Xã Si Pa Phìn", "Xã Sáng Nhè", "Xã Sín Chải", "Xã Sín Thầu", "Xã Sính Phình", "Xã Thanh An", "Xã Thanh Nưa", "Xã Thanh Yên", "Xã Tuần Giáo", "Xã Tìa Dình", "Xã Tủa Chùa", "Xã Tủa Thàng", "Xã Xa Dung"],
+      "Tỉnh Đắk Lắk": ["Phường Buôn Hồ", "Phường Buôn Ma Thuột", "Phường Bình Kiến", "Phường Cư Bao", "Phường Ea Kao", "Phường Hòa Hiệp", "Phường Phú Yên", "Phường Sông Cầu", "Phường Thành Nhất", "Phường Tuy Hòa", "Phường Tân An", "Phường Tân Lập", "Phường Xuân Đài", "Phường Đông Hòa", "Xã Buôn Đôn", "Xã Cuôr Đăng", "Xã Cư M’gar", "Xã Cư M’ta", "Xã Cư Prao", "Xã Cư Pui", "Xã Cư Pơng", "Xã Cư Yang", "Xã Dang Kang", "Xã Dliê Ya", "Xã Dray Bhăng", "Xã Dur Kmăl", "Xã Ea Bung", "Xã Ea Bá", "Xã Ea Drông", "Xã Ea Drăng", "Xã Ea Hiao", "Xã Ea H’Leo", "Xã Ea Kar", "Xã Ea Khăl", "Xã Ea Kiết", "Xã Ea Kly", "Xã Ea Knuếc", "Xã Ea Knốp", "Xã Ea Ktur", "Xã Ea Ly", "Xã Ea M’Droh", "Xã Ea Na", "Xã Ea Ning", "Xã Ea Nuôl", "Xã Ea Phê", "Xã Ea Păl", "Xã Ea Riêng", "Xã Ea Rốk", "Xã Ea Súp", "Xã Ea Trang", "Xã Ea Tul", "Xã Ea Wer", "Xã Ea Wy", "Xã Ea Ô", "Xã Hòa Mỹ", "Xã Hòa Phú", "Xã Hòa Sơn", "Xã Hòa Thịnh", "Xã Hòa Xuân", "Xã Ia Lốp", "Xã Ia Rvê", "Xã Krông Ana", "Xã Krông Bông", "Xã Krông Búk", "Xã Krông Nô", "Xã Krông Năng", "Xã Krông Pắc", "Xã Krông Á", "Xã Liên Sơn Lắk", "Xã M’Drắk", "Xã Nam Ka", "Xã Phú Hòa 1", "Xã Phú Hòa 2", "Xã Phú Mỡ", "Xã Phú Xuân", "Xã Pơng Drang", "Xã Quảng Phú", "Xã Suối Trai", "Xã Sông Hinh", "Xã Sơn Hòa", "Xã Sơn Thành", "Xã Tam Giang", "Xã Tuy An Bắc", "Xã Tuy An Nam", "Xã Tuy An Tây", "Xã Tuy An Đông", "Xã Tân Tiến", "Xã Tây Hòa", "Xã Tây Sơn", "Xã Vân Hòa", "Xã Vụ Bổn", "Xã Xuân Cảnh", "Xã Xuân Lãnh", "Xã Xuân Lộc", "Xã Xuân Phước", "Xã Xuân Thọ", "Xã Yang Mao", "Xã Ô Loan", "Xã Đắk Liêng", "Xã Đắk Phơi", "Xã Đồng Xuân", "Xã Đức Bình"],
+      "Tỉnh Đồng Nai": ["Phường An Lộc", "Phường Biên Hòa", "Phường Bình Long", "Phường Bình Lộc", "Phường Bình Phước", "Phường Bảo Vinh", "Phường Chơn Thành", "Phường Hàng Gòn", "Phường Hố Nai", "Phường Long Bình", "Phường Long Hưng", "Phường Long Khánh", "Phường Minh Hưng", "Phường Phước Bình", "Phường Phước Long", "Phường Phước Tân", "Phường Tam Hiệp", "Phường Tam Phước", "Phường Trảng Dài", "Phường Trấn Biên", "Phường Tân Triều", "Phường Xuân Lập", "Phường Đồng Xoài", "Xã An Phước", "Xã An Viễn", "Xã Bom Bo", "Xã Bàu Hàm", "Xã Bình An", "Xã Bình Minh", "Xã Bình Tân", "Xã Bù Gia Mập", "Xã Bù Đăng", "Xã Cẩm Mỹ", "Xã Dầu Giây", "Xã Gia Kiệm", "Xã Hưng Phước", "Xã Hưng Thịnh", "Xã La Ngà", "Xã Long Hà", "Xã Long Phước", "Xã Long Thành", "Xã Lộc Hưng", "Xã Lộc Ninh", "Xã Lộc Quang", "Xã Lộc Thành", "Xã Lộc Tấn", "Xã Minh Đức", "Xã Nam Cát Tiên", "Xã Nghĩa Trung", "Xã Nha Bích", "Xã Nhơn Trạch", "Xã Phú Hòa", "Xã Phú Lâm", "Xã Phú Lý", "Xã Phú Nghĩa", "Xã Phú Riềng", "Xã Phú Trung", "Xã Phú Vinh", "Xã Phước An", "Xã Phước Sơn", "Xã Phước Thái", "Xã Sông Ray", "Xã Thanh Sơn", "Xã Thiện Hưng", "Xã Thuận Lợi", "Xã Thọ Sơn", "Xã Thống Nhất", "Xã Trảng Bom", "Xã Trị An", "Xã Tà Lài", "Xã Tân An", "Xã Tân Hưng", "Xã Tân Khai", "Xã Tân Lợi", "Xã Tân Phú", "Xã Tân Quan", "Xã Tân Tiến", "Xã Xuân Bắc", "Xã Xuân Hòa", "Xã Xuân Lộc", "Xã Xuân Phú", "Xã Xuân Quế", "Xã Xuân Thành", "Xã Xuân Đông", "Xã Xuân Đường", "Xã Xuân Định", "Xã Đa Kia", "Xã Đak Lua", "Xã Đak Nhau", "Xã Đăk Ơ", "Xã Đại Phước", "Xã Định Quán", "Xã Đồng Phú", "Xã Đồng Tâm"],
+      "Tỉnh Đồng Tháp": ["Phường An Bình", "Phường Bình Xuân", "Phường Cai Lậy", "Phường Cao Lãnh", "Phường Gò Công", "Phường Hồng Ngự", "Phường Long Thuận", "Phường Mỹ Ngãi", "Phường Mỹ Phong", "Phường Mỹ Phước Tây", "Phường Mỹ Tho", "Phường Mỹ Trà", "Phường Nhị Quý", "Phường Sa Đéc", "Phường Sơn Qui", "Phường Thanh Hòa", "Phường Thường Lạc", "Phường Thới Sơn", "Phường Trung An", "Phường Đạo Thạnh", "Xã An Hòa", "Xã An Hữu", "Xã An Long", "Xã An Phước", "Xã An Thạnh Thủy", "Xã Ba Sao", "Xã Bình Hàng Trung", "Xã Bình Ninh", "Xã Bình Phú", "Xã Bình Thành", "Xã Bình Trưng", "Xã Châu Thành", "Xã Chợ Gạo", "Xã Cái Bè", "Xã Gia Thuận", "Xã Gò Công Đông", "Xã Hiệp Đức", "Xã Hòa Long", "Xã Hưng Thạnh", "Xã Hậu Mỹ", "Xã Hội Cư", "Xã Kim Sơn", "Xã Lai Vung", "Xã Long Bình", "Xã Long Hưng", "Xã Long Khánh", "Xã Long Phú Thuận", "Xã Long Tiên", "Xã Long Định", "Xã Lương Hòa Lạc", "Xã Lấp Vò", "Xã Mỹ An Hưng", "Xã Mỹ Hiệp", "Xã Mỹ Lợi", "Xã Mỹ Quí", "Xã Mỹ Thiện", "Xã Mỹ Thành", "Xã Mỹ Thọ", "Xã Mỹ Tịnh An", "Xã Mỹ Đức Tây", "Xã Ngũ Hiệp", "Xã Phong Hòa", "Xã Phong Mỹ", "Xã Phú Cường", "Xã Phú Hựu", "Xã Phú Thành", "Xã Phú Thọ", "Xã Phương Thịnh", "Xã Tam Nông", "Xã Thanh Bình", "Xã Thanh Hưng", "Xã Thanh Mỹ", "Xã Tháp Mười", "Xã Thường Phước", "Xã Thạnh Phú", "Xã Tràm Chim", "Xã Trường Xuân", "Xã Tân Dương", "Xã Tân Hòa", "Xã Tân Hương", "Xã Tân Hồng", "Xã Tân Hộ Cơ", "Xã Tân Khánh Trung", "Xã Tân Long", "Xã Tân Nhuận Đông", "Xã Tân Phú", "Xã Tân Phú Trung", "Xã Tân Phú Đông", "Xã Tân Phước 1", "Xã Tân Phước 2", "Xã Tân Phước 3", "Xã Tân Thuận Bình", "Xã Tân Thành", "Xã Tân Thạnh", "Xã Tân Thới", "Xã Tân Điền", "Xã Tân Đông", "Xã Vĩnh Bình", "Xã Vĩnh Hựu", "Xã Vĩnh Kim", "Xã Đốc Binh Kiều", "Xã Đồng Sơn"]
+    };
+
+    function loadProvinces() {
+      const datalist = document.getElementById('tinhThanhList');
+      if (!datalist) return;
+      datalist.innerHTML = '';
+      Object.keys(administrativeData).sort().forEach(p => {
+        const opt = document.createElement('option'); opt.value = p; datalist.appendChild(opt);
+      });
+    }
+
+    function updateWardDatalist(pName) {
+      const wardListEl = document.getElementById('phuongXaList');
+      if (!wardListEl) return;
+      wardListEl.innerHTML = '';
+      const wards = administrativeData[pName] || [];
+      wards.forEach(w => {
+        const opt = document.createElement('option');
+        opt.value = w;
+        wardListEl.appendChild(opt);
+      });
+    }
+
+    function onProvinceChange() {
+      const pName = (document.getElementById('tinhThanhSelect')?.value || '').trim();
+      updateWardDatalist(pName);
+      autoCleanDetailAddress();
+    }
+
+    // THUẬT TOÁN TÁCH VÀ KHÔI PHỤC BẢO VỆ Ô ĐỊA CHỈ KHÔNG BỊ TRÙNG LẶP HOẶC MẤT PHƯỜNG XÃ
+    function parseFullAddressToFields(fullAddress) {
+      if (!fullAddress) return;
+      
+      const parts = fullAddress.split(',').map(s => s.trim()).filter(Boolean);
+      const provEl = document.getElementById('tinhThanhSelect');
+      const wardEl = document.getElementById('phuongXaSelect');
+      const detailEl = document.getElementById('diaChiChiTiet');
+
+      let provVal = '', wardVal = '', detailVal = '';
+
+      if (parts.length >= 3) {
+        provVal = parts[parts.length - 1];
+        wardVal = parts[parts.length - 2];
+        
+        let rawDetailParts = parts.slice(0, parts.length - 2);
+        let detailCleanStr = rawDetailParts.join(', ');
+
+        if (provVal) {
+          const provRegex = new RegExp(provVal.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+          detailCleanStr = detailCleanStr.replace(provRegex, '');
+        }
+        if (wardVal) {
+          const wardRegex = new RegExp(wardVal.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+          detailCleanStr = detailCleanStr.replace(wardRegex, '');
+        }
+
+        detailCleanStr = detailCleanStr.replace(/(,\s*|\s+)(phường|xã|thị trấn|quận|huyện|thị xã|thành phố|tỉnh|tp)\b.*$/gi, '');
+        detailCleanStr = detailCleanStr.replace(/^[\s,.-]+|[\s,.-]+$/, '').trim();
+
+        detailVal = detailCleanStr || rawDetailParts.join(', ');
+      } else if (parts.length === 2) {
+        provVal = parts[1];
+        wardVal = parts[0];
+      } else {
+        detailVal = fullAddress;
+      }
+
+      if (provEl) provEl.value = provVal;
+      if (detailEl) detailEl.value = detailVal;
+
+      updateWardDatalist(provVal);
+      if (wardEl) wardEl.value = wardVal;
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      loadProvinces();
+      loadLiveConfig();
+      initEvents();
+    });
+
+    // TẢI CẤU HÌNH VÀ VẼ GIAO DIỆN ĐỘNG
+    async function loadLiveConfig() {
+      const cached = localStorage.getItem('APAG_CONFIG_CACHE');
+      if (cached) {
+        try {
+          systemConfigs = JSON.parse(cached);
+          if (systemConfigs.LIST_CO_SO_KTX) ktxBuildingsList = JSON.parse(systemConfigs.LIST_CO_SO_KTX);
+          if (systemConfigs.LIST_BAC_UU_TIEN) priorityTiersList = JSON.parse(systemConfigs.LIST_BAC_UU_TIEN);
+          applyConfigsToUI();
+        } catch(e) {}
+      }
+
+      try {
+        if (!window.db) return;
+        const { data, error } = await window.db.from('cau_hinh').select('*');
+        if (data && data.length > 0) {
+          data.forEach(item => { systemConfigs[item.key] = item.value; });
+          
+          if (systemConfigs.LIST_CO_SO_KTX) ktxBuildingsList = JSON.parse(systemConfigs.LIST_CO_SO_KTX);
+          if (systemConfigs.LIST_BAC_UU_TIEN) priorityTiersList = JSON.parse(systemConfigs.LIST_BAC_UU_TIEN);
+
+          localStorage.setItem('APAG_CONFIG_CACHE', JSON.stringify(systemConfigs));
+          applyConfigsToUI();
+        }
+      } catch (err) { console.error('Error loading config:', err); }
+    }
+
+    function applyConfigsToUI() {
+      const namHocVal = systemConfigs.NAM_HOC || '2026';
+      document.querySelectorAll('.lblNamHoc').forEach(el => {
+        el.innerText = namHocVal;
+      });
+
+      const statusCong = String(systemConfigs.TRANG_THAI_CONG || 'AUTO').trim().toUpperCase();
+      const deadlineVal = String(systemConfigs.DEADLINE_DANG_KY || '').trim().toUpperCase();
+
+      updateAdminQuickToggleBtn(statusCong);
+
+      if (statusCong === 'CLOSE' || ['LOCK', 'OFF', 'KHOA', 'ĐÓNG'].includes(deadlineVal)) {
+        lockRegistrationPortal('Cổng đăng ký đã đóng (CLOSE)');
+      } else if (statusCong === 'OPEN') {
+        unlockRegistrationPortal();
+      } else {
+        if (systemConfigs.DEADLINE_DANG_KY) {
+          startCountdownTimer(systemConfigs.DEADLINE_DANG_KY);
+        } else {
+          unlockRegistrationPortal();
+        }
+      }
+
+      if (systemConfigs.NGAY_TIEP_SINH) document.getElementById('lblNgayTiepSinh').innerText = systemConfigs.NGAY_TIEP_SINH;
+      if (systemConfigs.HOTLINE_KTX) document.getElementById('lblHotline').innerText = systemConfigs.HOTLINE_KTX;
+
+      let tongCho = 0;
+      ktxBuildingsList.forEach(b => { tongCho += (parseInt(b.so_cho, 10) || 0); });
+      document.getElementById('displayTongChoKTX3').innerText = tongCho + ' chỗ trống';
+
+      const bannerBacContainer = document.getElementById('bannerBacUuTienContainer');
+      if (bannerBacContainer) {
+        bannerBacContainer.innerHTML = '';
+        priorityTiersList.forEach((b, idx) => {
+          const colSpanClass = idx === 0 ? 'sm:col-span-2' : '';
+          bannerBacContainer.innerHTML += `
+            <div class="bg-white/5 p-2.5 rounded-lg border border-white/10 ${colSpanClass}">
+              <div class="font-bold text-amber-300">${b.ten}</div>
+              <p class="text-slate-200 text-[10.5px] mt-1">${b.mo_ta}</p>
+            </div>
+          `;
+        });
+      }
+
+      const bannerKtxContainer = document.getElementById('bannerCoSoKtxContainer');
+      if (bannerKtxContainer) {
+        bannerKtxContainer.innerHTML = '';
+        ktxBuildingsList.forEach(k => {
+          bannerKtxContainer.innerHTML += `
+            <div class="bg-white/5 p-3 rounded-lg border border-white/10">
+              <div class="flex justify-between items-center">
+                <span class="font-bold text-blue-300"><i class="fa-solid fa-hotel mr-1.5"></i> ${k.ten}</span>
+                <span class="font-bold text-amber-300">${k.gia}</span>
+              </div>
+            </div>
+          `;
+        });
+      }
+
+      const selectBac = document.getElementById('bacUuTien');
+      if (selectBac) {
+        selectBac.innerHTML = '<option value="">-- Chọn bậc ưu tiên --</option>';
+        priorityTiersList.forEach(b => {
+          selectBac.innerHTML += `<option value="${b.ten}">${b.ten}</option>`;
+        });
+      }
+
+      const selectLoaiPhong = document.getElementById('loaiPhong');
+      if (selectLoaiPhong) {
+        selectLoaiPhong.innerHTML = '<option value="">-- Chọn cơ sở KTX đăng ký --</option>';
+        ktxBuildingsList.forEach(k => {
+          const valText = `${k.ten} (${k.gia})`;
+          selectLoaiPhong.innerHTML += `<option value="${valText}">${valText}</option>`;
+        });
+      }
+
+      const adminFilterKhu = document.getElementById('adminFilterKhu');
+      if (adminFilterKhu) {
+        adminFilterKhu.innerHTML = '<option value="">-- Tất cả cơ sở KTX --</option>';
+        ktxBuildingsList.forEach(k => {
+          adminFilterKhu.innerHTML += `<option value="${k.ten}">${k.ten}</option>`;
+        });
+        adminFilterKhu.innerHTML += '<option value="CHUA_CHON">Chưa đăng ký KTX</option>';
+      }
+
+      const adminFilterBacUT = document.getElementById('adminFilterBacUT');
+      if (adminFilterBacUT) {
+        adminFilterBacUT.innerHTML = '<option value="">-- Tất cả bậc ưu tiên --</option>';
+        priorityTiersList.forEach(b => {
+          adminFilterBacUT.innerHTML += `<option value="${b.ten}">${b.ten}</option>`;
+        });
+      }
+    }
+
+    async function quickTogglePortal() {
+      const current = String(systemConfigs.TRANG_THAI_CONG || 'AUTO').trim().toUpperCase();
+      let nextState = 'CLOSE';
+      if (current === 'CLOSE') nextState = 'OPEN';
+      else if (current === 'OPEN') nextState = 'AUTO';
+      else nextState = 'CLOSE';
+
+      systemConfigs.TRANG_THAI_CONG = nextState;
+      
+      await window.db.from('cau_hinh').upsert([{ key: 'TRANG_THAI_CONG', value: nextState }]);
+      localStorage.setItem('APAG_CONFIG_CACHE', JSON.stringify(systemConfigs));
+      
+      const stateName = nextState === 'OPEN' ? 'MỞ (OPEN)' : nextState === 'CLOSE' ? 'KHÓA (CLOSE)' : 'TỰ ĐỘNG (AUTO)';
+      Swal.fire({
+        icon: nextState === 'OPEN' ? 'success' : nextState === 'CLOSE' ? 'error' : 'info',
+        title: 'Đã cập nhật cổng đăng ký!',
+        text: `Trạng thái hiện tại: ${stateName}`,
+        timer: 1500,
+        showConfirmButton: false
+      });
+
+      applyConfigsToUI();
+    }
+
+    function updateAdminQuickToggleBtn(statusCong) {
+      const btn = document.getElementById('btnQuickTogglePortal');
+      if (!btn) return;
+      if (statusCong === 'CLOSE') {
+        btn.className = "px-3 py-1.5 bg-red-600 hover:bg-red-700 text-white text-xs font-extrabold rounded-lg transition flex items-center gap-1.5 shadow";
+        btn.innerHTML = `<i class="fa-solid fa-lock"></i> <span>Cổng: ĐÃ KHÓA (Bấm để Mở)</span>`;
+      } else if (statusCong === 'OPEN') {
+        btn.className = "px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-extrabold rounded-lg transition flex items-center gap-1.5 shadow";
+        btn.innerHTML = `<i class="fa-solid fa-lock-open"></i> <span>Cổng: ĐANG MỞ (Bấm để Tự động)</span>`;
+      } else {
+        btn.className = "px-3 py-1.5 bg-brand-blue hover:bg-brand-dark text-white text-xs font-extrabold rounded-lg transition flex items-center gap-1.5 shadow";
+        btn.innerHTML = `<i class="fa-solid fa-clock"></i> <span>Cổng: TỰ ĐỘNG (Bấm để Khóa)</span>`;
+      }
+    }
+
+    function startCountdownTimer(deadlineStr) {
+      if (!deadlineStr) return;
+      if (countdownInterval) clearInterval(countdownInterval);
+
+      const formattedDeadline = deadlineStr.replace(/-/g, '/');
+      const targetTime = new Date(formattedDeadline).getTime();
+
+      const lblDisplay = document.getElementById('lblDeadlineDisplay');
+      if (lblDisplay) lblDisplay.innerText = deadlineStr;
+
+      function updateTimer() {
+        const now = new Date().getTime();
+        const diff = targetTime - now;
+
+        if (isNaN(targetTime) || diff <= 0) {
+          if (countdownInterval) clearInterval(countdownInterval);
+          lockRegistrationPortal('Đã hết hạn đăng ký KTX');
+          return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        document.getElementById('cdDays').innerText = String(days).padStart(2, '0');
+        document.getElementById('cdHours').innerText = String(hours).padStart(2, '0');
+        document.getElementById('cdMinutes').innerText = String(minutes).padStart(2, '0');
+        document.getElementById('cdSeconds').innerText = String(seconds).padStart(2, '0');
+      }
+
+      updateTimer();
+      countdownInterval = setInterval(updateTimer, 1000);
+    }
+
+    function lockRegistrationPortal(reasonText) {
+      document.getElementById('cdDays').innerText = "00";
+      document.getElementById('cdHours').innerText = "00";
+      document.getElementById('cdMinutes').innerText = "00";
+      document.getElementById('cdSeconds').innerText = "00";
+
+      const lblDisplay = document.getElementById('lblDeadlineDisplay');
+      if (lblDisplay) lblDisplay.innerText = "ĐÃ KHÓA CỔNG";
+
+      const btnSubmit = document.getElementById('btnSubmit');
+      if (btnSubmit) {
+        btnSubmit.disabled = true;
+        btnSubmit.innerHTML = `<i class="fa-solid fa-lock"></i> ${reasonText}`;
+        btnSubmit.className = "w-full md:w-auto px-8 py-3.5 bg-slate-400 text-white font-bold rounded-xl cursor-not-allowed mx-auto flex items-center justify-center gap-2 shadow-none";
+      }
+    }
+
+    function unlockRegistrationPortal() {
+      const btnSubmit = document.getElementById('btnSubmit');
+      if (btnSubmit) {
+        btnSubmit.disabled = false;
+        btnSubmit.innerHTML = `<i class="fa-solid fa-paper-plane"></i> Gửi hồ sơ đăng ký xét duyệt KTX`;
+        btnSubmit.className = "w-full md:w-auto px-8 py-3.5 bg-brand-dark hover:bg-brand-blue text-white font-bold rounded-xl transition shadow-lg flex items-center justify-center gap-2 mx-auto";
       }
     }
 
@@ -1274,7 +1592,7 @@
             <div class="text-sm space-y-2">
               <p>Mã KTX của bạn: <strong class="text-red-600 text-base">${record.ma_ho_so}</strong></p>
               <p class="text-amber-800 bg-amber-50 p-2 rounded text-xs">⚠️ Vui lòng in đơn đăng ký A4 và mang theo bản cứng minh chứng ưu tiên khi đến nhập học!</p>
-              <button onclick="printA4FormDirect()" class="w-full py-2.5 bg-brand-dark text-white rounded font-bold text-xs mt-2 btn-tap"><i class="fa-solid fa-print"></i> In Đơn Đăng Ký (A4)</button>
+              <button onclick="printA4FormDirect()" class="w-full py-2.5 bg-brand-dark text-white rounded font-bold text-xs mt-2"><i class="fa-solid fa-print"></i> In Đơn Đăng Ký (A4)</button>
             </div>
           `,
           showConfirmButton: false
@@ -1284,6 +1602,7 @@
       }
     }
 
+    // TRA CỨU HỒ SƠ
     let currentLookupData = null;
     async function performSearch() {
       const q = document.getElementById('lookupInput').value.trim();
@@ -1307,7 +1626,7 @@
             <div>Họ tên: <strong>${data.ho_ten}</strong></div>
             <div>MSSV: <strong>${data.mssv || 'N/A'}</strong></div>
             <div>Trạng thái: <span class="text-emerald-600 font-bold">${data.trang_thai}</span></div>
-            <button onclick="printA4FormFromLookup()" class="w-full mt-2 py-2 bg-brand-dark text-white rounded font-bold text-xs btn-tap"><i class="fa-solid fa-print"></i> In Đơn Đăng Ký (A4)</button>
+            <button onclick="printA4FormFromLookup()" class="w-full mt-2 py-2 bg-brand-dark text-white rounded font-bold text-xs"><i class="fa-solid fa-print"></i> In Đơn Đăng Ký (A4)</button>
           </div>
         `;
       } else {
@@ -1315,6 +1634,7 @@
       }
     }
 
+    // IN ĐƠN A4
     function fillAndPrintA4(data) {
       if (!data) return;
       document.getElementById('printMaHoSo').innerText = data.ma_ho_so || 'KTX26-XXXX';
@@ -1338,6 +1658,7 @@
     function printA4FormFromLookup() { if (currentLookupData) fillAndPrintA4(currentLookupData); }
     function printA4FormDirect() { if (lastRegisteredData) fillAndPrintA4(lastRegisteredData); }
 
+    // CÁN BỘ QUẢN TRỊ & DASHBOARD (CẬP NHẬT ĐẾM DIỆN ƯU TIÊN BẬC 1 + BẬC 2 CHO TOÀN BỘ ĐƠN ĐĂNG KÝ)
     let currentAdmin = null;
 
     async function handleAdminLogin() {
@@ -1366,7 +1687,7 @@
       ktxBuildingsList.forEach(b => { tongCho += (parseInt(b.so_cho, 10) || 0); });
 
       let countApproved = 0, registeredCount = 0;
-      let countPolicy = 0;
+      let countPolicy = 0; // Đếm tất cả sinh viên đăng ký Bậc 1 + Bậc 2
 
       currentAllAdminRecords.forEach(r => {
         const loaiPhong = (r.loai_phong || '').trim();
@@ -1375,10 +1696,12 @@
 
         if (loaiPhong !== '') registeredCount++;
 
+        // Thống kê diện ưu tiên Bậc 1 và Bậc 2 cho toàn bộ sinh viên đã đăng ký
         if (bacUT.includes('Bậc 1') || bacUT.includes('Bậc 2')) {
           countPolicy++;
         }
 
+        // Chỉ tính chỉ tiêu quỹ chỗ đối với hồ sơ đã duyệt chính thức
         if (status === 'Đã duyệt tiếp nhận' || status === 'Đã duyệt' || status === 'Đã tiếp nhận') {
           countApproved++;
         }
@@ -1407,7 +1730,7 @@
             <td class="p-2 font-bold text-amber-600">${b.gia}</td>
             <td class="p-2 text-center font-bold text-brand-blue">${b.so_cho} chỗ</td>
             <td class="p-2 text-center">
-              <button onclick="deleteKtxBuilding(${i})" class="px-2 py-1 bg-red-100 hover:bg-red-200 text-red-700 font-bold rounded text-[11px] btn-tap"><i class="fa-solid fa-trash"></i> Xóa</button>
+              <button onclick="deleteKtxBuilding(${i})" class="px-2 py-1 bg-red-100 hover:bg-red-200 text-red-700 font-bold rounded text-[11px]"><i class="fa-solid fa-trash"></i> Xóa</button>
             </td>
           </tr>
         `;
@@ -1424,7 +1747,7 @@
             <td class="p-2 font-bold text-brand-blue">${t.ten}</td>
             <td class="p-2 text-slate-600">${t.mo_ta}</td>
             <td class="p-2 text-center">
-              <button onclick="deletePriorityTier(${i})" class="px-2 py-1 bg-red-100 hover:bg-red-200 text-red-700 font-bold rounded text-[11px] btn-tap"><i class="fa-solid fa-trash"></i> Xóa</button>
+              <button onclick="deletePriorityTier(${i})" class="px-2 py-1 bg-red-100 hover:bg-red-200 text-red-700 font-bold rounded text-[11px]"><i class="fa-solid fa-trash"></i> Xóa</button>
             </td>
           </tr>
         `;
@@ -1506,7 +1829,7 @@
       await window.db.from('cau_hinh').upsert([
         { key: 'LIST_CO_SO_KTX', value: systemConfigs.LIST_CO_SO_KTX },
         { key: 'LIST_BAC_UU_TIEN', value: systemConfigs.LIST_BAC_UU_TIEN }
-      ], { onConflict: 'key' });
+      ]);
 
       localStorage.setItem('APAG_CONFIG_CACHE', JSON.stringify(systemConfigs));
       Swal.fire('Thành công', 'Đã cập nhật danh mục hệ thống!', 'success');
@@ -1586,7 +1909,7 @@
       if (totalPages <= 1) return;
 
       const prevBtn = document.createElement('button');
-      prevBtn.className = `px-2.5 py-1 rounded border font-semibold btn-tap ${adminCurrentPage === 1 ? 'opacity-40 cursor-not-allowed bg-slate-100' : 'bg-white hover:bg-slate-100 text-brand-dark'}`;
+      prevBtn.className = `px-2.5 py-1 rounded border font-semibold ${adminCurrentPage === 1 ? 'opacity-40 cursor-not-allowed bg-slate-100' : 'bg-white hover:bg-slate-100 text-brand-dark'}`;
       prevBtn.innerHTML = `<i class="fa-solid fa-chevron-left"></i> Trước`;
       prevBtn.disabled = adminCurrentPage === 1;
       prevBtn.onclick = () => { if (adminCurrentPage > 1) { adminCurrentPage--; renderAdminTableWithPagination(); } };
@@ -1600,14 +1923,14 @@
 
       for (let p = startPage; p <= endPage; p++) {
         const pageBtn = document.createElement('button');
-        pageBtn.className = `px-2.5 py-1 rounded font-bold border btn-tap ${p === adminCurrentPage ? 'bg-brand-dark text-white border-brand-dark' : 'bg-white text-slate-700 hover:bg-slate-100'}`;
+        pageBtn.className = `px-2.5 py-1 rounded font-bold border ${p === adminCurrentPage ? 'bg-brand-dark text-white border-brand-dark' : 'bg-white text-slate-700 hover:bg-slate-100'}`;
         pageBtn.innerText = p;
         pageBtn.onclick = () => { adminCurrentPage = p; renderAdminTableWithPagination(); };
         container.appendChild(pageBtn);
       }
 
       const nextBtn = document.createElement('button');
-      nextBtn.className = `px-2.5 py-1 rounded border font-semibold btn-tap ${adminCurrentPage === totalPages ? 'opacity-40 cursor-not-allowed bg-slate-100' : 'bg-white hover:bg-slate-100 text-brand-dark'}`;
+      nextBtn.className = `px-2.5 py-1 rounded border font-semibold ${adminCurrentPage === totalPages ? 'opacity-40 cursor-not-allowed bg-slate-100' : 'bg-white hover:bg-slate-100 text-brand-dark'}`;
       nextBtn.innerHTML = `Sau <i class="fa-solid fa-chevron-right"></i>`;
       nextBtn.disabled = adminCurrentPage === totalPages;
       nextBtn.onclick = () => { if (adminCurrentPage < totalPages) { adminCurrentPage++; renderAdminTableWithPagination(); } };
@@ -1638,8 +1961,8 @@
             <td class="p-2.5 font-medium">${r.loai_phong || '<span class="text-slate-400">Chưa đăng ký</span>'}</td>
             <td class="p-2.5"><span class="px-2 py-0.5 ${badgeColor} rounded font-bold text-[10px]">${r.trang_thai || 'Chờ duyệt'}</span></td>
             <td class="p-2.5 text-center space-x-1">
-              <button onclick="approveRecord('${r.ma_ho_so}', 'Đã tiếp nhận')" class="px-2 py-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded font-bold text-[11px] btn-tap" title="Duyệt">Duyệt</button>
-              <button onclick="approveRecord('${r.ma_ho_so}', 'Từ chối')" class="px-2 py-1 bg-red-600 hover:bg-red-700 text-white rounded font-bold text-[11px] btn-tap" title="Từ chối">Từ chối</button>
+              <button onclick="approveRecord('${r.ma_ho_so}', 'Đã tiếp nhận')" class="px-2 py-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded font-bold text-[11px]" title="Duyệt">Duyệt</button>
+              <button onclick="approveRecord('${r.ma_ho_so}', 'Từ chối')" class="px-2 py-1 bg-red-600 hover:bg-red-700 text-white rounded font-bold text-[11px]" title="Từ chối">Từ chối</button>
             </td>
           </tr>
         `;
@@ -1660,6 +1983,7 @@
       });
     }
 
+    // CHỨC NĂNG NẠP DỮ LIỆU EXCEL
     function openExcelImportModal() { document.getElementById('excelImportModal').classList.remove('hidden'); }
     function closeExcelImportModal() { document.getElementById('excelImportModal').classList.add('hidden'); }
 
@@ -1845,6 +2169,7 @@
       }
     }
 
+    // CHỨC NĂNG XUẤT EXCEL THEO BỘ LỌC
     function exportFilteredToExcel() {
       if (!currentFilteredList || currentFilteredList.length === 0) {
         Swal.fire('Thông Báo', 'Không có dữ liệu sinh viên nào phù hợp với bộ lọc hiện tại!', 'info');
@@ -1889,6 +2214,7 @@
       });
     }
 
+    // CẤU HÌNH HỆ THỐNG TINH GỌN
     function switchAdminTab(tabName) {
       if (tabName === 'dashboard') {
         document.getElementById('adminTabContentDash').classList.remove('hidden');
@@ -1912,13 +2238,18 @@
         document.getElementById('cfg_HOTLINE_KTX').value = systemConfigs.HOTLINE_KTX || '0905.865.919';
     }
 
-    // LƯU CẤU HÌNH HỆ THỐNG (CÓ BẮT LỖI SUPABASE VÀ ONCONFLICT)
     async function saveSystemConfigs() {
       const namHoc = document.getElementById('cfg_NAM_HOC')?.value.trim() || '2026';
       const trangThai = document.getElementById('cfg_TRANG_THAI_CONG')?.value || 'AUTO';
       const deadline = document.getElementById('cfg_DEADLINE_DANG_KY')?.value.trim() || '';
       const ngayTiepSinh = document.getElementById('cfg_NGAY_TIEP_SINH')?.value.trim() || '';
       const hotline = document.getElementById('cfg_HOTLINE_KTX')?.value.trim() || '';
+
+      systemConfigs.NAM_HOC = namHoc;
+      systemConfigs.TRANG_THAI_CONG = trangThai;
+      systemConfigs.DEADLINE_DANG_KY = deadline;
+      systemConfigs.NGAY_TIEP_SINH = ngayTiepSinh;
+      systemConfigs.HOTLINE_KTX = hotline;
 
       const updates = [
         { key: 'NAM_HOC', value: namHoc },
@@ -1928,20 +2259,9 @@
         { key: 'HOTLINE_KTX', value: hotline }
       ];
 
-      Swal.fire({ title: 'Đang lưu CSDL Supabase...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
-
-      const { error } = await window.db.from('cau_hinh').upsert(updates, { onConflict: 'key' });
-
-      if (error) {
-        Swal.fire({ icon: 'error', title: 'Lưu thất bại!', text: 'Lỗi Supabase: ' + error.message });
-        return;
+      for (let item of updates) {
+        await window.db.from('cau_hinh').upsert([item]);
       }
-
-      systemConfigs.NAM_HOC = namHoc;
-      systemConfigs.TRANG_THAI_CONG = trangThai;
-      systemConfigs.DEADLINE_DANG_KY = deadline;
-      systemConfigs.NGAY_TIEP_SINH = ngayTiepSinh;
-      systemConfigs.HOTLINE_KTX = hotline;
 
       localStorage.setItem('APAG_CONFIG_CACHE', JSON.stringify(systemConfigs));
       Swal.fire('Thành công', 'Đã lưu cài đặt cấu hình hệ thống!', 'success');
