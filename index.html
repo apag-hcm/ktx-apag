@@ -201,7 +201,7 @@
     </div>
   </section>
 
-  <!-- LỊCH TIẾP SINH -->
+  <!-- LỊCH TIẾP SINH ĐỘNG THEO CƠ SỞ DỮ LIỆU -->
   <section class="max-w-7xl mx-auto px-3 sm:px-4 -mt-4 sm:-mt-5">
     <div class="bg-white rounded-2xl p-4 sm:p-6 custom-shadow border border-slate-100 space-y-4">
       <div class="bg-amber-50 border border-amber-200 rounded-xl p-3.5 flex items-start gap-3">
@@ -217,16 +217,8 @@
           <i class="fa-solid fa-calendar-days text-amber-500"></i> Lịch nhập học trực tiếp tại số 10 đường 3/2, Phường Hòa Hưng, TP.HCM
         </h3>
       </div>
-      <div class="grid md:grid-cols-2 gap-3 text-xs">
-        <div class="p-3 rounded-xl bg-blue-50/70 border border-blue-200">
-          <div class="font-bold text-brand-blue text-xs sm:text-sm mb-1"><i class="fa-solid fa-clock mr-1"></i> Ngày 25/8/<span class="lblNamHoc">2026</span></div>
-          <p id="lblNganhNgay1" class="text-slate-700 leading-relaxed font-medium">Ngành: Quản lý nhà nước, Quản trị văn phòng, Quản trị nhân lực, Lưu trữ học, Văn thư Lưu trữ.</p>
-        </div>
-        <div class="p-3 rounded-xl bg-amber-50/70 border border-amber-200">
-          <div class="font-bold text-amber-900 text-xs sm:text-sm mb-1"><i class="fa-solid fa-clock mr-1"></i> Ngày 26/8/<span class="lblNamHoc">2026</span></div>
-          <p id="lblNganhNgay2" class="text-slate-700 leading-relaxed font-medium">Ngành: Luật, Kinh tế, Xây dựng Đảng và chính quyền Nhà nước, Thanh tra.</p>
-        </div>
-      </div>
+      <!-- KHUNG HIỂN THỊ DỮ LIỆU LỊCH NHẬP HỌC THEO NGÀY ĐỘNG -->
+      <div id="mainScheduleDaysContainer" class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs"></div>
     </div>
   </section>
 
@@ -542,6 +534,29 @@
           <div class="bg-slate-50 border rounded-xl p-3.5 sm:p-4 space-y-3">
             <div class="flex justify-between items-center pb-2 border-b">
               <span class="font-bold text-sm text-brand-dark flex items-center gap-1.5">
+                <i class="fa-solid fa-calendar-days text-amber-600"></i> Quản lý Lịch Nhập Học Theo Ngày
+              </span>
+              <button onclick="openAddScheduleDayModal()" class="px-3 py-1.5 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-lg text-xs flex items-center gap-1 shadow btn-tap">
+                <i class="fa-solid fa-plus"></i> Thêm Ngày Nhập Học Mới
+              </button>
+            </div>
+            <div class="overflow-x-auto touch-scroller">
+              <table class="w-full min-w-[500px] text-left border-collapse bg-white rounded-lg overflow-hidden border">
+                <thead class="bg-slate-100 font-bold text-slate-700">
+                  <tr>
+                    <th class="p-2 border-b">Tiêu Đề / Ngày</th>
+                    <th class="p-2 border-b">Danh Sách Ngành Học Lịch Nhập Học</th>
+                    <th class="p-2 border-b text-center">Thao Tác</th>
+                  </tr>
+                </thead>
+                <tbody id="adminScheduleDayTableBody" class="divide-y"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="bg-slate-50 border rounded-xl p-3.5 sm:p-4 space-y-3">
+            <div class="flex justify-between items-center pb-2 border-b">
+              <span class="font-bold text-sm text-brand-dark flex items-center gap-1.5">
                 <i class="fa-solid fa-building text-amber-600"></i> Quản lý Tòa nhà & Cơ sở Ký túc xá
               </span>
               <button onclick="openAddKtxBuildingModal()" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg text-xs flex items-center gap-1 shadow btn-tap">
@@ -609,20 +624,12 @@
                 <input type="text" id="cfg_DEADLINE_DANG_KY" placeholder="2026-08-30 17:00:00" class="w-full px-3 py-2 border rounded-lg font-semibold bg-white focus:outline-none focus:ring-2 focus:ring-brand-blue btn-tap">
               </div>
               <div>
-                <label class="block font-bold text-slate-700 mb-1">Lịch tiếp sinh nhập học (NGAY_TIEP_SINH):</label>
+                <label class="block font-bold text-slate-700 mb-1">Lịch tiếp sinh tổng quan (NGAY_TIEP_SINH):</label>
                 <input type="text" id="cfg_NGAY_TIEP_SINH" placeholder="25 - 26/8/2026" class="w-full px-3 py-2 border rounded-lg font-semibold bg-white focus:outline-none focus:ring-2 focus:ring-brand-blue btn-tap">
               </div>
               <div class="md:col-span-2">
                 <label class="block font-bold text-slate-700 mb-1">Hotline tư vấn KTX (HOTLINE_KTX):</label>
                 <input type="text" id="cfg_HOTLINE_KTX" placeholder="0905.865.919" class="w-full px-3 py-2 border rounded-lg font-semibold bg-white focus:outline-none focus:ring-2 focus:ring-brand-blue btn-tap">
-              </div>
-              <div class="md:col-span-2">
-                <label class="block font-bold text-slate-700 mb-1">Lịch ngành Ngày 1 (LICH_NGANH_1):</label>
-                <input type="text" id="cfg_LICH_NGANH_1" placeholder="Ngành: Quản lý nhà nước, Quản trị văn phòng..." class="w-full px-3 py-2 border rounded-lg font-semibold bg-white focus:outline-none focus:ring-2 focus:ring-brand-blue btn-tap">
-              </div>
-              <div class="md:col-span-2">
-                <label class="block font-bold text-slate-700 mb-1">Lịch ngành Ngày 2 (LICH_NGANH_2):</label>
-                <input type="text" id="cfg_LICH_NGANH_2" placeholder="Ngành: Luật, Kinh tế, Thanh tra..." class="w-full px-3 py-2 border rounded-lg font-semibold bg-white focus:outline-none focus:ring-2 focus:ring-brand-blue btn-tap">
               </div>
             </div>
             <button onclick="saveSystemConfigs()" class="px-5 py-2.5 bg-brand-dark hover:bg-brand-blue text-white font-bold rounded-lg shadow transition flex items-center gap-2 btn-tap">
@@ -784,6 +791,11 @@
 
     let adminCurrentPage = 1;
     const ADMIN_PAGE_SIZE = 20;
+
+    let scheduleDaysList = [
+      { id: "day1", ngay: "Ngày 25/8/2026", nganh: "Ngành: Quản lý nhà nước, Quản trị văn phòng, Quản trị nhân lực, Lưu trữ học, Văn thư Lưu trữ." },
+      { id: "day2", ngay: "Ngày 26/8/2026", nganh: "Ngành: Luật, Kinh tế, Xây dựng Đảng và chính quyền Nhà nước, Thanh tra." }
+    ];
 
     let ktxBuildingsList = [
       { id: "ktx3t", ten: "KTX 3 tầng (Số 10 đường 3/2)", gia: "900.000đ / SV / tháng", so_cho: 290 },
@@ -965,6 +977,7 @@
       if (cached) {
         try {
           systemConfigs = JSON.parse(cached);
+          if (systemConfigs.LIST_LICH_NHAP_HOC) scheduleDaysList = JSON.parse(systemConfigs.LIST_LICH_NHAP_HOC);
           if (systemConfigs.LIST_CO_SO_KTX) ktxBuildingsList = JSON.parse(systemConfigs.LIST_CO_SO_KTX);
           if (systemConfigs.LIST_BAC_UU_TIEN) priorityTiersList = JSON.parse(systemConfigs.LIST_BAC_UU_TIEN);
           applyConfigsToUI();
@@ -977,6 +990,7 @@
         if (data && data.length > 0) {
           data.forEach(item => { systemConfigs[item.key] = item.value; });
           
+          if (systemConfigs.LIST_LICH_NHAP_HOC) scheduleDaysList = JSON.parse(systemConfigs.LIST_LICH_NHAP_HOC);
           if (systemConfigs.LIST_CO_SO_KTX) ktxBuildingsList = JSON.parse(systemConfigs.LIST_CO_SO_KTX);
           if (systemConfigs.LIST_BAC_UU_TIEN) priorityTiersList = JSON.parse(systemConfigs.LIST_BAC_UU_TIEN);
 
@@ -1012,11 +1026,26 @@
       if (systemConfigs.NGAY_TIEP_SINH) document.getElementById('lblNgayTiepSinh').innerText = systemConfigs.NGAY_TIEP_SINH;
       if (systemConfigs.HOTLINE_KTX) document.getElementById('lblHotline').innerText = systemConfigs.HOTLINE_KTX;
 
-      if (systemConfigs.LICH_NGANH_1 && document.getElementById('lblNganhNgay1')) {
-        document.getElementById('lblNganhNgay1').innerText = systemConfigs.LICH_NGANH_1;
-      }
-      if (systemConfigs.LICH_NGANH_2 && document.getElementById('lblNganhNgay2')) {
-        document.getElementById('lblNganhNgay2').innerText = systemConfigs.LICH_NGANH_2;
+      // VẼ LỊCH NHẬP HỌC THEO NGÀY ĐỘNG Ở TRANG CHỦ
+      const mainScheduleContainer = document.getElementById('mainScheduleDaysContainer');
+      if (mainScheduleContainer) {
+        mainScheduleContainer.innerHTML = '';
+        const dayBoxStyles = [
+          { bg: 'bg-blue-50/70 border-blue-200', titleColor: 'text-brand-blue' },
+          { bg: 'bg-amber-50/70 border-amber-200', titleColor: 'text-amber-900' },
+          { bg: 'bg-emerald-50/70 border-emerald-200', titleColor: 'text-emerald-900' },
+          { bg: 'bg-purple-50/70 border-purple-200', titleColor: 'text-purple-900' }
+        ];
+
+        scheduleDaysList.forEach((item, idx) => {
+          const style = dayBoxStyles[idx % dayBoxStyles.length];
+          mainScheduleContainer.innerHTML += `
+            <div class="p-3 rounded-xl border ${style.bg}">
+              <div class="font-bold ${style.titleColor} text-xs sm:text-sm mb-1"><i class="fa-solid fa-clock mr-1"></i> ${item.ngay}</div>
+              <p class="text-slate-700 leading-relaxed font-medium">${item.nganh}</p>
+            </div>
+          `;
+        });
       }
 
       let tongCho = 0;
@@ -1476,9 +1505,70 @@
       document.getElementById('kpiPolicyCount').innerText = `${countPolicy} suất`;
 
       applyAdminFilters();
+      renderAdminScheduleDayManagement();
       renderAdminBuildingManagement();
       renderAdminPriorityTierManagement();
       loadSystemConfigEditor();
+    }
+
+    // QUẢN LÝ LỊCH NHẬP HỌC THEO NGÀY ĐỘNG TRONG ADMIN
+    function renderAdminScheduleDayManagement() {
+      const tbody = document.getElementById('adminScheduleDayTableBody');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+      scheduleDaysList.forEach((item, i) => {
+        tbody.innerHTML += `
+          <tr>
+            <td class="p-2 font-bold text-amber-600">${item.ngay}</td>
+            <td class="p-2 font-medium text-slate-700">${item.nganh}</td>
+            <td class="p-2 text-center space-x-1">
+              <button onclick="openAddScheduleDayModal(${i})" class="px-2 py-1 bg-blue-100 hover:bg-blue-200 text-brand-blue font-bold rounded text-[11px] btn-tap"><i class="fa-solid fa-pen-to-square"></i> Sửa</button>
+              <button onclick="deleteScheduleDay(${i})" class="px-2 py-1 bg-red-100 hover:bg-red-200 text-red-700 font-bold rounded text-[11px] btn-tap"><i class="fa-solid fa-trash"></i> Xóa</button>
+            </td>
+          </tr>
+        `;
+      });
+    }
+
+    async function openAddScheduleDayModal(editIndex = null) {
+      const isEdit = editIndex !== null;
+      const currentItem = isEdit ? scheduleDaysList[editIndex] : { ngay: '', nganh: '' };
+
+      const { value: formValues } = await Swal.fire({
+        title: isEdit ? 'Cập Nhật Ngày Nhập Học' : 'Thêm Ngày Nhập Học Mới',
+        html: `
+          <input id="swalNgayNhapHoc" class="swal2-input" placeholder="Tiêu đề / Ngày (Ví dụ: Ngày 25/8/2026)" value="${currentItem.ngay}">
+          <textarea id="swalNganhNhapHoc" class="swal2-textarea" placeholder="Danh sách ngành (Ví dụ: Ngành: Quản lý nhà nước, Quản trị văn phòng...)">${currentItem.nganh}</textarea>
+        `,
+        focusConfirm: false,
+        showCancelButton: true,
+        confirmButtonText: 'Lưu Ngày Nhập Học',
+        cancelButtonText: 'Hủy',
+        preConfirm: () => {
+          return {
+            ngay: document.getElementById('swalNgayNhapHoc').value.trim(),
+            nganh: document.getElementById('swalNganhNhapHoc').value.trim()
+          }
+        }
+      });
+
+      if (formValues && formValues.ngay && formValues.nganh) {
+        if (isEdit) {
+          scheduleDaysList[editIndex].ngay = formValues.ngay;
+          scheduleDaysList[editIndex].nganh = formValues.nganh;
+        } else {
+          formValues.id = 'day_' + Date.now();
+          scheduleDaysList.push(formValues);
+        }
+        await saveDynamicCategoryToDb();
+      }
+    }
+
+    async function deleteScheduleDay(index) {
+      if (confirm(`Xác nhận xóa "${scheduleDaysList[index].ngay}" khỏi lịch tiếp sinh?`)) {
+        scheduleDaysList.splice(index, 1);
+        await saveDynamicCategoryToDb();
+      }
     }
 
     function renderAdminBuildingManagement() {
@@ -1585,10 +1675,12 @@
     }
 
     async function saveDynamicCategoryToDb() {
+      systemConfigs.LIST_LICH_NHAP_HOC = JSON.stringify(scheduleDaysList);
       systemConfigs.LIST_CO_SO_KTX = JSON.stringify(ktxBuildingsList);
       systemConfigs.LIST_BAC_UU_TIEN = JSON.stringify(priorityTiersList);
 
       await window.db.from('cau_hinh').upsert([
+        { key: 'LIST_LICH_NHAP_HOC', value: systemConfigs.LIST_LICH_NHAP_HOC },
         { key: 'LIST_CO_SO_KTX', value: systemConfigs.LIST_CO_SO_KTX },
         { key: 'LIST_BAC_UU_TIEN', value: systemConfigs.LIST_BAC_UU_TIEN }
       ], { onConflict: 'key' });
@@ -1596,6 +1688,7 @@
       localStorage.setItem('APAG_CONFIG_CACHE', JSON.stringify(systemConfigs));
       Swal.fire('Thành công', 'Đã cập nhật danh mục hệ thống!', 'success');
       applyConfigsToUI();
+      renderAdminScheduleDayManagement();
       renderAdminBuildingManagement();
       renderAdminPriorityTierManagement();
     }
@@ -1995,10 +2088,6 @@
         document.getElementById('cfg_NGAY_TIEP_SINH').value = systemConfigs.NGAY_TIEP_SINH || '25 - 26/8/2026';
       if (document.getElementById('cfg_HOTLINE_KTX'))
         document.getElementById('cfg_HOTLINE_KTX').value = systemConfigs.HOTLINE_KTX || '0905.865.919';
-      if (document.getElementById('cfg_LICH_NGANH_1'))
-        document.getElementById('cfg_LICH_NGANH_1').value = systemConfigs.LICH_NGANH_1 || 'Ngành: Quản lý nhà nước, Quản trị văn phòng, Quản trị nhân lực, Lưu trữ học, Văn thư Lưu trữ.';
-      if (document.getElementById('cfg_LICH_NGANH_2'))
-        document.getElementById('cfg_LICH_NGANH_2').value = systemConfigs.LICH_NGANH_2 || 'Ngành: Luật, Kinh tế, Xây dựng Đảng và chính quyền Nhà nước, Thanh tra.';
     }
 
     // LƯU CẤU HÌNH HỆ THỐNG (CÓ BẮT LỖI SUPABASE VÀ ONCONFLICT)
@@ -2008,17 +2097,13 @@
       const deadline = document.getElementById('cfg_DEADLINE_DANG_KY')?.value.trim() || '';
       const ngayTiepSinh = document.getElementById('cfg_NGAY_TIEP_SINH')?.value.trim() || '';
       const hotline = document.getElementById('cfg_HOTLINE_KTX')?.value.trim() || '';
-      const lichNganh1 = document.getElementById('cfg_LICH_NGANH_1')?.value.trim() || '';
-      const lichNganh2 = document.getElementById('cfg_LICH_NGANH_2')?.value.trim() || '';
 
       const updates = [
         { key: 'NAM_HOC', value: namHoc },
         { key: 'TRANG_THAI_CONG', value: trangThai },
         { key: 'DEADLINE_DANG_KY', value: deadline },
         { key: 'NGAY_TIEP_SINH', value: ngayTiepSinh },
-        { key: 'HOTLINE_KTX', value: hotline },
-        { key: 'LICH_NGANH_1', value: lichNganh1 },
-        { key: 'LICH_NGANH_2', value: lichNganh2 }
+        { key: 'HOTLINE_KTX', value: hotline }
       ];
 
       Swal.fire({ title: 'Đang lưu CSDL Supabase...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
@@ -2035,8 +2120,6 @@
       systemConfigs.DEADLINE_DANG_KY = deadline;
       systemConfigs.NGAY_TIEP_SINH = ngayTiepSinh;
       systemConfigs.HOTLINE_KTX = hotline;
-      systemConfigs.LICH_NGANH_1 = lichNganh1;
-      systemConfigs.LICH_NGANH_2 = lichNganh2;
 
       localStorage.setItem('APAG_CONFIG_CACHE', JSON.stringify(systemConfigs));
       Swal.fire('Thành công', 'Đã lưu cài đặt cấu hình hệ thống!', 'success');
